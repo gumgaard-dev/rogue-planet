@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
+[System.Serializable]
 public class Wave
 {
     public float seed;
@@ -18,8 +19,8 @@ public class NoiseGen
     {
         float[,] noiseMap = new float[width, height];
 
-        for(int x = 0; x < width; x++) {
-            for(int y = 0; y < height; y++) {
+        for(int x = 0; x < width; ++x) {
+            for(int y = 0; y < height; ++y) {
 
                 // apply scale and offset to x and y coordinates
                 float xPos = (float)x * scale + offset.x;
@@ -49,7 +50,7 @@ public class NoiseGen
         float[,] noiseMap = new float[width, height];
 
         Parallel.For(0, width, x => {
-            for (int y = 0; y < height; y++)
+            for (int y = 0; y < height; ++y)
             {
 
                 // apply scale and offset to x and y coordinates
