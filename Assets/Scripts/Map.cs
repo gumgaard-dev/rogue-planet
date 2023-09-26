@@ -100,7 +100,6 @@ public class Map : MonoBehaviour
         }
 
         return curClosestMatch;
-        
     }
 
     public void GenerateNoiseMap()

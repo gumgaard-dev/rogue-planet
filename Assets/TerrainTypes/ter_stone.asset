@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53784679dc6ea6d4bbdd28367727ff2e, type: 3}
+  m_Script: {fileID: 11500000, guid: 0356a6ae78f30794aaebc92175f08b1b, type: 3}
   m_Name: ter_stone
   m_EditorClassIdentifier: 
   textures:
-  - {fileID: 21300000, guid: 9e235445954e0ea47b963af593fc7662, type: 3}
+  - {fileID: 21300000, guid: 978f926ab2727c34daf0528bbb39978e, type: 3}
   minLayerDepth: 0
+  minResourceChance: 0

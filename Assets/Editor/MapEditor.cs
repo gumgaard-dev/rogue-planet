@@ -44,12 +44,10 @@ public class MapEditor : Editor
                 }
             }
 
+            texture.Apply();
+
             int previewSize = 256;
             GUILayout.Label(texture, GUILayout.Width(previewSize), GUILayout.Height(previewSize));
-            Rect rect = GUILayoutUtility.GetRect(previewSize, previewSize);
-            GUI.DrawTexture(rect, texture, ScaleMode.StretchToFill);
-
-            texture.Apply();
         }
     }
 }
