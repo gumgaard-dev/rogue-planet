@@ -1,14 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.WebSockets;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class Map : MonoBehaviour
 {
 
+
+    private GameObject[,] tiles;
+
     public TerrainType[] terrainTypes;
-    public GameObject tilePrefab;
+    public GameObject tilePfb;
 
     [Header("Dimensions")]
     public int width = 50;
@@ -19,6 +25,7 @@ public class Map : MonoBehaviour
     [Header("Resource Chance")]
     public Wave[] resourceChanceWaves;
     public float[,] resourceChanceNoiseMap;
+    public bool autoUpdate;
 
     // Start is called before the first frame update
     void Start()
@@ -26,29 +33,40 @@ public class Map : MonoBehaviour
         GenerateMap();
     }
 
-    void GenerateMap()
+    public void GenerateMap()
     {
-        resourceChanceNoiseMap = NoiseGen.Generate(width, height, scale, resourceChanceWaves, offset);
+        GenerateNoiseMap();
 
         // todo:
         int layerDepth = 0;
+
+        tiles = new GameObject[width, height];
+
 
         for (int x = 0; x < width; ++x)
         {
             for (int y = 0; y < height; ++y)
             {
-                GameObject tile = Instantiate(tilePrefab, new Vector3(x, y, 0), Quaternion.identity);
+                GameObject tile = Instantiate(tilePfb, new Vector3(x, y, 0), Quaternion.identity);
                 TerrainType terrainType = GetTerrainType(layerDepth, resourceChanceNoiseMap[x, y]);
                 tile.GetComponent<SpriteRenderer>().sprite = terrainType.GetTexture();
+
+                tile.transform.SetParent(this.transform, false);
+                tiles[x, y] = tile;
             }
         }
+    }
+
+    public float[,] GetNoiseMap()
+    {
+        return resourceChanceNoiseMap;
     }
 
     TerrainType GetTerrainType(int layerDepth, float resourceChance) { 
         List<TerrainTempData> terrainTemp = new List<TerrainTempData>();
         Parallel.ForEach(terrainTypes, terrain =>
         {
-            if(terrain.MatchCondition(layerDepth, resourceChance))
+            if(terrain.MatchCondition(layerDepth, 1 - resourceChance))
             {
                 terrainTemp.Add(new TerrainTempData(terrain));
             }
@@ -85,6 +103,12 @@ public class Map : MonoBehaviour
         
     }
 
+    public void GenerateNoiseMap()
+    {
+        this.offset = new Vector2(UnityEngine.Random.Range(-1000000, 1000000), UnityEngine.Random.Range(-1000000, 1000000));
+        resourceChanceNoiseMap = NoiseGen.Generate(width, height, scale, resourceChanceWaves, offset);      
+    }
+
     public class TerrainTempData
     {
         public TerrainType terrain;
@@ -95,7 +119,7 @@ public class Map : MonoBehaviour
 
         public float GetDiffValue(int layerDepth, float resourceChance)
         {
-            return (layerDepth - terrain.minLayerDepth) + (resourceChance - terrain.minResourceChance);
+            return (resourceChance - terrain.minResourceChance);
         }
     }
 }

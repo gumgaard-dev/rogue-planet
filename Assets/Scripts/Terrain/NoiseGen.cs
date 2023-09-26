@@ -1,14 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Unity.Mathematics;
 using UnityEngine;
 
 [System.Serializable]
 public class Wave
 {
+    private const float FREQ_MIN = 0f;
+    private const float FREQ_MAX = 0.3f;
+    private const float AMP_MIN = -1f;
+    private const float AMP_MAX = 1f;
+
     public float seed;
+    
+    [Range(FREQ_MIN, FREQ_MAX)]
     public float frequency;
+
+    [Range(AMP_MIN, AMP_MAX)]
     public float amplitude;
+
 }
 
 public class NoiseGen
@@ -23,7 +34,7 @@ public class NoiseGen
             for(int y = 0; y < height; ++y) {
 
                 // apply scale and offset to x and y coordinates
-                float xPos = (float)x * scale + offset.x;
+                float xPos = (float)x * scale + offset.y;
                 float yPos = (float)y * scale + offset.y;
 
                 
@@ -32,8 +43,10 @@ public class NoiseGen
                 float normalizationFactor = 0.0f;
                 foreach(Wave w in waves)
                 {
-                    float noiseValue = Mathf.PerlinNoise(xPos * w.frequency + w.seed, yPos * w.frequency + w.seed);
-                    noiseMap[x, y] += w.amplitude * noiseValue;
+                    Unity.Mathematics.float2 pos = new Unity.Mathematics.float2(xPos * w.frequency + w.seed, yPos * w.frequency + w.seed);
+                    float2 noiseValue = Unity.Mathematics.noise.cellular(pos);
+                    float noiseValueSummed = (noiseValue.x + noiseValue.y);
+                    noiseMap[x, y] += w.amplitude * noiseValueSummed;
                     normalizationFactor += w.amplitude;
                 }
 

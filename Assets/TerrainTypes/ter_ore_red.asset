@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 53784679dc6ea6d4bbdd28367727ff2e, type: 3}
-  m_Name: ter_ore
+  m_Name: ter_ore_red
   m_EditorClassIdentifier: 
   textures:
   - {fileID: 21300000, guid: 4a6841080f525864a8abcdb853902329, type: 3}
   minLayerDepth: 0
-  minResourceChance: 0.75
+  minResourceChance: 0.4
