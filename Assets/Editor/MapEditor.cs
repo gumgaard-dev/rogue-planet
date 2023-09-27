@@ -1,53 +1,50 @@
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(Map))]
+[CustomEditor(typeof(LayerData))]
 public class MapEditor : Editor
 {
     public override void OnInspectorGUI()
     {
-        Map map = (Map)target;
+        DrawDefaultInspector();
 
-        if (DrawDefaultInspector()) // This will draw the default inspector properties and layout.
+        LayerData layerData = (LayerData)target;
+
+        if (GUILayout.Button("Repopulate Layer Terrain Data"))
         {
-            if (map.autoUpdate)
-            {
-                map.GenerateNoiseMap();
-            }
+            RepopulateLayerTerrainData(layerData);
         }
-
-        if (GUILayout.Button("Show Noise Map"))
-        {
-            map.GenerateNoiseMap();
-        }
-
-        DrawNoiseMapPreview(map);
     }
 
-    void DrawNoiseMapPreview(Map map)
+    private void RepopulateLayerTerrainData(LayerData layerData)
     {
-        float[,] noiseMap = map.GetNoiseMap();
-        if (noiseMap != null)
+        // Assuming the oreDatabase field in LayerData is already populated
+        if (layerData.oreDatabase != null)
         {
-            int width = noiseMap.GetLength(0);
-            int height = noiseMap.GetLength(1);
+            // Clear the existing LayerTerrainData entries if any
+            layerData.layerTerrainData.Clear();
 
-            Texture2D texture = new Texture2D(width, height);
-
-            for (int x = 0; x < width; x++)
+            // Loop through the TerrainData array in the TerrainDatabase
+            foreach (var terrain in layerData.oreDatabase.GetTerrainData())
             {
-                for (int y = 0; y < height; y++)
+                LayerTerrainData newLayerTerrainData = new LayerTerrainData
                 {
-                    float value = noiseMap[x, y];
-                    Color color = new Color(value, value, value, 1f);  // Grayscale color
-                    texture.SetPixel(x, y, color);
-                }
+                    oreData = terrain,
+                    // Assign default values or compute values for other fields as needed
+                    spawnThreshold = 0.5f,
+                    // ... and so on for other fields
+                };
+
+                // Add the newly created LayerTerrainData object to the list
+                layerData.layerTerrainData.Add(newLayerTerrainData);
             }
 
-            texture.Apply();
-
-            int previewSize = 256;
-            GUILayout.Label(texture, GUILayout.Width(previewSize), GUILayout.Height(previewSize));
+            // Notify Unity of the data change to ensure it's saved properly
+            EditorUtility.SetDirty(layerData);
+        }
+        else
+        {
+            Debug.LogWarning("Terrain Database is not set!");
         }
     }
 }

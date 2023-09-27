@@ -1,124 +1,114 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Net.WebSockets;
-using System.Security.Cryptography;
-using System.Threading.Tasks;
-using Unity.Mathematics;
+using System.Linq;
 using UnityEngine;
 
 public class Map : MonoBehaviour
 {
-
-
-    private GameObject[,] tiles;
-
-    public TerrainType[] terrainTypes;
-    public GameObject tilePfb;
+    [Header("Databases")]
+    [SerializeField]
+    private TerrainDatabase terrainDB;
+    [SerializeField]
+    private LayerDatabase layerDB;
 
     [Header("Dimensions")]
     public int width = 50;
-    public int height = 50;
-    public float scale = 1f;
-    public Vector2 offset;
 
-    [Header("Resource Chance")]
-    public Wave[] resourceChanceWaves;
-    public float[,] resourceChanceNoiseMap;
-    public bool autoUpdate;
+    // calculated based on layers heights, so not editable or shown in gui
+    private int height;
+    
+    public LayerData[] layerDataArray;
+    public TerrainData[] terrainDataArray;
 
-    // Start is called before the first frame update
+    private int[,] terrainMapEncoded;  // 2D array to store terrain type IDs
+
+    // Dictionary to quickly map terrain type IDs to TerrainData
+    private readonly Dictionary<int, TerrainData> terrainDataDictionary = new();
+
     void Start()
     {
-        GenerateMap();
+        PopulateLayerData();
+        PopulateTerrainData();
+        PopulateTerrainDataDictionary();
+        CalculateHeight();
+        GenerateTerrainMap();
+        PopulateScene();
     }
 
-    public void GenerateMap()
+    private void CalculateHeight()
     {
-        GenerateNoiseMap();
+        this.height = layerDataArray.Sum(l => l.TotalDepth());
+    }
 
-        // todo:
-        int layerDepth = 0;
+    private void PopulateLayerData()
+    {
+        if (layerDB != null)
+        {
+            Debug.LogWarning("Map: not connected to layer database.");
+            this.layerDataArray = new LayerData[0];
+        } 
+        else
+        {
+            this.layerDataArray = layerDB.GetLayerData();
+        }
+        
+    }
 
-        tiles = new GameObject[width, height];
+    private void PopulateTerrainData()
+    {
+        if (layerDB != null)
+        {
+            Debug.LogWarning("Map: not connected to terrain database.");
+            this.terrainDataArray = new TerrainData[0];
+        }
+        else
+        {
+            this.layerDataArray = layerDB.GetLayerData();
+        }
+    }
+
+    void PopulateTerrainDataDictionary()
+    {
+        foreach (var terrainData in terrainDataArray)
+        {
+            terrainDataDictionary[terrainData.id] = terrainData;
+        }
+    }
+
+    void GenerateTerrainMap()
+    {
+        terrainMapEncoded = new int[width, height];
+
+        foreach (var layer in layerDataArray)
+        {
+            foreach (var terrainData in layer.layerTerrainData)
+            {
+                for (int x = 0; x < width; ++x)
+                {
+                    for (int y = layer.minDepth; y <= layer.maxDepth; ++y)
+                    {
+                        terrainMapEncoded[x,y] = terrainData.DetermineTerrainTypeID(x, y);
+                    }
+                }
+            }
+        }
+    }
 
 
+
+
+    void PopulateScene()
+    {
         for (int x = 0; x < width; ++x)
         {
             for (int y = 0; y < height; ++y)
             {
-                GameObject tile = Instantiate(tilePfb, new Vector3(x, y, 0), Quaternion.identity);
-                TerrainType terrainType = GetTerrainType(layerDepth, resourceChanceNoiseMap[x, y]);
-                tile.GetComponent<SpriteRenderer>().sprite = terrainType.GetTexture();
-
-                tile.transform.SetParent(this.transform, false);
-                tiles[x, y] = tile;
+                int terrainTypeID = terrainMapEncoded[x, y];
+                TerrainData terrainData = terrainDataDictionary[terrainTypeID];
+                GameObject tilePrefab = terrainData.tilePrefab;
+                Instantiate(tilePrefab, new Vector3(x, y, 0), Quaternion.identity);
             }
-        }
-    }
-
-    public float[,] GetNoiseMap()
-    {
-        return resourceChanceNoiseMap;
-    }
-
-    TerrainType GetTerrainType(int layerDepth, float resourceChance) { 
-        List<TerrainTempData> terrainTemp = new List<TerrainTempData>();
-        Parallel.ForEach(terrainTypes, terrain =>
-        {
-            if(terrain.MatchCondition(layerDepth, 1 - resourceChance))
-            {
-                terrainTemp.Add(new TerrainTempData(terrain));
-            }
-        });
-
-        // find closest match
-        TerrainType curClosestMatch = null;
-        float curMax = 0f;
-
-        foreach(TerrainTempData curTerrain in terrainTemp)
-        {
-            if (curClosestMatch == null)
-            {
-                curClosestMatch = curTerrain.terrain;
-                curMax = curClosestMatch.minResourceChance;
-            }
-            else
-            {
-                float curDif = curTerrain.terrain.minResourceChance;
-                if (curDif > curMax)
-                {
-                    curClosestMatch = curTerrain.terrain;
-                    curMax = curClosestMatch.minResourceChance;
-                }
-            }
-        }
-
-        if(curClosestMatch == null)
-        {
-            curClosestMatch = terrainTypes[0];
-        }
-
-        return curClosestMatch;
-    }
-
-    public void GenerateNoiseMap()
-    {
-        this.offset = new Vector2(UnityEngine.Random.Range(-1000000, 1000000), UnityEngine.Random.Range(-1000000, 1000000));
-        resourceChanceNoiseMap = NoiseGen.Generate(width, height, scale, resourceChanceWaves, offset);      
-    }
-
-    public class TerrainTempData
-    {
-        public TerrainType terrain;
-        public TerrainTempData(TerrainType terrainType)
-        {
-            terrain = terrainType;
-        }
-
-        public float GetDiffValue(int layerDepth, float resourceChance)
-        {
-            return (resourceChance - terrain.minResourceChance);
         }
     }
 }

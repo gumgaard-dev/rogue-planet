@@ -9,10 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0356a6ae78f30794aaebc92175f08b1b, type: 3}
-  m_Name: ter_ore_green
+  m_Script: {fileID: 11500000, guid: 81551851e6d1ced4a8d491ab5338da6d, type: 3}
+  m_Name: db_layer
   m_EditorClassIdentifier: 
-  textures:
-  - {fileID: 21300000, guid: f9df34a75eb476b4094b8b742779ecbd, type: 3}
-  minLayerDepth: 0
-  minResourceChance: 0
+  layerData: []

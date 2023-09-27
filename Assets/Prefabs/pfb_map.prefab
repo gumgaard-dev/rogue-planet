@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2152255110534006639}
-  - component: {fileID: 1711060251061444181}
+  - component: {fileID: 5007732121627031855}
   m_Layer: 0
   m_Name: pfb_map
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1711060251061444181
+--- !u!114 &5007732121627031855
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,21 +41,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3279042739093651039}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82d39e52a012dd047a5aa7a061a4484e, type: 3}
+  m_Script: {fileID: 11500000, guid: 75d43fae832da2d4faca400000c9608f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  terrainTypes:
-  - {fileID: 11400000, guid: cdc47eedeaa54c34fa9df144cbd8846a, type: 2}
-  - {fileID: 11400000, guid: 8a6a9210a763a47469673fffb0a6acde, type: 2}
-  tilePrefab: {fileID: 3196618734636661830, guid: c7781169e5d49554e8017e510cfc92cb, type: 3}
-  width: 100
-  height: 100
-  scale: 1
-  offset: {x: 0, y: 0}
-  resourceChanceWaves:
-  - seed: 56
-    frequency: 0.05
-    amplitude: 1
-  - seed: 199.36
-    frequency: 0.1
-    amplitude: 0.5
+  terrainDB: {fileID: 11400000, guid: 39275d6cc0671824999d51f3d89cd952, type: 2}
+  layerDB: {fileID: 11400000, guid: 25edcfb0b8e7f9f42ba9c3aceafcd93b, type: 2}
+  width: 50
+  layerDataArray: []
+  terrainDataArray: []

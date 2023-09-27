@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0356a6ae78f30794aaebc92175f08b1b, type: 3}
-  m_Name: ter_stone
+  m_Script: {fileID: 11500000, guid: 40b61bb582ad244438b4e6a8be3e8f28, type: 3}
+  m_Name: db_terrain
   m_EditorClassIdentifier: 
-  textures:
-  - {fileID: 21300000, guid: 978f926ab2727c34daf0528bbb39978e, type: 3}
-  minLayerDepth: 0
-  minResourceChance: 0
+  terrainData:
+  - {fileID: 11400000, guid: 64da5fa3e8b1e7047ae354791f8023d9, type: 2}

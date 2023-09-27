@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10b0a94fb8d7c5b438459b55c1c5cbb4, type: 3}
+  m_Name: lay_1
+  m_EditorClassIdentifier: 
+  id: 0
+  minDepth: 0
+  maxDepth: 40
+  baseTerrainData: {fileID: 11400000, guid: 250a01e2bb4dc0b489cfa0d493e72ccc, type: 2}
+  layerTerrainData:
+  - {fileID: 11400000, guid: 54782aed6b7f31f4dae361b07339572e, type: 2}
+  oreDatabase: {fileID: 11400000, guid: 39275d6cc0671824999d51f3d89cd952, type: 2}
