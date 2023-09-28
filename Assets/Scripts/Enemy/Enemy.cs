@@ -4,15 +4,23 @@ namespace Enemy
 
     public class Enemy : MonoBehaviour
     {
-        private GameObject _target;
+        public GameObject target;
 
         private float _speed;
         private int _health;
         private int _damage;
 
+        public Enemy(Enemy prototype)
+        {
+            _speed = prototype._speed;
+            _health = prototype._health;
+            _damage = prototype._damage;
+        }
         void Start()
         {
-            //TODO set _target here
+            //TODO set _target here - just using tag for testing
+            target = GameObject.FindGameObjectWithTag("Player");
+            _speed = 1.5f;
         }
 
         void Update()
@@ -24,7 +32,7 @@ namespace Enemy
         private void Follow()
         {
             transform.position =
-                Vector2.MoveTowards(transform.position, _target.transform.position, _speed * Time.deltaTime);
+                Vector2.MoveTowards(transform.position, target.transform.position, _speed * Time.deltaTime);
         }
 
         //TODO this requires a player object in the scene
