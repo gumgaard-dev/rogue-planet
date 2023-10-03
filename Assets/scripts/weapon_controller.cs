@@ -23,24 +23,15 @@ public class player_controller_weapon : MonoBehaviour
 
     void RotateWeapon()
     {
-        Vector3 spaceshipPosition = transform.parent.position;
-        
-        //calculate the relative position based on user input
-        float rotation = Input.GetAxis("Horizontal") * rotationSpeed * Time.deltaTime;
-        
-        //calculate the new position of the weapon
-        float weaponX = spaceshipPosition.x + Mathf.Cos(rotation) * transform.localPosition.x;
-        float weaponY = spaceshipPosition.y + Mathf.Sin(rotation) * transform.localPosition.x;
-        
-        //set the new position of the weapon
-        transform.position = new Vector3(weaponX, weaponY, transform.position.z);
-        
-        //rotate the weapon to face the center of the spaceship
-        transform.rotation = Quaternion.LookRotation(spaceshipPosition - transform.position, Vector3.forward);
+        float rotation = Input.GetAxis("Horizontal") * -rotationSpeed * Time.deltaTime;
+
+        // Rotate the weapon around the parent (empty GameObject)
+        transform.RotateAround(transform.parent.position, Vector3.forward, rotation);
     }
 
     void Shoot()
     {
+        Debug.Log("Spawn position: " + projectileSpawnPoint.position);
         Instantiate(projectilePrefab, projectileSpawnPoint.position, transform.rotation);
     }
 }

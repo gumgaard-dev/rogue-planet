@@ -134,5 +134,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 100
-  projectilePrefab: {fileID: 0}
-  projectileSpawnPoint: {fileID: 0}
+  projectilePrefab: {fileID: 4160699740212969004, guid: 3f2ce53a94a0a10469329616420a6525, type: 3}
+  projectileSpawnPoint: {fileID: 6140201405024286298, guid: d26e58c87a8e0ad44afc950bcc61c588, type: 3}
