@@ -44,9 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75d43fae832da2d4faca400000c9608f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  terrainDB: {fileID: 11400000, guid: 39275d6cc0671824999d51f3d89cd952, type: 2}
-  layerDB: {fileID: 11400000, guid: 25edcfb0b8e7f9f42ba9c3aceafcd93b, type: 2}
-  width: 50
   layerDataArray:
-  - {fileID: 0}
-  terrainDataArray: []
+  - {fileID: 11400000, guid: 73a45b346b4d44846b7b262f69566876, type: 2}
+  - {fileID: 11400000, guid: 998fdb13dd4fa0c469d57c5def788b29, type: 2}

@@ -47,7 +47,11 @@ public class Map : MonoBehaviour
     void GenerateTerrainMap()
     {
         terrainMapEncoded = new int[width,height];
+        GenerateOreDeposits();
+    }
 
+    void GenerateOreDeposits()
+    {
         foreach (var layerData in layerDataArray)
         {
             int[,] layerMap = layerData.buildLayer();
@@ -77,7 +81,7 @@ public class Map : MonoBehaviour
 
                 // get and instantiate prefab
                 GameObject tilePrefab = terrainData.tilePrefab;
-                Instantiate(tilePrefab, new Vector3(x, y, 0), Quaternion.identity);
+                Instantiate(tilePrefab, new Vector3(x, height - y, 0), Quaternion.identity);
             }
         }
     }

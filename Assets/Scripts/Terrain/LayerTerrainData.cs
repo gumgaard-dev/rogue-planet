@@ -42,6 +42,10 @@ public class LayerTerrainData : ScriptableObject
             for (int y = 0; y < height; y += 2)
             {
                 float value = noiseMap[x / 2, y / 2];
+                if (value > spawnChance)
+                {
+                    value = 1f;
+                }
                 Color color = new(value, value, value, 1.0f);
                 texture.SetPixel(x, y, color);
                 texture.SetPixel(x+1, y, color);

@@ -30,20 +30,22 @@ public class NoiseGen
     {
         float[,] noiseMap = new float[width, height];
 
-        for(int x = 0; x < width; ++x) {
-            for(int y = 0; y < height; ++y) {
+        Parallel.For(0, width, x =>
+        {
+            float xPos = (float)x * scale + offset.y;
 
-                // apply scale and offset to x and y coordinates
-                float xPos = (float)x * scale + offset.y;
+            for (int y = 0; y < height; ++y)
+            {
                 float yPos = (float)y * scale + offset.y;
 
-                
                 // calculate noise value at [x,y] for each wave
                 // superimpose noise values by averaging each
                 float normalizationFactor = 0.0f;
-                foreach(Wave w in waves)
+                Unity.Mathematics.float2 pos = new Unity.Mathematics.float2();
+                foreach (Wave w in waves)
                 {
-                    Unity.Mathematics.float2 pos = new(xPos * w.frequency + w.seed, yPos * w.frequency + w.seed);
+                    pos.x = xPos * w.frequency + w.seed;
+                    pos.y = yPos * w.frequency + w.seed;
                     float2 noiseValue = Unity.Mathematics.noise.cellular(pos);
                     float noiseValueSummed = (noiseValue.x + noiseValue.y);
                     noiseMap[x, y] += w.amplitude * noiseValueSummed;
@@ -52,7 +54,7 @@ public class NoiseGen
 
                 noiseMap[x, y] /= normalizationFactor;
             }
-        }
+        });
 
         return noiseMap;
     }
