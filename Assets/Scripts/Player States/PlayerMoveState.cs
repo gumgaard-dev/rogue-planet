@@ -10,7 +10,8 @@ namespace Capstone
 
         public override void Init()
         {
-            
+            Player.SetAnimation("Idle");
+            Player.SetGravityScale(Settings.DefaultGravityScale);
         }
 
         public override void UpdateManaged()
