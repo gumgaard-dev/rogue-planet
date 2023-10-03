@@ -4,18 +4,29 @@ using UnityEditor;
 [CustomEditor(typeof(LayerTerrainData))]
 public class LayerTerrainDataEditor : Editor
 {
+
+    void OnEnable()
+    {
+        EditorApplication.update += UpdateInspector;
+    }
+
+    void OnDisable()
+    {
+        EditorApplication.update -= UpdateInspector;
+    }
+
+    void UpdateInspector()
+    {
+        Repaint(); // Refresh the inspector
+    }
+
     public void DrawLayerTerrainDataGUI(LayerTerrainData layerTerrainData)
     {
+        DrawDefaultInspector();
+
         // Draw noise map preview
-        if (layerTerrainData.noiseMap != null)
-        {
-            Texture2D noiseMapTexture = layerTerrainData.GenerateNoiseMapTexture();
-            GUILayout.Label(noiseMapTexture);
-        }
-        else
-        {
-            EditorGUILayout.HelpBox("Noise Map is not generated yet.", MessageType.Info);
-        }
+        Texture2D noiseMapTexture = layerTerrainData.GenerateNoiseMapTexture();
+        GUILayout.Label(noiseMapTexture);
     }
 
     public override void OnInspectorGUI()
@@ -27,4 +38,3 @@ public class LayerTerrainDataEditor : Editor
         }
     }
 }
-

@@ -267,6 +267,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: pfb_map
       objectReference: {fileID: 0}
+    - target: {fileID: 5007732121627031855, guid: 085d0c81975906f4882b16d198389e27, type: 3}
+      propertyPath: layerDataArray.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5007732121627031855, guid: 085d0c81975906f4882b16d198389e27, type: 3}
+      propertyPath: layerDataArray.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 73a45b346b4d44846b7b262f69566876, type: 2}
+    - target: {fileID: 5007732121627031855, guid: 085d0c81975906f4882b16d198389e27, type: 3}
+      propertyPath: layerDataArray.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 998fdb13dd4fa0c469d57c5def788b29, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

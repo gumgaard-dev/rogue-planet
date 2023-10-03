@@ -10,9 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9658eccf600ee544c89d419a328f7fd2, type: 3}
-  m_Name: ter_stone_1
+  m_Name: ter_ore_red
   m_EditorClassIdentifier: 
-  id: 0
-  terrainName: Stone
-  tilePrefab: {fileID: 0}
-  isOre: 0
+  id: 10
+  tilePrefab: {fileID: 3196618734636661830, guid: 05c134ed06d133b4a82a00d567948fd0, type: 3}
+  isOre: 1

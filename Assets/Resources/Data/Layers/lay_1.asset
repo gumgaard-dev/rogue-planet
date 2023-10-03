@@ -18,4 +18,6 @@ MonoBehaviour:
   baseTerrainData: {fileID: 11400000, guid: 250a01e2bb4dc0b489cfa0d493e72ccc, type: 2}
   layerTerrainData:
   - {fileID: 11400000, guid: 54782aed6b7f31f4dae361b07339572e, type: 2}
-  oreDatabase: {fileID: 11400000, guid: 39275d6cc0671824999d51f3d89cd952, type: 2}
+  - {fileID: 11400000, guid: 4998d47bd294b9e4090b258b70b96622, type: 2}
+  - {fileID: 11400000, guid: bed9b7f6528d9b843b877a2752bb272f, type: 2}
+  - {fileID: 11400000, guid: 99d4ee47da0944b44ad09887167f29f1, type: 2}

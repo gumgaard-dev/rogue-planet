@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10b0a94fb8d7c5b438459b55c1c5cbb4, type: 3}
+  m_Name: lay_2
+  m_EditorClassIdentifier: 
+  id: 1
+  minDepth: 40
+  maxDepth: 80
+  baseTerrainData: {fileID: 11400000, guid: e410d2740297d744489e98a054fd79c6, type: 2}
+  layerTerrainData:
+  - {fileID: 11400000, guid: dc65b91d222639c49b4403eff59472ea, type: 2}
+  - {fileID: 11400000, guid: 0cfd0ba21e8944f4cb53513b7b99539d, type: 2}
+  - {fileID: 11400000, guid: 4be7731b65328154aa64435f0999a4a3, type: 2}
+  - {fileID: 11400000, guid: 9742bc960de19a54ba54f80f3e11611c, type: 2}

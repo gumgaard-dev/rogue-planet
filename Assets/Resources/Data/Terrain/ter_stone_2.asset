@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9658eccf600ee544c89d419a328f7fd2, type: 3}
   m_Name: ter_stone_2
   m_EditorClassIdentifier: 
-  id: 0
-  terrainName: 
-  tilePrefab: {fileID: 0}
+  id: 1
+  tilePrefab: {fileID: 3196618734636661830, guid: 6c02da45ea3cd6942b2c3f7a58e07a45, type: 3}
   isOre: 0

@@ -9,7 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81551851e6d1ced4a8d491ab5338da6d, type: 3}
-  m_Name: db_layer
+  m_Script: {fileID: 11500000, guid: 9658eccf600ee544c89d419a328f7fd2, type: 3}
+  m_Name: ter_ore_green
   m_EditorClassIdentifier: 
-  layerData: []
+  id: 11
+  tilePrefab: {fileID: 3196618734636661830, guid: 15bfaedd6e2209f459bbf23dbb45af13, type: 3}
+  isOre: 1

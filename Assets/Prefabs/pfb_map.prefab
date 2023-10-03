@@ -47,5 +47,6 @@ MonoBehaviour:
   terrainDB: {fileID: 11400000, guid: 39275d6cc0671824999d51f3d89cd952, type: 2}
   layerDB: {fileID: 11400000, guid: 25edcfb0b8e7f9f42ba9c3aceafcd93b, type: 2}
   width: 50
-  layerDataArray: []
+  layerDataArray:
+  - {fileID: 0}
   terrainDataArray: []

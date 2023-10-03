@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   terrainData:
   - {fileID: 11400000, guid: 64da5fa3e8b1e7047ae354791f8023d9, type: 2}
+  - {fileID: 11400000, guid: 39460c7aef387b94ca37a382d2b91e2f, type: 2}
+  - {fileID: 11400000, guid: 250a01e2bb4dc0b489cfa0d493e72ccc, type: 2}
+  - {fileID: 11400000, guid: e410d2740297d744489e98a054fd79c6, type: 2}
