@@ -7,15 +7,18 @@ using UnityEngine.InputSystem;
 
 namespace Capstone
 {
-    public abstract class PlayerBaseState
+    public abstract class PlayerState
     {
-
+        protected GameSettings Settings;
         protected Player Player;
 
         protected InputInfo InputInfo;
 
-        public PlayerBaseState(Player player) 
+        protected float VelocityXDamped;
+
+        public PlayerState(GameSettings settings, Player player) 
         {
+            Settings = settings;
             Player = player;
 
             InputInfo = player.GetComponent<InputInfo>();

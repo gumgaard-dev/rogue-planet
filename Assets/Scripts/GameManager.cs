@@ -8,10 +8,10 @@ namespace Capstone
     public class GameManager : MonoBehaviour
     {
 
-        private Player _player;
         private InputSystem _inputSystem;
+        private Player _player;
 
-        private void Awake()
+        void Awake()
         {
             _inputSystem = GetComponent<InputSystem>();
             _inputSystem.AwakeManaged();
@@ -32,12 +32,12 @@ namespace Capstone
             _player.UpdateManaged();
         }
 
-        private void FixedUpdate()
+        void FixedUpdate()
         {
             _player.FixedUpdateManaged();
         }
 
-        private void LateUpdate()
+        void LateUpdate()
         {
             
         }
