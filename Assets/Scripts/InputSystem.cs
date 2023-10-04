@@ -58,6 +58,21 @@ namespace Capstone
                 _player.State.SetHorizontalInput(0);
             }
 
+            // Doing the same checks but for y axis
+            if (currentMoveInput.y > 0 && _previousMoveInput.y <= 0)
+            {
+                _player.State.SetVerticalInput(1);
+            }
+            else if (currentMoveInput.y < 0 && _previousMoveInput.y >= 0)
+            {
+                _player.State.SetVerticalInput(-1);
+            }
+            else if (currentMoveInput.y == 0 && _previousMoveInput.y != 0)
+            {
+                _player.State.SetVerticalInput(0);
+            }
+
+
             _previousMoveInput = currentMoveInput;
 
             // Follow this same process for y value if we want that functionality (maybe for climbing ladders)

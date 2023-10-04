@@ -15,8 +15,12 @@ namespace Capstone
         public float RunSpeed = 10f;
         public float MinMoveSpeed = 0.01f;
         public float MinRunSpeed = 1.2f;
+        public float JumpSpeed = 22f;
+        public float MinJumpSpeed = 0.01f;
+        public float MinFallSpeed = 0.01f;
 
         [Space]
         public float GroundSpeedSmoothTime = 0.08f;
+        public float AirSpeedSmoothTime = 0.27f;
     }
 }

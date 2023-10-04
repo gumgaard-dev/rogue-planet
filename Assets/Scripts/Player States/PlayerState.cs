@@ -13,6 +13,10 @@ namespace Capstone
         protected Player Player;
 
         protected InputInfo InputInfo;
+        protected TriggerInfo TriggerInfo;
+
+        private LayerMask _surfaceLayerMask;
+        private LayerMask _climbableLayerMask;
 
         protected float VelocityXDamped;
 
@@ -22,6 +26,10 @@ namespace Capstone
             Player = player;
 
             InputInfo = player.GetComponent<InputInfo>();
+            TriggerInfo = player.GetComponent<TriggerInfo>();
+
+            _surfaceLayerMask = LayerMask.GetMask("Surface");
+            _climbableLayerMask = LayerMask.GetMask("Climbable");
 
         }
 
@@ -44,6 +52,27 @@ namespace Capstone
         public virtual void SetJumpInput(float inputValue)
         {
             InputInfo.Jump = inputValue;
+        }
+
+        public void UpdateTriggers() 
+        { 
+            TriggerInfo.ResetTriggers();
+
+            // If there is no collision this will be null, because it was reset above
+            UpdateGroundTriggers();
+        }
+
+        public void UpdateGroundTriggers()
+        {
+            // This function checks if the box we specify overlaps with any colliders, and returns the first one it finds.
+            TriggerInfo.Ground = Physics2D.OverlapBox(
+                TriggerInfo.GroundBounds.center, TriggerInfo.GroundBounds.size, 0f, _surfaceLayerMask
+            );
+        }
+
+        public void ResetVelocityXDamping()
+        {
+            VelocityXDamped = 0;
         }
 
     }

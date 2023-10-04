@@ -16,8 +16,29 @@ namespace Capstone
 
         public override void UpdateManaged()
         {
-            Player.UpdateFacing();
-            Player.UpdateAnimation();
+
+            UpdateTriggers();
+
+            // Checking for down input, and that player is on the ground
+            if (InputInfo.Move.y < 0 && TriggerInfo.Ground)
+            {
+                Player.SetState(PlayerStateType.Duck);
+            }
+            else
+            {
+                if (TriggerInfo.Ground)
+                {
+                    Player.SetGravityScale(Settings.DefaultGravityScale);
+                }
+                else if (Player.Velocity.y <= -Settings.MinFallSpeed)
+                {
+                    Player.SetGravityScale(Settings.FallingGravityScale);
+                }
+
+                Player.UpdateFacing();
+                Player.UpdateAnimation();
+            }
+
         }
 
         public override void FixedUpdateManaged()
@@ -30,7 +51,7 @@ namespace Capstone
                 Player.Velocity.x,
                 InputInfo.Move.x * Settings.RunSpeed,
                 ref VelocityXDamped,
-                Settings.GroundSpeedSmoothTime
+                TriggerInfo.Ground ? Settings.GroundSpeedSmoothTime : Settings.AirSpeedSmoothTime
             );
 
             Player.SetVelocity( newVelocity );
@@ -40,6 +61,26 @@ namespace Capstone
             //{
             //    Player.SetState(PlayerStateType.Idle);
             //}
+        }
+
+        public override void SetJumpInput(float inputValue)
+        {
+            base.SetJumpInput(inputValue);
+
+            if (inputValue == 1)
+            {
+                // perform jump only when on ground
+                if (TriggerInfo.Ground)
+                {
+                    Player.SetVelocity(Player.Velocity.x, Settings.JumpSpeed);
+                }
+            }
+            else if (inputValue == 0)
+            {
+                if (Player.Velocity.y > 0)
+                {
+                    Player.SetGravityScale(Settings.FallingGravityScale);
+                }            }
         }
     }
 }

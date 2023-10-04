@@ -175,6 +175,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4147872472685896575, guid: ed6b8768e0737be40b5c36366db2d8b5, type: 3}
+      propertyPath: m_Size.x
+      value: 0.5534598
+      objectReference: {fileID: 0}
+    - target: {fileID: 4147872472685896575, guid: ed6b8768e0737be40b5c36366db2d8b5, type: 3}
+      propertyPath: m_Size.y
+      value: 1.3559815
+      objectReference: {fileID: 0}
+    - target: {fileID: 4147872472685896575, guid: ed6b8768e0737be40b5c36366db2d8b5, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.04040572
+      objectReference: {fileID: 0}
+    - target: {fileID: 4147872472685896575, guid: ed6b8768e0737be40b5c36366db2d8b5, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.20190948
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -248,7 +264,7 @@ GameObject:
   - component: {fileID: 598688887}
   - component: {fileID: 598688886}
   - component: {fileID: 598688885}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: minecraft_grass_block_texture
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -378,7 +394,7 @@ GameObject:
   - component: {fileID: 966662401}
   - component: {fileID: 966662400}
   - component: {fileID: 966662399}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: minecraft_grass_block_texture (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -508,7 +524,7 @@ GameObject:
   - component: {fileID: 1029193862}
   - component: {fileID: 1029193861}
   - component: {fileID: 1029193860}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: minecraft_grass_block_texture (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -730,7 +746,7 @@ GameObject:
   - component: {fileID: 1694281455}
   - component: {fileID: 1694281454}
   - component: {fileID: 1694281453}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: minecraft_grass_block_texture (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -860,7 +876,7 @@ GameObject:
   - component: {fileID: 1782573096}
   - component: {fileID: 1782573095}
   - component: {fileID: 1782573094}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: minecraft_grass_block_texture (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -12,6 +12,7 @@ namespace Capstone
         public Vector2 Velocity => _rigidBody.velocity;
         public float Facing => transform.localScale.x;
         public Vector3 Scale => transform.localScale;
+        public Bounds Bounds => _bodyCollider.bounds;
 
         // Reference to current player state (Abstract class, states are upcast to this)
         public PlayerState State { get; private set; }
@@ -23,6 +24,8 @@ namespace Capstone
 
         private GameSettings _settings;
 
+        private TriggerInfo _triggerInfo;
+
         private Animator _animator;
         private Collider2D _bodyCollider;
         private Rigidbody2D _rigidBody;
@@ -30,6 +33,8 @@ namespace Capstone
         public void AwakeManaged()
         {
             _settings = Resources.Load<GameSettings>("Settings/GameSettings");
+
+            _triggerInfo = GetComponent<TriggerInfo>();
 
             _animator = GetComponent<Animator>();
             _bodyCollider = GetComponent<Collider2D>();
@@ -41,6 +46,7 @@ namespace Capstone
             _playerStates = new Dictionary<PlayerStateType, PlayerState>
             {
                 [PlayerStateType.Move] = new PlayerMoveState(_settings, this),
+                [PlayerStateType.Duck] = new PlayerDuckState(_settings, this),
             };
 
             SetState(PlayerStateType.Move);
@@ -76,6 +82,15 @@ namespace Capstone
 
         public void SetVelocity(float x, float y) 
         {
+            if (x == 0)
+            {
+                State.ResetVelocityXDamping();
+            }
+            else if (Mathf.Abs(x) < _settings.MinMoveSpeed)
+            {
+                x = 0;
+            }
+
             _rigidBody.velocity = new Vector2(x, y);
         }
 
@@ -107,13 +122,23 @@ namespace Capstone
         }
 
         public void UpdateAnimation()
-        {
+        {   
+            //if (Velocity.y > _settings.MinJumpSpeed)
+            //{
+            //    SetAnimation("Jump");
+            //}
+            //else if (Velocity.y < _settings.MinFallSpeed)
+            //{
+            //    SetAnimation("Fall");
+            //}
             if (Mathf.Abs(Velocity.x) > _settings.MinRunSpeed)
             {
+                // set state to move and init move
                 SetAnimation("Run");
             }
             else
             {
+                // set state to idle and init idle
                 SetAnimation("Idle");
             }
         }
@@ -129,6 +154,16 @@ namespace Capstone
             else if (Facing != -1 && Velocity.x <= -_settings.MinMoveSpeed)
             {
                 SetFacing(-1);
+            }
+        }
+
+        void OnDrawGizmos()
+        {
+            if (Application.isPlaying)
+            {
+                Gizmos.color = new Color(1, 0, 1, 0.5f);
+
+                Gizmos.DrawWireCube(_triggerInfo.GroundBounds.center, _triggerInfo.GroundBounds.size);
             }
         }
     }
