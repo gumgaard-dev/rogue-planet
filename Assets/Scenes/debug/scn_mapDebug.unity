@@ -184,7 +184,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10.069729
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -209,7 +209,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 50, y: 50, z: -100}
+  m_LocalPosition: {x: 16.36, y: 62.06, z: -44.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -265,7 +265,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3279042739093651039, guid: 085d0c81975906f4882b16d198389e27, type: 3}
       propertyPath: m_Name
-      value: pfb_map
+      value: Map
+      objectReference: {fileID: 0}
+    - target: {fileID: 5007732121627031855, guid: 085d0c81975906f4882b16d198389e27, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5007732121627031855, guid: 085d0c81975906f4882b16d198389e27, type: 3}
       propertyPath: layerDataArray.Array.size
@@ -282,8 +286,28 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3279042739093651039, guid: 085d0c81975906f4882b16d198389e27, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2059805531}
   m_SourcePrefab: {fileID: 100100000, guid: 085d0c81975906f4882b16d198389e27, type: 3}
+--- !u!1 &2059805528 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3279042739093651039, guid: 085d0c81975906f4882b16d198389e27, type: 3}
+  m_PrefabInstance: {fileID: 2051990662}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2059805531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2059805528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7981c6264d4dc3541b278d352ed1c732, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

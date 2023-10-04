@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8195448682938283478}
   - component: {fileID: 2932240245341594603}
-  m_Layer: 0
-  m_Name: pfb_layer2_stone
-  m_TagString: Untagged
+  - component: {fileID: -6895960368667559078}
+  m_Layer: 3
+  m_Name: pfb_stone1
+  m_TagString: Destructible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84,3 +85,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-6895960368667559078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3196618734636661830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94b3ab7cf9661664081ffae5832d6e6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 5
