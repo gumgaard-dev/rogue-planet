@@ -5,7 +5,6 @@ using UnityEngine;
 [System.Serializable]
 public class LayerData : ScriptableObject
 {
-    public int id;
 
     public int minDepth;
     public int maxDepth;
@@ -26,6 +25,16 @@ public class LayerData : ScriptableObject
 
         int[,] layerMapEncoded = new int[width, height];
 
+        // Initialize with base terrain
+        for (int x = 0; x < width; ++x)
+        {
+            for (int y = 0; y < height; ++y)
+            {
+                layerMapEncoded[x, y] = this.baseTerrainData.id;
+            }
+        }
+
+
         foreach (var layerTerrainData in this.layerTerrainData)
         {
             for (int x = 0; x < width; ++x)
@@ -36,9 +45,6 @@ public class LayerData : ScriptableObject
                     {
                         layerMapEncoded[x, y] = layerTerrainData.terrainData.id;
 
-                    } else if (layerMapEncoded[x,y] == 0)
-                    {
-                        layerMapEncoded[x, y] = this.baseTerrainData.id;
                     }
                 }
             }

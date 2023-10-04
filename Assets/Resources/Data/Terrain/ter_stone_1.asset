@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9658eccf600ee544c89d419a328f7fd2, type: 3}
   m_Name: ter_stone_1
   m_EditorClassIdentifier: 
-  id: 0
-  tilePrefab: {fileID: 3196618734636661830, guid: 75876a38ebf31984faeb67887f79d48b, type: 3}
+  terrainName: stone_1
+  id: 100
   isOre: 0
+  isDestructible: 1
+  maxHP: 3
+  sprite: {fileID: 21300000, guid: 887f8e3f18e8d6e45a32ea572f2d75c1, type: 3}
+  tilePrefab: {fileID: 8080177756486509175, guid: 0b776d9d7fa9c2d48a1f551537a9b8ba, type: 3}

@@ -22,7 +22,7 @@ public class TerrainManager : MonoBehaviour
             if (hit.collider != null)
             {
                 Debug.Log("hit");
-                if (hit.collider.gameObject.CompareTag("Destructible"))
+                if (hit.collider.gameObject.GetComponent<DestructibleTerrain>() != null)
                 {
                     hit.collider.gameObject.GetComponent<DestructibleTerrain>().Hit();
                 }

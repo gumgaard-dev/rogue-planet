@@ -1,11 +1,16 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ter_new", menuName = "Terrain/Terrain Type")]
 [System.Serializable]
+[CreateAssetMenu(fileName = "NewTerrainData", menuName = "Terrain/Terrain Data")]
 public class TerrainData : ScriptableObject
 {
+    public string terrainName;
     public int id;
-    public GameObject tilePrefab;
-    public bool isOre; // Indicator if this terrain is an ore or just a regular terrain type
-}
+    public bool isOre;
+    public bool isDestructible;
+    public int maxHP;
+    public Sprite sprite;
 
+    // The prefab associated with this terrain type
+    public GameObject tilePrefab;
+}

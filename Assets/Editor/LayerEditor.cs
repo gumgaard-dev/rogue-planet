@@ -7,11 +7,30 @@ public class LayerEditor : Editor
 {
     LayerData layerData;
     private static string LAYER_TER_DATA_PATH = "Assets/Resources/Data/LayerTerrainData/";
+
+    // variables for terrain selection
+    private int selectedIndex = 0;
+    private List<string> terrainNames;
+
     private Dictionary<LayerTerrainData, bool> layerTerrainDataFoldouts = new Dictionary<LayerTerrainData, bool>();
 
     void OnEnable()
     {
         layerData = (LayerData)target;
+        PopulateTerrainNames();
+    }
+
+    private void PopulateTerrainNames()
+    {
+        var terrains = TerrainDB.GetTerrainList();
+        terrainNames = new List<string>();
+        for (int i = 0; i < terrains.Count; i++)
+        {
+            if (terrains[i].isOre)
+            {
+                terrainNames.Add(terrains[i].name);
+            }
+        }
     }
 
     public override void OnInspectorGUI()
@@ -20,9 +39,10 @@ public class LayerEditor : Editor
 
         DrawDefaultInspector();
 
-        if (GUILayout.Button("Re-populate Layer Terrain Data"))
+        selectedIndex = EditorGUILayout.Popup("Terrain Type", selectedIndex, terrainNames.ToArray());
+        if (GUILayout.Button("Add New Ore to Layer"))
         {
-            RepopulateLayerTerrainData();
+            AddNewLayerTerrainData();
         }
 
         DrawLayerTerrainData();
@@ -31,8 +51,9 @@ public class LayerEditor : Editor
 
     private void DrawLayerTerrainData()
     {
-        // Display each LayerTerrainData object in its own foldout
         SerializedProperty layerTerrainDataArray = serializedObject.FindProperty("layerTerrainData");
+
+        List<LayerTerrainData> toRemove = new List<LayerTerrainData>();
 
         for (int i = 0; i < layerTerrainDataArray.arraySize; i++)
         {
@@ -41,6 +62,8 @@ public class LayerEditor : Editor
 
             if (layerTerrainData != null)
             {
+                EditorGUILayout.BeginHorizontal();
+
                 // Ensure that the foldout dictionary has an entry for this LayerTerrainData
                 if (!layerTerrainDataFoldouts.ContainsKey(layerTerrainData))
                 {
@@ -49,6 +72,15 @@ public class LayerEditor : Editor
 
                 // Use the foldout state from the dictionary
                 layerTerrainDataFoldouts[layerTerrainData] = EditorGUILayout.Foldout(layerTerrainDataFoldouts[layerTerrainData], layerTerrainData.name);
+
+                // Remove button
+                if (GUILayout.Button("Remove", GUILayout.Width(60)))
+                {
+                    toRemove.Add(layerTerrainData);
+                }
+
+                EditorGUILayout.EndHorizontal();
+
                 if (layerTerrainDataFoldouts[layerTerrainData])
                 {
                     EditorGUI.indentLevel++;  // Indent for visual nesting
@@ -62,42 +94,45 @@ public class LayerEditor : Editor
             }
         }
 
-        serializedObject.ApplyModifiedProperties();
+        // Handle removals
+        foreach (var item in toRemove)
+        {
+            string assetPath = AssetDatabase.GetAssetPath(item);
+            layerData.layerTerrainData.Remove(item);
+            AssetDatabase.DeleteAsset(assetPath);
+        }
     }
 
-    void RepopulateLayerTerrainData()
+    void AddNewLayerTerrainData()
     {
-        // Add new ores from the database if they don't already exist in the layerTerrainData list
-        foreach (var dbEntry in TerrainDB.GetTerrainList())
+        var selectedTerrain = TerrainDB.GetTerrainList()[selectedIndex];
+
+        // Check if the terrain is already present
+        bool alreadyExists = false;
+        foreach (var layerTerrain in layerData.layerTerrainData)
         {
-            // check to see if this layer knows about current DB entry
-            bool alreadyExists = false;
-            foreach (var layerTerrain in layerData.layerTerrainData)
+            if (layerTerrain.terrainData == selectedTerrain)
             {
-                if (layerTerrain.terrainData == dbEntry)
-                {
-                    alreadyExists = true;
-                    break;
-                }
-            }
-
-            // if not already known, create new LayerTerrainData for this layer and the current TerrainDB entry 
-            if (!alreadyExists)
-            {
-                LayerTerrainData newLayerTerrainData = ScriptableObject.CreateInstance<LayerTerrainData>();
-                newLayerTerrainData.terrainData = dbEntry;
-                newLayerTerrainData.layer = layerData;
-
-                // add to assets
-                string assetName = "ltd_layer" + layerData.id + "_" + dbEntry.name;
-                string assetPath = LAYER_TER_DATA_PATH + assetName + ".asset";
-                AssetDatabase.CreateAsset(newLayerTerrainData, assetPath);
-                AssetDatabase.SaveAssets();
-
-
-                layerData.layerTerrainData.Add(newLayerTerrainData);
+                Debug.LogWarning("Ore already exists in layer.");
+                alreadyExists = true;
+                break;
             }
         }
-        EditorUtility.SetDirty(layerData);  // Mark the LayerData object as dirty to ensure changes are saved
+
+        // Only add if it's not already present
+        if (!alreadyExists)
+        {
+            LayerTerrainData newLayerTerrainData = ScriptableObject.CreateInstance<LayerTerrainData>();
+            newLayerTerrainData.terrainData = selectedTerrain;
+            newLayerTerrainData.layer = layerData;
+
+            // Add to assets
+            string assetName = "ltd_" + layerData.name + "_" + selectedTerrain.name;
+            string assetPath = LAYER_TER_DATA_PATH + assetName + ".asset";
+            AssetDatabase.CreateAsset(newLayerTerrainData, assetPath);
+            AssetDatabase.SaveAssets();
+
+            layerData.layerTerrainData.Add(newLayerTerrainData);
+        }
     }
 }

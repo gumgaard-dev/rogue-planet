@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "db_terrain", menuName = "Terrain/Terrain Database")]
@@ -7,19 +8,23 @@ public class TerrainDB : ScriptableObject
 
     private static string DB_PATH = "Data/Terrain/db_terrain";
     [SerializeField]
-    private TerrainData[] terrainData;
+    private List<TerrainData> terrainData;
 
     // global singleton instance
     private static TerrainDB _instance;
 
-    public static TerrainData[] GetTerrainList() 
+    public static List<TerrainData> GetTerrainList()
     { return Instance.terrainData; }
 
 
-
+    public static void RegisterNew(TerrainData terrain)
+    {
+        Instance.terrainData.Add(terrain);
+    }
     private static TerrainDB Instance
     {
-        get { 
+        get
+        {
             if (_instance == null)
             {
                 ;

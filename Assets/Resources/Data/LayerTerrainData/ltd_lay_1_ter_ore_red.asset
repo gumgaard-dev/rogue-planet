@@ -10,11 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f98b5717f2c8ee94db4a37a3a674297e, type: 3}
-  m_Name: ltd_layer1_ter_stone_2
+  m_Name: ltd_lay_1_ter_ore_red
   m_EditorClassIdentifier: 
-  layer: {fileID: 11400000, guid: 998fdb13dd4fa0c469d57c5def788b29, type: 2}
-  terrainData: {fileID: 11400000, guid: e410d2740297d744489e98a054fd79c6, type: 2}
-  spawnChance: 0
-  scale: 1
+  layer: {fileID: 11400000, guid: 73a45b346b4d44846b7b262f69566876, type: 2}
+  terrainData: {fileID: 11400000, guid: 64da5fa3e8b1e7047ae354791f8023d9, type: 2}
+  spawnChance: -1.28
+  scale: 1.67
   offset: {x: 0, y: 0}
-  spawnChanceWaves: []
+  spawnChanceWaves:
+  - seed: 2.84
+    frequency: 0.107
+    amplitude: 0.331
+  - seed: 6.17
+    frequency: 0.132
+    amplitude: -0.269
