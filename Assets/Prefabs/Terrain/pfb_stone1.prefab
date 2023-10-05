@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6282071341486789300}
   - component: {fileID: 2025813265228395306}
   m_Layer: 3
-  m_Name: pfb_stone_1
+  m_Name: pfb_stone1
   m_TagString: Destructible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

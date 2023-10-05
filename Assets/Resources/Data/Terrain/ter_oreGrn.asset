@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9658eccf600ee544c89d419a328f7fd2, type: 3}
-  m_Name: ter_ore_red
+  m_Name: ter_oreGrn
   m_EditorClassIdentifier: 
-  terrainName: ore_red
-  id: 0
+  terrainName: ore_grn
+  id: 1
   isOre: 1
   isDestructible: 1
-  maxHP: 7
-  sprite: {fileID: 21300000, guid: 9598b41ef51bcc44e9669d76ea84cdf6, type: 3}
-  tilePrefab: {fileID: 3466521818784041298, guid: 05c134ed06d133b4a82a00d567948fd0, type: 3}
+  maxHP: 11
+  sprite: {fileID: 21300000, guid: f9df34a75eb476b4094b8b742779ecbd, type: 3}
+  tilePrefab: {fileID: 7364856473509467308, guid: a3a900599f37cf74bb9c33b64c4eb831, type: 3}
