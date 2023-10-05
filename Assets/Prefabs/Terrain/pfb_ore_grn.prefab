@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 11
+  resource: {fileID: 4545734067330052158, guid: 1bda0e357a109544e8c224596d4fa8b0, type: 3}
 --- !u!61 &-6718654181710807248
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -5,6 +5,7 @@ using UnityEngine;
 public class DestructibleTerrain : MonoBehaviour
 {
     public int maxHP = 1;
+    public GameObject resource;
     private int curHP;
     private float delayBeforeHeal = 1f;
     private float timeBetweenHeal = 0.2f;
@@ -28,6 +29,10 @@ public class DestructibleTerrain : MonoBehaviour
         --this.curHP;
         if (this.curHP == 0)
         {
+            if(this.resource != null)
+            {
+                Instantiate(this.resource, this.transform.position, this.transform.rotation);
+            }
             Destroy(this.gameObject);
         }
         else
