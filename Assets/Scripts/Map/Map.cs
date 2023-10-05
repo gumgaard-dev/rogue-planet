@@ -71,8 +71,10 @@ public class Map : MonoBehaviour
         Dictionary<int, TerrainData> terrainDataDictionary = TerrainDB.getTerrainIDDict();
         for (int x = 0; x < width; ++x)
         {
+            int terrainWorldXPos = x - (width / 2);
             for (int y = 0; y < height; ++y)
             {
+                int terrainWorldYPos = 0 - y;
                 // get id from encoded map
                 int terrainTypeID = terrainMapEncoded[x, y];
 
@@ -81,7 +83,7 @@ public class Map : MonoBehaviour
 
                 // get and instantiate prefab
                 GameObject tilePrefab = terrainData.tilePrefab;
-                Instantiate(tilePrefab, new Vector3(x, height - y, 0), Quaternion.identity);
+                Instantiate(tilePrefab, new Vector2(terrainWorldXPos, terrainWorldYPos), Quaternion.identity).transform.SetParent(this.transform);
             }
         }
     }
