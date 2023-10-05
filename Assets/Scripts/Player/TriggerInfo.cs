@@ -21,7 +21,7 @@ namespace Capstone
         {
             get
             {
-                _groundBounds.center = _player.Position + GroundOffset;
+                _groundBounds.center = _player.Bounds.center + GroundOffset;
 
                 return _groundBounds;
             }
@@ -35,10 +35,10 @@ namespace Capstone
 
         void Start()
         {
-            GroundOffset = 0.9f * Vector3.down;
+            GroundOffset = 0.7f * Vector3.down;
 
             // Ground trigger bounds slightly smaller than player bounds so that they cannot activate trigger while standing next to a wall.
-            _groundBounds = new Bounds(Vector3.zero, new Vector2(_player.Bounds.size.x - 0.02f, 0.05f));
+            _groundBounds = new Bounds(Vector3.zero, new Vector2(_player.Bounds.size.x - 0.03f, 0.05f));
         }
 
         public void ResetTriggers()
