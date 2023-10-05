@@ -16,4 +16,4 @@ MonoBehaviour:
   maxDepth: 41
   baseTerrainData: {fileID: 11400000, guid: 250a01e2bb4dc0b489cfa0d493e72ccc, type: 2}
   layerTerrainData:
-  - {fileID: 11400000, guid: 32ccf714b3edffc47b1439dc8050ea90, type: 2}
+  - {fileID: 11400000, guid: 53130db0581bced4e8d4fa794f2c11d2, type: 2}

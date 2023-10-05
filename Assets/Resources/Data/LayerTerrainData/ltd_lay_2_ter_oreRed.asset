@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layer: {fileID: 11400000, guid: 998fdb13dd4fa0c469d57c5def788b29, type: 2}
   terrainData: {fileID: 11400000, guid: 64da5fa3e8b1e7047ae354791f8023d9, type: 2}
-  spawnChance: 0.76
+  spawnChance: 0.44
   scale: 1
   offset: {x: 0, y: 0}
   spawnChanceWaves:
   - seed: 0
-    frequency: 0.149
-    amplitude: 0.25
+    frequency: 0.227
+    amplitude: -0.24
   - seed: 0
-    frequency: 0.144
-    amplitude: 0.1
+    frequency: 0.15
+    amplitude: 0.06

@@ -53,7 +53,7 @@ public class LayerEditor : Editor
     {
         SerializedProperty layerTerrainDataArray = serializedObject.FindProperty("layerTerrainData");
 
-        List<LayerTerrainData> toRemove = new List<LayerTerrainData>();
+        List<int> indicesToRemove = new List<int>();
 
         for (int i = 0; i < layerTerrainDataArray.arraySize; i++)
         {
@@ -76,7 +76,7 @@ public class LayerEditor : Editor
                 // Remove button
                 if (GUILayout.Button("Remove", GUILayout.Width(60)))
                 {
-                    toRemove.Add(layerTerrainData);
+                    indicesToRemove.Add(i);
                 }
 
                 EditorGUILayout.EndHorizontal();
@@ -90,17 +90,23 @@ public class LayerEditor : Editor
                     EditorGUI.indentLevel--;  // Reset indentation
                 }
 
-                EditorGUILayout.Space();  // Add spacing for better visual separation
+                EditorGUILayout.Space();
             }
         }
 
-        // Handle removals
-        foreach (var item in toRemove)
+        // Handle removals using the SerializedProperty
+        for (int i = indicesToRemove.Count - 1; i >= 0; i--) // Iterate in reverse order to safely remove items
         {
-            string assetPath = AssetDatabase.GetAssetPath(item);
-            layerData.layerTerrainData.Remove(item);
+            SerializedProperty layerTerrainDataProperty = layerTerrainDataArray.GetArrayElementAtIndex(indicesToRemove[i]);
+            LayerTerrainData layerTerrainData = layerTerrainDataProperty.objectReferenceValue as LayerTerrainData;
+            string assetPath = AssetDatabase.GetAssetPath(layerTerrainData);
+
+            layerTerrainDataArray.DeleteArrayElementAtIndex(indicesToRemove[i]);
+
             AssetDatabase.DeleteAsset(assetPath);
         }
+
+        serializedObject.ApplyModifiedProperties();
     }
 
     void AddNewLayerTerrainData()
@@ -132,7 +138,14 @@ public class LayerEditor : Editor
             AssetDatabase.CreateAsset(newLayerTerrainData, assetPath);
             AssetDatabase.SaveAssets();
 
-            layerData.layerTerrainData.Add(newLayerTerrainData);
+            // Add to Layer's LayerTerrainData list
+            SerializedProperty layerTerrainDataProp = serializedObject.FindProperty("layerTerrainData");
+            layerTerrainDataProp.InsertArrayElementAtIndex(layerTerrainDataProp.arraySize);
+            SerializedProperty newElement = layerTerrainDataProp.GetArrayElementAtIndex(layerTerrainDataProp.arraySize - 1);
+            newElement.objectReferenceValue = newLayerTerrainData;
+
+
+
         }
     }
 }
