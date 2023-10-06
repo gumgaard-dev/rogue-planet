@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: b7e79bcc7f56fb4438007ae60305c5fd
+=======
+guid: bdb242043c6ca89478f44830beb373b8
+>>>>>>> origin/feature/SN-player-controller-spaceship
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
