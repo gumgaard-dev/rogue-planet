@@ -28,7 +28,7 @@ namespace Capstone
             InputInfo = player.GetComponent<InputInfo>();
             TriggerInfo = player.GetComponent<TriggerInfo>();
 
-            _surfaceLayerMask = LayerMask.GetMask("Surface");
+            _surfaceLayerMask = LayerMask.GetMask("Terrain");
             _climbableLayerMask = LayerMask.GetMask("Climbable");
 
         }

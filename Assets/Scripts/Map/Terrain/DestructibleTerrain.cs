@@ -23,11 +23,11 @@ public class DestructibleTerrain : MonoBehaviour
         colorModOnHit = 1f / (float)maxHP;
     }
 
-    public void Hit()
+    public void Hit(int damageValue)
     {
         lastHitTime = Time.time;
-        --this.curHP;
-        if (this.curHP == 0)
+        this.curHP -= damageValue;
+        if (this.curHP <= 0)
         {
             if(this.resource != null)
             {

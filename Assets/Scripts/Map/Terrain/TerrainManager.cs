@@ -5,7 +5,7 @@ using UnityEngine;
 public class TerrainManager : MonoBehaviour
 {
     int terrainLayerMask;
-
+    static int MAX_DAMAGE = 100;
     private void Start()
     {
         terrainLayerMask = 1 << LayerMask.NameToLayer("Terrain");
@@ -24,7 +24,7 @@ public class TerrainManager : MonoBehaviour
                 Debug.Log("hit");
                 if (hit.collider.gameObject.GetComponent<DestructibleTerrain>() != null)
                 {
-                    hit.collider.gameObject.GetComponent<DestructibleTerrain>().Hit();
+                    hit.collider.gameObject.GetComponent<DestructibleTerrain>().Hit(MAX_DAMAGE);
                 }
             }
         }
