@@ -1,21 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class projectile : MonoBehaviour
+public class Projectile : MonoBehaviour
 {
-    public float speed = 10f;
     public float lifetime = 2f;
     
-    void Start()
+    private void Start()
     {
         //destroy projectile after set time
         Destroy(gameObject, lifetime);
     }
 
-    void Update()
+    private void Update()
     {
         //move projectile forward
-        transform.Translate(Vector3.up * speed * Time.deltaTime);
+        transform.Translate(Vector3.up * (WeaponController.ProjectileSpeed * Time.deltaTime));
     }
 }

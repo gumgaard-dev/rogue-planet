@@ -1,15 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
-using TreeEditor;
 using UnityEngine;
 
-public class player_controller_weapon : MonoBehaviour
+public class WeaponController : MonoBehaviour
 {
     public float rotationSpeed = 100f;
-    public GameObject projectilePrefab;
+    public const float ProjectileSpeed = 7f;
     public Transform projectileSpawnPoint;
-    
-    void Update()
+    public GameObject projectilePrefab;
+
+    private void Update()
     {
         //rotate weapon based on user input
         RotateWeapon();
@@ -21,17 +19,34 @@ public class player_controller_weapon : MonoBehaviour
         }
     }
 
-    void RotateWeapon()
+    private void RotateWeapon()
     {
-        float rotation = Input.GetAxis("Horizontal") * -rotationSpeed * Time.deltaTime;
+        var rotation = Input.GetAxis("Horizontal") * -rotationSpeed * Time.deltaTime;
 
-        // Rotate the weapon around the parent (empty GameObject)
-        transform.RotateAround(transform.parent.position, Vector3.forward, rotation);
+        //get the current rotation in the range [-180, 180]
+        var currentRotation = transform.rotation.eulerAngles.z;
+        if (currentRotation > 180f)
+            currentRotation -= 360f;
+
+        //add the rotation to the current rotation
+        var newRotation = currentRotation + rotation;
+
+        //limit the rotation to the top half (0 to 180 degrees)
+        var limitedRotation = Mathf.Clamp(newRotation, 0f, 180f);
+
+        transform.RotateAround(transform.parent.position, Vector3.forward, limitedRotation - transform.eulerAngles.z);
     }
 
-    void Shoot()
+    private void Shoot()
     {
-        Debug.Log("Spawn position: " + projectileSpawnPoint.position);
-        Instantiate(projectilePrefab, projectileSpawnPoint.position, transform.rotation);
+        var projectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, projectileSpawnPoint.rotation);
+        var rb = projectile.GetComponent<Rigidbody2D>();
+        
+        //prevents any potential error with projectiles spawning without a rigidbody
+        if (null != rb)
+        {
+            //sets direction for projectile to travel
+            rb.velocity = projectile.transform.up * ProjectileSpeed;
+        }
     }
 }
