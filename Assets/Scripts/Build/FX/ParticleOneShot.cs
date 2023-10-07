@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(ParticleSystem))]
-public class ResourceParticleEmitter : MonoBehaviour
+public class ParticleOneShot : MonoBehaviour
 {
     private ParticleSystem _particles;
 

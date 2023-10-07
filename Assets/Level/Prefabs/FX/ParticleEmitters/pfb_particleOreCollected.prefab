@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5943011929459431728}
   - component: {fileID: -6689817660043615587}
   m_Layer: 0
-  m_Name: OreResourceCollectParticles
+  m_Name: pfb_particleOreCollected
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
