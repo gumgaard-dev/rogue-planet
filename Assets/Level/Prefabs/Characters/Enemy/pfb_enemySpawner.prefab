@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7997262940519683194}
   - component: {fileID: 6463934443297227713}
   m_Layer: 0
-  m_Name: EnemySpawner
+  m_Name: pfb_enemySpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

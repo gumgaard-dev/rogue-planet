@@ -1,5 +1,4 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
 guid: a195a503d5ab36e45a2dc9c9aea0664e
 folderAsset: yes
 DefaultImporter:
@@ -7,7 +6,3 @@ DefaultImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-=======
-guid: 224948b7171747a88bff6fa1fb0fde16
-timeCreated: 1696955768
->>>>>>> origin/feature/KA-surface-enemies
