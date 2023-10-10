@@ -22,17 +22,15 @@ public class WeaponController : MonoBehaviour
     private void RotateWeapon()
     {
         float rotation = Input.GetAxis("Horizontal") * -rotationSpeed * Time.deltaTime;
-        
-        float currentRotation = transform.localRotation.eulerAngles.x;
-        if (currentRotation > 180f)
-            currentRotation -= 360f;
-        
-        float newRotation = currentRotation + rotation;
-        float limitedRotation = Mathf.Clamp(newRotation, 0f, 180f);
+        float newRotation = transform.eulerAngles.z + rotation;
 
-        // Rotate the weapon around the spaceship's position
-        Vector3 targetPosition = transform.parent.position;
-        transform.RotateAround(targetPosition, Vector3.forward, limitedRotation - transform.eulerAngles.x);
+        // limit the rotation to the top half (0 to 180 degrees)
+        float limitedRotation = Mathf.Clamp(newRotation, 0f, 180f);
+        Vector3 relativePosition = transform.localPosition;
+        transform.localPosition = relativePosition;
+
+        // rotate the weapon around the parent (empty GameObject)
+        transform.RotateAround(transform.parent.position, Vector3.forward, limitedRotation - transform.eulerAngles.z);
     }
 
     private void Shoot()
