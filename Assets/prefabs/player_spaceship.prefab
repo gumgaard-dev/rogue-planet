@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1902076156007309313}
   - component: {fileID: 2033401144629016740}
+  - component: {fileID: 3798641133260950465}
   m_Layer: 0
   m_Name: spaceship_weapon
   m_TagString: Untagged
@@ -361,5 +362,23 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8176052059701221676, guid: c3969712d1a7d81409effb7c9fc60aca, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7070108621695112114}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8351918977346341540, guid: c3969712d1a7d81409effb7c9fc60aca, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3798641133260950465}
   m_SourcePrefab: {fileID: 100100000, guid: c3969712d1a7d81409effb7c9fc60aca, type: 3}
+--- !u!114 &3798641133260950465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798447147944473481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0946fab8fe0cee48a737dd6bdf65b2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 100
+  projectileSpawnPoint: {fileID: 7070108621695112114}
+  projectilePrefab: {fileID: 4160699740212969004, guid: 3f2ce53a94a0a10469329616420a6525, type: 3}

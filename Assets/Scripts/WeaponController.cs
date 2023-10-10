@@ -3,7 +3,7 @@ using UnityEngine;
 public class WeaponController : MonoBehaviour
 {
     public float rotationSpeed = 100f;
-    public const float ProjectileSpeed = 7f;
+    public const float ProjectileSpeed = 5f;
     public Transform projectileSpawnPoint;
     public GameObject projectilePrefab;
 
@@ -21,18 +21,18 @@ public class WeaponController : MonoBehaviour
 
     private void RotateWeapon()
     {
-        var rotation = Input.GetAxis("Horizontal") * -rotationSpeed * Time.deltaTime;
-        //get the current rotation in the range [-180, 180]
-        var currentRotation = transform.rotation.eulerAngles.x;
+        float rotation = Input.GetAxis("Horizontal") * -rotationSpeed * Time.deltaTime;
+        
+        float currentRotation = transform.localRotation.eulerAngles.x;
         if (currentRotation > 180f)
             currentRotation -= 360f;
+        
+        float newRotation = currentRotation + rotation;
+        float limitedRotation = Mathf.Clamp(newRotation, 0f, 180f);
 
-        //add the rotation to the current rotation
-        var newRotation = currentRotation + rotation;
-
-        //limit the rotation to the top half (0 to 180 degrees)
-        var limitedRotation = Mathf.Clamp(newRotation, 0f, 180f);
-        transform.RotateAround(transform.parent.position, Vector3.forward, limitedRotation - transform.eulerAngles.x);
+        // Rotate the weapon around the spaceship's position
+        Vector3 targetPosition = transform.parent.position;
+        transform.RotateAround(targetPosition, Vector3.forward, limitedRotation - transform.eulerAngles.x);
     }
 
     private void Shoot()
