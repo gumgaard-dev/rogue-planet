@@ -25,7 +25,8 @@ public class WeaponController : MonoBehaviour
         float newRotation = transform.eulerAngles.z + rotation;
 
         // limit the rotation to the top half (0 to 180 degrees)
-        float limitedRotation = Mathf.Clamp(newRotation, 0f, 180f);
+        float limitedRotation = Mathf.Clamp(newRotation, 90f, 270f);
+        
         Vector3 relativePosition = transform.localPosition;
         transform.localPosition = relativePosition;
 
