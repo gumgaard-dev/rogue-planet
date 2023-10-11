@@ -3,28 +3,26 @@ using UnityEngine;
 
 namespace Build.Characters.Enemy
 {
+    [RequireComponent(typeof(AttackData))]
+    [RequireComponent(typeof(HealthData))]
     public class Enemy : MonoBehaviour
     {
         public GameObject target;
 
-        [SerializeField] private float speed = 1.5f;
+        [SerializeField] private float speed;
         private HealthData _healthData;
-        private int _attackPower;
+        private AttackData _attackData;
 
-        public Enemy(Enemy prototype)
-        {
-            speed = prototype.speed;
-            _healthData = prototype._healthData;
-            _attackPower = prototype._attackPower;
-        }
         void Start()
         {
             target = GameObject.FindGameObjectWithTag("Player");
+            this._attackData = GetComponent<AttackData>();
+            this._healthData = GetComponent<HealthData>();
         }
 
         void Update()
         {
-            Follow();
+            if (target != null) Follow();
         }
 
         //very basic pathing (for now) that will just draw the enemy towards the target in all directions
@@ -45,7 +43,7 @@ namespace Build.Characters.Enemy
             if (targetHealth != null)
             {
                 //apply damage to target
-                targetHealth.Damage(_attackPower);  
+                targetHealth.Damage(_attackData.AttackPower);  
             }
         }
     }

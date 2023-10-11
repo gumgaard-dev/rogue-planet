@@ -4,6 +4,7 @@ using Build.Component;
 using UnityEngine;
 
 [RequireComponent(typeof(ProjectileShooter))]
+[RequireComponent(typeof(AttackData))]
 public class Gun : MonoBehaviour
 {
     public float shotInterval;
@@ -15,6 +16,7 @@ public class Gun : MonoBehaviour
     {
         this.projectileShooter = GetComponent<ProjectileShooter>();
         this.particleShooter = GetComponent<ParticleShooter>();
+        this._attackData = GetComponent<AttackData>();
     }
     public void Shoot()
     {

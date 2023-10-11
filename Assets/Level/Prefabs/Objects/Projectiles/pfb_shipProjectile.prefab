@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5469949342571416970}
   - component: {fileID: 7177643126110007378}
   - component: {fileID: 8857366675377293146}
+  - component: {fileID: 3506674659029914485}
   m_Layer: 0
   m_Name: pfb_shipProjectile
   m_TagString: Untagged
@@ -172,3 +173,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &3506674659029914485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 624383887647876711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feabfa318ea84dc48cab3ba0aaf90d95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
