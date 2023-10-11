@@ -1,3 +1,4 @@
+using Build.Component;
 using UnityEngine;
 
 public class WeaponController : MonoBehaviour
@@ -6,6 +7,7 @@ public class WeaponController : MonoBehaviour
     public const float ProjectileSpeed = 5f;
     public Transform projectileSpawnPoint;
     public GameObject projectilePrefab;
+    private AttackData _attack;
 
     private void Update()
     {

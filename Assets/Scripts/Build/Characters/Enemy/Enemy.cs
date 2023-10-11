@@ -1,26 +1,25 @@
-namespace Enemy
-{
-    using UnityEngine;
+using Build.Component;
+using UnityEngine;
 
+namespace Build.Characters.Enemy
+{
     public class Enemy : MonoBehaviour
     {
         public GameObject target;
 
-        private float _speed;
-        private int _health;
-        private int _damage;
+        [SerializeField] private float speed = 1.5f;
+        private HealthData _healthData;
+        private int _attackPower;
 
         public Enemy(Enemy prototype)
         {
-            _speed = prototype._speed;
-            _health = prototype._health;
-            _damage = prototype._damage;
+            speed = prototype.speed;
+            _healthData = prototype._healthData;
+            _attackPower = prototype._attackPower;
         }
         void Start()
         {
-            //TODO set _target here - just using tag for testing
             target = GameObject.FindGameObjectWithTag("Player");
-            _speed = 1.5f;
         }
 
         void Update()
@@ -32,13 +31,22 @@ namespace Enemy
         private void Follow()
         {
             transform.position =
-                Vector2.MoveTowards(transform.position, target.transform.position, _speed * Time.deltaTime);
+                Vector2.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
         }
 
-        //TODO this requires a player object in the scene
+        
         private void OnTriggerEnter2D(Collider2D col)
         {
-            //if collider is a player and they have health/it isn't null, damage them
+            //ignore collisions with non-player objects
+            if (!col.CompareTag("Player")) return;
+            
+            var targetHealth = col.GetComponent<HealthData>();
+
+            if (targetHealth != null)
+            {
+                //apply damage to target
+                targetHealth.Damage(_attackPower);  
+            }
         }
     }
 }
