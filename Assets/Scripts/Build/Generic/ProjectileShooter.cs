@@ -1,7 +1,7 @@
-using JetBrains.Annotations;
+using UnityEditor;
 using UnityEngine;
 
-public class ProjectileSpawner : MonoBehaviour
+public class ProjectileShooter : MonoBehaviour
 {
     public const float ProjectileForce = 5f;
     public GameObject projectilePrefab;
@@ -11,6 +11,7 @@ public class ProjectileSpawner : MonoBehaviour
     {
         if (spawnPoint == null)
         {
+            spawnPoint = this.transform;
             Debug.Log("ProjectileSpawner: No spawn point set.");
         }
         if (projectilePrefab == null)
@@ -21,7 +22,6 @@ public class ProjectileSpawner : MonoBehaviour
 
     public void Shoot()
     {
-        
         GameObject projectile = Instantiate(projectilePrefab, spawnPoint.position, spawnPoint.rotation);
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
 
