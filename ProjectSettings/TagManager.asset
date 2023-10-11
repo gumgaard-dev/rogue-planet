@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Destructible
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -16,8 +17,8 @@ TagManager:
   - Climbable
   - Surface
   - OreResources
-  - 
-  - 
+  - Weapon
+  - WeaponBoundary
   - 
   - 
   - 

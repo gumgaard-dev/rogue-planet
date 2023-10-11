@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerControllerSpaceship : MonoBehaviour
+public class Ship : MonoBehaviour
 {
     //empty so that it remains static
 }
