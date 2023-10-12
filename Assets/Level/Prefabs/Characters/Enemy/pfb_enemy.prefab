@@ -9,12 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5399037093123367765}
-  - component: {fileID: 835063856815473104}
   - component: {fileID: 7300909537236341118}
   - component: {fileID: 7989995796661791061}
   - component: {fileID: 6129594367224986212}
   - component: {fileID: 238229929200014362}
   - component: {fileID: 8161941481207090212}
+  - component: {fileID: 3335879971816900406}
   m_Layer: 0
   m_Name: pfb_enemy
   m_TagString: Untagged
@@ -37,20 +37,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &835063856815473104
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8822048904183753889}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6e23f3070d44db4867f0d63852b7481, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  speed: 1.5
 --- !u!50 &7300909537236341118
 Rigidbody2D:
   serializedVersion: 4
@@ -202,3 +188,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackPower: 2
   cooldownDuration: 3
+--- !u!114 &3335879971816900406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8822048904183753889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43c026dba71d4ab0b6084920f346bb43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  speed: 0.5
