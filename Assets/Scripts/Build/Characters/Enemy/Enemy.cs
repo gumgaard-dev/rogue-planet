@@ -9,7 +9,7 @@ namespace Build.Characters.Enemy
     {
         public GameObject target;
 
-        [SerializeField] private float speed;
+        [SerializeField] protected float speed;
         private HealthData _healthData;
         private AttackData _attackData;
 
@@ -19,19 +19,6 @@ namespace Build.Characters.Enemy
             this._attackData = GetComponent<AttackData>();
             this._healthData = GetComponent<HealthData>();
         }
-
-        void Update()
-        {
-            if (target != null) Follow();
-        }
-
-        //very basic pathing (for now) that will just draw the enemy towards the target in all directions
-        private void Follow()
-        {
-            transform.position =
-                Vector2.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
-        }
-
         
         private void OnTriggerEnter2D(Collider2D col)
         {
