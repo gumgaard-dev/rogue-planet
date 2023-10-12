@@ -5,6 +5,7 @@ namespace Build.Generic
 {
     public class Projectile : MonoBehaviour
     {
+        public int AttackPower;
         private void OnTriggerEnter2D(Collider2D col)
         {
             var targetHealth = col.GetComponent<HealthData>();
@@ -12,7 +13,10 @@ namespace Build.Generic
             if (targetHealth != null)
             {
                 //apply damage to target
-                targetHealth.Damage(gameObject.GetComponentInParent<AttackData>().AttackPower);  
+                if (targetHealth != null)
+                {
+                    targetHealth.Damage(AttackPower);  
+                }
                 
                 //destroy the projectile that caused the collision
                 Destroy(gameObject);

@@ -42,8 +42,13 @@ namespace Build.Characters.Enemy
 
             if (targetHealth != null)
             {
-                //apply damage to target
-                targetHealth.Damage(_attackData.AttackPower);  
+                if (_attackData.Cooldown.IsAvailable())
+                {
+                    //apply damage to target
+                    targetHealth.Damage(_attackData.AttackPower);  
+                    //reset cooldown
+                    _attackData.Cooldown.Activate();
+                }
             }
         }
     }

@@ -6,6 +6,7 @@ namespace Build.Component
     {
         [SerializeField] private int maxHealth;
         private int _currentHealth;
+        
 
         //public getter properties
         public int MaxHealth => maxHealth;
