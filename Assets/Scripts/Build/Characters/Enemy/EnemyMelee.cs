@@ -6,7 +6,7 @@ namespace Build.Characters.Enemy
     {
         private void Update()
         {
-            Follow();
+            if (target != null) Follow();
         }
         
         //very basic pathing (for now) that will just draw the enemy towards the target in all directions
