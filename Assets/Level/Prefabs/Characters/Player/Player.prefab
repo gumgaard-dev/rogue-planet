@@ -407,6 +407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aaa4f84d4740054596eb0d054c62e61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  count: 0
   onInventoryChanged:
     m_PersistentCalls:
       m_Calls: []
