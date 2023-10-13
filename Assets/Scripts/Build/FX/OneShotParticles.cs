@@ -12,6 +12,7 @@ public class OneShotParticles : MonoBehaviour
 
     public void Play()
     {
+        Instantiate(_particles, this.transform.position, Quaternion.identity);
         _particles.Play();
     }
 

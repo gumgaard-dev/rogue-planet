@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3122149166180950}
   - component: {fileID: 65651643356838110}
   - component: {fileID: 7907781692928120708}
+  - component: {fileID: -2863934323617762296}
   m_Layer: 9
   m_Name: pfb_resGreen
   m_TagString: Untagged
@@ -161,5 +162,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab4e70d8d2b308c46a6a856e9246178f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  pickupParticles: {fileID: 5108379156386461842, guid: a0fb6ab59076bc845a428e5a140cbabe, type: 3}
+  resourceType: 0
+--- !u!114 &-2863934323617762296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4545734067330052158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0e993ef73ad04e47ada45ee08d6a063, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickupParticles: {fileID: -6689817660043615587, guid: a0fb6ab59076bc845a428e5a140cbabe, type: 3}
