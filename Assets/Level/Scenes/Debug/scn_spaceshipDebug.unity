@@ -521,6 +521,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8222339335979314659, guid: 1a483bb3f904d5f4ea82661497296565, type: 3}
+      propertyPath: torqueToApply
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8374776190210617346, guid: 1a483bb3f904d5f4ea82661497296565, type: 3}
       propertyPath: m_Name
       value: GunHinge
