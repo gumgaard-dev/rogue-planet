@@ -14,7 +14,7 @@ public class ShipArmController : MonoBehaviour
     {
         if (rotator == null)
         {
-            DebugLog.ComponentMissing("Ship", "GunHinge");
+            Debug.Log("ShipArmController: no rotator hinge set in inspector!");
         }
     }
 

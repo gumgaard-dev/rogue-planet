@@ -13,25 +13,30 @@ public class Inventory : MonoBehaviour
         storage = new();
     }
 
-    public void AddToStorage(object itemType)
+    private void UpdateStorage(object itemType, int amount)
     {
-        if (!storage.ContainsKey(itemType))
+        if(!storage.ContainsKey(itemType))
         {
             storage[itemType] = 0;
         }
-        storage[itemType] += 1;
-        count++;
+
+        storage[itemType] += amount;
+
+        if (storage[itemType] <= 0)
+        {
+            storage.Remove(itemType);
+        }
+    }
+
+    public void AddToStorage(object itemType)
+    {
+        UpdateStorage(itemType, 1);
+        onInventoryChanged?.Invoke();
     }
 
     public void RemoveFromStorage(object itemType)
     {
-        if (storage.ContainsKey(itemType))
-        {
-            storage[itemType] -= 1;
-            if (storage[itemType] <= 0)
-            {
-                storage.Remove(itemType);
-            }
-        }
+        UpdateStorage(itemType, -1);
+        onInventoryChanged?.Invoke();
     }
 }

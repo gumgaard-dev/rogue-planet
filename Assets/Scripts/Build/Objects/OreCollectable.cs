@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ResourceCollectable : MonoBehaviour, ICollectable
+public class OreCollectable : MonoBehaviour, ICollectable
 {
     public enum ResourceType
     {
@@ -12,5 +12,10 @@ public class ResourceCollectable : MonoBehaviour, ICollectable
     public object GetItemType()
     {
         return resourceType;
+    }
+
+    public void Collected()
+    {
+        Destroy(this.gameObject);
     }
 }

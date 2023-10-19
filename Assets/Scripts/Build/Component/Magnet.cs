@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ObjectMagnet : MonoBehaviour
+public class Magnet : MonoBehaviour
 {
     public float magnetRadius = 5f;  // The radius within which resources will be attracted
     public float magnetStrength = 2f;  // The strength of the attraction force
