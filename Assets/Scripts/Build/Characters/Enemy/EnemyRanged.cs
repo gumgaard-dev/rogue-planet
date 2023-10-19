@@ -16,7 +16,7 @@ namespace Build.Characters.Enemy
 
         private void Attack()
         {
-            //shoot weapon at player
+            //shoot held weapon at player
         }
     }
 }
