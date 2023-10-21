@@ -14,8 +14,11 @@ public class OreCollectable : MonoBehaviour, ICollectable
         return resourceType;
     }
 
-    public void Collected()
+    public void Collected(ICollectable collectable)
     {
-        Destroy(this.gameObject);
+        if((object)collectable == this)
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

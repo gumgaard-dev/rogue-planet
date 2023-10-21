@@ -1,3 +1,4 @@
+using Capstone;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -5,29 +6,18 @@ using static Unity.VisualScripting.Metadata;
 
 public class InventoryDisplay : MonoBehaviour
 {
-    public Inventory inventory; // Reference to the Inventory script
     public GameObject inventoryUI; // GameObject that will hold all the UI elements
     public Text itemTemplate; // A text template for items to display
 
-    private void Start()
-    {
-        // Subscribe to the onInventoryChanged event
-        inventory.onInventoryChanged.AddListener(UpdateUI);
-    }
-
-    private void OnDestroy()
-    {
-        // Unsubscribe when this GameObject is destroyed to prevent memory leaks
-        inventory.onInventoryChanged.RemoveListener(UpdateUI);
-    }
-
-    public void UpdateUI()
+    public void UpdateUI(Dictionary<object, int> storage)
     {
         // Iterate through the storage dictionary and create UI elements for each 
         string inventoryText = "";
-        foreach (var entry in inventory.storage)
+        foreach (var entry in storage)
         {
-            inventoryText += $"{entry.Key}: {entry.Value}\n";
+            object itemName = entry.Key;
+            int itemCount = entry.Value;
+            inventoryText += $"{itemName}: {itemCount}\n";
         }
 
         itemTemplate.text = inventoryText;
