@@ -6,6 +6,6 @@ using UnityEngine;
 public interface ICollectable
 {
     // the behavior that should be executed on collection
-    public void Collected();
+    public void Collected(ICollectable collectable);
     public object GetItemType();
 }
