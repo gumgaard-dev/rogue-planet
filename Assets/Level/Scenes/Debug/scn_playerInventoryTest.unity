@@ -153,15 +153,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6247461243305813700, guid: bee690126ee6fa749a2fe1b5ab787c9e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -2.54
       objectReference: {fileID: 0}
     - target: {fileID: 6247461243305813700, guid: bee690126ee6fa749a2fe1b5ab787c9e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10
+      value: 3.26
       objectReference: {fileID: 0}
     - target: {fileID: 6247461243305813700, guid: bee690126ee6fa749a2fe1b5ab787c9e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 6247461243305813700, guid: bee690126ee6fa749a2fe1b5ab787c9e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -225,7 +225,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5258741391577303590, guid: 1a483bb3f904d5f4ea82661497296565, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: 1
+      value: 1.77
       objectReference: {fileID: 0}
     - target: {fileID: 6471930729700589520, guid: 1a483bb3f904d5f4ea82661497296565, type: 3}
       propertyPath: m_LocalPosition.x
@@ -712,8 +712,18 @@ MonoBehaviour:
   onInventoryChanged:
     m_PersistentCalls:
       m_Calls:
-      - {m_Target: {fileID: 2068349738}, m_TargetAssemblyTypeName: InventoryDisplay, Assembly-CSharp, m_MethodName: UpdateUI, m_Mode: 0, m_Arguments: {m_ObjectArgument: {fileID: 0}, m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, m_IntArgument: 0, m_FloatArgument: 0, m_StringArgument: , m_BoolArgument: 0}, m_CallState: 2}
-    m_CallsDirty: 1
+      - m_Target: {fileID: 2068349738}
+        m_TargetAssemblyTypeName: InventoryDisplay
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &2051990662
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -784,7 +794,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5007732121627031855, guid: 085d0c81975906f4882b16d198389e27, type: 3}
       propertyPath: layerDataArray.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5007732121627031855, guid: 085d0c81975906f4882b16d198389e27, type: 3}
       propertyPath: layerDataArray.Array.data[0]
