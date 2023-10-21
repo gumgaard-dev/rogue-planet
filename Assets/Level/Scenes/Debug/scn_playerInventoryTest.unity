@@ -147,6 +147,10 @@ PrefabInstance:
       propertyPath: ShipLayer.m_Bits
       value: 131072
       objectReference: {fileID: 0}
+    - target: {fileID: 5933204817797296364, guid: bee690126ee6fa749a2fe1b5ab787c9e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -100
+      objectReference: {fileID: 0}
     - target: {fileID: 6247461243305813700, guid: bee690126ee6fa749a2fe1b5ab787c9e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -211,6 +215,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 919607479}
     m_Modifications:
+    - target: {fileID: 3149307486983055913, guid: 1a483bb3f904d5f4ea82661497296565, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 3313034435874720972, guid: 1a483bb3f904d5f4ea82661497296565, type: 3}
       propertyPath: m_Layer
       value: 14
@@ -229,7 +237,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6471930729700589520, guid: 1a483bb3f904d5f4ea82661497296565, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 6471930729700589520, guid: 1a483bb3f904d5f4ea82661497296565, type: 3}
       propertyPath: m_LocalRotation.w
@@ -262,6 +270,10 @@ PrefabInstance:
     - target: {fileID: 6568304329548291981, guid: 1a483bb3f904d5f4ea82661497296565, type: 3}
       propertyPath: m_Layer
       value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 6768315657583577178, guid: 1a483bb3f904d5f4ea82661497296565, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 8374776190210617346, guid: 1a483bb3f904d5f4ea82661497296565, type: 3}
       propertyPath: m_Name
@@ -350,7 +362,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3998015324115519902, guid: f02aa54bd5e0eb84aadd08869e2b0d1e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3998015324115519902, guid: f02aa54bd5e0eb84aadd08869e2b0d1e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -392,7 +404,8 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 14
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2620103767346235318, guid: f02aa54bd5e0eb84aadd08869e2b0d1e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 3998015324115519902, guid: f02aa54bd5e0eb84aadd08869e2b0d1e, type: 3}
@@ -696,22 +709,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aaa4f84d4740054596eb0d054c62e61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  count: 0
   onInventoryChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2068349738}
-        m_TargetAssemblyTypeName: InventoryDisplay, Assembly-CSharp
-        m_MethodName: UpdateUI
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      - {m_Target: {fileID: 2068349738}, m_TargetAssemblyTypeName: InventoryDisplay, Assembly-CSharp, m_MethodName: UpdateUI, m_Mode: 0, m_Arguments: {m_ObjectArgument: {fileID: 0}, m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, m_IntArgument: 0, m_FloatArgument: 0, m_StringArgument: , m_BoolArgument: 0}, m_CallState: 2}
+    m_CallsDirty: 1
 --- !u!1001 &2051990662
 PrefabInstance:
   m_ObjectHideFlags: 0
