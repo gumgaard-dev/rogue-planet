@@ -6,6 +6,6 @@ namespace Capstone
 {
     public enum PlayerStateType
     {
-        Move, Duck,
+        Move, Duck, InShip
     }
 }

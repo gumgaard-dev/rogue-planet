@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using Build.Component;
 using UnityEngine;
 
@@ -7,20 +5,32 @@ using UnityEngine;
 [RequireComponent(typeof(AttackData))]
 public class Gun : MonoBehaviour
 {
-    public float shotInterval;
-    private ParticleShooter particleShooter;
-    private ProjectileShooter projectileShooter;
-    private AttackData _attackData;
+    [SerializeField]
+    private float _shotInterval;
     
+    [SerializeField]
+    private ParticleShooter _particleShooter;
+    [SerializeField]
+    private ProjectileShooter _projectileShooter;
+    private AttackData _attackData;
+    private Cooldown _shotCooldown;
+
     private void Start()
     {
-        this.projectileShooter = GetComponent<ProjectileShooter>();
-        this.particleShooter = GetComponent<ParticleShooter>();
-        this._attackData = GetComponent<AttackData>();
+        TryGetComponent<ProjectileShooter>(out this._projectileShooter);
+        TryGetComponent<ParticleShooter>(out this._particleShooter);
+        TryGetComponent<AttackData>(out this._attackData);
+        
+        this._shotCooldown = new Cooldown(_shotInterval);
+        _shotCooldown.Activate();
     }
     public void Shoot()
     {
-        particleShooter.Shoot();
-        projectileShooter.Shoot();
+        if (_shotCooldown.IsAvailable())
+        {
+            _particleShooter.Shoot();
+            _projectileShooter.Shoot();
+            _shotCooldown.Activate();
+        }
     }
 }
