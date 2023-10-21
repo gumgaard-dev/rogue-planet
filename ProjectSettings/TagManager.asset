@@ -19,12 +19,12 @@ TagManager:
   - OreResources
   - Weapon
   - WeaponBoundary
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - ShipDetector
+  - Player
+  - Ship
+  - Projectile
+  - Enemy
+  - ShipTriggerArea
   - 
   - 
   - 

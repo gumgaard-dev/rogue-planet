@@ -10,7 +10,7 @@ namespace Capstone
         {
         }
 
-        public override void Init()
+        public override void Enter()
         {
             Player.SetAnimation("Duck");
             Player.SetGravityScale(Settings.DefaultGravityScale);
@@ -46,7 +46,7 @@ namespace Capstone
         {
             base.SetVerticalInput(inputValue);
 
-            if (InputInfo.Move.y >= 0)
+            if (InputInfo.Directional.y >= 0)
             {
                 // TODO Switch this to idle
                 Player.SetState(PlayerStateType.Move);

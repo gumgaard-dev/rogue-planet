@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7177643126110007378}
   - component: {fileID: 8857366675377293146}
   - component: {fileID: 3506674659029914485}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: pfb_shipProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185,3 +185,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feabfa318ea84dc48cab3ba0aaf90d95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AttackPower: 0

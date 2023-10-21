@@ -1,18 +1,14 @@
+using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.Events;
+
+[System.Serializable]
+public class ItemCollectedEvent : UnityEvent<ICollectable> { }
 
 [RequireComponent(typeof(Collider2D))]
-[RequireComponent(typeof(Inventory))]
 public class Collector : MonoBehaviour
 {
-    public Inventory inventory;
-
-    private void Start()
-    {
-        if(inventory == null)
-        {
-            Debug.LogWarning("No inventory attached to ObjectCollector");
-        }
-    }
+    public ItemCollectedEvent ItemCollected;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -21,17 +17,9 @@ public class Collector : MonoBehaviour
         if (other.TryGetComponent<ICollectable>(out var collectable))
         {
             Debug.Log("CollectableObject Detected");
+            ItemCollected.AddListener(collectable.Collected);
 
-            Collect(collectable);
+            ItemCollected?.Invoke(collectable);
         }
-    }
-
-    private void Collect(ICollectable collectable)
-    {
-        // add to inventory
-        inventory.AddToStorage(collectable.GetItemType());
-
-        // call collect method on collectable
-        collectable.Collected();
     }
 }
