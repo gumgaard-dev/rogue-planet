@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Capstone
+namespace Capstone.Build
 {
     [CreateAssetMenu(fileName = "GameSettings", menuName = "Game Settings")]
     public class GameSettings : ScriptableObject

@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-namespace Capstone
+namespace Capstone.Build.Characters.Player.PlayerStates
 {
     
     public class InShipState : PlayerState

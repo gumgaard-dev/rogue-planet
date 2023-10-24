@@ -1,12 +1,14 @@
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Capstone.Build.Characters.Player.PlayerStates
 {
-    public class PlayerMoveState : PlayerState
+    public class PlayerIdleState : PlayerState
     {
-        public PlayerMoveState(GameSettings settings, Player player) : base(settings, player) { }
+        public PlayerIdleState(GameSettings settings, Player player) : base(settings, player) { }
 
         public override void Enter()
         {
@@ -28,9 +30,9 @@ namespace Capstone.Build.Characters.Player.PlayerStates
             {
                 Player.SetState(PlayerStateType.Duck);
             }
-            else if (InputInfo.Directional.x == 0 && Player.Velocity == Vector2.zero)
+            else if ((InputInfo.Directional.x != 0 || InputInfo.Jump) && TriggerInfo.Ground)
             {
-                Player.SetState(PlayerStateType.Idle);
+                Player.SetState(PlayerStateType.Move);
             }
             else
             {
@@ -47,28 +49,6 @@ namespace Capstone.Build.Characters.Player.PlayerStates
                 Player.UpdateAnimation();
             }
 
-        }
-
-        public override void FixedUpdateManaged()
-        {
-            Vector2 newVelocity = Player.Velocity;
-
-            // Smoothly changes the player's velocity
-            // target velocity is input.x * run speed, becuase info.x is either -1, 0, or 1 based on input
-            newVelocity.x = Mathf.SmoothDamp(
-                Player.Velocity.x,
-                InputInfo.Directional.x * Settings.RunSpeed,
-                ref VelocityXDamped,
-                TriggerInfo.Ground ? Settings.GroundSpeedSmoothTime : Settings.AirSpeedSmoothTime
-            );
-
-            Player.SetVelocity( newVelocity );
-
-            // This should set the state to idle only when the player is still.
-            //if (newVelocity.x == 0)
-            //{
-            //    Player.SetState(PlayerStateType.Idle);
-            //}
         }
 
         public override void SetJumpInput(bool inputValue)
@@ -88,7 +68,9 @@ namespace Capstone.Build.Characters.Player.PlayerStates
                 if (Player.Velocity.y > 0)
                 {
                     Player.SetGravityScale(Settings.FallingGravityScale);
-                }            }
+                }
+            }
         }
+
     }
 }

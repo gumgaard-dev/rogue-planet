@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Capstone
+namespace Capstone.Build.Characters.Player.PlayerStates
 {
     public enum PlayerStateType
     {
-        Move, Duck, InShip
+        Move, Duck, Idle, InShip
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace Capstonme
+namespace Capstone.Input
 {
     public class InputInfo : MonoBehaviour
     {

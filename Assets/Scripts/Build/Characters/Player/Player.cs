@@ -1,9 +1,9 @@
-using System.Collections;
+using Capstone.Build.Characters.Player.PlayerStates;
 using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace Capstone
+namespace Capstone.Build.Characters.Player
 {
     public class Player : MonoBehaviour
     {
@@ -55,6 +55,7 @@ namespace Capstone
             {
                 [PlayerStateType.Move] = new PlayerMoveState(_settings, this),
                 [PlayerStateType.Duck] = new PlayerDuckState(_settings, this),
+                [PlayerStateType.Idle] = new PlayerIdleState(_settings, this),
                 [PlayerStateType.InShip] = new InShipState(_settings, this),
             };
 

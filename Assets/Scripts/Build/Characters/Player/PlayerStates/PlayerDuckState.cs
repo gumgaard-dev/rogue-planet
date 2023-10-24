@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Capstone.Build.Characters.Player.PlayerStates;
 
-namespace Capstone
+namespace Capstone.Build.Characters.Player.PlayerStates
 {
     public class PlayerDuckState : PlayerState
     {

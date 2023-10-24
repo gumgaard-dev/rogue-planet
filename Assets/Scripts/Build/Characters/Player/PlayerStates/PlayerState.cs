@@ -1,11 +1,11 @@
-using Capstonme;
+using Capstone.Input;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 
-namespace Capstone
+namespace Capstone.Build.Characters.Player.PlayerStates
 {
     public abstract class PlayerState
     {

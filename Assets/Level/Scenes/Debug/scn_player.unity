@@ -264,7 +264,7 @@ GameObject:
   - component: {fileID: 598688887}
   - component: {fileID: 598688886}
   - component: {fileID: 598688885}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: minecraft_grass_block_texture
   m_TagString: Untagged
   m_Icon: {fileID: 0}
