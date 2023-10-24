@@ -1,17 +1,32 @@
+using Build.Component;
+using UnityEngine;
+
 namespace Build.Characters.Enemy
 {
+    [RequireComponent(typeof(CheckDistance))]
     public class EnemyRanged : Enemy
     {
+        private CheckDistance _check;
+        public float minDistanceToTarget;
         private bool _withinRange;
+        
+        new void Start()
+        {
+            base.Start();
+            _check = GetComponent<CheckDistance>();
+            _check.target = target;
+        }
+        
         private void Update()
         {
-            GetWithinRange();
-            if (_withinRange) Attack();
-        }
-
-        private void GetWithinRange()
-        {
-            //move in direction of target until their attack range can reach the target
+            _withinRange = _check.distanceBetweenObjects <= minDistanceToTarget;
+            
+            if (!_withinRange && target)
+            {
+                Follow();
+            }
+            
+            Attack();
         }
 
         private void Attack()
