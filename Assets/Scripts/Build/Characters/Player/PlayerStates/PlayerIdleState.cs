@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Capstone.Build.Characters.Player.PlayerStates
+﻿namespace Capstone.Build.Characters.Player.PlayerStates
 {
     public class PlayerIdleState : PlayerState
     {
@@ -30,23 +24,13 @@ namespace Capstone.Build.Characters.Player.PlayerStates
             {
                 Player.SetState(PlayerStateType.Duck);
             }
-            else if ((InputInfo.Directional.x != 0 || InputInfo.Jump) && TriggerInfo.Ground)
+            else if (InputInfo.Directional.x != 0)
             {
-                Player.SetState(PlayerStateType.Move);
+                Player.SetState(PlayerStateType.Run);
             }
             else
             {
-                if (TriggerInfo.Ground)
-                {
-                    Player.SetGravityScale(Settings.DefaultGravityScale);
-                }
-                else if (Player.Velocity.y <= -Settings.MinFallSpeed)
-                {
-                    Player.SetGravityScale(Settings.FallingGravityScale);
-                }
-
                 Player.UpdateFacing();
-                Player.UpdateAnimation();
             }
 
         }

@@ -1,8 +1,5 @@
 using Capstone.Input;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 
 namespace Capstone.Build.Characters.Player.PlayerStates
@@ -16,7 +13,6 @@ namespace Capstone.Build.Characters.Player.PlayerStates
         protected TriggerInfo TriggerInfo;
 
         private LayerMask _surfaceLayerMask;
-        private LayerMask _climbableLayerMask;
 
         protected float VelocityXDamped;
 
@@ -29,7 +25,6 @@ namespace Capstone.Build.Characters.Player.PlayerStates
             TriggerInfo = player.GetComponent<TriggerInfo>();
 
             _surfaceLayerMask = LayerMask.GetMask("Terrain");
-            _climbableLayerMask = LayerMask.GetMask("Climbable");
 
         }
 

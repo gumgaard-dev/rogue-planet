@@ -53,13 +53,14 @@ namespace Capstone.Build.Characters.Player
         {
             _playerStates = new Dictionary<PlayerStateType, PlayerState>
             {
-                [PlayerStateType.Move] = new PlayerMoveState(_settings, this),
+                [PlayerStateType.Run] = new PlayerRunState(_settings, this),
                 [PlayerStateType.Duck] = new PlayerDuckState(_settings, this),
                 [PlayerStateType.Idle] = new PlayerIdleState(_settings, this),
+                [PlayerStateType.Fall] = new PlayerFallState(_settings, this),
                 [PlayerStateType.InShip] = new InShipState(_settings, this),
             };
 
-            SetState(PlayerStateType.Move);
+            SetState(PlayerStateType.Run);
         }
 
         public void UpdateManaged()
@@ -137,27 +138,7 @@ namespace Capstone.Build.Characters.Player
             _animator.speed = speed;
         }
 
-        public void UpdateAnimation()
-        {   
-            //if (Velocity.y > _settings.MinJumpSpeed)
-            //{
-            //    SetAnimation("Jump");
-            //}
-            //else if (Velocity.y < _settings.MinFallSpeed)
-            //{
-            //    SetAnimation("Fall");
-            //}
-            if (Mathf.Abs(Velocity.x) > _settings.MinRunSpeed)
-            {
-                // set state to move and init move
-                SetAnimation("Run");
-            }
-            else
-            {
-                // set state to idle and init idle
-                SetAnimation("Idle");
-            }
-        }
+
         void OnTriggerEnter2D(Collider2D collision)
         {
             if(collision.gameObject.GetComponentInParent<Ship>())

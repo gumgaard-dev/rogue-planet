@@ -47,7 +47,7 @@ namespace Capstone.Build.Characters.Player.PlayerStates
 
             if(InputInfo.Directional.y < 0)
             {
-                Player.SetState(PlayerStateType.Move);
+                Player.SetState(PlayerStateType.Run);
             }
         }
     }

@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Capstone.Build.Characters.Player.PlayerStates;
 
 namespace Capstone.Build.Characters.Player.PlayerStates
 {
@@ -23,7 +20,7 @@ namespace Capstone.Build.Characters.Player.PlayerStates
 
             if (!TriggerInfo.Ground)
             {
-                Player.SetState(PlayerStateType.Move);
+                Player.SetState(PlayerStateType.Run);
             }
         }
 
@@ -50,7 +47,7 @@ namespace Capstone.Build.Characters.Player.PlayerStates
             if (InputInfo.Directional.y >= 0)
             {
                 // TODO Switch this to idle
-                Player.SetState(PlayerStateType.Move);
+                Player.SetState(PlayerStateType.Run);
             }
         }
     }

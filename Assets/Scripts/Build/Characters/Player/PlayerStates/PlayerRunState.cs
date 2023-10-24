@@ -1,21 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 namespace Capstone.Build.Characters.Player.PlayerStates
 {
-    public class PlayerMoveState : PlayerState
+    public class PlayerRunState : PlayerState
     {
-        public PlayerMoveState(GameSettings settings, Player player) : base(settings, player) { }
+        public PlayerRunState(GameSettings settings, Player player) : base(settings, player) { }
 
         public override void Enter()
         {
-            Player.SetAnimation("Idle");
+            Player.SetAnimation("Run");
             Player.SetGravityScale(Settings.DefaultGravityScale);
         }
 
         public override void UpdateManaged()
         {
+
+            // Note: could set animation for running here after checking for minRunSpeed, if we want the animation not to start right away
 
             UpdateTriggers();
 
@@ -28,29 +29,18 @@ namespace Capstone.Build.Characters.Player.PlayerStates
             {
                 Player.SetState(PlayerStateType.Duck);
             }
-            else if (InputInfo.Directional.x == 0 && Player.Velocity == Vector2.zero)
-            {
-                Player.SetState(PlayerStateType.Idle);
-            }
             else
             {
-                if (TriggerInfo.Ground)
-                {
-                    Player.SetGravityScale(Settings.DefaultGravityScale);
-                }
-                else if (Player.Velocity.y <= -Settings.MinFallSpeed)
-                {
-                    Player.SetGravityScale(Settings.FallingGravityScale);
-                }
-
                 Player.UpdateFacing();
-                Player.UpdateAnimation();
             }
 
         }
 
+
+        // This function sets the player's velocity and checks for idle condition
         public override void FixedUpdateManaged()
         {
+
             Vector2 newVelocity = Player.Velocity;
 
             // Smoothly changes the player's velocity
@@ -62,13 +52,13 @@ namespace Capstone.Build.Characters.Player.PlayerStates
                 TriggerInfo.Ground ? Settings.GroundSpeedSmoothTime : Settings.AirSpeedSmoothTime
             );
 
-            Player.SetVelocity( newVelocity );
+            Player.SetVelocity(newVelocity);
 
-            // This should set the state to idle only when the player is still.
-            //if (newVelocity.x == 0)
-            //{
-            //    Player.SetState(PlayerStateType.Idle);
-            //}
+            if (InputInfo.Directional.x == 0 && Player.Velocity == Vector2.zero)
+            {
+                Player.SetState(PlayerStateType.Idle);
+            } 
+
         }
 
         public override void SetJumpInput(bool inputValue)
@@ -77,18 +67,18 @@ namespace Capstone.Build.Characters.Player.PlayerStates
 
             if (inputValue)
             {
-                // perform jump only when on ground
-                if (TriggerInfo.Ground)
-                {
-                    Player.SetVelocity(Player.Velocity.x, Settings.JumpSpeed);
-                }
+                Debug.Log("Jetpack");
+                Player.SetVelocity(Player.Velocity.x, Settings.JumpSpeed);
             }
-            else
+            else if (Player.Velocity.y < Settings.MinFallSpeed)
             {
-                if (Player.Velocity.y > 0)
-                {
-                    Player.SetGravityScale(Settings.FallingGravityScale);
-                }            }
+                Player.SetState(PlayerStateType.Fall);
+            }
+            // This code is for doing a short hop when you let go of jump early
+            else if (Player.Velocity.y > 0)
+            {
+                Player.SetGravityScale(Settings.FallingGravityScale);
+            }
         }
     }
 }

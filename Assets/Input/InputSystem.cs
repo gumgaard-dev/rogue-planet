@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Capstone.Build.Characters.Player;
@@ -80,20 +77,15 @@ namespace Capstone.Input
 
             _previousDirectionalInput = currentDirectionalInput;
 
-            // Follow this same process for y value if we want that functionality (maybe for climbing ladders)
         }
 
         private void PollJumpInput() 
         {
-            bool currentJumpInput = (_jumpAction.ReadValue<float>() > 0);
+            bool jumpInput = (_jumpAction.ReadValue<float>() > 0);
 
-            if (currentJumpInput != _previousJumpInput)
-            {
-                _player.State.SetJumpInput(currentJumpInput);
-            }
-
-            _previousJumpInput = currentJumpInput;
+            _player.State.SetJumpInput(jumpInput);
         }
+
         private void PollShootInput()
         {
             bool currentShootInput = _shootAction.ReadValue<float>() > 0;
