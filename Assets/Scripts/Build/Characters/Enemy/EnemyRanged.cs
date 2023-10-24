@@ -6,6 +6,9 @@ namespace Build.Characters.Enemy
     [RequireComponent(typeof(CheckDistance))]
     public class EnemyRanged : Enemy
     {
+        public Gun Gun;
+        public HingeRotator Hinge;
+        
         private CheckDistance _check;
         public float minDistanceToTarget;
         private bool _withinRange;
@@ -15,6 +18,7 @@ namespace Build.Characters.Enemy
             base.Start();
             _check = GetComponent<CheckDistance>();
             _check.target = target;
+            _check.self = gameObject;
         }
         
         private void Update()
@@ -24,14 +28,16 @@ namespace Build.Characters.Enemy
             if (!_withinRange && target)
             {
                 Follow();
+                // rotateGun();
             }
             
-            Attack();
+            if (Gun && target && _withinRange) Gun.Shoot();
         }
 
-        private void Attack()
+        private void rotateGun()
         {
-            //shoot held weapon at player
+            Vector3 pointTowards = target.transform.position;
+            // TODO rotate the hinge so that its direction matches the target's position
         }
     }
 }

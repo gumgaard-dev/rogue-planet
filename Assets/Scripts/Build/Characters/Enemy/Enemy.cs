@@ -33,15 +33,13 @@ namespace Build.Characters.Enemy
             
             var targetHealth = col.GetComponent<HealthData>();
 
-            if (targetHealth != null)
+            if (targetHealth && _attackData.Cooldown.IsAvailable())
             {
-                if (_attackData.Cooldown.IsAvailable())
-                {
-                    //apply damage to target
-                    targetHealth.Damage(_attackData.AttackPower);  
-                    //reset cooldown
-                    _attackData.Cooldown.Activate();
-                }
+                //apply damage to target
+                targetHealth.Damage(_attackData.AttackPower);  
+                //reset cooldown
+                _attackData.Cooldown.Activate();
+                
             }
         }
         
