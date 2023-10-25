@@ -8,14 +8,14 @@ namespace Capstone.Build
     [CreateAssetMenu(fileName = "GameSettings", menuName = "Game Settings")]
     public class GameSettings : ScriptableObject
     {
-        public float DefaultGravityScale = 6.0f;
+        public float DefaultGravityScale = 3.0f;
         public float FallingGravityScale = 8.5f;
 
         [Space]
         public float RunSpeed = 10f;
         public float MinMoveSpeed = 0.01f;
         public float MinRunSpeed = 1.2f;
-        public float JumpSpeed = 22f;
+        public float JetpackSpeed = 5f;
         public float MinJumpSpeed = 0.01f;
         public float MinFallSpeed = 0.01f;
 

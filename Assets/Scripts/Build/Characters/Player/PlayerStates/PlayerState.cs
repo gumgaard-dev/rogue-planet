@@ -1,4 +1,5 @@
 using Capstone.Input;
+using System;
 using UnityEngine;
 
 
@@ -15,6 +16,7 @@ namespace Capstone.Build.Characters.Player.PlayerStates
         private LayerMask _surfaceLayerMask;
 
         protected float VelocityXDamped;
+        protected float VelocityYDamped;
 
         public PlayerState(GameSettings settings, Player player) 
         {
@@ -77,5 +79,9 @@ namespace Capstone.Build.Characters.Player.PlayerStates
             VelocityXDamped = 0;
         }
 
+        internal void ResetVelocityYDamping()
+        {
+            VelocityYDamped = 0;
+        }
     }
 }

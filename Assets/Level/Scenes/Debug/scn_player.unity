@@ -204,6 +204,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2216800217044587734, guid: 88f2ace2f8c541d488ce4fcd79c3f34b, type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 2017893062}
     - target: {fileID: 3565665534765856108, guid: 88f2ace2f8c541d488ce4fcd79c3f34b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -394,7 +398,7 @@ GameObject:
   - component: {fileID: 966662401}
   - component: {fileID: 966662400}
   - component: {fileID: 966662399}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: minecraft_grass_block_texture (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -524,7 +528,7 @@ GameObject:
   - component: {fileID: 1029193862}
   - component: {fileID: 1029193861}
   - component: {fileID: 1029193860}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: minecraft_grass_block_texture (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -746,7 +750,7 @@ GameObject:
   - component: {fileID: 1694281455}
   - component: {fileID: 1694281454}
   - component: {fileID: 1694281453}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: minecraft_grass_block_texture (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -876,7 +880,7 @@ GameObject:
   - component: {fileID: 1782573096}
   - component: {fileID: 1782573095}
   - component: {fileID: 1782573094}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: minecraft_grass_block_texture (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -995,6 +999,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2017893062 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8216215377929277680, guid: ed6b8768e0737be40b5c36366db2d8b5, type: 3}
+  m_PrefabInstance: {fileID: 197973655}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71da9ad0c41273949a466a0ed4f69218, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

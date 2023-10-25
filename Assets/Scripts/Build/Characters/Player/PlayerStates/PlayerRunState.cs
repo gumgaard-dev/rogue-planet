@@ -67,18 +67,10 @@ namespace Capstone.Build.Characters.Player.PlayerStates
 
             if (inputValue)
             {
-                Debug.Log("Jetpack");
-                Player.SetVelocity(Player.Velocity.x, Settings.JumpSpeed);
+                //Player.SetVelocity(Player.Velocity.x, Settings.JetpackSpeed);
+                Player.SetState(PlayerStateType.Jetpack);
             }
-            else if (Player.Velocity.y < Settings.MinFallSpeed)
-            {
-                Player.SetState(PlayerStateType.Fall);
-            }
-            // This code is for doing a short hop when you let go of jump early
-            else if (Player.Velocity.y > 0)
-            {
-                Player.SetGravityScale(Settings.FallingGravityScale);
-            }
+
         }
     }
 }

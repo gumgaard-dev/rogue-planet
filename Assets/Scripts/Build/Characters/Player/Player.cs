@@ -57,6 +57,7 @@ namespace Capstone.Build.Characters.Player
                 [PlayerStateType.Duck] = new PlayerDuckState(_settings, this),
                 [PlayerStateType.Idle] = new PlayerIdleState(_settings, this),
                 [PlayerStateType.Fall] = new PlayerFallState(_settings, this),
+                [PlayerStateType.Jetpack] = new PlayerJetpackState(_settings, this),
                 [PlayerStateType.InShip] = new InShipState(_settings, this),
             };
 
@@ -106,6 +107,15 @@ namespace Capstone.Build.Characters.Player
             else if (Mathf.Abs(x) < _settings.MinMoveSpeed)
             {
                 x = 0;
+            }
+
+            if (y == 0)
+            {
+                State.ResetVelocityYDamping();
+            }
+            else if (Mathf.Abs(y) < _settings.MinMoveSpeed)
+            {
+                y = 0;
             }
 
             _rigidBody.velocity = new Vector2(x, y);

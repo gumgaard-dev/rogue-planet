@@ -10,7 +10,8 @@ namespace Capstone.Build.Characters.Player.PlayerStates
         public override void Enter()
         {
             Player.SetAnimation("Fall");
-            Player.SetGravityScale(Settings.FallingGravityScale);
+            // Can maybe get rid of gravity scales unless we want custom gravity
+            Player.SetGravityScale(Settings.DefaultGravityScale);
         }
 
         public override void UpdateManaged()
@@ -31,14 +32,14 @@ namespace Capstone.Build.Characters.Player.PlayerStates
                     Player.SetState(PlayerStateType.Run);
                 }
             }
+            else if (InputInfo.Jump)
+            {
+                Player.SetState(PlayerStateType.Jetpack);
+            }
             else
             {
                 Player.UpdateFacing();
             }
-            //else if (InputInfo.Jump)
-            //{
-            //    // Jetpack
-            //}
 
         }
 
@@ -57,30 +58,6 @@ namespace Capstone.Build.Characters.Player.PlayerStates
             );
 
         }
-
-
-
-        // Putting this here for reference for jetpack state code
-        //public override void SetJumpInput(bool inputValue)
-        //{
-        //    base.SetJumpInput(inputValue);
-
-        //    if (inputValue)
-        //    {
-        //        // perform jump only when on ground
-        //        if (TriggerInfo.Ground)
-        //        {
-        //            Player.SetVelocity(Player.Velocity.x, Settings.JumpSpeed);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        if (Player.Velocity.y > 0)
-        //        {
-        //            Player.SetGravityScale(Settings.FallingGravityScale);
-        //        }
-        //    }
-        //}
 
     }
 }

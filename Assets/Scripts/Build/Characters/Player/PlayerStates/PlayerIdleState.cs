@@ -41,19 +41,10 @@
 
             if (inputValue)
             {
-                // perform jump only when on ground
-                if (TriggerInfo.Ground)
-                {
-                    Player.SetVelocity(Player.Velocity.x, Settings.JumpSpeed);
-                }
+                //Player.SetVelocity(Player.Velocity.x, Settings.JetpackSpeed);
+                Player.SetState(PlayerStateType.Jetpack);
             }
-            else
-            {
-                if (Player.Velocity.y > 0)
-                {
-                    Player.SetGravityScale(Settings.FallingGravityScale);
-                }
-            }
+
         }
 
     }
