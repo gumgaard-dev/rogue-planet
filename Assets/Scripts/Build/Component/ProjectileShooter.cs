@@ -1,3 +1,5 @@
+using Build.Component;
+using Build.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -22,8 +24,13 @@ public class ProjectileShooter : MonoBehaviour
 
     public void Shoot()
     {
+
         GameObject projectile = Instantiate(projectilePrefab, spawnPoint.position, spawnPoint.rotation);
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
+        var parentAttackPower = gameObject.GetComponentInParent<AttackData>().AttackPower;
+        Projectile projectile_body = projectile.GetComponent<Projectile>();
+        projectile_body.AttackPower = parentAttackPower;
+
 
         //prevents any potential error with projectiles spawning without a rigidbody
         if (rb != null)

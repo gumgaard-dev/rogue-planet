@@ -15,9 +15,11 @@ namespace Capstone
 
         private InputAction _moveAction;
         private InputAction _jumpAction;
+        private InputAction _shootAction;
 
-        private Vector2 _previousMoveInput;
-        private float _previousJumpInput;
+        private Vector2 _previousDirectionalInput;
+        private bool _previousJumpInput;
+        private bool _previousShootInput;
 
         public void AwakeManaged()
         {
@@ -25,62 +27,64 @@ namespace Capstone
 
             _playerInputActions = new PlayerInputActions();
 
-            _moveAction = _playerInputActions.Player.Move;
+            _moveAction = _playerInputActions.Player.Directional;
             _jumpAction = _playerInputActions.Player.Jump;
+            _shootAction = _playerInputActions.Player.Shoot;
         }
 
         public void UpdateManaged()
         {
-            PollMoveInput();
+            PollDirectionalInput();
             PollJumpInput();
+            PollShootInput();
         }
 
-        private void PollMoveInput() 
+        private void PollDirectionalInput() 
         {
-            Vector2 currentMoveInput = _moveAction.ReadValue<Vector2>();
+            Vector2 currentDirectionalInput = _moveAction.ReadValue<Vector2>();
 
             // D-Pad does not detect a new button press if finger is slid from one direction to another without letting go
             // Checking against the previous move input will fix this issue
 
             // Checking if d-pad was either released or pressed right previously, and is now pressed left
-            if (currentMoveInput.x > 0 && _previousMoveInput.x <= 0)
+            if (currentDirectionalInput.x > 0 && _previousDirectionalInput.x <= 0)
             {
                 _player.State.SetHorizontalInput(1);
             }
             // Checks if d-pad was either released or pressed left previously, and is now pressed left
-            else if (currentMoveInput.x < 0 && _previousMoveInput.x >= 0)
+            else if (currentDirectionalInput.x < 0 && _previousDirectionalInput.x >= 0)
             {
                 _player.State.SetHorizontalInput(-1);
             }
             // Checks if the d-pad was previously pressed left or right and is now released (or pressed up or down)
-            else if (currentMoveInput.x == 0 && _previousMoveInput.x != 0)
+            else if (currentDirectionalInput.x == 0 && _previousDirectionalInput.x != 0)
             {
                 _player.State.SetHorizontalInput(0);
             }
 
             // Doing the same checks but for y axis
-            if (currentMoveInput.y > 0 && _previousMoveInput.y <= 0)
+            if (currentDirectionalInput.y > 0 && _previousDirectionalInput.y <= 0)
             {
                 _player.State.SetVerticalInput(1);
             }
-            else if (currentMoveInput.y < 0 && _previousMoveInput.y >= 0)
+            else if (currentDirectionalInput.y < 0 && _previousDirectionalInput.y >= 0)
             {
                 _player.State.SetVerticalInput(-1);
             }
-            else if (currentMoveInput.y == 0 && _previousMoveInput.y != 0)
+            else if (currentDirectionalInput.y == 0 && _previousDirectionalInput.y != 0)
             {
                 _player.State.SetVerticalInput(0);
             }
 
 
-            _previousMoveInput = currentMoveInput;
+            _previousDirectionalInput = currentDirectionalInput;
 
             // Follow this same process for y value if we want that functionality (maybe for climbing ladders)
         }
 
         private void PollJumpInput() 
         {
-            float currentJumpInput = _jumpAction.ReadValue<float>();
+            bool currentJumpInput = (_jumpAction.ReadValue<float>() > 0);
 
             if (currentJumpInput != _previousJumpInput)
             {
@@ -88,6 +92,17 @@ namespace Capstone
             }
 
             _previousJumpInput = currentJumpInput;
+        }
+        private void PollShootInput()
+        {
+            bool currentShootInput = _shootAction.ReadValue<float>() > 0;
+
+            if (currentShootInput != _previousShootInput)
+            {
+                _player.State.SetShootInput(currentShootInput);
+            }
+            
+            _previousShootInput = currentShootInput;
         }
 
         void OnEnable()

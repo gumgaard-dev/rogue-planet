@@ -8,7 +8,7 @@ namespace Capstone
     {
         public PlayerMoveState(GameSettings settings, Player player) : base(settings, player) { }
 
-        public override void Init()
+        public override void Enter()
         {
             Player.SetAnimation("Idle");
             Player.SetGravityScale(Settings.DefaultGravityScale);
@@ -19,8 +19,12 @@ namespace Capstone
 
             UpdateTriggers();
 
+            if (InputInfo.Directional.y > 0 && Player.IsNearShip)
+            {
+                Player.SetState(PlayerStateType.InShip);
+            }
             // Checking for down input, and that player is on the ground
-            if (InputInfo.Move.y < 0 && TriggerInfo.Ground)
+            else if (InputInfo.Directional.y < 0 && TriggerInfo.Ground)
             {
                 Player.SetState(PlayerStateType.Duck);
             }
@@ -49,7 +53,7 @@ namespace Capstone
             // target velocity is input.x * run speed, becuase info.x is either -1, 0, or 1 based on input
             newVelocity.x = Mathf.SmoothDamp(
                 Player.Velocity.x,
-                InputInfo.Move.x * Settings.RunSpeed,
+                InputInfo.Directional.x * Settings.RunSpeed,
                 ref VelocityXDamped,
                 TriggerInfo.Ground ? Settings.GroundSpeedSmoothTime : Settings.AirSpeedSmoothTime
             );
@@ -63,11 +67,11 @@ namespace Capstone
             //}
         }
 
-        public override void SetJumpInput(float inputValue)
+        public override void SetJumpInput(bool inputValue)
         {
             base.SetJumpInput(inputValue);
 
-            if (inputValue == 1)
+            if (inputValue)
             {
                 // perform jump only when on ground
                 if (TriggerInfo.Ground)
@@ -75,7 +79,7 @@ namespace Capstone
                     Player.SetVelocity(Player.Velocity.x, Settings.JumpSpeed);
                 }
             }
-            else if (inputValue == 0)
+            else
             {
                 if (Player.Velocity.y > 0)
                 {

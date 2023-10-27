@@ -158,8 +158,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7134720724990717891}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab4e70d8d2b308c46a6a856e9246178f, type: 3}
+  m_Script: {fileID: 11500000, guid: cd497582b4be8bb4f8f39dbe6f06fbcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
-  pickupParticles: {fileID: 5108379156386461842, guid: a0fb6ab59076bc845a428e5a140cbabe, type: 3}
+  resourceType: 1

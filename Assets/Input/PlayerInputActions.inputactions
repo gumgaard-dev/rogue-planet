@@ -6,7 +6,7 @@
             "id": "dfe0976b-269d-4151-9656-0092094a96ab",
             "actions": [
                 {
-                    "name": "Move",
+                    "name": "Directional",
                     "type": "Value",
                     "id": "ca5b9d63-a61f-49f0-84e4-6d5075a82a2f",
                     "expectedControlType": "Dpad",
@@ -22,6 +22,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Shoot",
+                    "type": "Button",
+                    "id": "a2509832-d91a-42df-80d2-1d76223bfab8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -32,7 +41,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "Directional",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -43,7 +52,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "Directional",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -54,7 +63,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "Directional",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -65,7 +74,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "Directional",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -76,7 +85,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "Directional",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -87,7 +96,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "Directional",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -98,7 +107,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "Directional",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -109,7 +118,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "Directional",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -120,7 +129,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "Directional",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -131,7 +140,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "Directional",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -154,6 +163,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0e78b921-e54a-4ae3-896b-0a592b031a3a",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7b52348d-0e20-4a7e-b89d-6d053beedb38",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Shoot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

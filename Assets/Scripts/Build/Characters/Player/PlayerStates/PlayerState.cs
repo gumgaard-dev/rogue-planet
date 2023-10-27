@@ -33,7 +33,9 @@ namespace Capstone
 
         }
 
-        public virtual void Init() { }
+        public virtual void Enter() { }
+
+        public virtual void Exit() { }
 
         public virtual void UpdateManaged() { }
 
@@ -41,17 +43,22 @@ namespace Capstone
 
         public virtual void SetHorizontalInput(float inputValue) 
         {
-            InputInfo.Move.x = inputValue;
+            InputInfo.Directional.x = inputValue;
         }
 
         public virtual void SetVerticalInput(float inputValue)
         {
-            InputInfo.Move.y = inputValue;
+            InputInfo.Directional.y = inputValue;
         }
 
-        public virtual void SetJumpInput(float inputValue)
+        public virtual void SetJumpInput(bool inputValue)
         {
             InputInfo.Jump = inputValue;
+        }
+
+        public virtual void SetShootInput(bool inputValue)
+        {
+            InputInfo.Shoot = inputValue;
         }
 
         public void UpdateTriggers() 

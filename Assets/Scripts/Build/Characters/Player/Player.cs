@@ -30,6 +30,14 @@ namespace Capstone
         private Collider2D _bodyCollider;
         private Rigidbody2D _rigidBody;
 
+        public LayerMask ShipLayer;
+
+        // ref to player's ship
+        public Ship ship;
+
+        private bool _isNearShip;
+        public bool IsNearShip {  get { return _isNearShip; } }
+
         public void AwakeManaged()
         {
             _settings = Resources.Load<GameSettings>("Settings/GameSettings");
@@ -47,6 +55,7 @@ namespace Capstone
             {
                 [PlayerStateType.Move] = new PlayerMoveState(_settings, this),
                 [PlayerStateType.Duck] = new PlayerDuckState(_settings, this),
+                [PlayerStateType.InShip] = new InShipState(_settings, this),
             };
 
             SetState(PlayerStateType.Move);
@@ -64,10 +73,16 @@ namespace Capstone
 
         public void SetState(PlayerStateType stateType)
         {
+            if(State != null)
+            {
+                State.Exit();
+            }
+            
+
             StateType = stateType;
             State = _playerStates[stateType];
 
-            State.Init();
+            State.Enter();
         }
 
         public void SetPosition(float x, float y) 
@@ -142,6 +157,22 @@ namespace Capstone
                 SetAnimation("Idle");
             }
         }
+        void OnTriggerEnter2D(Collider2D collision)
+        {
+            if(collision.gameObject.GetComponentInParent<Ship>())
+            {
+                this._isNearShip = true;
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            if (collision.gameObject.layer == ShipLayer)
+            {
+                this._isNearShip = false;
+            }
+        }
+
 
         public void UpdateFacing()
         {
