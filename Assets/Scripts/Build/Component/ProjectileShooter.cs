@@ -1,6 +1,4 @@
 using Build.Component;
-using Build.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class ProjectileShooter : MonoBehaviour
@@ -14,11 +12,11 @@ public class ProjectileShooter : MonoBehaviour
         if (spawnPoint == null)
         {
             spawnPoint = this.transform;
-            Debug.Log("ProjectileSpawner: No spawn point set.");
+            Debug.Log("ProjectileShooter: No spawn point set.");
         }
         if (projectilePrefab == null)
         {
-            Debug.Log("ProjectileSpawner: No projectile prefab set.");
+            Debug.Log("ProjectileShooter: No projectile prefab set.");
         }
     }
 
@@ -28,8 +26,8 @@ public class ProjectileShooter : MonoBehaviour
         GameObject projectile = Instantiate(projectilePrefab, spawnPoint.position, spawnPoint.rotation);
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
         var parentAttackPower = gameObject.GetComponentInParent<AttackData>().AttackPower;
-        Projectile projectile_body = projectile.GetComponent<Projectile>();
-        projectile_body.AttackPower = parentAttackPower;
+        Projectile projectileBody = projectile.GetComponent<Projectile>();
+        projectileBody.AttackPower = parentAttackPower;
 
 
         //prevents any potential error with projectiles spawning without a rigidbody
