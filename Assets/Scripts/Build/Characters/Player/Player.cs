@@ -7,6 +7,7 @@ namespace Capstone
 {
     public class Player : MonoBehaviour
     {
+        public string SETTINGS_PATH = "Settings/GameSettings";
 
         public Vector3 Position => transform.position;
         public Vector2 Velocity => _rigidBody.velocity;
@@ -18,36 +19,46 @@ namespace Capstone
         public PlayerState State { get; private set; }
         // Enum reference to current state name
         public PlayerStateType StateType;
-
         // Mapping enum state names to actual instance of state object
         private Dictionary<PlayerStateType, PlayerState> _playerStates;
 
         private GameSettings _settings;
-
         private TriggerInfo _triggerInfo;
-
         private Animator _animator;
         private Collider2D _bodyCollider;
         private Rigidbody2D _rigidBody;
 
-        public LayerMask ShipLayer;
+        // a reference to the player's ship used by the in-ship state
+        [SerializeField]private Ship _ship;
+        public Ship Ship {  get { return _ship; } }
 
-        // ref to player's ship
-        public Ship ship;
-
+        // used to determine if player is close enough to enter the ship
         private bool _isNearShip;
         public bool IsNearShip {  get { return _isNearShip; } }
 
+
         public void AwakeManaged()
         {
-            _settings = Resources.Load<GameSettings>("Settings/GameSettings");
+            _settings = Resources.Load<GameSettings>(SETTINGS_PATH);
+            if(_settings == null)
+            {
+                Debug.LogWarning("Player could not load GameSettings at " + SETTINGS_PATH);
+            }
 
-            _triggerInfo = GetComponent<TriggerInfo>();
-
-            _animator = GetComponent<Animator>();
-            _bodyCollider = GetComponent<Collider2D>();
-            _rigidBody = GetComponent<Rigidbody2D>();
+            if (!TryGetComponent(out _triggerInfo)) {
+                Debug.LogWarning("Player has no TriggerInfo component");
+            }
+            if(!TryGetComponent(out _animator)) {
+                Debug.LogWarning("Player has no Animator component");
+            }
+            if (!TryGetComponent(out _bodyCollider)) {
+                Debug.LogWarning("Player has no Collider2D component");
+            }
+            if (!TryGetComponent(out _rigidBody)) {
+                Debug.LogWarning("Player has no RigidBody2D component");
+            }
         }
+
 
         public void StartManaged() 
         {
@@ -59,41 +70,37 @@ namespace Capstone
             };
 
             SetState(PlayerStateType.Move);
+
+            if (_ship == null)
+            {
+                Debug.Log("Error: Player does not have a reference to ship.");
+            }
         }
 
-        public void UpdateManaged()
-        {
-            State.UpdateManaged();
-        }
 
-        public void FixedUpdateManaged()
-        {
-            State.FixedUpdateManaged();
-        }
+        public void UpdateManaged() { State.UpdateManaged(); }
+
+
+        public void FixedUpdateManaged() { State.FixedUpdateManaged(); }
+
 
         public void SetState(PlayerStateType stateType)
         {
-            if(State != null)
-            {
-                State.Exit();
-            }
-            
+            // call the state's exit method to perform any necessary exit actions
+            if(State != null) { State.Exit(); }
 
             StateType = stateType;
             State = _playerStates[stateType];
 
+            // call the state's enter method to perform any necessary enter actions
             State.Enter();
         }
 
-        public void SetPosition(float x, float y) 
-        {
-            transform.position = new Vector2(x, y);
-        }
 
-        public void SetPosition(Vector2 position)
-        {
-            SetPosition(position.x, position.y);
-        }
+        public void SetPosition(float x, float y) { transform.position = new Vector2(x, y); }
+
+        public void SetPosition(Vector2 position) { SetPosition(position.x, position.y); }
+
 
         public void SetVelocity(float x, float y) 
         {
@@ -108,32 +115,33 @@ namespace Capstone
 
             _rigidBody.velocity = new Vector2(x, y);
         }
+    
 
-        public void SetVelocity(Vector2 velocity)
-        {
-            SetVelocity(velocity.x, velocity.y);
-        }
+        public void SetVelocity(Vector2 velocity) { SetVelocity(velocity.x, velocity.y);}
 
-        public void SetFacing(float facing)
-        {
-            transform.localScale = new Vector3(facing, transform.localScale.y, transform.localScale.z);
-        }
+        public void SetFacing(float facing) { transform.localScale = new Vector3(facing, transform.localScale.y, transform.localScale.z);}
 
-        public void SetGravityScale(float gravityScale)
-        {
-            _rigidBody.gravityScale = gravityScale;
-        }
+        public void SetGravityScale(float gravityScale) { this._rigidBody.gravityScale = gravityScale; }
 
         public void SetAnimation(string stateName)
         {
             SetAnimationSpeed(1);
-
-            _animator.Play($"Base Layer.Player-{stateName}");
+            this._animator.Play($"Base Layer.Player-{stateName}");
         }
 
-        public void SetAnimationSpeed(float speed)
+        public void SetAnimationSpeed(float speed) { this._animator.speed = speed; }
+
+        // called when TriggerDetector invokes AreaEntered
+        // sets a flag which determines whether the player can enter the ship
+        public void OnEnterShipProximity()
         {
-            _animator.speed = speed;
+            this._isNearShip = true;
+        }
+
+        // called when TriggerDetector invokes AreaExited
+        public void OnExitShipProximity()
+        {
+            this._isNearShip = false;
         }
 
         public void UpdateAnimation()
@@ -157,22 +165,6 @@ namespace Capstone
                 SetAnimation("Idle");
             }
         }
-        void OnTriggerEnter2D(Collider2D collision)
-        {
-            if(collision.gameObject.GetComponentInParent<Ship>())
-            {
-                this._isNearShip = true;
-            }
-        }
-
-        private void OnTriggerExit2D(Collider2D collision)
-        {
-            if (collision.gameObject.layer == ShipLayer)
-            {
-                this._isNearShip = false;
-            }
-        }
-
 
         public void UpdateFacing()
         {
