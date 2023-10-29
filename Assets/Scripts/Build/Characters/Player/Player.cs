@@ -1,9 +1,9 @@
-using System.Collections;
+using Capstone.Build.Characters.Player.PlayerStates;
 using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace Capstone
+namespace Capstone.Build.Characters.Player
 {
     public class Player : MonoBehaviour
     {
@@ -57,6 +57,11 @@ namespace Capstone
             if (!TryGetComponent(out _rigidBody)) {
                 Debug.LogWarning("Player has no RigidBody2D component");
             }
+
+            if (!_ship)
+            {
+                Debug.Log("Error: Player does not have a reference to ship.");
+            }
         }
 
 
@@ -64,17 +69,18 @@ namespace Capstone
         {
             _playerStates = new Dictionary<PlayerStateType, PlayerState>
             {
-                [PlayerStateType.Move] = new PlayerMoveState(_settings, this),
+                [PlayerStateType.Run] = new PlayerRunState(_settings, this),
                 [PlayerStateType.Duck] = new PlayerDuckState(_settings, this),
+                [PlayerStateType.Idle] = new PlayerIdleState(_settings, this),
+                [PlayerStateType.Fall] = new PlayerFallState(_settings, this),
+                [PlayerStateType.Jetpack] = new PlayerJetpackState(_settings, this),
                 [PlayerStateType.InShip] = new InShipState(_settings, this),
             };
 
+            SetState(PlayerStateType.Run);
             SetState(PlayerStateType.Move);
 
-            if (_ship == null)
-            {
-                Debug.Log("Error: Player does not have a reference to ship.");
-            }
+
         }
 
 
@@ -113,6 +119,15 @@ namespace Capstone
                 x = 0;
             }
 
+            if (y == 0)
+            {
+                State.ResetVelocityYDamping();
+            }
+            else if (Mathf.Abs(y) < _settings.MinMoveSpeed)
+            {
+                y = 0;
+            }
+
             _rigidBody.velocity = new Vector2(x, y);
         }
     
@@ -143,29 +158,7 @@ namespace Capstone
         {
             this._isNearShip = false;
         }
-
-        public void UpdateAnimation()
-        {   
-            //if (Velocity.y > _settings.MinJumpSpeed)
-            //{
-            //    SetAnimation("Jump");
-            //}
-            //else if (Velocity.y < _settings.MinFallSpeed)
-            //{
-            //    SetAnimation("Fall");
-            //}
-            if (Mathf.Abs(Velocity.x) > _settings.MinRunSpeed)
-            {
-                // set state to move and init move
-                SetAnimation("Run");
-            }
-            else
-            {
-                // set state to idle and init idle
-                SetAnimation("Idle");
-            }
-        }
-
+        
         public void UpdateFacing()
         {
             // Checking the direction the player is currently facing, then checking if the velocity is in the same direcition.

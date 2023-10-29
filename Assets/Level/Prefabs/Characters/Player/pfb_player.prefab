@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3667722936276371116}
   - component: {fileID: 4712521936528171518}
   - component: {fileID: 8216215377929277680}
-  - component: {fileID: 1784157303792979325}
+  - component: {fileID: 1740785956584020125}
   - component: {fileID: 7151653721812913862}
   - component: {fileID: 5467511913583601933}
   - component: {fileID: 4147872472685896575}
@@ -103,7 +103,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StateType: 0
---- !u!114 &1784157303792979325
+  ShipLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  ship: {fileID: 0}
+--- !u!114 &1740785956584020125
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -112,11 +116,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 722425370786964051}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21b5d4e52f4e4d84f84c3ae734fcd264, type: 3}
+  m_Script: {fileID: 11500000, guid: 8ce758c4e6c2d3d4681a4fd25772a78b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Move: {x: 0, y: 0}
+  Directional: {x: 0, y: 0}
   Jump: 0
+  Shoot: 0
 --- !u!114 &7151653721812913862
 MonoBehaviour:
   m_ObjectHideFlags: 0

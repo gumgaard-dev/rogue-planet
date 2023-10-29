@@ -291,6 +291,45 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7949904997640143419}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71da9ad0c41273949a466a0ed4f69218, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StateType: 0
+  ShipLayer:
+    serializedVersion: 2
+    m_Bits: 131072
+  ship: {fileID: 0}
+--- !u!114 &8977846593272343829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7949904997640143419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ce758c4e6c2d3d4681a4fd25772a78b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Directional: {x: 0, y: 0}
+  Jump: 0
+  Shoot: 0
+--- !u!114 &534496098842013358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7949904997640143419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0ccfedb7ed0de044bc86017f1c34b94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Ground: {fileID: 0}
+  Wall: {fileID: 0}
+  Climb: {fileID: 0}
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 0}
   m_CullingMode: 0
@@ -582,6 +621,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98b13ea0b0ea0e542b819cb6715f7325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCollected:
+    m_PersistentCalls:
+      m_Calls: []
   ItemCollected:
     m_PersistentCalls:
       m_Calls:

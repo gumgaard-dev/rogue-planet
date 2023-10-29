@@ -1,14 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
+using Capstone.Build.Characters.Player;
+using Capstone.Input;
 using UnityEngine;
 
 
-namespace Capstone
+namespace Capstone.Build
 {
     public class GameManager : MonoBehaviour
     {
 
         private InputSystem _inputSystem;
+
+        [SerializeField]
         private Player _player;
 
         void Awake()
@@ -16,7 +18,6 @@ namespace Capstone
             _inputSystem = GetComponent<InputSystem>();
             _inputSystem.AwakeManaged();
 
-            _player = GameObject.Find("Player").GetComponent<Player>();
             _player.AwakeManaged();
         }
 

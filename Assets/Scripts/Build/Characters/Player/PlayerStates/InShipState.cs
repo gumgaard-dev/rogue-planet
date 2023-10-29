@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-namespace Capstone
+namespace Capstone.Build.Characters.Player.PlayerStates
 {
     
     public class InShipState : PlayerState
@@ -54,7 +54,7 @@ namespace Capstone
 
             if(InputInfo.Directional.y < 0)
             {
-                Player.SetState(PlayerStateType.Move);
+                Player.SetState(PlayerStateType.Run);
             }
         }
     }

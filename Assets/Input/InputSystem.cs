@@ -1,10 +1,8 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Capstone.Build.Characters.Player;
 
-namespace Capstone
+namespace Capstone.Input
 {
     public class InputSystem : MonoBehaviour
     {

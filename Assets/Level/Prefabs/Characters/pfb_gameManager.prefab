@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3565665534765856108}
-  - component: {fileID: 3186362473741226998}
-  - component: {fileID: 2678360755533039120}
+  - component: {fileID: 2216800217044587734}
+  - component: {fileID: 1175927454438843509}
   m_Layer: 0
   m_Name: pfb_gameManager
   m_TagString: Untagged
@@ -33,7 +33,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3186362473741226998
+--- !u!114 &2216800217044587734
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,10 +42,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4782184041945353798}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a99c576d99bbca34594ebf07e79a9350, type: 3}
+  m_Script: {fileID: 11500000, guid: 92d81bdcc89013b4c92ae65aaf212886, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2678360755533039120
+--- !u!114 &1175927454438843509
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -54,6 +54,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 4782184041945353798}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ccf6d768cd5b6b4dbf38a1ab29b9fc7, type: 3}
+  m_Script: {fileID: 11500000, guid: 82781735f0c37ec44b393e72d3093fa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

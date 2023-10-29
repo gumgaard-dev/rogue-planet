@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Capstone
+namespace Capstone.Build.Characters.Player
 {
     public class TriggerInfo : MonoBehaviour
     {
