@@ -18,7 +18,7 @@ namespace Build.Characters.Enemy
         private Collider2D _trigger;
         private Collider2D _collider;
 
-        void Start()
+        protected void Start()
         {
             target = GameObject.FindGameObjectWithTag("Player");
             _attackData = GetComponent<AttackData>();
@@ -33,16 +33,21 @@ namespace Build.Characters.Enemy
             
             var targetHealth = col.GetComponent<HealthData>();
 
-            if (targetHealth != null)
+            if (targetHealth && _attackData.Cooldown.IsAvailable())
             {
-                if (_attackData.Cooldown.IsAvailable())
-                {
-                    //apply damage to target
-                    targetHealth.Damage(_attackData.AttackPower);  
-                    //reset cooldown
-                    _attackData.Cooldown.Activate();
-                }
+                //apply damage to target
+                targetHealth.Damage(_attackData.AttackPower);  
+                //reset cooldown
+                _attackData.Cooldown.Activate();
+                
             }
+        }
+        
+        //very basic pathing (for now) that will just draw the enemy towards the target in all directions
+        protected void Follow()
+        {
+            transform.position =
+                Vector2.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
         }
     }
 }

@@ -1,12 +1,13 @@
-using System.Collections;
+using Capstone.Build.Characters.Player.PlayerStates;
 using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace Capstone
+namespace Capstone.Build.Characters.Player
 {
     public class Player : MonoBehaviour
     {
+        public string SETTINGS_PATH = "Settings/GameSettings";
 
         public Vector3 Position => transform.position;
         public Vector2 Velocity => _rigidBody.velocity;
@@ -18,82 +19,91 @@ namespace Capstone
         public PlayerState State { get; private set; }
         // Enum reference to current state name
         public PlayerStateType StateType;
-
         // Mapping enum state names to actual instance of state object
         private Dictionary<PlayerStateType, PlayerState> _playerStates;
 
         private GameSettings _settings;
-
         private TriggerInfo _triggerInfo;
-
         private Animator _animator;
         private Collider2D _bodyCollider;
         private Rigidbody2D _rigidBody;
 
-        public LayerMask ShipLayer;
+        // a reference to the player's ship used by the in-ship state
+        [SerializeField]private Ship _ship;
+        public Ship Ship {  get { return _ship; } }
 
-        // ref to player's ship
-        public Ship ship;
-
+        // used to determine if player is close enough to enter the ship
         private bool _isNearShip;
         public bool IsNearShip {  get { return _isNearShip; } }
 
+
         public void AwakeManaged()
         {
-            _settings = Resources.Load<GameSettings>("Settings/GameSettings");
+            _settings = Resources.Load<GameSettings>(SETTINGS_PATH);
+            if(_settings == null)
+            {
+                Debug.LogWarning("Player could not load GameSettings at " + SETTINGS_PATH);
+            }
 
-            _triggerInfo = GetComponent<TriggerInfo>();
+            if (!TryGetComponent(out _triggerInfo)) {
+                Debug.LogWarning("Player has no TriggerInfo component");
+            }
+            if(!TryGetComponent(out _animator)) {
+                Debug.LogWarning("Player has no Animator component");
+            }
+            if (!TryGetComponent(out _bodyCollider)) {
+                Debug.LogWarning("Player has no Collider2D component");
+            }
+            if (!TryGetComponent(out _rigidBody)) {
+                Debug.LogWarning("Player has no RigidBody2D component");
+            }
 
-            _animator = GetComponent<Animator>();
-            _bodyCollider = GetComponent<Collider2D>();
-            _rigidBody = GetComponent<Rigidbody2D>();
+            if (!_ship)
+            {
+                Debug.Log("Error: Player does not have a reference to ship.");
+            }
         }
+
 
         public void StartManaged() 
         {
             _playerStates = new Dictionary<PlayerStateType, PlayerState>
             {
-                [PlayerStateType.Move] = new PlayerMoveState(_settings, this),
+                [PlayerStateType.Run] = new PlayerRunState(_settings, this),
                 [PlayerStateType.Duck] = new PlayerDuckState(_settings, this),
+                [PlayerStateType.Idle] = new PlayerIdleState(_settings, this),
+                [PlayerStateType.Fall] = new PlayerFallState(_settings, this),
+                [PlayerStateType.Jetpack] = new PlayerJetpackState(_settings, this),
                 [PlayerStateType.InShip] = new InShipState(_settings, this),
             };
 
-            SetState(PlayerStateType.Move);
+            SetState(PlayerStateType.Run);
         }
 
-        public void UpdateManaged()
-        {
-            State.UpdateManaged();
-        }
 
-        public void FixedUpdateManaged()
-        {
-            State.FixedUpdateManaged();
-        }
+        public void UpdateManaged() { State.UpdateManaged(); }
+
+
+        public void FixedUpdateManaged() { State.FixedUpdateManaged(); }
+
 
         public void SetState(PlayerStateType stateType)
         {
-            if(State != null)
-            {
-                State.Exit();
-            }
-            
+            // call the state's exit method to perform any necessary exit actions
+            if(State != null) { State.Exit(); }
 
             StateType = stateType;
             State = _playerStates[stateType];
 
+            // call the state's enter method to perform any necessary enter actions
             State.Enter();
         }
 
-        public void SetPosition(float x, float y) 
-        {
-            transform.position = new Vector2(x, y);
-        }
 
-        public void SetPosition(Vector2 position)
-        {
-            SetPosition(position.x, position.y);
-        }
+        public void SetPosition(float x, float y) { transform.position = new Vector2(x, y); }
+
+        public void SetPosition(Vector2 position) { SetPosition(position.x, position.y); }
+
 
         public void SetVelocity(float x, float y) 
         {
@@ -106,74 +116,46 @@ namespace Capstone
                 x = 0;
             }
 
+            if (y == 0)
+            {
+                State.ResetVelocityYDamping();
+            }
+            else if (Mathf.Abs(y) < _settings.MinMoveSpeed)
+            {
+                y = 0;
+            }
+
             _rigidBody.velocity = new Vector2(x, y);
         }
+    
 
-        public void SetVelocity(Vector2 velocity)
-        {
-            SetVelocity(velocity.x, velocity.y);
-        }
+        public void SetVelocity(Vector2 velocity) { SetVelocity(velocity.x, velocity.y);}
 
-        public void SetFacing(float facing)
-        {
-            transform.localScale = new Vector3(facing, transform.localScale.y, transform.localScale.z);
-        }
+        public void SetFacing(float facing) { transform.localScale = new Vector3(facing, transform.localScale.y, transform.localScale.z);}
 
-        public void SetGravityScale(float gravityScale)
-        {
-            _rigidBody.gravityScale = gravityScale;
-        }
+        public void SetGravityScale(float gravityScale) { this._rigidBody.gravityScale = gravityScale; }
 
         public void SetAnimation(string stateName)
         {
             SetAnimationSpeed(1);
-
-            _animator.Play($"Base Layer.Player-{stateName}");
+            this._animator.Play($"Base Layer.Player-{stateName}");
         }
 
-        public void SetAnimationSpeed(float speed)
+        public void SetAnimationSpeed(float speed) { this._animator.speed = speed; }
+
+        // called when TriggerDetector invokes AreaEntered
+        // sets a flag which determines whether the player can enter the ship
+        public void OnEnterShipProximity()
         {
-            _animator.speed = speed;
+            this._isNearShip = true;
         }
 
-        public void UpdateAnimation()
-        {   
-            //if (Velocity.y > _settings.MinJumpSpeed)
-            //{
-            //    SetAnimation("Jump");
-            //}
-            //else if (Velocity.y < _settings.MinFallSpeed)
-            //{
-            //    SetAnimation("Fall");
-            //}
-            if (Mathf.Abs(Velocity.x) > _settings.MinRunSpeed)
-            {
-                // set state to move and init move
-                SetAnimation("Run");
-            }
-            else
-            {
-                // set state to idle and init idle
-                SetAnimation("Idle");
-            }
-        }
-        void OnTriggerEnter2D(Collider2D collision)
+        // called when TriggerDetector invokes AreaExited
+        public void OnExitShipProximity()
         {
-            if(collision.gameObject.GetComponentInParent<Ship>())
-            {
-                this._isNearShip = true;
-            }
+            this._isNearShip = false;
         }
-
-        private void OnTriggerExit2D(Collider2D collision)
-        {
-            if (collision.gameObject.layer == ShipLayer)
-            {
-                this._isNearShip = false;
-            }
-        }
-
-
+        
         public void UpdateFacing()
         {
             // Checking the direction the player is currently facing, then checking if the velocity is in the same direcition.

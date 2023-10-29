@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace Capstone
+namespace Capstone.Build.Characters.Player.PlayerStates
 {
     public class PlayerDuckState : PlayerState
     {
@@ -22,7 +20,7 @@ namespace Capstone
 
             if (!TriggerInfo.Ground)
             {
-                Player.SetState(PlayerStateType.Move);
+                Player.SetState(PlayerStateType.Run);
             }
         }
 
@@ -49,7 +47,7 @@ namespace Capstone
             if (InputInfo.Directional.y >= 0)
             {
                 // TODO Switch this to idle
-                Player.SetState(PlayerStateType.Move);
+                Player.SetState(PlayerStateType.Run);
             }
         }
     }
