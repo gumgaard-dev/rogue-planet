@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 2638330546713715922}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -100}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -197,14 +197,14 @@ GameObject:
   m_Component:
   - component: {fileID: 6247461243305813700}
   - component: {fileID: 2680507979554505110}
-  - component: {fileID: 3283401203064607341}
   - component: {fileID: 3437846766849935717}
   - component: {fileID: 6756835936222135063}
   - component: {fileID: 1608051352051560600}
   - component: {fileID: 8977846593272343829}
+  - component: {fileID: 4594936119439030662}
   - component: {fileID: 534496098842013358}
-  - component: {fileID: 3598012710617215635}
-  - component: {fileID: 4556452936167400499}
+  - component: {fileID: 1165337773342452060}
+  - component: {fileID: 3283401203064607341}
   m_Layer: 13
   m_Name: Player
   m_TagString: Untagged
@@ -268,8 +268,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 34369277
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: fd38abec69c76244b8bf8bd57d82bb7e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -282,66 +282,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &3283401203064607341
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7949904997640143419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71da9ad0c41273949a466a0ed4f69218, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  StateType: 0
-  ShipLayer:
-    serializedVersion: 2
-    m_Bits: 131072
-  ship: {fileID: 0}
---- !u!114 &8977846593272343829
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7949904997640143419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ce758c4e6c2d3d4681a4fd25772a78b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Directional: {x: 0, y: 0}
-  Jump: 0
-  Shoot: 0
---- !u!114 &534496098842013358
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7949904997640143419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0ccfedb7ed0de044bc86017f1c34b94, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Ground: {fileID: 0}
-  Wall: {fileID: 0}
-  Climb: {fileID: 0}
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!50 &3437846766849935717
 Rigidbody2D:
   serializedVersion: 4
@@ -438,55 +378,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7949904997640143419}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21b5d4e52f4e4d84f84c3ae734fcd264, type: 3}
+  m_Script: {fileID: 11500000, guid: 8ce758c4e6c2d3d4681a4fd25772a78b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Directional: {x: 0, y: 0}
   Jump: 0
   Shoot: 0
---- !u!114 &534496098842013358
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7949904997640143419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0ccfedb7ed0de044bc86017f1c34b94, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Ground: {fileID: 0}
-  Wall: {fileID: 0}
-  Climb: {fileID: 0}
---- !u!114 &3598012710617215635
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7949904997640143419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4aaa4f84d4740054596eb0d054c62e61, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onInventoryChanged:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: InventoryDisplay
-        m_MethodName: 
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &4556452936167400499
+--- !u!114 &4594936119439030662
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -505,7 +403,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1608051352051560600}
-        m_TargetAssemblyTypeName: Capstone.Player, Assembly-CSharp
+        m_TargetAssemblyTypeName: Capstone.Build.Characters.Player.Player, Assembly-CSharp
         m_MethodName: OnEnterShipProximity
         m_Mode: 1
         m_Arguments:
@@ -520,8 +418,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1608051352051560600}
-        m_TargetAssemblyTypeName: Capstone.Player, Assembly-CSharp
-        m_MethodName: OnLeaveShipProximity
+        m_TargetAssemblyTypeName: Capstone.Build.Characters.Player.Player, Assembly-CSharp
+        m_MethodName: OnExitShipProximity
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -531,6 +429,69 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &534496098842013358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7949904997640143419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0ccfedb7ed0de044bc86017f1c34b94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Ground: {fileID: 0}
+  Wall: {fileID: 0}
+  Climb: {fileID: 0}
+--- !u!114 &1165337773342452060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7949904997640143419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4aaa4f84d4740054596eb0d054c62e61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onInventoryChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: InventoryDisplay, Assembly-CSharp
+        m_MethodName: UpdateUI
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!95 &3283401203064607341
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7949904997640143419}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8441021901173618512
 GameObject:
   m_ObjectHideFlags: 0
@@ -624,18 +585,3 @@ MonoBehaviour:
   ItemCollected:
     m_PersistentCalls:
       m_Calls: []
-  ItemCollected:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3598012710617215635}
-        m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
-        m_MethodName: AddToStorage
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2

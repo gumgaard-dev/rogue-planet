@@ -78,9 +78,6 @@ namespace Capstone.Build.Characters.Player
             };
 
             SetState(PlayerStateType.Run);
-            SetState(PlayerStateType.Move);
-
-
         }
 
 
