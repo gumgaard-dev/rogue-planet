@@ -15,8 +15,8 @@ TagManager:
   - UI
   - Overlay
   - Climbable
-  - Surface
-  - OreResources
+  - ResourceCollector
+  - Collectable
   - Weapon
   - WeaponBoundary
   - ShipDetector
@@ -42,4 +42,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Ship
+    uniqueID: 1777377027
+    locked: 0
+  - name: Player
+    uniqueID: 34369277
+    locked: 0
+  - name: TerrainForeground
+    uniqueID: 3179650405
     locked: 0
