@@ -23,7 +23,6 @@ public class Map : MonoBehaviour
     {
         CalculateHeight();
         GenerateTerrainMap();
-        PopulateScene();
     }
 
     public static int getWidth()
@@ -62,29 +61,6 @@ public class Map : MonoBehaviour
                 {
                     terrainMapEncoded[x, y + layerData.minDepth] = layerMap[x, y];
                 }
-            }
-        }
-    }
-
-    void PopulateScene()
-    {
-        // load dictionary to convert terrainIds to terrainData
-        Dictionary<int, TerrainData> terrainDataDictionary = TerrainDB.getTerrainIDDict();
-        for (int x = 0; x < width; ++x)
-        {
-            int terrainWorldXPos = x - (width / 2);
-            for (int y = 0; y < height; ++y)
-            {
-                int terrainWorldYPos = 0 - y;
-                // get id from encoded map
-                int terrainTypeID = terrainMapEncoded[x, y];
-
-                // get corresponding terrain type
-                TerrainData terrainData = terrainDataDictionary[terrainTypeID];
-
-                // get and instantiate prefab
-                GameObject tilePrefab = terrainData.tilePrefab;
-                Instantiate(tilePrefab, new Vector2(terrainWorldXPos, terrainWorldYPos), Quaternion.identity).transform.SetParent(this.transform);
             }
         }
     }

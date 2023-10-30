@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: tile_stone2
+  m_Script: {fileID: 11500000, guid: 792e1f90bb154494292fb7fe6b8a27b0, type: 3}
+  m_Name: tile_oreGreen
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: 887f8e3f18e8d6e45a32ea572f2d75c1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f9df34a75eb476b4094b8b742779ecbd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
@@ -34,3 +34,9 @@ MonoBehaviour:
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 1
   m_ColliderType: 1
+  OreToDrop: {fileID: 3132417687799982428, guid: 1bda0e357a109544e8c224596d4fa8b0, type: 3}
+  TerrainHealthModifier: 1.2
+  MinDepth: 8
+  MaxDepth: 100
+  Frequency: 0.01
+  MaxPropagationValue: 6
