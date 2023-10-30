@@ -13,4 +13,6 @@ public class TerrainData : ScriptableObject
 
     // The prefab associated with this terrain type
     public GameObject tilePrefab;
+
+    public TerrainTile tile;
 }
