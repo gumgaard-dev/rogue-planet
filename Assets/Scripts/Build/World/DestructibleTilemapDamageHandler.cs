@@ -51,8 +51,10 @@ namespace Capstone.Build.World
                         OreDestroyed?.Invoke(oreTile.OreToDrop, TerrainTilemap.GetCellCenterWorld(position));
 
                         OreTilemap.SetTile(position, null);
+                        OreTilemap.RefreshTile(position);
                         Destroy(oreTile);                    }
                     TerrainTilemap.SetTile(position, null); // Remove the tile from the map
+                    TerrainTilemap.RefreshTile(position);
                     Destroy(currentTile);
                 }
             }
