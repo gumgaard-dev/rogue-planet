@@ -1,0 +1,48 @@
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+
+
+[System.Serializable]
+public class InventoryChangedEvent : UnityEvent<Dictionary<object, int>> { }
+
+[System.Serializable]
+public class Inventory : MonoBehaviour
+{
+    public Dictionary<object, int> storage;
+    public InventoryChangedEvent onInventoryChanged;
+
+    private void Start()
+    {
+        storage = new();
+    }
+
+    private void UpdateStorage(ICollectable item, int amount)
+    {
+
+        object key = item.GetItemType();
+        if (!storage.ContainsKey(key))
+        {
+            storage[key] = 0;
+        }
+
+        storage[key] += amount;
+
+        if (storage[key] <= 0)
+        {
+            storage.Remove(key);
+        }
+    }
+
+    public void AddToStorage(ICollectable item)
+    {
+        UpdateStorage(item, 1);
+        onInventoryChanged?.Invoke(storage);
+    }
+
+    public void RemoveFromStorage(ICollectable item)
+    {
+        UpdateStorage(item, -1);
+        onInventoryChanged?.Invoke(storage);
+    }
+}

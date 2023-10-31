@@ -10,12 +10,20 @@ GameObject:
   m_Component:
   - component: {fileID: 4786814049698058487}
   - component: {fileID: 4081064167625308132}
-  - component: {fileID: 4885484145590899924}
   - component: {fileID: 243995260261302650}
   - component: {fileID: 6369255875280638613}
   - component: {fileID: 2060469628850948621}
+  - component: {fileID: 490463495834601014}
   m_Layer: 0
+<<<<<<< HEAD:Assets/Level/Prefabs/Characters/Ship/pfb_baseGun.prefab
+<<<<<<<< HEAD:Assets/Level/Prefabs/Characters/Ship/Gun.prefab
+  m_Name: Gun
+========
   m_Name: pfb_baseGun
+>>>>>>>> d2b77a85cc6ddab7631aa82cd93951b6dc6b17f6:Assets/Level/Prefabs/Characters/Ship/pfb_baseGun.prefab
+=======
+  m_Name: BaseGun
+>>>>>>> 48bbff2c52cbc74b5ce82065c0785a3de1e91a76:Assets/Level/Prefabs/Characters/Ship/BaseGun.prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49,19 +57,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e96f35788ba61664f8cea339cf08cf10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotInterval: 0.3
---- !u!114 &4885484145590899924
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1108215342440028605}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cecd0a55e150940478c8074d4f3a970a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  _shotInterval: 0
+  _particleShooter: {fileID: 0}
+  _projectileShooter: {fileID: 0}
 --- !u!114 &243995260261302650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,6 +141,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &490463495834601014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1108215342440028605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b92e44e25f14ae49c81f67b914d7ab8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackPower: 0
+  cooldownDuration: 0
 --- !u!1 &1412719457017232512
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,13 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3998015324115519902}
-  - component: {fileID: 228201200291468269}
   - component: {fileID: 3588252897562034913}
+  - component: {fileID: 228201200291468269}
   - component: {fileID: 7877247358505845568}
   - component: {fileID: 7096105365866650655}
-  - component: {fileID: 2620103767346235318}
+  - component: {fileID: 1537409719645905862}
   m_Layer: 0
-  m_Name: pfb_ship
+  m_Name: Ship
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36,6 +36,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3588252897562034913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5476924925078598009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80177b1fe9866c849bf132dea977eed5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Gun: {fileID: 0}
+  Arm: {fileID: 0}
 --- !u!212 &228201200291468269
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -88,18 +102,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3588252897562034913
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5476924925078598009}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80177b1fe9866c849bf132dea977eed5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &7877247358505845568
 Rigidbody2D:
   serializedVersion: 4
@@ -162,7 +164,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &2620103767346235318
+--- !u!114 &1537409719645905862
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -171,11 +173,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5476924925078598009}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67a0845014ece754296d708fc8b23bfc, type: 3}
+  m_Script: {fileID: 11500000, guid: 29c7c9213b954c71bfdc83505033c7c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotator: {fileID: 0}
-  gun: {fileID: 0}
-  shotInterval: 0.3
-  shotSparks: {fileID: 727865016372226805, guid: 9c80b77cf67d2b34b9b62e685d6a9f04, type: 3}
-  spawnPoint: {fileID: 0}
+  maxHealth: 0
