@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6369255875280638613}
   - component: {fileID: 2060469628850948621}
   m_Layer: 0
-  m_Name: BaseGun
+  m_Name: pfb_baseGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

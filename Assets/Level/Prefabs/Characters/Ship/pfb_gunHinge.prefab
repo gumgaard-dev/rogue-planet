@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 5202285302281915473}
   - component: {fileID: 5258741391577303590}
   m_Layer: 0
-  m_Name: GunHinge
+  m_Name: pfb_gunHinge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
