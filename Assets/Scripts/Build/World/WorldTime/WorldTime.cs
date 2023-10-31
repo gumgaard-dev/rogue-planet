@@ -1,30 +1,28 @@
-using System;
-using System.Collections;
 using UnityEngine;
 
 namespace Build.World.WorldTime
 {
     public class WorldTime : MonoBehaviour
     {
-        public event EventHandler<TimeSpan> WorldTimeChanged; 
+        public float cycleDuration = 10f; // duration of a full day-night cycle in seconds
+        public Light directionalLight;
 
-        [SerializeField] 
-        private float _dayLength; //in seconds
+        public float daytimeIntensity = 1.0f; // intensity during the day
+        public float nighttimeIntensity = 0.2f; // intensity at night
+        
+        private float _timer;
 
-        private TimeSpan _currentTime;
-        private float _minuteLength => _dayLength / WorldTimeConstants.MinutesInDay;
-
-        private void Start()
+        private void Update()
         {
-            StartCoroutine(AddMinute());
-        }
+            // calculate current time of day based on the timer
+            float timeOfDay = Mathf.PingPong(_timer, cycleDuration) / cycleDuration;
+            
+            // calculate intensity based on time of day
+            float intensity = Mathf.Lerp(daytimeIntensity, nighttimeIntensity, timeOfDay);
+            directionalLight.intensity = intensity;
 
-        private IEnumerator AddMinute()
-        {
-            _currentTime += TimeSpan.FromMinutes(1);
-            WorldTimeChanged?.Invoke(this, _currentTime);
-            yield return new WaitForSeconds(_minuteLength);
-            StartCoroutine(AddMinute());
+            // update timer
+            _timer += Time.deltaTime;
         }
     }
 }

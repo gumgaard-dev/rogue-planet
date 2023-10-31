@@ -1,9 +1,12 @@
 fileFormatVersion: 2
-guid: 13f44f93bd1a12149bd980a50d7d4f93
+guid: d88e327a137bec04eb40fb2006adaa6c
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - directionalLight: {fileID: 2834107054781753560, guid: 1e6a8c7086d1bde48835e8f424a21017, type: 3}
+  - daySkybox: {fileID: 2100000, guid: 375df196e995a05429611906cf17df15, type: 2}
+  - nightSkybox: {fileID: 2100000, guid: 821beda9ae5c09b4f810d087176e89b4, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
