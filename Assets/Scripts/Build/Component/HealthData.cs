@@ -1,3 +1,4 @@
+using UnityEditor.Networking.PlayerConnection;
 using UnityEngine;
 
 namespace Build.Component
@@ -20,10 +21,8 @@ namespace Build.Component
         {
             _currentHealth -= damageAmount;
 
-            if (_currentHealth < 1)
-            {
-                //destroy the gameobject this health component is attached to
-                //TODO we may want something more robust for the player in the future, but this suffices for enemies/terrain
+            if (_currentHealth <= 0)
+            {     
                 Destroy(gameObject);
             }
         }

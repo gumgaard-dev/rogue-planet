@@ -27,8 +27,17 @@ namespace Capstone.WIP
 
         void Start()
         {
+            SetTileStats();
             GenerateTerrainMap();
             GenerateOreMap();
+        }
+
+        private void SetTileStats()
+        {
+            foreach(TerrainTile tile in TerrainTileTypes)
+            {
+                tile.UpdateMaxHealth(tile.BaseHealth);
+            }
         }
 
         void GenerateTerrainMap()
@@ -121,6 +130,8 @@ namespace Capstone.WIP
 
             if (!IsValidPosition(position)) return false;
 
+            if (terrainTilemap.GetTile(position) == null) return false;
+
             return true;
             
         }
@@ -129,14 +140,22 @@ namespace Capstone.WIP
         {
             // Inverse the y-coordinate before placing the tile
             Vector3Int invertedCenteredPosition = new((width / 2) - position.x, position.y * -1, position.z);
-            oreTilemap.SetTile(invertedCenteredPosition, oreTile);
+
+            TerrainTile terrainTile = terrainTilemap.GetTile(invertedCenteredPosition) as TerrainTile;
+
+            if (terrainTile != null) {
+                // updates the health values for the tile, and sets the associated ore tile
+                terrainTile.SetOre(oreTile);
+                oreTilemap.SetTile(invertedCenteredPosition, Instantiate(oreTile));
+            }
         }
 
         private void PlaceTerrain(TerrainTile terrainTile, Vector3Int position)
         {
             // Inverse the y-coordinate before placing the tile
             Vector3Int invertedCenteredPosition = new((width / 2) - position.x, position.y * -1, position.z);
-            terrainTilemap.SetTile(invertedCenteredPosition, terrainTile);
+            TerrainTile tileClone = Instantiate(terrainTile);
+            terrainTilemap.SetTile(invertedCenteredPosition, tileClone);
         }
 
         List<Vector3Int> GenerateStartingPoints(OreTile oreTile)

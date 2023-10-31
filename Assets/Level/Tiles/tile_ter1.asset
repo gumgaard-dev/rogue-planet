@@ -35,6 +35,6 @@ MonoBehaviour:
   m_Flags: 1
   m_ColliderType: 1
   Destructible: 1
-  MaxHealth: 3
+  BaseHealth: 4
   minDepth: 1
   maxDepth: 50

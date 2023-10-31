@@ -123,11 +123,66 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1839735485 &382834755 stripped
-Tilemap:
-  m_CorrespondingSourceObject: {fileID: 1192814392109587924, guid: 085d0c81975906f4882b16d198389e27, type: 3}
-  m_PrefabInstance: {fileID: 2051990662}
+--- !u!1 &361361913
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 361361915}
+  - component: {fileID: 361361914}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &361361914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 361361913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5643f0654fbf99b4b83566a00e3a3645, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TerrainHit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1994392239}
+        m_TargetAssemblyTypeName: Capstone.WIP.DestructibleTilemapDamageHandler,
+          Assembly-CSharp
+        m_MethodName: HandleDamage
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!4 &361361915
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 361361913}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.25145572, y: 0.08939323, z: 0.81954885}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &397856755
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -382,6 +437,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3149307486983055913, guid: 1a483bb3f904d5f4ea82661497296565, type: 3}
   m_PrefabInstance: {fileID: 616846899}
   m_PrefabAsset: {fileID: 0}
+--- !u!1839735485 &755141289 stripped
+Tilemap:
+  m_CorrespondingSourceObject: {fileID: 8381833779026862127, guid: 085d0c81975906f4882b16d198389e27, type: 3}
+  m_PrefabInstance: {fileID: 2051990662}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &919607478
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -510,11 +570,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80177b1fe9866c849bf132dea977eed5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1839735485 &990757053 stripped
-Tilemap:
-  m_CorrespondingSourceObject: {fileID: 8381833779026862127, guid: 085d0c81975906f4882b16d198389e27, type: 3}
-  m_PrefabInstance: {fileID: 2051990662}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1059109073
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -827,6 +882,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71da9ad0c41273949a466a0ed4f69218, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1994392239 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2097239754911629520, guid: 085d0c81975906f4882b16d198389e27, type: 3}
+  m_PrefabInstance: {fileID: 2051990662}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b1a94d48fb46ba4aa4c3b3f501872a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2051990662
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -836,13 +902,13 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2097239754911629520, guid: 085d0c81975906f4882b16d198389e27, type: 3}
-      propertyPath: Oremap
+      propertyPath: OreTilemap
       value: 
-      objectReference: {fileID: 382834755}
+      objectReference: {fileID: 2089687249}
     - target: {fileID: 2097239754911629520, guid: 085d0c81975906f4882b16d198389e27, type: 3}
-      propertyPath: TerrainMap
+      propertyPath: TerrainTilemap
       value: 
-      objectReference: {fileID: 990757053}
+      objectReference: {fileID: 755141289}
     - target: {fileID: 2097239754911629520, guid: 085d0c81975906f4882b16d198389e27, type: 3}
       propertyPath: OreDestroyed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -907,6 +973,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 526be7a06e8096b4cbdf895b9486d5a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1839735485 &2089687249 stripped
+Tilemap:
+  m_CorrespondingSourceObject: {fileID: 1192814392109587924, guid: 085d0c81975906f4882b16d198389e27, type: 3}
+  m_PrefabInstance: {fileID: 2051990662}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8339567169423237462
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -971,6 +1042,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1808993653}
+    - target: {fileID: 7133730194952817713, guid: f5cf812576324b64392dda7236bc14ea, type: 3}
+      propertyPath: m_VertexColorAlwaysGammaSpace
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -986,3 +1061,4 @@ SceneRoots:
   - {fileID: 8339567169423237462}
   - {fileID: 919607478}
   - {fileID: 1453954918}
+  - {fileID: 361361915}
