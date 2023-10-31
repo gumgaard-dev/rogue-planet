@@ -7,14 +7,17 @@ namespace Capstone.Build.World
     public class TerrainTile : Tile
     {
         public bool HasOre { get { return OreTile != null;  } }
-        public bool Destructible = true;
-        public int BaseHealth = 1;
 
-        private int _maxHealth;
+        public string TerrainName;
         public int CurHealth { get; protected set; }
         public OreTile OreTile { get; private set; } // Reference to the ore overlay tile.
 
-        [Header("Spawn Settings")]
+        [Header("Destructible Terrain Settings")]
+        public int BaseHealth = 1;
+        private int _maxHealth;
+        public bool Destructible = true;
+
+        [Header("Depth Settings (values are inclusive, lower numbers are deeper)")]
         public int minDepth;
         public int maxDepth;
         public override void GetTileData(Vector3Int location, ITilemap tilemap, ref TileData tileData)

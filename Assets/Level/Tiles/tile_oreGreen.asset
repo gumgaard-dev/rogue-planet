@@ -34,9 +34,12 @@ MonoBehaviour:
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 1
   m_ColliderType: 1
+  OreName: 
   OreToDrop: {fileID: 3132417687799982428, guid: 1bda0e357a109544e8c224596d4fa8b0, type: 3}
   TerrainHealthModifier: 1.2
-  MinDepth: 3
-  MaxDepth: 100
-  Frequency: 0.01
-  MaxPropagationValue: 6
+  TerrainSpawnData:
+  - terrainType: {fileID: 11400000, guid: 850ac5720020894499a5c242810a1f1d, type: 2}
+    veinChance: 0.003
+  - terrainType: {fileID: 11400000, guid: 30d030a00725840478740b540186c289, type: 2}
+    veinChance: 0.005
+  MaxVeinSize: 10

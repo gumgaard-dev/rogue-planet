@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -12,7 +13,7 @@ namespace Capstone.Build.World
 
         [Header("Dimensions")]
         public int width = 100;
-        public int height = 100;
+        public int depth = 100;
 
         [Header("Terrain Type Config")]
         public List<TerrainTile> TerrainTileTypes;
@@ -39,10 +40,14 @@ namespace Capstone.Build.World
 
         void GenerateTerrainMap()
         {
-            for (int y = 0; y < height; y++)
+            int halfWidth = width / 2;
+            for (int y = 0; y > depth * -1; y--)
             {
-                for (int x = 0; x < width; x++)
+                for (int x = -halfWidth; x <= halfWidth; x++)
                 {
+                    if (x == halfWidth && width % 2 == 0)
+                        continue;
+
                     TerrainTile selectedTile = GetTerrainTileAtDepth(y);
                     PlaceTerrain(selectedTile, new Vector3Int(x, y));
                 }
@@ -54,7 +59,7 @@ namespace Capstone.Build.World
 
             foreach (var terrainType in TerrainTileTypes)
             {
-                if (depth >= terrainType.minDepth && depth < terrainType.maxDepth)
+                if (depth <= terrainType.minDepth && depth >= terrainType.maxDepth)
                 {
                     validTiles.Add(terrainType);
                 }
@@ -101,7 +106,7 @@ namespace Capstone.Build.World
                 Vector3Int startPoint = startingPositions[i];
 
                 // calculate the size of the current vein
-                float veinSize = UnityEngine.Random.Range(1, oreTile.MaxPropagationValue);
+                float veinSize = UnityEngine.Random.Range(1, oreTile.MaxVeinSize);
 
                 // grow the vein out until it reaches vein size
                 GrowVein(oreTile, startPoint, SelectRandomDirection(), veinSize);
@@ -125,8 +130,6 @@ namespace Capstone.Build.World
         {
             if (currentPropagationValue == 0) return false;
 
-            if (!IsValidPosition(position)) return false;
-
             if (terrainTilemap.GetTile(position) == null) return false;
 
             return true;
@@ -135,41 +138,49 @@ namespace Capstone.Build.World
 
         private void PlaceOre(OreTile oreTile, Vector3Int position)
         {
-            // Inverse the y-coordinate before placing the tile
-            Vector3Int invertedCenteredPosition = new((width / 2) - position.x, position.y * -1, position.z);
-
-            TerrainTile terrainTile = terrainTilemap.GetTile(invertedCenteredPosition) as TerrainTile;
+            // get a ref to terrain tile at selected location
+            TerrainTile terrainTile = terrainTilemap.GetTile(position) as TerrainTile;
 
             if (terrainTile != null) {
-                // updates the health values for the tile, and sets the associated ore tile
+                // if the tile exists, updates the health values for the tile, and sets the associated ore tile
                 terrainTile.SetOre(oreTile);
-                oreTilemap.SetTile(invertedCenteredPosition, Instantiate(oreTile));
+                
+                
+                // place a clone of the ore tile at the position on the ore tilemap
+                oreTilemap.SetTile(position, Instantiate(oreTile));
             }
         }
 
         private void PlaceTerrain(TerrainTile terrainTile, Vector3Int position)
         {
-            // Inverse the y-coordinate before placing the tile
-            Vector3Int invertedCenteredPosition = new((width / 2) - position.x, position.y * -1, position.z);
+            // get a clone of the terrainTile
             TerrainTile tileClone = Instantiate(terrainTile);
-            terrainTilemap.SetTile(invertedCenteredPosition, tileClone);
+
+            // add to tilemap
+            terrainTilemap.SetTile(position, tileClone);
         }
 
         List<Vector3Int> GenerateStartingPoints(OreTile oreTile)
         {
             List<Vector3Int> startingPoints = new();
-
-            for(int y = oreTile.MinDepth; y <= oreTile.MaxDepth; y++)
+            int halfWidth = width / 2;
+            for (int y = 0; y >= depth * -1; y--)
             {
-                for (int x = 0; x < width; x++)
+                TerrainTile currentTerrain = terrainTilemap.GetTile(new Vector3Int(0, y, 0)) as TerrainTile;
+
+                // Skip iteration if currentTerrain is null
+                if (currentTerrain == null) continue;
+
+                float spawnChance = oreTile.GetSpawnChanceInTerrain(currentTerrain.TerrainName);
+
+                for (int x = -halfWidth; x < halfWidth; x++)
                 {
                     float chance = UnityEngine.Random.Range(0f, 1f);
-                    if (chance < oreTile.Frequency)
+                    if (chance < spawnChance)
                     {
                         Vector3Int startPoint = new Vector3Int(x, y, 0);
                         if (IsValidStartingBlock(startPoint))
                         {
-                            PlaceOre(oreTile, startPoint);
                             startingPoints.Add(startPoint);
                         }
                     }

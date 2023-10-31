@@ -34,7 +34,8 @@ MonoBehaviour:
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 1
   m_ColliderType: 1
+  TerrainName: Grass
+  BaseHealth: 1
   Destructible: 0
-  MaxHealth: 1
   minDepth: 0
-  maxDepth: 1
+  maxDepth: 0
