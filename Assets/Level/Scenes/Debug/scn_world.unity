@@ -778,7 +778,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8576488616840044316, guid: 2c0c639e7643bc04d8046549c9e746e5, type: 3}
       propertyPath: cycleDuration
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8576488616840044316, guid: 2c0c639e7643bc04d8046549c9e746e5, type: 3}
       propertyPath: directionalLight

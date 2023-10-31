@@ -15,11 +15,15 @@ GameObject:
   - component: {fileID: 2060469628850948621}
   - component: {fileID: 490463495834601014}
   m_Layer: 0
+<<<<<<< HEAD:Assets/Level/Prefabs/Characters/Ship/pfb_baseGun.prefab
 <<<<<<<< HEAD:Assets/Level/Prefabs/Characters/Ship/Gun.prefab
   m_Name: Gun
 ========
   m_Name: pfb_baseGun
 >>>>>>>> d2b77a85cc6ddab7631aa82cd93951b6dc6b17f6:Assets/Level/Prefabs/Characters/Ship/pfb_baseGun.prefab
+=======
+  m_Name: BaseGun
+>>>>>>> 48bbff2c52cbc74b5ce82065c0785a3de1e91a76:Assets/Level/Prefabs/Characters/Ship/BaseGun.prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
