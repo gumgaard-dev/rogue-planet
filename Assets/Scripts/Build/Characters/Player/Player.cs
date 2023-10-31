@@ -73,7 +73,7 @@ namespace Capstone.Build.Characters.Player
                 [PlayerStateType.Duck] = new PlayerDuckState(_settings, this),
                 [PlayerStateType.Idle] = new PlayerIdleState(_settings, this),
                 [PlayerStateType.Fall] = new PlayerFallState(_settings, this),
-                [PlayerStateType.Jetpack] = new PlayerJetpackState(_settings, this),
+                [PlayerStateType.Jetpack] = new PlayerJetpackState(_settings, this, GetComponentInChildren<Jetpack>()),
                 [PlayerStateType.InShip] = new InShipState(_settings, this),
             };
 
