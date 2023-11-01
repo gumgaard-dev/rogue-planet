@@ -38,10 +38,10 @@ namespace Capstone.Build.Characters.Player.PlayerStates
                 TriggerInfo.Ground ? Settings.GroundSpeedSmoothTime : Settings.AirSpeedSmoothTime
             );
 
-            if (InputInfo.Jump && _jetpack.Fuel > 0)
+            if (InputInfo.Jump && _jetpack.FuelLevel > 0)
             {
                 // This has to be done from the state or the time difference between this function call and Jetpack FixedUpdate call will cause total jetpack time to be off
-                _jetpack.Fuel -= 1;
+                _jetpack.FuelLevel -= 1;
 
                 //Player.SetVelocity(Player.Velocity.x, Settings.JetpackSpeed);
                 // Handling jetpack movement
