@@ -22,5 +22,10 @@ namespace Capstone.Build
         [Space]
         public float GroundSpeedSmoothTime = 0.08f;
         public float AirSpeedSmoothTime = 0.27f;
+
+        [Space]
+        public int DefaultJetpackMaxFuel = 125;
+        public int DefaultJetpackRechargeRate = 1;
+        public int DefaultJetpackRechargeDelay = 25;
     }
 }
