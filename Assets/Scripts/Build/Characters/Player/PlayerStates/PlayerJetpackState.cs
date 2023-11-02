@@ -5,7 +5,18 @@ namespace Capstone.Build.Characters.Player.PlayerStates
 
     public class PlayerJetpackState : PlayerState
     {
-        public PlayerJetpackState(GameSettings settings, Player player) : base(settings, player) { }
+
+        private Jetpack _jetpack;
+
+        public PlayerJetpackState(GameSettings settings, Player player, Jetpack jetpack) : base(settings, player) 
+        { 
+            _jetpack = jetpack;
+        }
+
+        override public void Enter()
+        {
+            _jetpack.RechargeTimer = 0;
+        }
 
         public override void UpdateManaged()
         {
@@ -27,8 +38,11 @@ namespace Capstone.Build.Characters.Player.PlayerStates
                 TriggerInfo.Ground ? Settings.GroundSpeedSmoothTime : Settings.AirSpeedSmoothTime
             );
 
-            if (InputInfo.Jump)
+            if (InputInfo.Jump && _jetpack.FuelLevel > 0)
             {
+                // This has to be done from the state or the time difference between this function call and Jetpack FixedUpdate call will cause total jetpack time to be off
+                _jetpack.FuelLevel -= 1;
+
                 //Player.SetVelocity(Player.Velocity.x, Settings.JetpackSpeed);
                 // Handling jetpack movement
                 int yModifier = InputInfo.Jump ? 1 : 0;
@@ -47,7 +61,7 @@ namespace Capstone.Build.Characters.Player.PlayerStates
             if (InputInfo.Directional.x == 0 && Player.Velocity == Vector2.zero)
             {
                 Player.SetState(PlayerStateType.Idle);
-            } else if (Player.Velocity.y < Settings.MinFallSpeed)
+            } else if (!InputInfo.Jump)
             {
                 Player.SetState(PlayerStateType.Fall);
             }
