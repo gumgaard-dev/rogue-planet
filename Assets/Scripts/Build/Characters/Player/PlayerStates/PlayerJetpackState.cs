@@ -2,10 +2,8 @@ using UnityEngine;
 
 namespace Capstone.Build.Characters.Player.PlayerStates
 {
-
     public class PlayerJetpackState : PlayerState
     {
-
         private Jetpack _jetpack;
 
         public PlayerJetpackState(GameSettings settings, Player player, Jetpack jetpack) : base(settings, player) 
@@ -15,7 +13,7 @@ namespace Capstone.Build.Characters.Player.PlayerStates
 
         override public void Enter()
         {
-            _jetpack.RechargeTimer = 0;
+            _jetpack.InitializeTimer();
         }
 
         public override void UpdateManaged()
@@ -26,7 +24,6 @@ namespace Capstone.Build.Characters.Player.PlayerStates
 
         public override void FixedUpdateManaged()
         {
-
             Vector2 newVelocity = Player.Velocity;
 
             // Smoothly changes the player's velocity
@@ -35,24 +32,27 @@ namespace Capstone.Build.Characters.Player.PlayerStates
                 Player.Velocity.x,
                 InputInfo.Directional.x * Settings.RunSpeed,
                 ref VelocityXDamped,
-                TriggerInfo.Ground ? Settings.GroundSpeedSmoothTime : Settings.AirSpeedSmoothTime
+                Settings.AirSpeedSmoothTime
             );
 
-            if (InputInfo.Jump && _jetpack.FuelLevel > 0)
+            if (InputInfo.Jump && _jetpack.HasFuel())
             {
                 // This has to be done from the state or the time difference between this function call and Jetpack FixedUpdate call will cause total jetpack time to be off
-                _jetpack.FuelLevel -= 1;
+                _jetpack.ConsumeFuel();
 
-                //Player.SetVelocity(Player.Velocity.x, Settings.JetpackSpeed);
-                // Handling jetpack movement
+
+                float thrust = _jetpack.CalculateThrust();
+
                 int yModifier = InputInfo.Jump ? 1 : 0;
 
                 newVelocity.y = Mathf.SmoothDamp(
                     Player.Velocity.y,
-                    yModifier * Settings.JetpackSpeed,
+                    yModifier * thrust,
                     ref VelocityYDamped,
                     Settings.AirSpeedSmoothTime
                 );
+
+                newVelocity.y = _jetpack.CalculateThrust();
             }
 
             Player.SetVelocity(newVelocity);

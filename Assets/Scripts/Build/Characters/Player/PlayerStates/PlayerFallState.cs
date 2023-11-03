@@ -10,7 +10,11 @@ namespace Capstone.Build.Characters.Player.PlayerStates
         public override void Enter()
         {
             Player.SetAnimation("Fall");
-            // Can maybe get rid of gravity scales unless we want custom gravity
+            Player.SetGravityScale(Settings.FallingGravityScale);
+        }
+
+        public override void Exit()
+        {
             Player.SetGravityScale(Settings.DefaultGravityScale);
         }
 
@@ -54,10 +58,12 @@ namespace Capstone.Build.Characters.Player.PlayerStates
                 Player.Velocity.x,
                 InputInfo.Directional.x * Settings.RunSpeed,
                 ref VelocityXDamped,
-                TriggerInfo.Ground ? Settings.GroundSpeedSmoothTime : Settings.AirSpeedSmoothTime
+                Settings.AirSpeedSmoothTime
             );
 
-        }
+            newVelocity.y = Player.Velocity.y;
 
+            Player.SetVelocity(newVelocity);
+        }
     }
 }

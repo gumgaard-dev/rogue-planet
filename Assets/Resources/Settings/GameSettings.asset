@@ -12,13 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c951d18a41ca1c74f8366eae3cae2227, type: 3}
   m_Name: GameSettings
   m_EditorClassIdentifier: 
-  DefaultGravityScale: 6
-  FallingGravityScale: 8.5
+  DefaultGravityScale: 5
+  FallingGravityScale: 6
   RunSpeed: 10
   MinMoveSpeed: 0.01
   MinRunSpeed: 1.2
-  JetpackSpeed: 22
   MinJumpSpeed: 0.01
   MinFallSpeed: 0.01
   GroundSpeedSmoothTime: 0.08
   AirSpeedSmoothTime: 0.27
+  DefaultJetpackMaxFuel: 125
+  DefaultJetpackRechargeRate: 4
+  DefaultJetpackRechargeDelay: 5
+  DefaultJetpackConsumptionRate: 1
+  JetpackSpeed: 8
+  JetpackBoostSpeed: 12

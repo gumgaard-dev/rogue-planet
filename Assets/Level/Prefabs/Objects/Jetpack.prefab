@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2638297885422803505}
   - component: {fileID: 1522856752027711688}
   m_Layer: 13
-  m_Name: pfb_jetpack
+  m_Name: Jetpack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -8,9 +8,65 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 397843774731661003, guid: bee690126ee6fa749a2fe1b5ab787c9e, type: 3}
+      propertyPath: ItemCollected.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 397843774731661003, guid: bee690126ee6fa749a2fe1b5ab787c9e, type: 3}
+      propertyPath: ItemCollected.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7924419248268800719}
+    - target: {fileID: 397843774731661003, guid: bee690126ee6fa749a2fe1b5ab787c9e, type: 3}
+      propertyPath: ItemCollected.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 397843774731661003, guid: bee690126ee6fa749a2fe1b5ab787c9e, type: 3}
+      propertyPath: ItemCollected.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddToStorage
+      objectReference: {fileID: 0}
+    - target: {fileID: 397843774731661003, guid: bee690126ee6fa749a2fe1b5ab787c9e, type: 3}
+      propertyPath: ItemCollected.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Inventory, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 397843774731661003, guid: bee690126ee6fa749a2fe1b5ab787c9e, type: 3}
+      propertyPath: ItemCollected.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2158940693625024267, guid: bee690126ee6fa749a2fe1b5ab787c9e, type: 3}
+      propertyPath: MaxFuel
+      value: 125
+      objectReference: {fileID: 0}
+    - target: {fileID: 2158940693625024267, guid: bee690126ee6fa749a2fe1b5ab787c9e, type: 3}
+      propertyPath: RechargeRate
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2158940693625024267, guid: bee690126ee6fa749a2fe1b5ab787c9e, type: 3}
+      propertyPath: FuelConsumptionRate
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2158940693625024267, guid: bee690126ee6fa749a2fe1b5ab787c9e, type: 3}
+      propertyPath: FuelUpdated.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2158940693625024267, guid: bee690126ee6fa749a2fe1b5ab787c9e, type: 3}
+      propertyPath: FuelUpdated.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2158940693625024267, guid: bee690126ee6fa749a2fe1b5ab787c9e, type: 3}
+      propertyPath: FuelUpdated.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UpdateFuelSlider
+      objectReference: {fileID: 0}
+    - target: {fileID: 2158940693625024267, guid: bee690126ee6fa749a2fe1b5ab787c9e, type: 3}
+      propertyPath: FuelUpdated.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: JetpackFuelSliderController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2158940693625024267, guid: bee690126ee6fa749a2fe1b5ab787c9e, type: 3}
+      propertyPath: FuelUpdated.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6247461243305813700, guid: bee690126ee6fa749a2fe1b5ab787c9e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.07
+      value: 0.06999993
       objectReference: {fileID: 0}
     - target: {fileID: 6247461243305813700, guid: bee690126ee6fa749a2fe1b5ab787c9e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -26,15 +82,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6247461243305813700, guid: bee690126ee6fa749a2fe1b5ab787c9e, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6247461243305813700, guid: bee690126ee6fa749a2fe1b5ab787c9e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6247461243305813700, guid: bee690126ee6fa749a2fe1b5ab787c9e, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6247461243305813700, guid: bee690126ee6fa749a2fe1b5ab787c9e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -50,10 +106,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7949904997640143419, guid: bee690126ee6fa749a2fe1b5ab787c9e, type: 3}
       propertyPath: m_Name
-      value: Player Variant
+      value: rileyTestPlayer
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bee690126ee6fa749a2fe1b5ab787c9e, type: 3}
+--- !u!114 &7924419248268800719 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1165337773342452060, guid: bee690126ee6fa749a2fe1b5ab787c9e, type: 3}
+  m_PrefabInstance: {fileID: 9067203821914004371}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4aaa4f84d4740054596eb0d054c62e61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
