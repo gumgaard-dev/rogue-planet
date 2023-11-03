@@ -64,8 +64,6 @@ namespace Capstone.Build.Characters.Player.PlayerStates
             newVelocity.y = Player.Velocity.y;
 
             Player.SetVelocity(newVelocity);
-
         }
-
     }
 }

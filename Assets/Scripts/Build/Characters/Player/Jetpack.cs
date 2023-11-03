@@ -1,6 +1,8 @@
 using UnityEngine;
 using Capstone.Build.Characters.Player.PlayerStates;
 using UnityEngine.Events;
+using System;
+using Capstone.Input;
 
 namespace Capstone.Build.Characters.Player
 {
@@ -16,8 +18,13 @@ namespace Capstone.Build.Characters.Player
         public int FuelConsumptionRate;
         public int RechargeDelay;
         private int _rechargeTimer;
+        private int _minFuelForBoost;
 
-        private Player _player;        
+        [SerializeField] private float _normalThrust;
+        [SerializeField] private float _boostThrust;
+
+        private Player _player;
+        
 
         // Start is called before the first frame update
         void Start()
@@ -46,6 +53,10 @@ namespace Capstone.Build.Characters.Player
                 // When RechargeTimer reaches RechargeDelay, fuel begins to recharge 
                 _rechargeTimer = 0;
                 RechargeDelay = _settings.DefaultJetpackRechargeDelay;
+
+                _normalThrust = _settings.JetpackSpeed;
+                _boostThrust = _settings.JetpackBoostSpeed;
+                _minFuelForBoost = MaxFuel - 5;
             }
 
         }
@@ -97,6 +108,23 @@ namespace Capstone.Build.Characters.Player
         public bool HasFuel()
         {
             return this._curFuelLevel > 0;
+        }
+
+        public float CalculateThrust()
+        {
+            if (this._curFuelLevel >= this._minFuelForBoost)
+            {
+                return _boostThrust;
+            }
+            else if (this._curFuelLevel > 0)
+            {
+                return _normalThrust;
+            }
+            else
+            {
+                return 0;
+            }
+
         }
     }
 }

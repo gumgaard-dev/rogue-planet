@@ -40,16 +40,19 @@ namespace Capstone.Build.Characters.Player.PlayerStates
                 // This has to be done from the state or the time difference between this function call and Jetpack FixedUpdate call will cause total jetpack time to be off
                 _jetpack.ConsumeFuel();
 
-                // Player.SetVelocity(Player.Velocity.x, Settings.JetpackSpeed);
-                // Handling jetpack movement
+
+                float thrust = _jetpack.CalculateThrust();
+
                 int yModifier = InputInfo.Jump ? 1 : 0;
 
                 newVelocity.y = Mathf.SmoothDamp(
                     Player.Velocity.y,
-                    yModifier * Settings.JetpackSpeed,
+                    yModifier * thrust,
                     ref VelocityYDamped,
                     Settings.AirSpeedSmoothTime
                 );
+
+                newVelocity.y = _jetpack.CalculateThrust();
             }
 
             Player.SetVelocity(newVelocity);
