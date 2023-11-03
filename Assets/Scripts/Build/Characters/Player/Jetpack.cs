@@ -4,30 +4,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using Capstone.Build.Characters.Player.PlayerStates;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 namespace Capstone.Build.Characters.Player
 {
-
+    [System.Serializable] public class FuelUpdatedEvent : UnityEvent<int, int> { }
     public class Jetpack : MonoBehaviour
     {
-
-        [SerializeField]
-        public Slider FuelSlider;
+        public FuelUpdatedEvent FuelUpdated;
         private GameSettings _settings;
 
-        public int FuelLevel;
+        public int _curFuelLevel;
         public int MaxFuel;
         public int RechargeRate;
         public int FuelConsumptionRate;
         public int RechargeDelay;
-        public int RechargeTimer;
+        private int _rechargeTimer;
 
-        private Player _player;
+        private Player _player;        
 
         // Start is called before the first frame update
         void Start()
         {
-
             if (!transform.parent.gameObject.TryGetComponent(out _player))
             {
                 Debug.LogWarning("Jetpack is not a child of an object with Player component.");
@@ -37,23 +35,22 @@ namespace Capstone.Build.Characters.Player
             if (_settings == null)
             {
                 Debug.LogWarning("Jetpack could not load GameSettings at " + _player.SETTINGS_PATH);
+            } 
+            else
+            {
+                // Fixed update is called 50 times a second and we will -1 fuel each time. So this gives 5 seconds of fuel
+                MaxFuel = _settings.DefaultJetpackMaxFuel;
+                _curFuelLevel = MaxFuel;
+                
+                // Recharge rate will be applied to fuel every FixedUpdate if jetpack is not in use
+                RechargeRate = _settings.DefaultJetpackRechargeRate;
+                FuelConsumptionRate = _settings.DefaultJetpackConsumptionRate;
+                
+                // RechargeTimer will be incremented each FixedUpdate when jetpack not being used, and reset to zero when jetpack is used
+                // When RechargeTimer reaches RechargeDelay, fuel begins to recharge 
+                _rechargeTimer = 0;
+                RechargeDelay = _settings.DefaultJetpackRechargeDelay;
             }
-
-            // Fixed update is called 50 times a second and we will -1 fuel each time. So this gives 5 seconds of fuel
-
-            MaxFuel = _settings.DefaultJetpackMaxFuel;
-
-            FuelLevel = MaxFuel;
-            // Recharge rate will be applied to fuel every FixedUpdate if jetpack is not in use
-            RechargeRate = _settings.DefaultJetpackRechargeRate;
-
-            FuelConsumptionRate = _settings.DefaultJetpackConsumptionRate;
-            // RechargeTimer will be incremented each FixedUpdate when jetpack not being used, and reset to zero when jetpack is used
-            // When RechargeTimer reaches RechargeDelay, fuel begins to recharge 
-            RechargeTimer = 0;
-            RechargeDelay = _settings.DefaultJetpackRechargeDelay;
-
-            UpdateFuelSlider();
 
         }
 
@@ -62,54 +59,48 @@ namespace Capstone.Build.Characters.Player
         void FixedUpdate()
         {
             // If the player is not in jetpack state we can start to recharge
-            if (FuelLevel < MaxFuel)
+            if (_curFuelLevel < MaxFuel)
             {
                 if (_player.StateType != PlayerStateType.Jetpack && _player.StateType != PlayerStateType.Fall)
                 {
 
                     // Checking the timer
-                    if (RechargeTimer < RechargeDelay)
+                    if (_rechargeTimer < RechargeDelay)
                     {
-                        RechargeTimer += 1;
+                        _rechargeTimer += 1;
                     }
-                    else if (FuelLevel < MaxFuel)
+                    else if (_curFuelLevel < MaxFuel)
                     {
                         // This makes sure we don't accidentally go over max fuel
-                        if (FuelLevel + RechargeRate <= MaxFuel)
+                        if (_curFuelLevel + RechargeRate <= MaxFuel)
                         {
-                            FuelLevel += RechargeRate;
+                            _curFuelLevel += RechargeRate;
                         }
                         else
                         {
-                            FuelLevel = MaxFuel;
+                            _curFuelLevel = MaxFuel;
                         }
                     }
                 }
-                
-                // We only need to call this function when fuel is not max. Fuel gets set to max in this if block, so this will get called one last time when the fuel reaches max.
-                UpdateFuelSlider();
 
-            }
-            
+                FuelUpdated?.Invoke(MaxFuel, _curFuelLevel);
+            }      
         }
 
-        void UpdateFuelSlider()
+        public void InitializeTimer()
         {
-            if (FuelLevel < MaxFuel) { }
-            // Calculating the remaining fuel percentage, and updating the slider's value
-            FuelSlider.value = ((float)FuelLevel / (float)MaxFuel) * 100;
+            this._rechargeTimer = 0;
+        }
 
-            // Activating and deactivating the slider based on whether FuelLevel is full
-            if (FuelSlider.value < 100) 
-            {
-                FuelSlider.gameObject.SetActive(true);
-            }
-            else
-            {
-                FuelSlider.gameObject.SetActive(false);
-            }
+        public void ConsumeFuel()
+        {
+            this._curFuelLevel -= FuelConsumptionRate;
+            FuelUpdated?.Invoke(MaxFuel, _curFuelLevel);
+        }
+        
+        public bool HasFuel()
+        {
+            return this._curFuelLevel > 0;
         }
     }
-
-
 }
