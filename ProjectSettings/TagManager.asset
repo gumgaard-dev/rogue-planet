@@ -27,8 +27,8 @@ TagManager:
   - Enemy
   - ShipTriggerArea
   - Ore
-  - 
-  - 
+  - ParallaxBackground
+  - Camera
   - 
   - 
   - 
