@@ -32,17 +32,16 @@ public class Inventory : MonoBehaviour
         {
             storage.Remove(key);
         }
+        onInventoryChanged?.Invoke(storage);
     }
 
     public void AddToStorage(ICollectable item)
     {
         UpdateStorage(item, 1);
-        onInventoryChanged?.Invoke(storage);
     }
 
     public void RemoveFromStorage(ICollectable item)
     {
         UpdateStorage(item, -1);
-        onInventoryChanged?.Invoke(storage);
     }
 }

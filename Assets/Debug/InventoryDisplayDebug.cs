@@ -5,11 +5,12 @@ using static Unity.VisualScripting.Metadata;
 
 public class InventoryDisplay : MonoBehaviour
 {
-    public GameObject inventoryUI; // GameObject that will hold all the UI elements
     public Text itemTemplate; // A text template for items to display
 
     public void UpdateUI(Dictionary<object, int> storage)
     {
+
+        Debug.Log("Updating Inventory UI");
         // Iterate through the storage dictionary and create UI elements for each 
         string inventoryText = "";
         foreach (var entry in storage)
@@ -18,6 +19,8 @@ public class InventoryDisplay : MonoBehaviour
             int itemCount = entry.Value;
             inventoryText += $"{itemName}: {itemCount}\n";
         }
+
+        Debug.Log(inventoryText);
 
         itemTemplate.text = inventoryText;
     }

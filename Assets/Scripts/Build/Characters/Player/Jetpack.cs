@@ -18,6 +18,7 @@ namespace Capstone.Build.Characters.Player
         public int FuelLevel;
         public int MaxFuel;
         public int RechargeRate;
+        public int FuelConsumptionRate;
         public int RechargeDelay;
         public int RechargeTimer;
 
@@ -39,11 +40,14 @@ namespace Capstone.Build.Characters.Player
             }
 
             // Fixed update is called 50 times a second and we will -1 fuel each time. So this gives 5 seconds of fuel
+
             MaxFuel = _settings.DefaultJetpackMaxFuel;
 
             FuelLevel = MaxFuel;
             // Recharge rate will be applied to fuel every FixedUpdate if jetpack is not in use
             RechargeRate = _settings.DefaultJetpackRechargeRate;
+
+            FuelConsumptionRate = _settings.DefaultJetpackConsumptionRate;
             // RechargeTimer will be incremented each FixedUpdate when jetpack not being used, and reset to zero when jetpack is used
             // When RechargeTimer reaches RechargeDelay, fuel begins to recharge 
             RechargeTimer = 0;
@@ -60,7 +64,7 @@ namespace Capstone.Build.Characters.Player
             // If the player is not in jetpack state we can start to recharge
             if (FuelLevel < MaxFuel)
             {
-                if (_player.StateType != PlayerStateType.Jetpack)
+                if (_player.StateType != PlayerStateType.Jetpack && _player.StateType != PlayerStateType.Fall)
                 {
 
                     // Checking the timer

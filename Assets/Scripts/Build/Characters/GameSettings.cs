@@ -25,7 +25,8 @@ namespace Capstone.Build
 
         [Space]
         public int DefaultJetpackMaxFuel = 125;
-        public int DefaultJetpackRechargeRate = 1;
-        public int DefaultJetpackRechargeDelay = 25;
+        public int DefaultJetpackRechargeRate = 4;
+        public int DefaultJetpackRechargeDelay = 5;
+        public int DefaultJetpackConsumptionRate = 2;
     }
 }
