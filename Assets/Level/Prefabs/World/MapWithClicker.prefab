@@ -8,6 +8,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 523950937630017588, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
+      propertyPath: TerrainTileTypes.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 523950937630017588, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
+      propertyPath: TerrainTileTypes.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 850ac5720020894499a5c242810a1f1d, type: 2}
+    - target: {fileID: 523950937630017588, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
+      propertyPath: TerrainTileTypes.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 30d030a00725840478740b540186c289, type: 2}
     - target: {fileID: 2445724428729527302, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.4286149

@@ -53,6 +53,12 @@ TagManager:
   - name: Player
     uniqueID: 34369277
     locked: 0
+  - name: Projectile
+    uniqueID: 1996865175
+    locked: 0
   - name: TerrainForeground
     uniqueID: 3179650405
+    locked: 0
+  - name: UI
+    uniqueID: 1567287067
     locked: 0

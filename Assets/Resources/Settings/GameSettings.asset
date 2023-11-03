@@ -25,5 +25,5 @@ MonoBehaviour:
   DefaultJetpackRechargeRate: 4
   DefaultJetpackRechargeDelay: 5
   DefaultJetpackConsumptionRate: 1
-  JetpackSpeed: 8
-  JetpackBoostSpeed: 12
+  JetpackSpeed: 7
+  JetpackBoostSpeed: 10

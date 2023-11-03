@@ -23,7 +23,8 @@ namespace Capstone.Build.Characters.Player.PlayerStates
 
             if (Player.gameObject.TryGetComponent<Rigidbody2D>(out var rb))
             {
-                rb.Sleep();
+                Player.transform.position = _ship.transform.position;
+                rb.bodyType = RigidbodyType2D.Static;
             }
 
             // set player's position to ship position
@@ -42,6 +43,7 @@ namespace Capstone.Build.Characters.Player.PlayerStates
             if (Player.gameObject.TryGetComponent<Rigidbody2D>(out var rb))
             {
                 rb.WakeUp();
+                rb.bodyType = RigidbodyType2D.Dynamic;
             }
         }
 

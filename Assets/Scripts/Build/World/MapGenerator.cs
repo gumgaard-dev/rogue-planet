@@ -153,6 +153,7 @@ namespace Capstone.Build.World
 
         private void PlaceTerrain(TerrainTile terrainTile, Vector3Int position)
         {
+            if (terrainTile == null) return;
             // get a clone of the terrainTile
             TerrainTile tileClone = Instantiate(terrainTile);
 
