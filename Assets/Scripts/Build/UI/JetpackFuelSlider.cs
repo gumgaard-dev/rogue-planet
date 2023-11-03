@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,7 +9,11 @@ public class JetpackFuelSliderController : MonoBehaviour
     {
         if (Slider == null)
         {
-            Debug.Log("JetpackFuelSlider: no slider component found");
+            Slider = GetComponentInChildren<Slider>();
+            if (Slider == null)
+            {
+                Debug.Log("JetpackFuelSlider: no slider component found, please assign one in the inspector.");
+            }
         } else
         {
             Slider.gameObject.SetActive(false);

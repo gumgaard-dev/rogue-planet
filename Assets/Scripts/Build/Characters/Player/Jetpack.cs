@@ -1,9 +1,5 @@
-using Capstone.Input;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Capstone.Build.Characters.Player.PlayerStates;
-using UnityEngine.UI;
 using UnityEngine.Events;
 
 namespace Capstone.Build.Characters.Player

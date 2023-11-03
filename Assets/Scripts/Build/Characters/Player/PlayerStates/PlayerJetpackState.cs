@@ -2,10 +2,8 @@ using UnityEngine;
 
 namespace Capstone.Build.Characters.Player.PlayerStates
 {
-
     public class PlayerJetpackState : PlayerState
     {
-
         private Jetpack _jetpack;
 
         public PlayerJetpackState(GameSettings settings, Player player, Jetpack jetpack) : base(settings, player) 
@@ -26,7 +24,6 @@ namespace Capstone.Build.Characters.Player.PlayerStates
 
         public override void FixedUpdateManaged()
         {
-
             Vector2 newVelocity = Player.Velocity;
 
             // Smoothly changes the player's velocity
@@ -35,7 +32,7 @@ namespace Capstone.Build.Characters.Player.PlayerStates
                 Player.Velocity.x,
                 InputInfo.Directional.x * Settings.RunSpeed,
                 ref VelocityXDamped,
-                TriggerInfo.Ground ? Settings.GroundSpeedSmoothTime : Settings.AirSpeedSmoothTime
+                Settings.AirSpeedSmoothTime
             );
 
             if (InputInfo.Jump && _jetpack.HasFuel())
@@ -43,7 +40,7 @@ namespace Capstone.Build.Characters.Player.PlayerStates
                 // This has to be done from the state or the time difference between this function call and Jetpack FixedUpdate call will cause total jetpack time to be off
                 _jetpack.ConsumeFuel();
 
-                //Player.SetVelocity(Player.Velocity.x, Settings.JetpackSpeed);
+                // Player.SetVelocity(Player.Velocity.x, Settings.JetpackSpeed);
                 // Handling jetpack movement
                 int yModifier = InputInfo.Jump ? 1 : 0;
 

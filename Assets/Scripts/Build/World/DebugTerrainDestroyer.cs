@@ -4,7 +4,7 @@ using UnityEngine.Events;
 namespace Capstone.Build.World
 {
     [System.Serializable] public class TerrainHitEvent : UnityEvent<Vector3, int> { }
-    public class TerrainManager : MonoBehaviour
+    public class DebugTerrainDestroyer : MonoBehaviour
     {
         int terrainLayerMask;
         static int MAX_DAMAGE = 100;
