@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c5d1c6685424f14782da8fc11d471f7, type: 3}
-  m_Name: tile_ter2
+  m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: bgtile_cave
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: 887f8e3f18e8d6e45a32ea572f2d75c1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: dfe802dee8ccdc84c9770082165c57bc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
@@ -34,10 +34,3 @@ MonoBehaviour:
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 1
   m_ColliderType: 1
-  TerrainName: Stone
-  BackgroundTile: {fileID: 11400000, guid: d10be5fc25ebfdc46bea4413519a39e1, type: 2}
-  BaseHealth: 8
-  _maxHealth: 8
-  Destructible: 1
-  minDepth: -47
-  maxDepth: -100

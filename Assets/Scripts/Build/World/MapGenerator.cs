@@ -8,51 +8,77 @@ namespace Capstone.Build.World
     public class MapGenerator : MonoBehaviour
     {
         [Header("Tilemaps")]
-        public Tilemap terrainTilemap;
-        public Tilemap oreTilemap;
+        public Tilemap TerrainTilemap;
+        public Tilemap OreTilemap;
+        public Tilemap BackgroundTilemap;
 
         [Header("Dimensions")]
-        public int width = 100;
-        public int depth = 100;
+        public int Width = 100;
+        public int Depth = 100;
 
         [Header("Terrain Type Config")]
         public List<TerrainTile> TerrainTileTypes;
         [Header("Ore Type Config")]
         public List<OreTile> OreTileTypes;
 
-        // class variable
-        private static Vector3Int[] DIRECTIONS = {Vector3Int.up, Vector3Int.down, Vector3Int.left, Vector3Int.right};
+        // class variable used for checking neighbours during ore generation
+        private static readonly Vector3Int[] DIRECTIONS = { Vector3Int.up, Vector3Int.down, Vector3Int.left, Vector3Int.right };
 
         void Start()
         {
+            CheckComponentReferences();
             SetTileStats();
             GenerateTerrainMap();
             GenerateOreMap();
         }
 
+        private void CheckComponentReferences()
+        {
+            if (TerrainTilemap == null || OreTilemap == null || BackgroundTilemap == null) { Debug.Log("MapGenerator: No reference to one or more tilemaps");  }
+            if (TerrainTileTypes.Count == 0) { Debug.Log("MapGenerator: No TerrainTile references set in inspector"); }
+            if (OreTileTypes.Count == 0) { Debug.Log("MapGenerator: No OreTile references set in inspector"); }
+        }
+
+        // initialize stats for all original tiles manually, since no constructor is called
         private void SetTileStats()
         {
             foreach(TerrainTile tile in TerrainTileTypes)
             {
-                tile.UpdateMaxHealth(tile.BaseHealth);
+                tile.InitializeStats();
             }
         }
 
         void GenerateTerrainMap()
         {
-            int halfWidth = width / 2;
-            for (int y = 0; y > depth * -1; y--)
+            int halfWidth = Width / 2;
+            for (int y = 0; y > Depth * -1; y--)
             {
                 for (int x = -halfWidth; x <= halfWidth; x++)
                 {
-                    if (x == halfWidth && width % 2 == 0)
+                    if (x == halfWidth && Width % 2 == 0)
                         continue;
 
                     TerrainTile selectedTile = GetTerrainTileAtDepth(y);
-                    PlaceTerrain(selectedTile, new Vector3Int(x, y));
+                    if (selectedTile != null)
+                    {
+                        Tile backgroundTile = selectedTile.GetBackgroundTile();
+                        PlaceTerrain(selectedTile, new Vector3Int(x, y));
+                        SetBackground(backgroundTile, new Vector3Int(x, y));
+                    }
+                    else
+                    {
+                        Debug.Log("MapGenerator: No Tile for coordinates [" + x + ", " + y + "].");
+                    }
+
                 }
             }
         }
+
+        private void SetBackground(Tile backgroundTile, Vector3Int position)
+        {
+            BackgroundTilemap.SetTile(position, backgroundTile);
+        }
+
         TerrainTile GetTerrainTileAtDepth(int depth)
         {
             List<TerrainTile> validTiles = new();
@@ -77,10 +103,14 @@ namespace Capstone.Build.World
             {
                 int randomIndex = UnityEngine.Random.Range(0, validTiles.Count);
                 return validTiles[randomIndex];
+            } 
+            else
+            {
+                // no valid tiles
+                return null;
             }
 
-            // no valid tiles
-            return null;
+
         }
 
         void GenerateOreMap()
@@ -130,7 +160,7 @@ namespace Capstone.Build.World
         {
             if (currentPropagationValue == 0) return false;
 
-            if (terrainTilemap.GetTile(position) == null) return false;
+            if (TerrainTilemap.GetTile(position) == null) return false;
 
             return true;
             
@@ -139,7 +169,7 @@ namespace Capstone.Build.World
         private void PlaceOre(OreTile oreTile, Vector3Int position)
         {
             // get a ref to terrain tile at selected location
-            TerrainTile terrainTile = terrainTilemap.GetTile(position) as TerrainTile;
+            TerrainTile terrainTile = TerrainTilemap.GetTile(position) as TerrainTile;
 
             if (terrainTile != null) {
                 // if the tile exists, updates the health values for the tile, and sets the associated ore tile
@@ -147,7 +177,7 @@ namespace Capstone.Build.World
                 
                 
                 // place a clone of the ore tile at the position on the ore tilemap
-                oreTilemap.SetTile(position, Instantiate(oreTile));
+                OreTilemap.SetTile(position, Instantiate(oreTile));
             }
         }
 
@@ -158,16 +188,16 @@ namespace Capstone.Build.World
             TerrainTile tileClone = Instantiate(terrainTile);
 
             // add to tilemap
-            terrainTilemap.SetTile(position, tileClone);
+            TerrainTilemap.SetTile(position, tileClone);
         }
 
         List<Vector3Int> GenerateStartingPoints(OreTile oreTile)
         {
             List<Vector3Int> startingPoints = new();
-            int halfWidth = width / 2;
-            for (int y = 0; y >= depth * -1; y--)
+            int halfWidth = Width / 2;
+            for (int y = 0; y >= Depth * -1; y--)
             {
-                TerrainTile currentTerrain = terrainTilemap.GetTile(new Vector3Int(0, y, 0)) as TerrainTile;
+                TerrainTile currentTerrain = TerrainTilemap.GetTile(new Vector3Int(0, y, 0)) as TerrainTile;
 
                 // Skip iteration if currentTerrain is null
                 if (currentTerrain == null) continue;
@@ -193,7 +223,7 @@ namespace Capstone.Build.World
         private bool IsValidPosition(Vector3Int pos)
         {
             // return false if already populated
-            return oreTilemap.GetTile(pos) == null;
+            return OreTilemap.GetTile(pos) == null;
         }
 
         private bool IsValidStartingBlock(Vector3Int pos)

@@ -10,11 +10,43 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 146638489649553708, guid: 9189bcda34cf4a7459e9b01625e43411, type: 3}
       propertyPath: ParallaxSpeed
-      value: 0.9
+      value: 0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 4621073669922485830, guid: 9189bcda34cf4a7459e9b01625e43411, type: 3}
+      propertyPath: m_Size.x
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 4621073669922485830, guid: 9189bcda34cf4a7459e9b01625e43411, type: 3}
+      propertyPath: m_Size.y
+      value: 56
+      objectReference: {fileID: 0}
+    - target: {fileID: 4621073669922485830, guid: 9189bcda34cf4a7459e9b01625e43411, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d9af022103eeda64584a45cddaf30982, type: 3}
+    - target: {fileID: 4621073669922485830, guid: 9189bcda34cf4a7459e9b01625e43411, type: 3}
+      propertyPath: m_DrawMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4621073669922485830, guid: 9189bcda34cf4a7459e9b01625e43411, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4621073669922485830, guid: 9189bcda34cf4a7459e9b01625e43411, type: 3}
+      propertyPath: m_SpriteTileMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4621073669922485830, guid: 9189bcda34cf4a7459e9b01625e43411, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4621073669922485830, guid: 9189bcda34cf4a7459e9b01625e43411, type: 3}
+      propertyPath: m_AdaptiveModeThreshold
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7022101016887957200, guid: 9189bcda34cf4a7459e9b01625e43411, type: 3}
       propertyPath: m_Name
-      value: DistantMountains Variant
+      value: Distant1
       objectReference: {fileID: 0}
     - target: {fileID: 7520818347881199810, guid: 9189bcda34cf4a7459e9b01625e43411, type: 3}
       propertyPath: m_LocalPosition.x
@@ -22,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7520818347881199810, guid: 9189bcda34cf4a7459e9b01625e43411, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.37
       objectReference: {fileID: 0}
     - target: {fileID: 7520818347881199810, guid: 9189bcda34cf4a7459e9b01625e43411, type: 3}
       propertyPath: m_LocalPosition.z
@@ -101,16 +133,16 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -1.2}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 50.625, y: 28.125}
-    newSize: {x: 50.625, y: 28.125}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
+    oldSize: {x: 50, y: 56.25}
+    newSize: {x: 150, y: 56}
+    adaptiveTilingThreshold: 1
+    drawMode: 2
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 54.1, y: 12.7}
+  m_Size: {x: 153, y: 58}
   m_EdgeRadius: 0
