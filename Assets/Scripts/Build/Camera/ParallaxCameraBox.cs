@@ -1,8 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
 [RequireComponent(typeof(Camera))]
-public class CalculateCameraBox : MonoBehaviour
+[RequireComponent (typeof(BoxCollider2D))]
+public class ParallaxCameraBox : MonoBehaviour
 {
     private Camera _camera;
     private BoxCollider2D _boxCollider;
