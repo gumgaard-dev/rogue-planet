@@ -12,7 +12,7 @@ namespace Capstone.Build.Cam
         private CameraState _currentState;
         private Camera _camera;
 
-        [Header("select this option to tweak state variables at runtime:")]
+        [Header("Testing/Debugging")]
         [SerializeField] private bool _tweakStatesAtRuntime;
 
         [Header("Mining Camera Options")]

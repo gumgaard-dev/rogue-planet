@@ -14,7 +14,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4621073669922485830, guid: 9189bcda34cf4a7459e9b01625e43411, type: 3}
       propertyPath: m_Size.x
-      value: 50.625
+      value: 152
       objectReference: {fileID: 0}
     - target: {fileID: 4621073669922485830, guid: 9189bcda34cf4a7459e9b01625e43411, type: 3}
       propertyPath: m_Size.y
@@ -42,7 +42,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4621073669922485830, guid: 9189bcda34cf4a7459e9b01625e43411, type: 3}
       propertyPath: m_AdaptiveModeThreshold
-      value: 0.028
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7022101016887957200, guid: 9189bcda34cf4a7459e9b01625e43411, type: 3}
       propertyPath: m_Name
@@ -138,8 +138,8 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 50.625, y: 56.25}
-    newSize: {x: 50.625, y: 56.25}
-    adaptiveTilingThreshold: 0.028
+    newSize: {x: 152, y: 56.25}
+    adaptiveTilingThreshold: 0
     drawMode: 2
     adaptiveTiling: 0
   m_AutoTiling: 0

@@ -131,6 +131,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1902696856}
     m_Modifications:
+    - target: {fileID: 583864944937738552, guid: e0d001171fc54834da8b5f1e8e423940, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2774381420428293362, guid: e0d001171fc54834da8b5f1e8e423940, type: 3}
       propertyPath: m_Name
       value: SurfaceGroup
