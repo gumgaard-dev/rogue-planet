@@ -12,6 +12,9 @@ namespace Capstone.Build.Characters.Player.PlayerStates
 
         public override void Enter()
         {
+            // notify listeners that the player has entered the ship
+            Player.EnterShip?.Invoke();
+
             // cache ship ref
             this._ship = Player.Ship;
 
@@ -33,6 +36,8 @@ namespace Capstone.Build.Characters.Player.PlayerStates
 
         public override void Exit()
         {
+            // notify listeners that the player has exited the ship
+            Player.ExitShip?.Invoke();
 
             // reactivate player visuals and physics
             if (Player.gameObject.TryGetComponent<SpriteRenderer>(out var spriteRenderer))

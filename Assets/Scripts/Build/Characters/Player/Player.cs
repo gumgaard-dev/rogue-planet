@@ -1,7 +1,7 @@
 using Capstone.Build.Characters.Player.PlayerStates;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Events;
 
 namespace Capstone.Build.Characters.Player
 {
@@ -31,7 +31,9 @@ namespace Capstone.Build.Characters.Player
         // a reference to the player's ship used by the in-ship state
         [SerializeField]private Ship _ship;
         public Ship Ship {  get { return _ship; } }
-
+        public UnityEvent EnterShip;
+        public UnityEvent ExitShip;
+        
         // used to determine if player is close enough to enter the ship
         private bool _isNearShip;
         public bool IsNearShip {  get { return _isNearShip; } }
@@ -90,7 +92,7 @@ namespace Capstone.Build.Characters.Player
         public void SetState(PlayerStateType stateType)
         {
             // call the state's exit method to perform any necessary exit actions
-            if(State != null) { State.Exit(); }
+            State?.Exit();
 
             StateType = stateType;
             State = _playerStates[stateType];
