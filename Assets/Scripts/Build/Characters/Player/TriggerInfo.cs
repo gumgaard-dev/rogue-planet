@@ -13,7 +13,7 @@ namespace Capstone.Build.Characters.Player
         public Collider2D Wall;
         public Collider2D Climb;
 
-        public Vector3 GroundOffset;
+        public float GroundOffset;
 
         private Bounds _groundBounds;
 
@@ -21,7 +21,7 @@ namespace Capstone.Build.Characters.Player
         {
             get
             {
-                _groundBounds.center = _player.Bounds.center + GroundOffset;
+                _groundBounds.center = new(_player.Bounds.center.x, _player.Bounds.center.y + GroundOffset);
 
                 return _groundBounds;
             }
@@ -35,8 +35,6 @@ namespace Capstone.Build.Characters.Player
 
         void Start()
         {
-            GroundOffset = 0.7f * Vector3.down;
-
             // Ground trigger bounds slightly smaller than player bounds so that they cannot activate trigger while standing next to a wall.
             _groundBounds = new Bounds(Vector3.zero, new Vector2(_player.Bounds.size.x - 0.03f, 0.05f));
         }

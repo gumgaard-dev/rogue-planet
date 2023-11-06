@@ -957,8 +957,16 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8855497548617267439, guid: b393b9d5873e8dc48a79636058eced9f, type: 3}
+      propertyPath: GroundOffset
+      value: -0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 8855497548617267439, guid: b393b9d5873e8dc48a79636058eced9f, type: 3}
       propertyPath: GroundOffset.y
       value: -0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8855497548617267439, guid: b393b9d5873e8dc48a79636058eced9f, type: 3}
+      propertyPath: GroundOffsetAmount
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2435597393270404250, guid: b393b9d5873e8dc48a79636058eced9f, type: 3}
