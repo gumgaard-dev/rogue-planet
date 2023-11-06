@@ -10,7 +10,6 @@ namespace Capstone.Build.Characters.Player.PlayerStates
 
         public override void Enter()
         {
-            Player.SetAnimation("Duck");
             Player.SetGravityScale(Settings.DefaultGravityScale);
         }
 

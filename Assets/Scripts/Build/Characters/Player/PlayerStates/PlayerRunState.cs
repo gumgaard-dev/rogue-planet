@@ -9,7 +9,6 @@ namespace Capstone.Build.Characters.Player.PlayerStates
 
         public override void Enter()
         {
-            Player.SetAnimation("Run");
             Player.SetGravityScale(Settings.DefaultGravityScale);
         }
 

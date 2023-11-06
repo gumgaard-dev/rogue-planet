@@ -9,7 +9,6 @@ namespace Capstone.Build.Characters.Player.PlayerStates
 
         public override void Enter()
         {
-            Player.SetAnimation("Fall");
             Player.SetGravityScale(Settings.FallingGravityScale);
         }
 

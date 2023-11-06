@@ -24,7 +24,6 @@ namespace Capstone.Build.Characters.Player
 
         private GameSettings _settings;
         private TriggerInfo _triggerInfo;
-        private Animator _animator;
         private Collider2D _bodyCollider;
         private Rigidbody2D _rigidBody;
 
@@ -49,9 +48,6 @@ namespace Capstone.Build.Characters.Player
 
             if (!TryGetComponent(out _triggerInfo)) {
                 Debug.LogWarning("Player has no TriggerInfo component");
-            }
-            if(!TryGetComponent(out _animator)) {
-                Debug.LogWarning("Player has no Animator component");
             }
             if (!TryGetComponent(out _bodyCollider)) {
                 Debug.LogWarning("Player has no Collider2D component");
@@ -136,14 +132,6 @@ namespace Capstone.Build.Characters.Player
         public void SetFacing(float facing) { transform.localScale = new Vector3(facing, transform.localScale.y, transform.localScale.z);}
 
         public void SetGravityScale(float gravityScale) { this._rigidBody.gravityScale = gravityScale; }
-
-        public void SetAnimation(string stateName)
-        {
-            SetAnimationSpeed(1);
-            this._animator.Play($"Base Layer.Player-{stateName}");
-        }
-
-        public void SetAnimationSpeed(float speed) { this._animator.speed = speed; }
 
         // called when TriggerDetector invokes AreaEntered
         // sets a flag which determines whether the player can enter the ship

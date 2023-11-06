@@ -13,7 +13,7 @@ namespace Capstone.Build.Characters.Player
         public Collider2D Wall;
         public Collider2D Climb;
 
-        public Vector3 GroundOffset {  get; set; }
+        public Vector3 GroundOffset;
 
         private Bounds _groundBounds;
 

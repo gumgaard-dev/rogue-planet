@@ -6,7 +6,6 @@
 
         public override void Enter()
         {
-            Player.SetAnimation("Idle");
             Player.SetGravityScale(Settings.DefaultGravityScale);
         }
 

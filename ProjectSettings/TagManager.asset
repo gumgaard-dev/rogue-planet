@@ -16,8 +16,8 @@ TagManager:
   - UI
   - Overlay
   - Climbable
-  - ResourceCollector
-  - Collectable
+  - ItemCollector
+  - Item
   - Weapon
   - WeaponBoundary
   - ShipDetector

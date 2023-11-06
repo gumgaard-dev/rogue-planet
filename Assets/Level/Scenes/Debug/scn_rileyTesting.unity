@@ -179,7 +179,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8071946280470355858, guid: e0d001171fc54834da8b5f1e8e423940, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -489,6 +490,10 @@ PrefabInstance:
     - target: {fileID: 8187497342117357725, guid: df446ea171a899b44b982fd8f84dbea5, type: 3}
       propertyPath: m_Name
       value: UndergroundGroup
+      objectReference: {fileID: 0}
+    - target: {fileID: 8187497342117357725, guid: df446ea171a899b44b982fd8f84dbea5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -883,6 +888,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2435597393270404250, guid: b393b9d5873e8dc48a79636058eced9f, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2435597393270404250, guid: b393b9d5873e8dc48a79636058eced9f, type: 3}
+      propertyPath: otherFoot
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2435597393270404250, guid: b393b9d5873e8dc48a79636058eced9f, type: 3}
+      propertyPath: stepSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2435597393270404250, guid: b393b9d5873e8dc48a79636058eced9f, type: 3}
+      propertyPath: overShootFactor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2435597393270404250, guid: b393b9d5873e8dc48a79636058eced9f, type: 3}
+      propertyPath: footDisplacementOnX
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2435597393270404250, guid: b393b9d5873e8dc48a79636058eced9f, type: 3}
+      propertyPath: WalkableLayers.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3369030432780222127, guid: b393b9d5873e8dc48a79636058eced9f, type: 3}
       propertyPath: onInventoryChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -891,8 +920,51 @@ PrefabInstance:
       propertyPath: FuelUpdated.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1404606429}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    - target: {fileID: 5119260161306981934, guid: b393b9d5873e8dc48a79636058eced9f, type: 3}
+      propertyPath: m_Chain.m_TargetTransform
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5761174672631941142, guid: b393b9d5873e8dc48a79636058eced9f, type: 3}
+      propertyPath: m_Chain.m_TargetTransform
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6574489561884066432, guid: b393b9d5873e8dc48a79636058eced9f, type: 3}
+      propertyPath: lerp
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6574489561884066432, guid: b393b9d5873e8dc48a79636058eced9f, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6574489561884066432, guid: b393b9d5873e8dc48a79636058eced9f, type: 3}
+      propertyPath: otherFoot
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6574489561884066432, guid: b393b9d5873e8dc48a79636058eced9f, type: 3}
+      propertyPath: stepSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6574489561884066432, guid: b393b9d5873e8dc48a79636058eced9f, type: 3}
+      propertyPath: overShootFactor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6574489561884066432, guid: b393b9d5873e8dc48a79636058eced9f, type: 3}
+      propertyPath: footDisplacementOnX
+      value: -0.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 6574489561884066432, guid: b393b9d5873e8dc48a79636058eced9f, type: 3}
+      propertyPath: WalkableLayers.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8855497548617267439, guid: b393b9d5873e8dc48a79636058eced9f, type: 3}
+      propertyPath: GroundOffset.y
+      value: -0.8
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2435597393270404250, guid: b393b9d5873e8dc48a79636058eced9f, type: 3}
+    - {fileID: 6574489561884066432, guid: b393b9d5873e8dc48a79636058eced9f, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 6274639884646689238, guid: b393b9d5873e8dc48a79636058eced9f, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b393b9d5873e8dc48a79636058eced9f, type: 3}
