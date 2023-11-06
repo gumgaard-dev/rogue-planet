@@ -10,19 +10,20 @@ namespace Build.World.WorldTime
         public float daytimeIntensity = 1.0f; // intensity during the day
         public float nighttimeIntensity = 0.2f; // intensity at night
         
-        private float _timer;
+        public float timer;
+        public float timeOfDay;
 
         private void Update()
         {
             // calculate current time of day based on the timer
-            float timeOfDay = Mathf.PingPong(_timer, cycleDuration) / cycleDuration;
+            timeOfDay = Mathf.PingPong(timer, cycleDuration) / cycleDuration;
             
             // calculate intensity based on time of day
             float intensity = Mathf.Lerp(daytimeIntensity, nighttimeIntensity, timeOfDay);
             directionalLight.intensity = intensity;
 
             // update timer
-            _timer += Time.deltaTime;
+            timer += Time.deltaTime;
         }
     }
 }
