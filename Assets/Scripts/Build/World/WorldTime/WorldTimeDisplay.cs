@@ -8,6 +8,9 @@ namespace Build.World.WorldTime
         public Slider timeOfDaySlider;
         public WorldTime worldTime;
 
+        public Image imgSun;
+        public Image imgMoon;
+
         // Update is called once per frame
         void Update()
         {
@@ -22,6 +25,18 @@ namespace Build.World.WorldTime
                 
                 // updates slider value
                 timeOfDaySlider.value = sliderValue;
+                
+                // update image
+                if (sliderValue <= 0.5f)
+                {
+                    imgSun.gameObject.SetActive(false);
+                    imgMoon.gameObject.SetActive(true);
+                }
+                else
+                {
+                    imgSun.gameObject.SetActive(true);
+                    imgMoon.gameObject.SetActive(false);
+                }
             }
         }
     }
