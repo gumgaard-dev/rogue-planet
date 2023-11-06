@@ -19,12 +19,12 @@ namespace Capstone.Build.Characters.Player.PlayerStates
 
             UpdateTriggers();
 
-            if (InputInfo.Directional.y > 0 && Player.IsNearShip)
+            if (InputInfo.Move.y > 0 && Player.IsNearShip)
             {
                 Player.SetState(PlayerStateType.InShip);
             }
             // Checking for down input, and that player is on the ground
-            else if (InputInfo.Directional.y < 0 && TriggerInfo.Ground)
+            else if (InputInfo.Move.y < 0 && TriggerInfo.Ground)
             {
                 Player.SetState(PlayerStateType.Duck);
             }
@@ -46,14 +46,14 @@ namespace Capstone.Build.Characters.Player.PlayerStates
             // target velocity is input.x * run speed, becuase info.x is either -1, 0, or 1 based on input
             newVelocity.x = Mathf.SmoothDamp(
                 Player.Velocity.x,
-                InputInfo.Directional.x * Settings.RunSpeed,
+                InputInfo.Move.x * Settings.RunSpeed,
                 ref VelocityXDamped,
                 TriggerInfo.Ground ? Settings.GroundSpeedSmoothTime : Settings.AirSpeedSmoothTime
             );
 
             Player.SetVelocity(newVelocity);
 
-            if (InputInfo.Directional.x == 0 && Player.Velocity == Vector2.zero)
+            if (InputInfo.Move.x == 0 && Player.Velocity == Vector2.zero)
             {
                 Player.SetState(PlayerStateType.Idle);
             } 

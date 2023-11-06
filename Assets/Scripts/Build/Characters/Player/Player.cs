@@ -1,4 +1,5 @@
 using Capstone.Build.Characters.Player.PlayerStates;
+using Capstone.Input;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -8,7 +9,7 @@ namespace Capstone.Build.Characters.Player
     public class Player : MonoBehaviour
     {
         public string SETTINGS_PATH = "Settings/GameSettings";
-
+        public bool Aiming { get; set; }
         public Vector3 Position => transform.position;
         public Vector2 Velocity => _rigidBody.velocity;
         public float Facing => transform.localScale.x;
@@ -26,6 +27,7 @@ namespace Capstone.Build.Characters.Player
         private TriggerInfo _triggerInfo;
         private Collider2D _bodyCollider;
         private Rigidbody2D _rigidBody;
+        private PlayerAimController _aimController;
 
         // a reference to the player's ship used by the in-ship state
         [SerializeField]private Ship _ship;
@@ -60,6 +62,8 @@ namespace Capstone.Build.Characters.Player
             {
                 Debug.Log("Error: Player does not have a reference to ship.");
             }
+
+            _aimController = GetComponentInChildren<PlayerAimController>();
         }
 
 
@@ -148,16 +152,32 @@ namespace Capstone.Build.Characters.Player
         
         public void UpdateFacing()
         {
-            // Checking the direction the player is currently facing, then checking if the velocity is in the same direcition.
-            // Using MinMoveSpeed to not erratically change facing direction if a collision is being resolved and Unity is moving the player.
-            if (Facing != 1 && Velocity.x >= _settings.MinMoveSpeed)
+            // prioritize the direction the player is aiming, if not up or down
+            if (_aimController.AimXDirection != 0)
             {
-                SetFacing(1);
-            }
-            else if (Facing != -1 && Velocity.x <= -_settings.MinMoveSpeed)
+                if(_aimController.AimXDirection > 0)
+                {
+                    SetFacing(1);
+                } else if (_aimController.AimXDirection < 0 )
+                {
+                    SetFacing(-1);
+                }
+            } 
+            else
             {
-                SetFacing(-1);
+                // Checking the direction the player is currently facing, then checking if the velocity is in the same direcition.
+                // Using MinMoveSpeed to not erratically change facing direction if a collision is being resolved and Unity is moving the player.
+                if (Facing != 1 && Velocity.x >= _settings.MinMoveSpeed)
+                {
+                    SetFacing(1);
+                }
+                else if (Facing != -1 && Velocity.x <= -_settings.MinMoveSpeed)
+                {
+                    SetFacing(-1);
+                }
             }
+            
+
         }
 
         void OnDrawGizmos()

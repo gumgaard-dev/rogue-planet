@@ -25,7 +25,7 @@ namespace Capstone.Build.Characters.Player.PlayerStates
             if (TriggerInfo.Ground)
             {
                 
-                if (InputInfo.Directional.x == 0 && Player.Velocity == Vector2.zero)
+                if (InputInfo.Move.x == 0 && Player.Velocity == Vector2.zero)
                 {
 
                     Player.SetState(PlayerStateType.Idle);
@@ -55,7 +55,7 @@ namespace Capstone.Build.Characters.Player.PlayerStates
             // target velocity is input.x * run speed, becuase info.x is either -1, 0, or 1 based on input
             newVelocity.x = Mathf.SmoothDamp(
                 Player.Velocity.x,
-                InputInfo.Directional.x * Settings.RunSpeed,
+                InputInfo.Move.x * Settings.RunSpeed,
                 ref VelocityXDamped,
                 Settings.AirSpeedSmoothTime
             );

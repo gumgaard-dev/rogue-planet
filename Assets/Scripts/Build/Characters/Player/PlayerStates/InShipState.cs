@@ -56,10 +56,10 @@ namespace Capstone.Build.Characters.Player.PlayerStates
         {
 
             // pass input to ship 
-            this._ship.HandleRotationInput(InputInfo.Directional.x);
+            this._ship.HandleRotationInput(InputInfo.Move.x);
             this._ship.HandleShootInput(InputInfo.Jump);
 
-            if(InputInfo.Directional.y < 0)
+            if(InputInfo.Move.y < 0)
             {
                 Player.SetState(PlayerStateType.Run);
             }

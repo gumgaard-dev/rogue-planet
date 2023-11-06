@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Capstone.Build.Characters.Player;
+using System;
 
 namespace Capstone.Input
 {
@@ -14,10 +15,12 @@ namespace Capstone.Input
         private InputAction _moveAction;
         private InputAction _jumpAction;
         private InputAction _shootAction;
+        private InputAction _aimAction;
 
         private Vector2 _previousDirectionalInput;
         private bool _previousJumpInput;
         private bool _previousShootInput;
+        private Vector2 _aimInput;
 
         public void AwakeManaged()
         {
@@ -28,6 +31,7 @@ namespace Capstone.Input
             _moveAction = _playerInputActions.Player.Directional;
             _jumpAction = _playerInputActions.Player.Jump;
             _shootAction = _playerInputActions.Player.Shoot;
+            _aimAction = _playerInputActions.Player.Directional2;
         }
 
         public void UpdateManaged()
@@ -35,6 +39,12 @@ namespace Capstone.Input
             PollDirectionalInput();
             PollJumpInput();
             PollShootInput();
+            PollAimInput();
+        }
+
+        private void PollAimInput()
+        {
+            _player.State.SetAimInput(_aimAction.ReadValue<Vector2>());
         }
 
         private void PollDirectionalInput() 
@@ -107,12 +117,16 @@ namespace Capstone.Input
         {
             _moveAction.Enable();
             _jumpAction.Enable();
+            _shootAction.Enable();
+            _aimAction.Enable();
         }
 
         void OnDisable()
         {
             _moveAction.Disable();
             _jumpAction.Disable();
+            _shootAction.Disable();
+            _aimAction.Disable();
         }
     }
 

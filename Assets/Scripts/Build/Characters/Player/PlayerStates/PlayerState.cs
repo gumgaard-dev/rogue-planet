@@ -40,12 +40,12 @@ namespace Capstone.Build.Characters.Player.PlayerStates
 
         public virtual void SetHorizontalInput(float inputValue) 
         {
-            InputInfo.Directional.x = inputValue;
+            InputInfo.Move.x = inputValue;
         }
 
         public virtual void SetVerticalInput(float inputValue)
         {
-            InputInfo.Directional.y = inputValue;
+            InputInfo.Move.y = inputValue;
         }
 
         public virtual void SetJumpInput(bool inputValue)
@@ -82,6 +82,12 @@ namespace Capstone.Build.Characters.Player.PlayerStates
         internal void ResetVelocityYDamping()
         {
             VelocityYDamped = 0;
+        }
+
+        internal void SetAimInput(Vector2 value)
+        {
+            Debug.Log(value.ToString());
+            InputInfo.Aim = value;
         }
     }
 }

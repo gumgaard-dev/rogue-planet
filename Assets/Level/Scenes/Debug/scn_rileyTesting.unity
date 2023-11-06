@@ -131,10 +131,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1902696856}
     m_Modifications:
-    - target: {fileID: 583864944937738552, guid: e0d001171fc54834da8b5f1e8e423940, type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2774381420428293362, guid: e0d001171fc54834da8b5f1e8e423940, type: 3}
       propertyPath: m_Name
       value: SurfaceGroup
@@ -179,8 +175,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8071946280470355858, guid: e0d001171fc54834da8b5f1e8e423940, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -491,10 +486,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: UndergroundGroup
       objectReference: {fileID: 0}
-    - target: {fileID: 8187497342117357725, guid: df446ea171a899b44b982fd8f84dbea5, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -660,10 +651,6 @@ PrefabInstance:
     - target: {fileID: 6652406755988461065, guid: f16b72105cb8a9f45881d0b264e7497b, type: 3}
       propertyPath: m_Name
       value: Player_Canvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 7879183210482293360, guid: f16b72105cb8a9f45881d0b264e7497b, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -612,6 +612,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UndergroundGroup
       objectReference: {fileID: 0}
+    - target: {fileID: 6021644446189465072, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6040250288406907586, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

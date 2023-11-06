@@ -43,7 +43,7 @@ namespace Capstone.Build.Characters.Player.PlayerStates
         {
             base.SetVerticalInput(inputValue);
 
-            if (InputInfo.Directional.y >= 0)
+            if (InputInfo.Move.y >= 0)
             {
                 // TODO Switch this to idle
                 Player.SetState(PlayerStateType.Run);

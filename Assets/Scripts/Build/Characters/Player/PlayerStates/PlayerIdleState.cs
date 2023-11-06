@@ -14,16 +14,16 @@
 
             UpdateTriggers();
 
-            if (InputInfo.Directional.y > 0 && Player.IsNearShip)
+            if (InputInfo.Move.y > 0 && Player.IsNearShip)
             {
                 Player.SetState(PlayerStateType.InShip);
             }
             // Checking for down input, and that player is on the ground
-            else if (InputInfo.Directional.y < 0 && TriggerInfo.Ground)
+            else if (InputInfo.Move.y < 0 && TriggerInfo.Ground)
             {
                 Player.SetState(PlayerStateType.Duck);
             }
-            else if (InputInfo.Directional.x != 0)
+            else if (InputInfo.Move.x != 0)
             {
                 Player.SetState(PlayerStateType.Run);
             }
