@@ -57,7 +57,11 @@ namespace Capstone.Build.Characters.Player.PlayerStates
             if (InputInfo.Directional.x == 0 && Player.Velocity == Vector2.zero)
             {
                 Player.SetState(PlayerStateType.Idle);
-            } 
+            }
+            else if (!TriggerInfo.Ground)
+            {
+                Player.SetState(PlayerStateType.Fall);
+            }
 
         }
 

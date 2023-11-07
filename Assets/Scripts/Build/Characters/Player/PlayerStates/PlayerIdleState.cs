@@ -28,6 +28,10 @@
             {
                 Player.SetState(PlayerStateType.Run);
             }
+            else if (!TriggerInfo.Ground)
+            {
+                Player.SetState(PlayerStateType.Fall);
+            }
             else
             {
                 Player.UpdateFacing();
