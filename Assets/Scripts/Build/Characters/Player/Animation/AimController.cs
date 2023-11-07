@@ -34,7 +34,7 @@ public class PlayerAimController : MonoBehaviour
         AimXDirection = aimDirection.normalized.x;
         if (aimDirection.sqrMagnitude > 0.01f)
         {
-            IsAiming = true;           
+            IsAiming = true;               
             RotateBoneTowardsDirection(new Vector2(aimDirection.x, aimDirection.y));
         }
         else 
