@@ -15,7 +15,7 @@ namespace Build.World.WorldTime
         public float timeOfDay;
         public bool isDay;
 
-        private float intensity;
+        private float _intensity;
 
         private void Update()
         {
@@ -26,26 +26,26 @@ namespace Build.World.WorldTime
             // dawn to high noon
             if (isDay && (timeOfDay <= 0.5))
             {
-                intensity = Mathf.Lerp(middayIntensity, daytimeIntensity, timeOfDay);
-                directionalLight.intensity = intensity;
+                _intensity = Mathf.Lerp(middayIntensity, daytimeIntensity, timeOfDay);
+                directionalLight.intensity = _intensity;
             } 
             // high noon to dusk
             else if (isDay && (0.5 < timeOfDay))
             {
-                intensity = Mathf.Lerp(daytimeIntensity, middayIntensity, timeOfDay);
-                directionalLight.intensity = intensity;
+                _intensity = Mathf.Lerp(daytimeIntensity, middayIntensity, timeOfDay);
+                directionalLight.intensity = _intensity;
             } 
             // dusk to midnight
             else if (!isDay && (timeOfDay <= 0.5))
             {
-                intensity = Mathf.Lerp(middayIntensity, nighttimeIntensity, timeOfDay);
-                directionalLight.intensity = intensity;
+                _intensity = Mathf.Lerp(middayIntensity, nighttimeIntensity, timeOfDay);
+                directionalLight.intensity = _intensity;
             } 
             // midnight to dawn
             else if (!isDay && (0.5 < timeOfDay))
             {
-                intensity = Mathf.Lerp(nighttimeIntensity, middayIntensity, timeOfDay);
-                directionalLight.intensity = intensity;
+                _intensity = Mathf.Lerp(nighttimeIntensity, middayIntensity, timeOfDay);
+                directionalLight.intensity = _intensity;
             }
 
             // updates time of day bool
