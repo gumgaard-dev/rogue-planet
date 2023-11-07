@@ -31,7 +31,16 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""name"": ""Directional"",
                     ""type"": ""Value"",
                     ""id"": ""ca5b9d63-a61f-49f0-84e4-6d5075a82a2f"",
-                    ""expectedControlType"": ""Dpad"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Directional2"",
+                    ""type"": ""Value"",
+                    ""id"": ""65f860d1-ee68-4e16-b16e-ffe0c0ad48f9"",
+                    ""expectedControlType"": ""Stick"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -112,7 +121,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""Controller"",
+                    ""name"": ""ControllerDpad"",
                     ""id"": ""6e23da61-99a7-4aaf-8d2a-a46d44ded786"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
@@ -168,6 +177,17 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""1d3eeb30-4b08-4153-9605-eb041405d5a1"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Directional"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""ef026b92-7547-4631-8d35-b8e32053629e"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
@@ -209,6 +229,72 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ba079bfb-fd48-4d46-ae90-19c811994102"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Directional2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""b88891c9-6b8f-4e9e-b4c8-7cabc89e5f65"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Directional2"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""07142ec3-40b0-4f7a-a0cc-7fe9e8a9def8"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Directional2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""e6dff937-b6bd-44df-a16d-1ad4d04e97d6"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Directional2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""9c452026-64a1-4263-9e90-0d262af2f123"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Directional2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""d2003040-7b92-4a7e-89b1-733466c17d99"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Directional2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -218,6 +304,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Directional = m_Player.FindAction("Directional", throwIfNotFound: true);
+        m_Player_Directional2 = m_Player.FindAction("Directional2", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
     }
@@ -282,6 +369,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Directional;
+    private readonly InputAction m_Player_Directional2;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Shoot;
     public struct PlayerActions
@@ -289,6 +377,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         private @PlayerInputActions m_Wrapper;
         public PlayerActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Directional => m_Wrapper.m_Player_Directional;
+        public InputAction @Directional2 => m_Wrapper.m_Player_Directional2;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
@@ -303,6 +392,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Directional.started += instance.OnDirectional;
             @Directional.performed += instance.OnDirectional;
             @Directional.canceled += instance.OnDirectional;
+            @Directional2.started += instance.OnDirectional2;
+            @Directional2.performed += instance.OnDirectional2;
+            @Directional2.canceled += instance.OnDirectional2;
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
@@ -316,6 +408,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Directional.started -= instance.OnDirectional;
             @Directional.performed -= instance.OnDirectional;
             @Directional.canceled -= instance.OnDirectional;
+            @Directional2.started -= instance.OnDirectional2;
+            @Directional2.performed -= instance.OnDirectional2;
+            @Directional2.canceled -= instance.OnDirectional2;
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
@@ -342,6 +437,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     public interface IPlayerActions
     {
         void OnDirectional(InputAction.CallbackContext context);
+        void OnDirectional2(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
     }

@@ -16,8 +16,8 @@ TagManager:
   - UI
   - Overlay
   - Climbable
-  - ResourceCollector
-  - Collectable
+  - ItemCollector
+  - Item
   - Weapon
   - WeaponBoundary
   - ShipDetector
@@ -27,8 +27,8 @@ TagManager:
   - Enemy
   - ShipTriggerArea
   - Ore
-  - 
-  - 
+  - ParallaxBackground
+  - Camera
   - 
   - 
   - 
@@ -44,15 +44,24 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Background
+  - name: SurfaceBackground
     uniqueID: 2653685615
+    locked: 0
+  - name: CaveBackground
+    uniqueID: 1809360989
     locked: 0
   - name: Ship
     uniqueID: 1777377027
     locked: 0
+  - name: Projectile
+    uniqueID: 1996865175
+    locked: 0
   - name: Player
     uniqueID: 34369277
     locked: 0
-  - name: TerrainForeground
+  - name: SurfaceForeground
     uniqueID: 3179650405
+    locked: 0
+  - name: UI
+    uniqueID: 1567287067
     locked: 0

@@ -35,7 +35,9 @@ MonoBehaviour:
   m_Flags: 1
   m_ColliderType: 1
   TerrainName: Grass
+  BackgroundTile: {fileID: 11400000, guid: d10be5fc25ebfdc46bea4413519a39e1, type: 2}
   BaseHealth: 1
+  _maxHealth: 0
   Destructible: 0
   minDepth: 0
   maxDepth: 0
