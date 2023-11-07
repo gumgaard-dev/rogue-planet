@@ -16,14 +16,6 @@ namespace Build.World.WorldTime
         public Image imgSun;
         public Image imgMoon;
 
-        private void Start()
-        {
-            imgSun.gameObject.SetActive(true);
-            imgMoon.gameObject.SetActive(false);
-            timeOfDaySlider.value = 0.5f; 
-        }
-
-        // Update is called once per frame
         private void Update()
         {
             // get the timeOfDay value from WorldTime script

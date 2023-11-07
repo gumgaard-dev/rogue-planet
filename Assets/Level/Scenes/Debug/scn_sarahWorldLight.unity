@@ -514,7 +514,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 973e3b2e876319a41886deae0c0c4e96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cycleDuration: 20
+  cycleDuration: 10
   directionalLight: {fileID: 1887390497}
   daytimeIntensity: 1
   nighttimeIntensity: 0
@@ -599,6 +599,10 @@ PrefabInstance:
     - target: {fileID: 3116470101261623918, guid: f3ab1b86d5e00b34cb5a2d3b3e579f89, type: 3}
       propertyPath: m_AnchorMin.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3584516469674675868, guid: f3ab1b86d5e00b34cb5a2d3b3e579f89, type: 3}
+      propertyPath: m_Name
+      value: WorldTimeSlider
       objectReference: {fileID: 0}
     - target: {fileID: 4602783519811987125, guid: f3ab1b86d5e00b34cb5a2d3b3e579f89, type: 3}
       propertyPath: m_Pivot.x
