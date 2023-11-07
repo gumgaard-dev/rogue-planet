@@ -202,6 +202,62 @@ PrefabInstance:
       propertyPath: Slider
       value: 
       objectReference: {fileID: 2234283586178236014}
+    - target: {fileID: 8861254934676493528, guid: 7595021e0da96354baf79f41d10db697, type: 3}
+      propertyPath: LowFuelColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8861254934676493528, guid: 7595021e0da96354baf79f41d10db697, type: 3}
+      propertyPath: LowFuelColor.b
+      value: 0.13431197
+      objectReference: {fileID: 0}
+    - target: {fileID: 8861254934676493528, guid: 7595021e0da96354baf79f41d10db697, type: 3}
+      propertyPath: LowFuelColor.g
+      value: 0.13431197
+      objectReference: {fileID: 0}
+    - target: {fileID: 8861254934676493528, guid: 7595021e0da96354baf79f41d10db697, type: 3}
+      propertyPath: LowFuelColor.r
+      value: 0.65199995
+      objectReference: {fileID: 0}
+    - target: {fileID: 8861254934676493528, guid: 7595021e0da96354baf79f41d10db697, type: 3}
+      propertyPath: MidFuelColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8861254934676493528, guid: 7595021e0da96354baf79f41d10db697, type: 3}
+      propertyPath: MidFuelColor.b
+      value: 0.21195798
+      objectReference: {fileID: 0}
+    - target: {fileID: 8861254934676493528, guid: 7595021e0da96354baf79f41d10db697, type: 3}
+      propertyPath: MidFuelColor.g
+      value: 0.6497888
+      objectReference: {fileID: 0}
+    - target: {fileID: 8861254934676493528, guid: 7595021e0da96354baf79f41d10db697, type: 3}
+      propertyPath: MidFuelColor.r
+      value: 0.809
+      objectReference: {fileID: 0}
+    - target: {fileID: 8861254934676493528, guid: 7595021e0da96354baf79f41d10db697, type: 3}
+      propertyPath: HighFuelColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8861254934676493528, guid: 7595021e0da96354baf79f41d10db697, type: 3}
+      propertyPath: HighFuelColor.b
+      value: 0.08070699
+      objectReference: {fileID: 0}
+    - target: {fileID: 8861254934676493528, guid: 7595021e0da96354baf79f41d10db697, type: 3}
+      propertyPath: HighFuelColor.g
+      value: 0.667
+      objectReference: {fileID: 0}
+    - target: {fileID: 8861254934676493528, guid: 7595021e0da96354baf79f41d10db697, type: 3}
+      propertyPath: HighFuelColor.r
+      value: 0.10275939
+      objectReference: {fileID: 0}
+    - target: {fileID: 8861254934676493528, guid: 7595021e0da96354baf79f41d10db697, type: 3}
+      propertyPath: LowFuelPercentage
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8861254934676493528, guid: 7595021e0da96354baf79f41d10db697, type: 3}
+      propertyPath: HighFuelPercentage
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 9188686653534718018, guid: 7595021e0da96354baf79f41d10db697, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

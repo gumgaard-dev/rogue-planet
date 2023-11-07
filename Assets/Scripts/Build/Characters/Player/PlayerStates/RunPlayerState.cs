@@ -3,9 +3,9 @@ using UnityEngine;
 
 namespace Capstone.Build.Characters.Player.PlayerStates
 {
-    public class PlayerRunState : PlayerState
+    public class RunPlayerState : PlayerState
     {
-        public PlayerRunState(GameSettings settings, Player player) : base(settings, player) { }
+        public RunPlayerState(GameSettings settings, Player player) : base(settings, player) { }
 
         public override void Enter()
         {
@@ -19,19 +19,11 @@ namespace Capstone.Build.Characters.Player.PlayerStates
 
             UpdateTriggers();
 
-            if (InputInfo.Move.y > 0 && Player.IsNearShip)
-            {
-                Player.SetState(PlayerStateType.InShip);
-            }
-            // Checking for down input, and that player is on the ground
-            else if (InputInfo.Move.y < 0 && TriggerInfo.Ground)
-            {
-                Player.SetState(PlayerStateType.Duck);
-            }
-            else
-            {
-                Player.UpdateFacing();
-            }
+            if (InputInfo.Move.y > 0 && Player.IsNearShip) { Player.SetState(PlayerStateType.InShip); }
+
+            else if (InputInfo.Jump && Player.Jetpack.HasFuel()) { Player.SetState(PlayerStateType.Jetpack); }
+            
+            else { Player.UpdateFacing(); }
 
         }
 
@@ -63,13 +55,6 @@ namespace Capstone.Build.Characters.Player.PlayerStates
         public override void SetJumpInput(bool inputValue)
         {
             base.SetJumpInput(inputValue);
-
-            if (inputValue)
-            {
-                //Player.SetVelocity(Player.Velocity.x, Settings.JetpackSpeed);
-                Player.SetState(PlayerStateType.Jetpack);
-            }
-
         }
     }
 }

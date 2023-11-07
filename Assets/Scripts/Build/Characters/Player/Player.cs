@@ -39,6 +39,8 @@ namespace Capstone.Build.Characters.Player
         private bool _isNearShip;
         public bool IsNearShip {  get { return _isNearShip; } }
 
+        public Jetpack Jetpack { get; private set; }
+
 
         public void AwakeManaged()
         {
@@ -64,6 +66,8 @@ namespace Capstone.Build.Characters.Player
             }
 
             _aimController = GetComponentInChildren<PlayerAimController>();
+
+            Jetpack = GetComponentInChildren<Jetpack>();
         }
 
 
@@ -71,11 +75,11 @@ namespace Capstone.Build.Characters.Player
         {
             _playerStates = new Dictionary<PlayerStateType, PlayerState>
             {
-                [PlayerStateType.Run] = new PlayerRunState(_settings, this),
-                [PlayerStateType.Duck] = new PlayerDuckState(_settings, this),
-                [PlayerStateType.Idle] = new PlayerIdleState(_settings, this),
-                [PlayerStateType.Fall] = new PlayerFallState(_settings, this),
-                [PlayerStateType.Jetpack] = new PlayerJetpackState(_settings, this, GetComponentInChildren<Jetpack>()),
+                [PlayerStateType.Run] = new RunPlayerState(_settings, this),
+                [PlayerStateType.Duck] = new DuckPlayerState(_settings, this),
+                [PlayerStateType.Idle] = new IdlePlayerState(_settings, this),
+                [PlayerStateType.Fall] = new FallPlayerState(_settings, this),
+                [PlayerStateType.Jetpack] = new JetpackPlayerState(_settings, this),
                 [PlayerStateType.InShip] = new InShipState(_settings, this),
             };
 

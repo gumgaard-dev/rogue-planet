@@ -2,9 +2,9 @@ using UnityEngine;
 
 namespace Capstone.Build.Characters.Player.PlayerStates
 {
-    public class PlayerDuckState : PlayerState
+    public class DuckPlayerState : PlayerState
     {
-        public PlayerDuckState(GameSettings settings, Player player) : base(settings, player)
+        public DuckPlayerState(GameSettings settings, Player player) : base(settings, player)
         {
         }
 

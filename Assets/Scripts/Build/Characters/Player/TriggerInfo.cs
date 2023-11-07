@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Capstone.Build.Characters.Player
 {
+    [System.Serializable] public class GroundedEvent : UnityEvent { }
     public class TriggerInfo : MonoBehaviour
     {
         private GameSettings _settings;
@@ -17,6 +19,11 @@ namespace Capstone.Build.Characters.Player
 
         private Bounds _groundBounds;
 
+        public GroundedEvent PlayerGrounded;
+        public GroundedEvent PlayerNotGrounded;
+        
+        private bool _wasGroundedLastUpdate;
+
         public Bounds GroundBounds 
         {
             get
@@ -24,6 +31,23 @@ namespace Capstone.Build.Characters.Player
                 _groundBounds.center = new(_player.Bounds.center.x, _player.Bounds.center.y + GroundOffset);
 
                 return _groundBounds;
+            }
+        }
+
+        private void Update()
+        {
+            // was grounded before, now isn't grounded
+            if (this.Ground == null && this._wasGroundedLastUpdate)
+            {
+                _wasGroundedLastUpdate = false;
+                PlayerNotGrounded?.Invoke();
+            } 
+            
+            // wasn't grounded before, is now grounded
+            else if (this.Ground && !this._wasGroundedLastUpdate)
+            {
+                _wasGroundedLastUpdate = true;
+                PlayerGrounded?.Invoke();
             }
         }
 

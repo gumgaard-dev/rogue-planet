@@ -3,9 +3,9 @@ using UnityEngine;
 namespace Capstone.Build.Characters.Player.PlayerStates
 {
 
-    public class PlayerFallState : PlayerState
+    public class FallPlayerState : PlayerState
     {
-        public PlayerFallState(GameSettings settings, Player player) : base(settings, player) { }
+        public FallPlayerState(GameSettings settings, Player player) : base(settings, player) { }
 
         public override void Enter()
         {
@@ -24,18 +24,9 @@ namespace Capstone.Build.Characters.Player.PlayerStates
 
             if (TriggerInfo.Ground)
             {
-                
-                if (InputInfo.Move.x == 0 && Player.Velocity == Vector2.zero)
-                {
-
-                    Player.SetState(PlayerStateType.Idle);
-                }
-                else
-                {
-                    Player.SetState(PlayerStateType.Run);
-                }
+                Player.SetState(PlayerStateType.Idle);
             }
-            else if (InputInfo.Jump)
+            else if (InputInfo.Jump && Player.Jetpack.HasFuel())
             {
                 Player.SetState(PlayerStateType.Jetpack);
             }
