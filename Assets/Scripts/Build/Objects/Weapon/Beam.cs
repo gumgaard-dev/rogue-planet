@@ -7,11 +7,23 @@ namespace Capstone.Build.Weapon
     public class Beam : MonoBehaviour
     {
         [SerializeField] private float _beamDistance = 50;
-        public LineRenderer LineRenderer { get; private set; }
-
-        public void FireBeam()
+        private LineRenderer _beamLineRenderer;
+        private void Awake()
         {
+            if (!TryGetComponent(out _beamLineRenderer))
+            {
+                Debug.LogWarning("No beam attached.");
+            }
+        }
 
+        public void StartFiring()
+        {
+            this._beamLineRenderer.enabled = true;
+        }
+
+        public void StopFiring()
+        {
+            this._beamLineRenderer.enabled = false;
         }
     }
 }
