@@ -1,6 +1,11 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+//--------------------------------------------------------References--------------------------------------------------------//
+// sun: <a href="https://www.flaticon.com/free-icons/sun" title="sun icons">Sun icons created by Freepik - Flaticon</a>     //
+// moon: <a href="https://www.flaticon.com/free-icons/moon" title="moon icons">Moon icons created by Freepik - Flaticon</a> //
+//--------------------------------------------------------------------------------------------------------------------------//
+
 namespace Build.World.WorldTime
 {
     public class WorldTimeDisplay : MonoBehaviour
