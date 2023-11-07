@@ -514,12 +514,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 973e3b2e876319a41886deae0c0c4e96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cycleDuration: 10
+  cycleDuration: 20
   directionalLight: {fileID: 1887390497}
   daytimeIntensity: 1
-  nighttimeIntensity: 0.2
+  nighttimeIntensity: 0
+  middayIntensity: 0.6
   timer: 0
   timeOfDay: 0
+  isDay: 0
 --- !u!4 &1727592916
 Transform:
   m_ObjectHideFlags: 0
@@ -592,6 +594,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3116470101261623918, guid: f3ab1b86d5e00b34cb5a2d3b3e579f89, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3116470101261623918, guid: f3ab1b86d5e00b34cb5a2d3b3e579f89, type: 3}
+      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4602783519811987125, guid: f3ab1b86d5e00b34cb5a2d3b3e579f89, type: 3}
@@ -677,6 +683,14 @@ PrefabInstance:
     - target: {fileID: 7653729295302329934, guid: f3ab1b86d5e00b34cb5a2d3b3e579f89, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 9202495164337372700, guid: f3ab1b86d5e00b34cb5a2d3b3e579f89, type: 3}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9202495164337372700, guid: f3ab1b86d5e00b34cb5a2d3b3e579f89, type: 3}
+      propertyPath: m_MaxValue
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
