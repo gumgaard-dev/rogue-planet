@@ -1,6 +1,11 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+//--------------------------------------------------------References--------------------------------------------------------//
+// sun: <a href="https://www.flaticon.com/free-icons/sun" title="sun icons">Sun icons created by Freepik - Flaticon</a>     //
+// moon: <a href="https://www.flaticon.com/free-icons/moon" title="moon icons">Moon icons created by Freepik - Flaticon</a> //
+//--------------------------------------------------------------------------------------------------------------------------//
+
 namespace Build.World.WorldTime
 {
     public class WorldTimeDisplay : MonoBehaviour
@@ -11,32 +16,27 @@ namespace Build.World.WorldTime
         public Image imgSun;
         public Image imgMoon;
 
-        // Update is called once per frame
-        void Update()
+        private void Update()
         {
-            // check that WorldTime script is assigned
-            if (worldTime != null)
+            // get the timeOfDay value from WorldTime script
+            var timeOfDay = worldTime.timeOfDay;
+            
+            // calculate slider value based on time of day (decreasing as night approaches)
+            var sliderValue = 1f - timeOfDay;
+            
+            // updates slider value
+            timeOfDaySlider.value = sliderValue;
+            
+            // update image
+            if (worldTime.isDay)
             {
-                // get the timeOfDay value from WorldTime script
-                float timeOfDay = worldTime.timeOfDay;
-                
-                // calculate slider value based on time of day (decreasing as night approaches)
-                float sliderValue = 1f - timeOfDay;
-                
-                // updates slider value
-                timeOfDaySlider.value = sliderValue;
-                
-                // update image
-                if (sliderValue <= 0.5f)
-                {
-                    imgSun.gameObject.SetActive(false);
-                    imgMoon.gameObject.SetActive(true);
-                }
-                else
-                {
-                    imgSun.gameObject.SetActive(true);
-                    imgMoon.gameObject.SetActive(false);
-                }
+                imgSun.gameObject.SetActive(true);
+                imgMoon.gameObject.SetActive(false);
+            }
+            else
+            {
+                imgSun.gameObject.SetActive(false);
+                imgMoon.gameObject.SetActive(true);
             }
         }
     }
