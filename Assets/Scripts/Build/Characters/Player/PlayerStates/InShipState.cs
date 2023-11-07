@@ -12,6 +12,9 @@ namespace Capstone.Build.Characters.Player.PlayerStates
 
         public override void Enter()
         {
+            // notify listeners that the player has entered the ship
+            Player.EnterShip?.Invoke();
+
             // cache ship ref
             this._ship = Player.Ship;
 
@@ -23,7 +26,8 @@ namespace Capstone.Build.Characters.Player.PlayerStates
 
             if (Player.gameObject.TryGetComponent<Rigidbody2D>(out var rb))
             {
-                rb.Sleep();
+                Player.transform.position = _ship.transform.position;
+                rb.bodyType = RigidbodyType2D.Static;
             }
 
             // set player's position to ship position
@@ -32,6 +36,8 @@ namespace Capstone.Build.Characters.Player.PlayerStates
 
         public override void Exit()
         {
+            // notify listeners that the player has exited the ship
+            Player.ExitShip?.Invoke();
 
             // reactivate player visuals and physics
             if (Player.gameObject.TryGetComponent<SpriteRenderer>(out var spriteRenderer))
@@ -42,6 +48,7 @@ namespace Capstone.Build.Characters.Player.PlayerStates
             if (Player.gameObject.TryGetComponent<Rigidbody2D>(out var rb))
             {
                 rb.WakeUp();
+                rb.bodyType = RigidbodyType2D.Dynamic;
             }
         }
 
@@ -49,10 +56,10 @@ namespace Capstone.Build.Characters.Player.PlayerStates
         {
 
             // pass input to ship 
-            this._ship.HandleRotationInput(InputInfo.Directional.x);
+            this._ship.HandleRotationInput(InputInfo.Move.x);
             this._ship.HandleShootInput(InputInfo.Jump);
 
-            if(InputInfo.Directional.y < 0)
+            if(InputInfo.Move.y < 0)
             {
                 Player.SetState(PlayerStateType.Run);
             }

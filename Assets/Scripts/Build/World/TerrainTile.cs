@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -6,20 +7,25 @@ namespace Capstone.Build.World
     [CreateAssetMenu]
     public class TerrainTile : Tile
     {
-        public bool HasOre { get { return OreTile != null;  } }
+        public bool HasOre { get { return OreTile != null; } }
+        public OreTile OreTile { get; private set; } // Reference to the ore overlay tile.
 
         public string TerrainName;
-        public int CurHealth { get; protected set; }
-        public OreTile OreTile { get; private set; } // Reference to the ore overlay tile.
+        private int _curHealth;
+
+
+        [Header("Background")]
+        public Tile BackgroundTile;
 
         [Header("Destructible Terrain Settings")]
         public int BaseHealth = 1;
-        private int _maxHealth;
+        [SerializeField] private int _maxHealth;
         public bool Destructible = true;
 
         [Header("Depth Settings (values are inclusive, lower numbers are deeper)")]
         public int minDepth;
         public int maxDepth;
+
         public override void GetTileData(Vector3Int location, ITilemap tilemap, ref TileData tileData)
         {
             base.GetTileData(location, tilemap, ref tileData);
@@ -34,17 +40,27 @@ namespace Capstone.Build.World
         public void UpdateMaxHealth(int newMaxHealth)
         {
             this._maxHealth = newMaxHealth;
-            this.CurHealth = newMaxHealth;
+            this._curHealth = newMaxHealth;
         }
 
         public void Damage(int incomingDamage)
         {
-            this.CurHealth -= incomingDamage;
+            this._curHealth -= incomingDamage;
         }
 
         public bool ShouldBeDestroyed()
         {
-            return this.CurHealth <= 0;
+            return this._curHealth <= 0;
+        }
+
+        public void InitializeStats()
+        {
+            this._curHealth = this._maxHealth;
+        }
+
+        public Tile GetBackgroundTile()
+        {
+            return Instantiate(this.BackgroundTile) as Tile;
         }
     }
 }

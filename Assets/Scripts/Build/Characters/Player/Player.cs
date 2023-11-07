@@ -1,14 +1,15 @@
 using Capstone.Build.Characters.Player.PlayerStates;
+using Capstone.Input;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Events;
 
 namespace Capstone.Build.Characters.Player
 {
     public class Player : MonoBehaviour
     {
         public string SETTINGS_PATH = "Settings/GameSettings";
-
+        public bool Aiming { get; set; }
         public Vector3 Position => transform.position;
         public Vector2 Velocity => _rigidBody.velocity;
         public float Facing => transform.localScale.x;
@@ -24,17 +25,21 @@ namespace Capstone.Build.Characters.Player
 
         private GameSettings _settings;
         private TriggerInfo _triggerInfo;
-        private Animator _animator;
         private Collider2D _bodyCollider;
         private Rigidbody2D _rigidBody;
+        private PlayerAimController _aimController;
 
         // a reference to the player's ship used by the in-ship state
         [SerializeField]private Ship _ship;
         public Ship Ship {  get { return _ship; } }
-
+        public UnityEvent EnterShip;
+        public UnityEvent ExitShip;
+        
         // used to determine if player is close enough to enter the ship
         private bool _isNearShip;
         public bool IsNearShip {  get { return _isNearShip; } }
+
+        public Jetpack Jetpack { get; private set; }
 
 
         public void AwakeManaged()
@@ -48,9 +53,6 @@ namespace Capstone.Build.Characters.Player
             if (!TryGetComponent(out _triggerInfo)) {
                 Debug.LogWarning("Player has no TriggerInfo component");
             }
-            if(!TryGetComponent(out _animator)) {
-                Debug.LogWarning("Player has no Animator component");
-            }
             if (!TryGetComponent(out _bodyCollider)) {
                 Debug.LogWarning("Player has no Collider2D component");
             }
@@ -62,6 +64,10 @@ namespace Capstone.Build.Characters.Player
             {
                 Debug.Log("Error: Player does not have a reference to ship.");
             }
+
+            _aimController = GetComponentInChildren<PlayerAimController>();
+
+            Jetpack = GetComponentInChildren<Jetpack>();
         }
 
 
@@ -69,11 +75,11 @@ namespace Capstone.Build.Characters.Player
         {
             _playerStates = new Dictionary<PlayerStateType, PlayerState>
             {
-                [PlayerStateType.Run] = new PlayerRunState(_settings, this),
-                [PlayerStateType.Duck] = new PlayerDuckState(_settings, this),
-                [PlayerStateType.Idle] = new PlayerIdleState(_settings, this),
-                [PlayerStateType.Fall] = new PlayerFallState(_settings, this),
-                [PlayerStateType.Jetpack] = new PlayerJetpackState(_settings, this, GetComponentInChildren<Jetpack>()),
+                [PlayerStateType.Run] = new RunPlayerState(_settings, this),
+                [PlayerStateType.Duck] = new DuckPlayerState(_settings, this),
+                [PlayerStateType.Idle] = new IdlePlayerState(_settings, this),
+                [PlayerStateType.Fall] = new FallPlayerState(_settings, this),
+                [PlayerStateType.Jetpack] = new JetpackPlayerState(_settings, this),
                 [PlayerStateType.InShip] = new InShipState(_settings, this),
             };
 
@@ -90,7 +96,7 @@ namespace Capstone.Build.Characters.Player
         public void SetState(PlayerStateType stateType)
         {
             // call the state's exit method to perform any necessary exit actions
-            if(State != null) { State.Exit(); }
+            State?.Exit();
 
             StateType = stateType;
             State = _playerStates[stateType];
@@ -135,14 +141,6 @@ namespace Capstone.Build.Characters.Player
 
         public void SetGravityScale(float gravityScale) { this._rigidBody.gravityScale = gravityScale; }
 
-        public void SetAnimation(string stateName)
-        {
-            SetAnimationSpeed(1);
-            this._animator.Play($"Base Layer.Player-{stateName}");
-        }
-
-        public void SetAnimationSpeed(float speed) { this._animator.speed = speed; }
-
         // called when TriggerDetector invokes AreaEntered
         // sets a flag which determines whether the player can enter the ship
         public void OnEnterShipProximity()
@@ -158,16 +156,32 @@ namespace Capstone.Build.Characters.Player
         
         public void UpdateFacing()
         {
-            // Checking the direction the player is currently facing, then checking if the velocity is in the same direcition.
-            // Using MinMoveSpeed to not erratically change facing direction if a collision is being resolved and Unity is moving the player.
-            if (Facing != 1 && Velocity.x >= _settings.MinMoveSpeed)
+            // prioritize the direction the player is aiming, if not up or down
+            if (_aimController.AimXDirection != 0)
             {
-                SetFacing(1);
-            }
-            else if (Facing != -1 && Velocity.x <= -_settings.MinMoveSpeed)
+                if(_aimController.AimXDirection > 0)
+                {
+                    SetFacing(1);
+                } else if (_aimController.AimXDirection < 0 )
+                {
+                    SetFacing(-1);
+                }
+            } 
+            else
             {
-                SetFacing(-1);
+                // Checking the direction the player is currently facing, then checking if the velocity is in the same direcition.
+                // Using MinMoveSpeed to not erratically change facing direction if a collision is being resolved and Unity is moving the player.
+                if (Facing != 1 && Velocity.x >= _settings.MinMoveSpeed)
+                {
+                    SetFacing(1);
+                }
+                else if (Facing != -1 && Velocity.x <= -_settings.MinMoveSpeed)
+                {
+                    SetFacing(-1);
+                }
             }
+            
+
         }
 
         void OnDrawGizmos()
