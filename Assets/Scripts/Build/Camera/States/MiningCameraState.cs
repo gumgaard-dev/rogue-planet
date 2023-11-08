@@ -40,8 +40,6 @@ public class MiningCameraState : CameraState
 
         if (directionHasChanged)
         {
-            Debug.Log("Direction has changed");
-            Debug.Log(_playerFacingDirection);
             UpdateLookaheadVector();
         }
 

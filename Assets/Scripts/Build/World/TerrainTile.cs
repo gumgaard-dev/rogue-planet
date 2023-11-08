@@ -11,7 +11,7 @@ namespace Capstone.Build.World
         public OreTile OreTile { get; private set; } // Reference to the ore overlay tile.
 
         public string TerrainName;
-        private int _curHealth;
+        public int CurrrentHealth;
 
 
         [Header("Background")]
@@ -40,22 +40,22 @@ namespace Capstone.Build.World
         public void UpdateMaxHealth(int newMaxHealth)
         {
             this._maxHealth = newMaxHealth;
-            this._curHealth = newMaxHealth;
+            this.CurrrentHealth = newMaxHealth;
         }
 
         public void Damage(int incomingDamage)
         {
-            this._curHealth -= incomingDamage;
+            this.CurrrentHealth -= incomingDamage;
         }
 
         public bool ShouldBeDestroyed()
         {
-            return this._curHealth <= 0;
+            return this.CurrrentHealth <= 0;
         }
 
         public void InitializeStats()
         {
-            this._curHealth = this._maxHealth;
+            this.CurrrentHealth = this._maxHealth;
         }
 
         public Tile GetBackgroundTile()

@@ -29,7 +29,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 858476021071811780}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1522856752027711688
@@ -59,10 +60,104 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _curFuelLevel: 0
-  MaxFuel: 100000
+  UseGameSettings: 0
+  MaxFuel: 250
   RechargeRate: 4
   FuelConsumptionRate: 2
-  RechargeDelay: 0
-  _normalThrust: 0
-  _boostThrust: 0
+  NormalThrust: 5
+  LiftoffThrust: 7
+  RechargeDelay: 5
+  LiftoffLength: 10
+  _timeSinceLanding: 0
+  _timeSinceLiftoff: 0
+  _curFuelLevel: 0
+--- !u!1001 &4920921869274246288
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2638297885422803505}
+    m_Modifications:
+    - target: {fileID: 3289428072602420612, guid: 52f7f8a9cb99502488697e0f1f5c8645, type: 3}
+      propertyPath: looping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3289428072602420612, guid: 52f7f8a9cb99502488697e0f1f5c8645, type: 3}
+      propertyPath: prewarm
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3289428072602420612, guid: 52f7f8a9cb99502488697e0f1f5c8645, type: 3}
+      propertyPath: lengthInSec
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 3289428072602420612, guid: 52f7f8a9cb99502488697e0f1f5c8645, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3289428072602420612, guid: 52f7f8a9cb99502488697e0f1f5c8645, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3289428072602420612, guid: 52f7f8a9cb99502488697e0f1f5c8645, type: 3}
+      propertyPath: SubModule.subEmitters.Array.data[0].type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3289428072602420612, guid: 52f7f8a9cb99502488697e0f1f5c8645, type: 3}
+      propertyPath: SubModule.subEmitters.Array.data[0].emitter
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5738513065862232148, guid: 52f7f8a9cb99502488697e0f1f5c8645, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5738513065862232148, guid: 52f7f8a9cb99502488697e0f1f5c8645, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5738513065862232148, guid: 52f7f8a9cb99502488697e0f1f5c8645, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5738513065862232148, guid: 52f7f8a9cb99502488697e0f1f5c8645, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.5656869
+      objectReference: {fileID: 0}
+    - target: {fileID: 5738513065862232148, guid: 52f7f8a9cb99502488697e0f1f5c8645, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5738513065862232148, guid: 52f7f8a9cb99502488697e0f1f5c8645, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5738513065862232148, guid: 52f7f8a9cb99502488697e0f1f5c8645, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.8246201
+      objectReference: {fileID: 0}
+    - target: {fileID: 5738513065862232148, guid: 52f7f8a9cb99502488697e0f1f5c8645, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5738513065862232148, guid: 52f7f8a9cb99502488697e0f1f5c8645, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5738513065862232148, guid: 52f7f8a9cb99502488697e0f1f5c8645, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -111.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6613952890220954022, guid: 52f7f8a9cb99502488697e0f1f5c8645, type: 3}
+      propertyPath: m_Name
+      value: JetpackFireParticles
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 52f7f8a9cb99502488697e0f1f5c8645, type: 3}
+--- !u!4 &858476021071811780 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5738513065862232148, guid: 52f7f8a9cb99502488697e0f1f5c8645, type: 3}
+  m_PrefabInstance: {fileID: 4920921869274246288}
+  m_PrefabAsset: {fileID: 0}

@@ -35,9 +35,10 @@ MonoBehaviour:
   m_Flags: 1
   m_ColliderType: 1
   TerrainName: Dirt
+  CurrrentHealth: 100
   BackgroundTile: {fileID: 11400000, guid: d10be5fc25ebfdc46bea4413519a39e1, type: 2}
-  BaseHealth: 4
-  _maxHealth: 4
+  BaseHealth: 50
+  _maxHealth: 50
   Destructible: 1
   minDepth: 0
   maxDepth: -50

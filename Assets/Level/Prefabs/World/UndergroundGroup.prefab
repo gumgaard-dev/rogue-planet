@@ -643,30 +643,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 2445724428729527302, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 9154500170410556862}
     - targetCorrespondingSourceObject: {fileID: 6040250288406907586, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 9093772251419051294}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
---- !u!4 &287682427015702891 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2445724428729527302, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
-  m_PrefabInstance: {fileID: 2454172403472762221}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2132873708024913821 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4582278042664557296, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
-  m_PrefabInstance: {fileID: 2454172403472762221}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b1a94d48fb46ba4aa4c3b3f501872a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1839735485 &5031789610498077642 stripped
 Tilemap:
   m_CorrespondingSourceObject: {fileID: 7483426986093885095, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
@@ -681,70 +662,4 @@ Tilemap:
 Transform:
   m_CorrespondingSourceObject: {fileID: 6040250288406907586, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
   m_PrefabInstance: {fileID: 2454172403472762221}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &8774734891764175142
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 287682427015702891}
-    m_Modifications:
-    - target: {fileID: 490135361671310488, guid: df725b573b3b7274685e14bc60b8a316, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 490135361671310488, guid: df725b573b3b7274685e14bc60b8a316, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 490135361671310488, guid: df725b573b3b7274685e14bc60b8a316, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 490135361671310488, guid: df725b573b3b7274685e14bc60b8a316, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 490135361671310488, guid: df725b573b3b7274685e14bc60b8a316, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 490135361671310488, guid: df725b573b3b7274685e14bc60b8a316, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 490135361671310488, guid: df725b573b3b7274685e14bc60b8a316, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 490135361671310488, guid: df725b573b3b7274685e14bc60b8a316, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 490135361671310488, guid: df725b573b3b7274685e14bc60b8a316, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 490135361671310488, guid: df725b573b3b7274685e14bc60b8a316, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4364565912711519123, guid: df725b573b3b7274685e14bc60b8a316, type: 3}
-      propertyPath: TerrainHit.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 2132873708024913821}
-    - target: {fileID: 8515985784178085978, guid: df725b573b3b7274685e14bc60b8a316, type: 3}
-      propertyPath: m_Name
-      value: ClickToDestroyTerrain
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: df725b573b3b7274685e14bc60b8a316, type: 3}
---- !u!4 &9154500170410556862 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 490135361671310488, guid: df725b573b3b7274685e14bc60b8a316, type: 3}
-  m_PrefabInstance: {fileID: 8774734891764175142}
   m_PrefabAsset: {fileID: 0}

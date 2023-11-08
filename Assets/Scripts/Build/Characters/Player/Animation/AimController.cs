@@ -11,7 +11,7 @@ namespace Capstone.Build.Characters.Player.Animation
         public Transform bone; // Assign the bone you want to rotate in the inspector
         public float rotationSpeed = 5f; // Adjust rotation speed as needed
         private InputInfo _inputInfo;
-        private Vector2 aimDirection;
+        public Vector2 AimDirection;
         public bool IsAiming;
 
         public UnityEvent StartedAiming;
@@ -34,17 +34,18 @@ namespace Capstone.Build.Characters.Player.Animation
         void LateUpdate()
         {
             // Retrieve the aim direction from the input system
-            aimDirection = _inputInfo.Aim;
-            Debug.Log(aimDirection.ToString());
-            AimXDirection = aimDirection.normalized.x;
-            if (aimDirection.sqrMagnitude > 0.01f)
+            AimDirection = _inputInfo.Aim;
+
+            AimXDirection = AimDirection.normalized.x;
+            
+            if (AimDirection.sqrMagnitude > 0.01f)
             {
                 if (!IsAiming)
                 {
                     StartedAiming?.Invoke();
                 }
                 IsAiming = true;
-                RotateBoneTowardsDirection(new Vector2(aimDirection.x, aimDirection.y));
+                RotateBoneTowardsDirection(new Vector2(AimDirection.x, AimDirection.y));
             }
             else
             {

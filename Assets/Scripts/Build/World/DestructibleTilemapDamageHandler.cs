@@ -36,6 +36,7 @@ namespace Capstone.Build.World
             if (currentTile != null)
             {
                 currentTile.Damage(damageAmount); // apply damage
+                Debug.Log(currentTile.CurrrentHealth);
 
                 // check if tile health is at or below zero after damage calculations
                 if (currentTile.ShouldBeDestroyed())
