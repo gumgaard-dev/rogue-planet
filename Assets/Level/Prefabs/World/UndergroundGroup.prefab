@@ -1,5 +1,52 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3900981005219868742
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9041345126386245404}
+  - component: {fileID: 7743897010388007781}
+  m_Layer: 0
+  m_Name: OreVisibilityController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9041345126386245404
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3900981005219868742}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 287682427015702891}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7743897010388007781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3900981005219868742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e488b9018fa0224ca178331534b5260, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  map: {fileID: 2687393706165931353}
+  OreTilePositions: []
+  VisibilityRadius: 0
 --- !u!1 &6776923109838642922
 GameObject:
   m_ObjectHideFlags: 0
@@ -548,6 +595,58 @@ PrefabInstance:
       propertyPath: TerrainTileTypes.Array.data[1]
       value: 
       objectReference: {fileID: 11400000, guid: 30d030a00725840478740b540186c289, type: 2}
+    - target: {fileID: 523950937630017588, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
+      propertyPath: OrePlaced.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 523950937630017588, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
+      propertyPath: OrePlaced.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7743897010388007781}
+    - target: {fileID: 523950937630017588, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
+      propertyPath: OrePlaced.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 523950937630017588, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
+      propertyPath: OrePlaced.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddToOrePositionList
+      objectReference: {fileID: 0}
+    - target: {fileID: 523950937630017588, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
+      propertyPath: InitialGenerationCompleted.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 523950937630017588, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
+      propertyPath: InitialGenerationCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 523950937630017588, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
+      propertyPath: OrePlaced.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Capstone.Build.World.OreVisibilityController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 523950937630017588, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
+      propertyPath: InitialGenerationCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7743897010388007781}
+    - target: {fileID: 523950937630017588, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
+      propertyPath: InitialGenerationCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 523950937630017588, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
+      propertyPath: InitialGenerationCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UpdateVisibilityAllSprites
+      objectReference: {fileID: 0}
+    - target: {fileID: 523950937630017588, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
+      propertyPath: InitialGenerationCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Capstone.Build.World.OreVisibilityController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 523950937630017588, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
+      propertyPath: OrePlaced.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 523950937630017588, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
+      propertyPath: InitialGenerationCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2445724428729527302, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -605,8 +704,72 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4582278042664557296, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
+      propertyPath: TerrainDestroyed.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4582278042664557296, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
+      propertyPath: TileWithItemDestroyed.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4582278042664557296, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
+      propertyPath: OreDestroyed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7743897010388007781}
+    - target: {fileID: 4582278042664557296, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
+      propertyPath: TerrainDestroyed.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4582278042664557296, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
+      propertyPath: OreDestroyed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RemoveFromOrePositionList
+      objectReference: {fileID: 0}
+    - target: {fileID: 4582278042664557296, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
+      propertyPath: TerrainDestroyed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7743897010388007781}
+    - target: {fileID: 4582278042664557296, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
+      propertyPath: TerrainDestroyed.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4582278042664557296, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
+      propertyPath: TerrainDestroyed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UpdateSpritesBasedOnProximityToEmpty
+      objectReference: {fileID: 0}
+    - target: {fileID: 4582278042664557296, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
+      propertyPath: TileWithItemDestroyed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8076969071708834873}
+    - target: {fileID: 4582278042664557296, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
+      propertyPath: TileWithItemDestroyed.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4582278042664557296, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
+      propertyPath: TileWithItemDestroyed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SpawnOre
+      objectReference: {fileID: 0}
+    - target: {fileID: 4582278042664557296, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
       propertyPath: OreDestroyed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Capstone.Build.World.OreVisibilityController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4582278042664557296, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
+      propertyPath: TerrainDestroyed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Capstone.Build.World.OreVisibilityController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4582278042664557296, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
+      propertyPath: TileWithItemDestroyed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: Capstone.Build.World.ItemSpawner, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4582278042664557296, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
+      propertyPath: TerrainDestroyed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4582278042664557296, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
+      propertyPath: TileWithItemDestroyed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5378714353535839716, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
+      propertyPath: m_Name
+      value: OreItemSpawner
       objectReference: {fileID: 0}
     - target: {fileID: 6021644446189465072, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
       propertyPath: m_Name
@@ -643,11 +806,30 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2445724428729527302, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9041345126386245404}
     - targetCorrespondingSourceObject: {fileID: 6040250288406907586, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 9093772251419051294}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
+--- !u!4 &287682427015702891 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2445724428729527302, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
+  m_PrefabInstance: {fileID: 2454172403472762221}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2687393706165931353 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 523950937630017588, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
+  m_PrefabInstance: {fileID: 2454172403472762221}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49dd3994f0c4ac34db7b48b68b278e5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1839735485 &5031789610498077642 stripped
 Tilemap:
   m_CorrespondingSourceObject: {fileID: 7483426986093885095, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
@@ -658,6 +840,17 @@ Tilemap:
   m_CorrespondingSourceObject: {fileID: 8349746159958169705, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
   m_PrefabInstance: {fileID: 2454172403472762221}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8076969071708834873 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5915988695920019796, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
+  m_PrefabInstance: {fileID: 2454172403472762221}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3364caf52cd86845822ecf58c98a8d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &8204924576052694959 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6040250288406907586, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}

@@ -26,6 +26,9 @@ namespace Capstone.Build.World
         public int minDepth;
         public int maxDepth;
 
+        public Color UnexposedColor;
+        public bool Exposed { get; set; }
+
         public override void GetTileData(Vector3Int location, ITilemap tilemap, ref TileData tileData)
         {
             base.GetTileData(location, tilemap, ref tileData);

@@ -591,6 +591,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2687393706165931353, guid: df446ea171a899b44b982fd8f84dbea5, type: 3}
+      propertyPath: TerrainTileTypes.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2687393706165931353, guid: df446ea171a899b44b982fd8f84dbea5, type: 3}
+      propertyPath: TerrainTileTypes.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 0f9319fa68dce1f4e863abcd1fdf0f66, type: 2}
+    - target: {fileID: 2687393706165931353, guid: df446ea171a899b44b982fd8f84dbea5, type: 3}
+      propertyPath: TerrainTileTypes.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 850ac5720020894499a5c242810a1f1d, type: 2}
+    - target: {fileID: 2687393706165931353, guid: df446ea171a899b44b982fd8f84dbea5, type: 3}
+      propertyPath: TerrainTileTypes.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 30d030a00725840478740b540186c289, type: 2}
+    - target: {fileID: 7743897010388007781, guid: df446ea171a899b44b982fd8f84dbea5, type: 3}
+      propertyPath: VisibilityRadius
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8187497342117357725, guid: df446ea171a899b44b982fd8f84dbea5, type: 3}
       propertyPath: m_Name
       value: UndergroundGroup
@@ -936,29 +956,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 83518213194781505, guid: b393b9d5873e8dc48a79636058eced9f, type: 3}
-      propertyPath: BeamHitEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 83518213194781505, guid: b393b9d5873e8dc48a79636058eced9f, type: 3}
       propertyPath: BeamHitEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 441805775}
-    - target: {fileID: 83518213194781505, guid: b393b9d5873e8dc48a79636058eced9f, type: 3}
-      propertyPath: BeamHitEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 83518213194781505, guid: b393b9d5873e8dc48a79636058eced9f, type: 3}
-      propertyPath: BeamHitEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: HandleDamage
-      objectReference: {fileID: 0}
-    - target: {fileID: 83518213194781505, guid: b393b9d5873e8dc48a79636058eced9f, type: 3}
-      propertyPath: BeamHitEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Capstone.Build.World.DestructibleTilemapDamageHandler, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 83518213194781505, guid: b393b9d5873e8dc48a79636058eced9f, type: 3}
-      propertyPath: BeamHitEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 826516851485070320, guid: b393b9d5873e8dc48a79636058eced9f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.01
@@ -1023,6 +1023,14 @@ PrefabInstance:
       propertyPath: FuelUpdated.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1404606429}
+    - target: {fileID: 4983356111826336225, guid: b393b9d5873e8dc48a79636058eced9f, type: 3}
+      propertyPath: magnetRadius
+      value: 2.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 4983356111826336225, guid: b393b9d5873e8dc48a79636058eced9f, type: 3}
+      propertyPath: magnetStrength
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

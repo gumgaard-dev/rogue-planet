@@ -34,10 +34,11 @@ MonoBehaviour:
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 1
   m_ColliderType: 1
-  OreName: 
+  OreName: RedOre
   OreToDrop: {fileID: 792660581327761799, guid: eeb6d1549b4040342a1938fb40c4a4d8, type: 3}
   TerrainHealthModifier: 1.4
   TerrainSpawnData:
   - terrainType: {fileID: 11400000, guid: 30d030a00725840478740b540186c289, type: 2}
     veinChance: 0.001
   MaxVeinSize: 10
+  DefaultSprite: {fileID: 21300000, guid: 9598b41ef51bcc44e9669d76ea84cdf6, type: 3}

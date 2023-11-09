@@ -1,10 +1,14 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Tilemaps;
 
 namespace Capstone.Build.World
 {
+    [System.Serializable] public class OrePlacedEvent : UnityEvent<Vector3Int, OreTile> { }
+    [System.Serializable] public class MapGeneratedEvent : UnityEvent { }
     public class MapGenerator : MonoBehaviour
     {
         [Header("Tilemaps")]
@@ -21,6 +25,10 @@ namespace Capstone.Build.World
         [Header("Ore Type Config")]
         public List<OreTile> OreTileTypes;
 
+        [Header("Events")]
+        public OrePlacedEvent OrePlaced;
+        public MapGeneratedEvent InitialGenerationCompleted;
+
         // class variable used for checking neighbours during ore generation
         private static readonly Vector3Int[] DIRECTIONS = { Vector3Int.up, Vector3Int.down, Vector3Int.left, Vector3Int.right };
 
@@ -30,6 +38,7 @@ namespace Capstone.Build.World
             SetTileStats();
             GenerateTerrainMap();
             GenerateOreMap();
+            InitialGenerationCompleted?.Invoke();
         }
 
         private void CheckComponentReferences()
@@ -124,6 +133,8 @@ namespace Capstone.Build.World
                 // grow veins for each starting point for this ore
                 GenerateOreVeins(oreTile, startPoints);
             }
+
+            InitialGenerationCompleted?.Invoke();
         }
 
 
@@ -173,11 +184,11 @@ namespace Capstone.Build.World
 
             if (terrainTile != null) {
                 // if the tile exists, updates the health values for the tile, and sets the associated ore tile
-                terrainTile.SetOre(oreTile);
-                
-                
-                // place a clone of the ore tile at the position on the ore tilemap
-                OreTilemap.SetTile(position, Instantiate(oreTile));
+                OreTile clone = Instantiate(oreTile);
+                terrainTile.SetOre(clone);
+
+                OreTilemap.SetTile(position, clone);
+                OrePlaced?.Invoke(position, clone);
             }
         }
 

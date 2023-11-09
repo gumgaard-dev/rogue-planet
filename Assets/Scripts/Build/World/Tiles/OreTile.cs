@@ -13,6 +13,12 @@ namespace Capstone.Build.World
     [CreateAssetMenu]
     public class OreTile : Tile
     {
+        // set in custom editor class
+        public Sprite DefaultSprite { get; set; }
+
+        // used by OreVisibilityController
+        public bool IsVisible { get; set; }
+
         public string OreName;
         [Header("Ore Settings")]
         public OreCollectable OreToDrop;
@@ -25,6 +31,8 @@ namespace Capstone.Build.World
 
         [Header("Vein Settings")]
         public int MaxVeinSize = 10; // max number of ores in a vein
+        
+        
 
         public float GetSpawnChanceInTerrain(string terrainName)
         {
@@ -36,6 +44,10 @@ namespace Capstone.Build.World
                 }
             }
             return 0f; // return 0 if the terrain type is not found in the list
+        }
+        public override void GetTileData(Vector3Int cell, ITilemap tilemap, ref TileData tileData)
+        {
+            tileData.sprite = IsVisible ? DefaultSprite : null;
         }
 
     }

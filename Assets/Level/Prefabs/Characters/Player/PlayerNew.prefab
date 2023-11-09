@@ -47,7 +47,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemCollected:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3369030432780222127}
+        m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
+        m_MethodName: AddToStorage
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!70 &3442585628486611361
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -81,7 +93,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 1}
+  m_Size: {x: 0.8, y: 1.48}
   m_Direction: 0
 --- !u!1 &1263872270203550075
 GameObject:
@@ -666,9 +678,24 @@ MonoBehaviour:
   _targetLayers:
     serializedVersion: 2
     m_Bits: 278536
+  DamageAmount: 10
+  RaycastCollisionCorrectionAmount: 0.2
   BeamHitEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Capstone.Build.World.DestructibleTilemapDamageHandler,
+          Assembly-CSharp
+        m_MethodName: HandleDamage
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   PlayerAimController: {fileID: 3064541680550784680}
 --- !u!1 &8809532008465407097
 GameObject:
