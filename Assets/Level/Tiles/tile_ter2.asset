@@ -35,9 +35,11 @@ MonoBehaviour:
   m_Flags: 1
   m_ColliderType: 1
   TerrainName: Stone
+  CurrrentHealth: 8
   BackgroundTile: {fileID: 11400000, guid: d10be5fc25ebfdc46bea4413519a39e1, type: 2}
   BaseHealth: 8
   _maxHealth: 8
   Destructible: 1
   minDepth: -47
   maxDepth: -100
+  UnexposedColor: {r: 0, g: 0, b: 0, a: 0}

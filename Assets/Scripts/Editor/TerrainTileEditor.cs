@@ -19,8 +19,7 @@ namespace Capstone.EditorScripts
 
             if (tile.sprite != null)
             {
-
-                Texture2D newIcon = new(width, height, TextureFormat.ARGB32, false);
+                Texture2D newIcon = new Texture2D(width, height, TextureFormat.ARGB32, false);
                 Texture2D spritePreview = AssetPreview.GetAssetPreview(tile.sprite);
                 EditorUtility.CopySerialized(spritePreview, newIcon);
                 EditorUtility.SetDirty(tile);

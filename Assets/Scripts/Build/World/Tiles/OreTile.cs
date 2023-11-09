@@ -14,7 +14,7 @@ namespace Capstone.Build.World
     public class OreTile : Tile
     {
         // set in custom editor class
-        public Sprite DefaultSprite { get; set; }
+        public Sprite DefaultSprite;
 
         // used by OreVisibilityController
         public bool IsVisible { get; set; }

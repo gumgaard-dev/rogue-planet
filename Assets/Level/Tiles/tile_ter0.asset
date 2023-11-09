@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c5d1c6685424f14782da8fc11d471f7, type: 3}
   m_Name: tile_ter0
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: 978f926ab2727c34daf0528bbb39978e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 571c9f60b7acefc4b828947a5994072c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
@@ -42,3 +42,4 @@ MonoBehaviour:
   Destructible: 1
   minDepth: 0
   maxDepth: -5
+  UnexposedColor: {r: 0, g: 0, b: 0, a: 0}
