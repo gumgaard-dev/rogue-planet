@@ -584,6 +584,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df446ea171a899b44b982fd8f84dbea5, type: 3}
+--- !u!114 &1500997142576391808 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2687393706165931353, guid: df446ea171a899b44b982fd8f84dbea5, type: 3}
+  m_PrefabInstance: {fileID: 1500997142576391807}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49dd3994f0c4ac34db7b48b68b278e5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5261579739201502802
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -915,6 +926,10 @@ PrefabInstance:
       propertyPath: EnterShip.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1955755020}
+    - target: {fileID: 1856302405401256633, guid: b393b9d5873e8dc48a79636058eced9f, type: 3}
+      propertyPath: PlayerMoved.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1500997142576391808}
     - target: {fileID: 1995228115280792467, guid: b393b9d5873e8dc48a79636058eced9f, type: 3}
       propertyPath: m_Name
       value: Player

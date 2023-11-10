@@ -92,8 +92,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.8, y: 1.48}
+  m_Offset: {x: 0, y: -0.03}
+  m_Size: {x: 0.24, y: 0.92}
   m_Direction: 0
 --- !u!1 &1263872270203550075
 GameObject:
@@ -490,7 +490,7 @@ Transform:
   m_GameObject: {fileID: 6690013910431629879}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5000005, y: -0, z: 0}
+  m_LocalPosition: {x: 0.25, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -804,7 +804,7 @@ Transform:
   m_GameObject: {fileID: 8809532008465407097}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5000005, y: -0, z: 0}
+  m_LocalPosition: {x: 0.25, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1044,11 +1044,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5220006243450652443, guid: 3ef2d882105d27940a5592031b64398b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.39321017
+      value: 0.21
       objectReference: {fileID: 0}
     - target: {fileID: 5220006243450652443, guid: 3ef2d882105d27940a5592031b64398b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.26542717
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 5220006243450652443, guid: 3ef2d882105d27940a5592031b64398b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1096,11 +1096,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8922514593419657027, guid: 3ef2d882105d27940a5592031b64398b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.40775242
+      value: 0.21
       objectReference: {fileID: 0}
     - target: {fileID: 8922514593419657027, guid: 3ef2d882105d27940a5592031b64398b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.23338045
+      value: -0.15
       objectReference: {fileID: 0}
     - target: {fileID: 8922514593419657027, guid: 3ef2d882105d27940a5592031b64398b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1281,8 +1281,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.05, y: 0.33}
-  m_Size: {x: 0.64, y: 1.62}
+  m_Offset: {x: -0.012283862, y: 0.2074219}
+  m_Size: {x: 0.35712802, y: 0.8090999}
   m_Direction: 0
 --- !u!114 &1856302405401256633
 MonoBehaviour:
@@ -1321,6 +1321,21 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: Capstone.Build.Cam.CameraStateManager, Assembly-CSharp
         m_MethodName: OnPlayerExitShip
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  PlayerMoved:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Capstone.Build.World.MapGenerator, Assembly-CSharp
+        m_MethodName: OnPlayerMoved
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

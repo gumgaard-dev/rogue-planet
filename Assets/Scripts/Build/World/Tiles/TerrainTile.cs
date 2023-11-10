@@ -53,32 +53,6 @@ namespace Capstone.Build.World
             return base.RuleMatch(neighbor, tile);
         }
 
-        public void SetOre(OreTile oreTile)
-        {
-            this.UpdateMaxHealth((int)(this.BaseHealth * oreTile.TerrainHealthModifier));
-        }
-        
-        public void UpdateMaxHealth(int newMaxHealth)
-        {
-            this._maxHealth = newMaxHealth;
-            this.CurrrentHealth = newMaxHealth;
-        }
-
-        public void Damage(int incomingDamage)
-        {
-            this.CurrrentHealth -= incomingDamage;
-        }
-
-        public bool ShouldBeDestroyed()
-        {
-            return this.CurrrentHealth <= 0;
-        }
-
-        public void InitializeStats()
-        {
-            this.CurrrentHealth = this._maxHealth;
-        }
-
         public Tile GetBackgroundTile()
         {
             return Instantiate(this.BackgroundTile) as Tile;

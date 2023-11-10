@@ -14,12 +14,10 @@ namespace Capstone.Build.World
         private Tilemap OreTilemap;
         private Tilemap TerrainTilemap;
 
-        public Dictionary<Vector3Int, OreTile> OreTilePositions;
+        public List<Vector3Int> OreTilePositions;
 
+        [Header("Max distance from empty tile that ore is visible")]
         public int VisibilityRadius;
-
-        private Color _invisibleColor = new(1f, 1f, 1f, 0f);
-        private Color _visibleColor = Color.white;
 
         private void Awake()
         {
@@ -32,7 +30,7 @@ namespace Capstone.Build.World
                 TerrainTilemap = map.TerrainTilemap;
             }
 
-            this.OreTilePositions = new Dictionary<Vector3Int, OreTile>();
+            this.OreTilePositions = new();
         }
 
         private void Update()
@@ -45,7 +43,7 @@ namespace Capstone.Build.World
         {
             if (OreTilePositions.Count > 0 && map != null)
             {
-                foreach (Vector3Int position in this.OreTilePositions.Keys)
+                foreach (Vector3Int position in this.OreTilePositions)
                 {
                     if (NearEmptyTile(position))
                     {
@@ -79,7 +77,7 @@ namespace Capstone.Build.World
                         if (positionToCheck == destroyedTilePosition) continue;
 
                         // If there's an ore tile at this position, check if it should be visible or invisible
-                        if (OreTilePositions.ContainsKey(positionToCheck))
+                        if (OreTilePositions.Contains(positionToCheck))
                         {
                             SetTileVisible(positionToCheck);
                         }
@@ -120,7 +118,7 @@ namespace Capstone.Build.World
         private bool OreExistsAtPosition(Vector3Int position)
         {
             // Check if the specified tile is empty.
-            return OreTilePositions.ContainsKey(position);
+            return OreTilePositions.Contains(position);
         }
 
         private bool TerrainExistsAtPosition(Vector3Int position)
@@ -143,19 +141,19 @@ namespace Capstone.Build.World
             OreTilemap.RefreshTile(position);
         }
 
-        public void AddToOrePositionList(Vector3Int newOrePosition, OreTile oreType)
+        public void AddToOrePositionList(Vector3Int newOrePosition)
         {
             // don't add if already in the list
-            if (OreTilePositions.ContainsKey(newOrePosition)){ return; }
+            if (OreTilePositions.Contains(newOrePosition)){ return; }
 
-            OreTilePositions.Add(newOrePosition, oreType);
+            OreTilePositions.Add(newOrePosition);
 
         }
 
         public void RemoveFromOrePositionList(Vector3Int orePositionToRemove)
         {
             // remove only if contained in the list 
-            if (OreTilePositions.ContainsKey(orePositionToRemove))
+            if (OreTilePositions.Contains(orePositionToRemove))
             {
                 OreTilePositions.Remove(orePositionToRemove);
             }

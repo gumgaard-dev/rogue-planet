@@ -7,6 +7,7 @@ using UnityEngine.Events;
 
 namespace Capstone.Build.Characters.Player
 {
+    [System.Serializable] public class PlayerMovedEvent : UnityEvent<Vector3> { }
     public class Player : MonoBehaviour
     {
         public string SETTINGS_PATH = "Settings/GameSettings";
@@ -35,6 +36,7 @@ namespace Capstone.Build.Characters.Player
         public Ship Ship {  get { return _ship; } }
         public UnityEvent EnterShip;
         public UnityEvent ExitShip;
+        public PlayerMovedEvent PlayerMoved;
         
         // used to determine if player is close enough to enter the ship
         private bool _isNearShip;
@@ -88,7 +90,10 @@ namespace Capstone.Build.Characters.Player
         }
 
 
-        public void UpdateManaged() { State.UpdateManaged(); }
+        public void UpdateManaged() {
+            PlayerMoved?.Invoke(this.transform.position);
+            State.UpdateManaged(); 
+        }
 
 
         public void FixedUpdateManaged() { State.FixedUpdateManaged(); }
@@ -107,7 +112,10 @@ namespace Capstone.Build.Characters.Player
         }
 
 
-        public void SetPosition(float x, float y) { transform.position = new Vector2(x, y); }
+        public void SetPosition(float x, float y) { 
+            Vector2 newPosition = new Vector2(x, y);
+            transform.position = newPosition;
+        }
 
         public void SetPosition(Vector2 position) { SetPosition(position.x, position.y); }
 

@@ -45,6 +45,7 @@ namespace Capstone.Build.World
             }
             return 0f; // return 0 if the terrain type is not found in the list
         }
+
         public override void GetTileData(Vector3Int cell, ITilemap tilemap, ref TileData tileData)
         {
             tileData.sprite = IsVisible ? DefaultSprite : null;
