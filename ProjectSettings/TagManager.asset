@@ -62,6 +62,9 @@ TagManager:
   - name: SurfaceForeGround
     uniqueID: 2257507537
     locked: 0
+  - name: Items
+    uniqueID: 1006945747
+    locked: 0
   - name: UndergroundForeground
     uniqueID: 55561481
     locked: 0

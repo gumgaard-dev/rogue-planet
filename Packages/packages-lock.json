@@ -265,6 +265,13 @@
       },
       "url": "https://packages.unity.com"
     },
+    "www.nulltale.lutlight2d": {
+      "version": "https://github.com/NullTale/LutLight2D.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "832d2b6b30e3db60eb37e87373cbed2afcb5ff8a"
+    },
     "com.unity.modules.ai": {
       "version": "1.0.0",
       "depth": 0,

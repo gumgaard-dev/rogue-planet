@@ -31,9 +31,30 @@ namespace Capstone.Build.World
             base.GetTileData(location, tilemap, ref tileData);
         }
 
+        public override bool RuleMatch(int neighbor, TileBase tile)
+        {
+            if (tile is TerrainTile)
+            {
+                // Special handling for the "self" tile
+                if (neighbor == TilingRule.Neighbor.This && this == tile)
+                {
+                    return true;
+                }
+
+                // Special handling for "not a neighbor" - needed for isolated tiles
+                if (neighbor == TilingRule.Neighbor.NotThis)
+                {
+                    return !(tile is TerrainTile);
+                }
+
+                // General case - any TerrainTile is considered a match
+                return true;
+            }
+            return base.RuleMatch(neighbor, tile);
+        }
+
         public void SetOre(OreTile oreTile)
         {
-            this.OreTile = oreTile;
             this.UpdateMaxHealth((int)(this.BaseHealth * oreTile.TerrainHealthModifier));
         }
         

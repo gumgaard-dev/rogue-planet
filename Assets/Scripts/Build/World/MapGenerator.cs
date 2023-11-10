@@ -29,6 +29,8 @@ namespace Capstone.Build.World
         public OrePlacedEvent OrePlaced;
         public MapGeneratedEvent InitialGenerationCompleted;
 
+        public Dictionary<Vector3Int, TerrainTileData> TerrainTileDataMap = new();
+
         // class variable used for checking neighbours during ore generation
         private static readonly Vector3Int[] DIRECTIONS = { Vector3Int.up, Vector3Int.down, Vector3Int.left, Vector3Int.right };
 
@@ -70,17 +72,47 @@ namespace Capstone.Build.World
                     TerrainTile selectedTile = GetTerrainTileAtDepth(y);
                     if (selectedTile != null)
                     {
-                        Tile backgroundTile = selectedTile.GetBackgroundTile();
-                        PlaceTerrain(selectedTile, new Vector3Int(x, y));
-                        SetBackground(backgroundTile, new Vector3Int(x, y));
+                        Vector3Int position = new Vector3Int(x, y, 0);
+                        PlaceTerrain(selectedTile, position);
                     }
                     else
                     {
                         Debug.Log("MapGenerator: No Tile for coordinates [" + x + ", " + y + "].");
                     }
-
                 }
             }
+        }
+
+        private void PlaceTerrain(TerrainTile terrainTile, Vector3Int position)
+        {
+            if (terrainTile == null) return;
+            TerrainTilemap.SetTile(position, terrainTile);
+            SetBackground(terrainTile.BackgroundTile, position);
+
+            // Initialize terrain tile data
+            var tileData = new TerrainTileData
+            {
+                CurrentHealth = terrainTile.BaseHealth, // Assuming BaseHealth is a property of TerrainTile
+                OreTile = null // Initialize with no ore
+            };
+            TerrainTileDataMap[position] = tileData;
+        }
+
+        private void PlaceOre(OreTile oreTile, Vector3Int position)
+        {
+            if (!TerrainTileDataMap.ContainsKey(position))
+            {
+                Debug.LogWarning("Trying to place ore on a tile that doesn't exist.");
+                return;
+            }
+
+            // Update the tile data with ore information
+            var tileData = TerrainTileDataMap[position];
+            tileData.OreTile = oreTile;
+            tileData.CurrentHealth = (int) (tileData.CurrentHealth * oreTile.TerrainHealthModifier); // Calculate new health based on oreTile properties
+
+            OreTilemap.SetTile(position, oreTile);
+            OrePlaced?.Invoke(position, oreTile);
         }
 
         private void SetBackground(Tile backgroundTile, Vector3Int position)
@@ -175,31 +207,6 @@ namespace Capstone.Build.World
 
             return true;
             
-        }
-
-        private void PlaceOre(OreTile oreTile, Vector3Int position)
-        {
-            // get a ref to terrain tile at selected location
-            TerrainTile terrainTile = TerrainTilemap.GetTile(position) as TerrainTile;
-
-            if (terrainTile != null) {
-                // if the tile exists, updates the health values for the tile, and sets the associated ore tile
-                OreTile clone = Instantiate(oreTile);
-                terrainTile.SetOre(clone);
-
-                OreTilemap.SetTile(position, clone);
-                OrePlaced?.Invoke(position, clone);
-            }
-        }
-
-        private void PlaceTerrain(TerrainTile terrainTile, Vector3Int position)
-        {
-            if (terrainTile == null) return;
-            // get a clone of the terrainTile
-            TerrainTile tileClone = Instantiate(terrainTile);
-
-            // add to tilemap
-            TerrainTilemap.SetTile(position, tileClone);
         }
 
         List<Vector3Int> GenerateStartingPoints(OreTile oreTile)

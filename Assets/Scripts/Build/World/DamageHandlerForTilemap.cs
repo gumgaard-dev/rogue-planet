@@ -4,14 +4,10 @@ using UnityEngine.Tilemaps;
 
 namespace Capstone.Build.World
 {
-
-    // events with info about the tilemap coordinate of the destroyed tile
-    // listeners must have a reference to the tilemap to use this event effectively
     [System.Serializable] public class TileDestroyedEvent : UnityEvent<Vector3Int> { }
     [System.Serializable] public class OreDestroyedEvent : UnityEvent<Vector3Int> { }
-    
-    // holds info about the item to spawn and the world position
     [System.Serializable] public class TileWithItemDestroyedEvent : UnityEvent<OreCollectable, Vector3> { }
+
     public class DamageHandlerForTilemap : MonoBehaviour
     {
         [Header("Tilemaps")]
@@ -23,6 +19,9 @@ namespace Capstone.Build.World
         public OreDestroyedEvent OreDestroyed;
         public TileWithItemDestroyedEvent TileWithItemDestroyed;
 
+        // Reference to the MapGenerator to access the terrainTileDataMap
+        public MapGenerator MapGenerator;
+
         private void Awake()
         {
             if (TerrainTilemap == null)
@@ -30,50 +29,51 @@ namespace Capstone.Build.World
                 Debug.Log(gameObject.name + "->DestructibleTilemap: no terrain map set in inspector.");
             }
         }
-        
-        
-        // overloaded method to accept world coordinates
+
         public void HandleDamage(Vector3 worldPosition, int damageAmount)
         {
             Vector3Int tilePos = TerrainTilemap.WorldToCell(worldPosition);
             HandleDamage(tilePos, damageAmount);
         }
 
-
         public void HandleDamage(Vector3Int position, int damageAmount)
         {
-            // Get the tile at the given position
-            TerrainTile currentTile = TerrainTilemap.GetTile(position) as TerrainTile;
-
-            if (currentTile != null && currentTile.Destructible == true)
+            if (MapGenerator == null)
             {
-                currentTile.Damage(damageAmount); // apply damage
-                Debug.Log(currentTile.CurrrentHealth);
+                Debug.LogError("MapGenerator reference is not set.");
+                return;
+            }
 
-                // check if tile health is at or below zero after damage calculations
-                if (currentTile.ShouldBeDestroyed())
+            if (!MapGenerator.TerrainTileDataMap.TryGetValue(position, out var tileData))
+            {
+                Debug.LogWarning("No tile data found for the position: " + position);
+                return;
+            }
+
+            // Handle damage
+            tileData.CurrentHealth -= damageAmount;
+            Debug.Log(tileData.CurrentHealth);
+
+            if (tileData.CurrentHealth <= 0)
+            {
+                // Check for ore and trigger events
+                OreTile ore = OreTilemap.GetTile(position) as OreTile;
+                if (ore != null)
                 {
-                    // If the tile contains ore, trigger the OreDestroyedEvent
-                    if (currentTile.HasOre)
-                    {
-                        OreTile oreTile = OreTilemap.GetTile(position) as OreTile;
+                    Vector3 oreWorldPosition = TerrainTilemap.GetCellCenterWorld(position);
+                    TileWithItemDestroyed?.Invoke(ore.OreToDrop, oreWorldPosition);
+                    OreDestroyed?.Invoke(position);
 
-                        
-                        Vector3 oreWorldPosition = TerrainTilemap.GetCellCenterWorld(position); // convert to world position
-                        TileWithItemDestroyed?.Invoke(oreTile.OreToDrop, oreWorldPosition); // notify oreItemSpawner that an item should be spawned at world position
-
-                        OreDestroyed?.Invoke(position);// notify listeners that an ore block was destroyed at tilemap coords
-
-                        OreTilemap.SetTile(position, null);
-                        OreTilemap.RefreshTile(position);
-                        Destroy(oreTile);
-                    }
-
-                    TerrainDestroyed?.Invoke(position); // notify listeners that a terrain tile was destroyed
-                    TerrainTilemap.SetTile(position, null); // Remove the tile from the map
-                    TerrainTilemap.RefreshTile(position);
-                    Destroy(currentTile);
+                    OreTilemap.SetTile(position, null);
+                    OreTilemap.RefreshTile(position);
                 }
+
+                TerrainDestroyed?.Invoke(position);
+                TerrainTilemap.SetTile(position, null);
+                TerrainTilemap.RefreshTile(position);
+
+                // Remove the tile data from the dictionary
+                MapGenerator.TerrainTileDataMap.Remove(position);
             }
         }
     }
