@@ -1,4 +1,4 @@
-using Capstone.Build.World;
+/*using Capstone.Build.World;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,10 +17,10 @@ namespace Capstone.EditorScripts
         {
             TerrainTile tile = (TerrainTile)target;
 
-            if (tile.sprite != null)
+            if (tile.m_DefaultSprite != null)
             {
                 Texture2D newIcon = new Texture2D(width, height, TextureFormat.ARGB32, false);
-                Texture2D spritePreview = AssetPreview.GetAssetPreview(tile.sprite);
+                Texture2D spritePreview = AssetPreview.GetAssetPreview(tile.m_DefaultSprite);
                 EditorUtility.CopySerialized(spritePreview, newIcon);
                 EditorUtility.SetDirty(tile);
                 return newIcon;
@@ -30,4 +30,4 @@ namespace Capstone.EditorScripts
         }
     }
 }
-
+*/

@@ -1,4 +1,4 @@
-using Capstone.Build.World;
+/*using Capstone.Build.World;
 using System.Runtime.Remoting.Messaging;
 using UnityEditor;
 using UnityEngine;
@@ -21,12 +21,12 @@ namespace Capstone.EditorScripts
 
         public override Texture2D RenderStaticPreview(string assetPath, Object[] subAssets, int width, int height)
         {
-            Tile tile = (Tile)target;
+            OreTile tile = (OreTile)target;
 
-            if (tile.sprite != null)
+            if (tile.DefaultSprite != null)
             {
                 Texture2D newIcon = new Texture2D(width, height, TextureFormat.ARGB32, false);
-                Texture2D spritePreview = AssetPreview.GetAssetPreview(tile.sprite);
+                Texture2D spritePreview = AssetPreview.GetAssetPreview(tile.DefaultSprite);
                 EditorUtility.CopySerialized(spritePreview, newIcon);
                 EditorUtility.SetDirty(tile);
                 return newIcon;
@@ -37,3 +37,4 @@ namespace Capstone.EditorScripts
     }
 }
 
+*/

@@ -5,7 +5,7 @@ using UnityEngine.Tilemaps;
 namespace Capstone.Build.World
 {
     [CreateAssetMenu]
-    public class TerrainTile : Tile
+    public class TerrainTile : RuleTile
     {
         public bool HasOre { get { return OreTile != null; } }
         public OreTile OreTile { get; private set; } // Reference to the ore overlay tile.
@@ -25,9 +25,6 @@ namespace Capstone.Build.World
         [Header("Depth Settings (values are inclusive, lower numbers are deeper)")]
         public int minDepth;
         public int maxDepth;
-
-        public Color UnexposedColor;
-        public bool Exposed { get; set; }
 
         public override void GetTileData(Vector3Int location, ITilemap tilemap, ref TileData tileData)
         {
