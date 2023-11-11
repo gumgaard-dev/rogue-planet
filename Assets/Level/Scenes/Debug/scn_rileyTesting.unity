@@ -575,57 +575,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2132873708024913821, guid: df446ea171a899b44b982fd8f84dbea5, type: 3}
-      propertyPath: TerrainDestroyed.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2132873708024913821, guid: df446ea171a899b44b982fd8f84dbea5, type: 3}
-      propertyPath: TerrainDestroyed.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1500997142576391808}
-    - target: {fileID: 2132873708024913821, guid: df446ea171a899b44b982fd8f84dbea5, type: 3}
-      propertyPath: TerrainDestroyed.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2132873708024913821, guid: df446ea171a899b44b982fd8f84dbea5, type: 3}
-      propertyPath: TerrainDestroyed.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: OnTileDestroyedByPlayer
-      objectReference: {fileID: 0}
-    - target: {fileID: 2132873708024913821, guid: df446ea171a899b44b982fd8f84dbea5, type: 3}
-      propertyPath: TerrainDestroyed.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: Capstone.Build.World.MapGenerator, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 2132873708024913821, guid: df446ea171a899b44b982fd8f84dbea5, type: 3}
-      propertyPath: TerrainDestroyed.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 2832228329262452484, guid: df446ea171a899b44b982fd8f84dbea5, type: 3}
-      propertyPath: m_SortOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2902060878838541215, guid: df446ea171a899b44b982fd8f84dbea5, type: 3}
-      propertyPath: m_SortOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3562669246621747122, guid: df446ea171a899b44b982fd8f84dbea5, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7795435992452813941, guid: df446ea171a899b44b982fd8f84dbea5, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8187497342117357725, guid: df446ea171a899b44b982fd8f84dbea5, type: 3}
       propertyPath: m_Name
       value: UndergroundGroup
-      objectReference: {fileID: 0}
-    - target: {fileID: 8626408963508717858, guid: df446ea171a899b44b982fd8f84dbea5, type: 3}
-      propertyPath: m_SortOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9093772251419051294, guid: df446ea171a899b44b982fd8f84dbea5, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -978,10 +930,6 @@ PrefabInstance:
       propertyPath: PlayerMoved.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1500997142576391808}
-    - target: {fileID: 1856302405401256633, guid: b393b9d5873e8dc48a79636058eced9f, type: 3}
-      propertyPath: PlayerMoved.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: CullChunks
-      objectReference: {fileID: 0}
     - target: {fileID: 1995228115280792467, guid: b393b9d5873e8dc48a79636058eced9f, type: 3}
       propertyPath: m_Name
       value: Player

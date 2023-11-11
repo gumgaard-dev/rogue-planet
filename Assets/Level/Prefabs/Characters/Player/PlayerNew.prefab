@@ -1334,7 +1334,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Capstone.Build.World.MapGenerator, Assembly-CSharp
-        m_MethodName: OnPlayerMoved
+        m_MethodName: CullChunks
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

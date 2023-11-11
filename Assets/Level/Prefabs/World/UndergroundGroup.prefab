@@ -667,8 +667,8 @@ TilemapRenderer:
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
-  m_SortOrder: 2
-  m_Mode: 0
+  m_SortOrder: 0
+  m_Mode: 1
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
 --- !u!1001 &2454172403472762221
@@ -680,8 +680,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 378549091869854313, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
+      propertyPath: m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 378549091869854313, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
       propertyPath: m_SortOrder
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 378549091869854313, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
       propertyPath: m_SortingLayer
@@ -824,8 +828,12 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 741062255796629234, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
+      propertyPath: m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 741062255796629234, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
       propertyPath: m_SortOrder
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 741062255796629234, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
       propertyPath: m_SortingLayer
@@ -885,7 +893,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3048131342680106970, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
       propertyPath: m_Name
-      value: TilemapGridContainer
+      value: TileGrid
       objectReference: {fileID: 0}
     - target: {fileID: 3869949256604458512, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
       propertyPath: m_Name
@@ -909,7 +917,7 @@ PrefabInstance:
       objectReference: {fileID: 2687393706165931353}
     - target: {fileID: 4582278042664557296, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
       propertyPath: TerrainDestroyed.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4582278042664557296, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
       propertyPath: TileWithItemDestroyed.m_PersistentCalls.m_Calls.Array.size
@@ -932,12 +940,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7743897010388007781}
     - target: {fileID: 4582278042664557296, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
+      propertyPath: TerrainDestroyed.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 2687393706165931353}
+    - target: {fileID: 4582278042664557296, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
       propertyPath: TerrainDestroyed.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4582278042664557296, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
+      propertyPath: TerrainDestroyed.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4582278042664557296, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
       propertyPath: TerrainDestroyed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: UpdateVisibilityNearPosition
+      objectReference: {fileID: 0}
+    - target: {fileID: 4582278042664557296, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
+      propertyPath: TerrainDestroyed.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: OnTileDestroyedByPlayer
       objectReference: {fileID: 0}
     - target: {fileID: 4582278042664557296, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
       propertyPath: TileWithItemDestroyed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -960,11 +980,19 @@ PrefabInstance:
       value: Capstone.Build.World.TileVisibilityManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4582278042664557296, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
+      propertyPath: TerrainDestroyed.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Capstone.Build.World.MapGenerator, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4582278042664557296, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
       propertyPath: TileWithItemDestroyed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: Capstone.Build.World.ItemSpawner, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4582278042664557296, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
       propertyPath: TerrainDestroyed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4582278042664557296, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
+      propertyPath: TerrainDestroyed.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4582278042664557296, guid: 38e2f75ef59af1e40848b1821baa919d, type: 3}
