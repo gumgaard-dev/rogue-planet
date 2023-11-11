@@ -22,9 +22,11 @@ namespace Capstone.Build.World
         [SerializeField] private int _maxHealth;
         public bool Destructible = true;
 
-        [Header("Depth Settings (values are inclusive, lower numbers are deeper)")]
+        [Header("Depth Settings (values are inclusive, higher numbers are deeper)")]
         public int minDepth;
         public int maxDepth;
+
+        
 
         public override void GetTileData(Vector3Int location, ITilemap tilemap, ref TileData tileData)
         {
@@ -56,6 +58,15 @@ namespace Capstone.Build.World
         public Tile GetBackgroundTile()
         {
             return Instantiate(this.BackgroundTile) as Tile;
+        }
+
+        public MapTileData CreateMapTileData()
+        {
+            MapTileData tileData = new MapTileData();
+
+            tileData.TerrainTile = this;
+
+            return tileData;
         }
     }
 }

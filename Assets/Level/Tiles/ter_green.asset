@@ -538,10 +538,10 @@ MonoBehaviour:
     - {x: 1, y: 0, z: 0}
     m_RuleTransform: 1
   TerrainName: Green
-  CurrrentHealth: 100
-  BackgroundTile: {fileID: 11400000, guid: d10be5fc25ebfdc46bea4413519a39e1, type: 2}
-  BaseHealth: 100
-  _maxHealth: 100
+  CurrrentHealth: 0
+  BackgroundTile: {fileID: 11400000, guid: fc4f61cd28a964246994203d4d96e909, type: 2}
+  BaseHealth: 400
+  _maxHealth: 0
   Destructible: 1
   minDepth: -50
   maxDepth: -100

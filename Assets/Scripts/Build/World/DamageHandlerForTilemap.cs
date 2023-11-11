@@ -1,38 +1,34 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Tilemaps;
+using UnityEngine.UIElements;
 
 namespace Capstone.Build.World
 {
-    [System.Serializable] public class TileDestroyedEvent : UnityEvent<Vector3Int> { }
-    [System.Serializable] public class OreDestroyedEvent : UnityEvent<Vector3Int> { }
-    [System.Serializable] public class TileWithItemDestroyedEvent : UnityEvent<OreCollectable, Vector3> { }
+    [System.Serializable] public class TerrainDestroyedEvent : UnityEvent<Vector3Int> { }
 
     public class DamageHandlerForTilemap : MonoBehaviour
     {
-        [Header("Tilemaps")]
-        public Tilemap TerrainTilemap;
-        public Tilemap OreTilemap;
 
         [Header("Event Listeners")]
-        public TileDestroyedEvent TerrainDestroyed;
-        public OreDestroyedEvent OreDestroyed;
-        public TileWithItemDestroyedEvent TileWithItemDestroyed;
+        public TerrainDestroyedEvent TerrainDestroyed;
 
         // Reference to the MapGenerator to access the terrainTileDataMap
         public MapGenerator MapGenerator;
 
         private void Awake()
         {
-            if (TerrainTilemap == null)
+            if (MapGenerator == null)
             {
-                Debug.Log(gameObject.name + "->DestructibleTilemap: no terrain map set in inspector.");
+                Debug.LogError("MapGenerator reference is not set.");
+                return;
             }
         }
 
+        // overloaded in case world position is needed
         public void HandleDamage(Vector3 worldPosition, int damageAmount)
         {
-            Vector3Int tilePos = TerrainTilemap.WorldToCell(worldPosition);
+            Vector3Int tilePos = MapGenerator.GetTerrainAtWorldPosition(worldPosition);
             HandleDamage(tilePos, damageAmount);
         }
 
@@ -44,36 +40,25 @@ namespace Capstone.Build.World
                 return;
             }
 
-            if (!MapGenerator.TerrainTileDataMap.TryGetValue(position, out var tileData))
+            MapTileData tileData = MapGenerator.GetTileDataAt(position);
+            if (tileData == null)
             {
                 Debug.LogWarning("No tile data found for the position: " + position);
                 return;
             }
 
-            // Handle damage
-            tileData.CurrentHealth -= damageAmount;
-            Debug.Log(tileData.CurrentHealth);
-
-            if (tileData.CurrentHealth <= 0)
+            else if (tileData.HasTerrain)
             {
-                // Check for ore and trigger events
-                OreTile ore = OreTilemap.GetTile(position) as OreTile;
-                if (ore != null)
+                // process damage
+                tileData.CurrentHealth -= damageAmount;
+
+                Debug.Log(tileData.CurrentHealth);
+
+                if (tileData.CurrentHealth <= 0)
                 {
-                    Vector3 oreWorldPosition = TerrainTilemap.GetCellCenterWorld(position);
-                    TileWithItemDestroyed?.Invoke(ore.OreToDrop, oreWorldPosition);
-                    OreDestroyed?.Invoke(position);
-
-                    OreTilemap.SetTile(position, null);
-                    OreTilemap.RefreshTile(position);
+                    // notify map manager
+                    TerrainDestroyed?.Invoke(position);
                 }
-
-                TerrainDestroyed?.Invoke(position);
-                TerrainTilemap.SetTile(position, null);
-                TerrainTilemap.RefreshTile(position);
-
-                // Remove the tile data from the dictionary
-                MapGenerator.TerrainTileDataMap.Remove(position);
             }
         }
     }

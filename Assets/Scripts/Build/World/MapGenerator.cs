@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Assertions.Must;
 using UnityEngine.Events;
 using UnityEngine.Tilemaps;
+using UnityEngine.UIElements;
 
 namespace Capstone.Build.World
 {
@@ -32,8 +34,6 @@ namespace Capstone.Build.World
         [Header("Events")]
         public MapGeneratedEvent ChunkGeneratedEvent;
 
-        public Dictionary<Vector3Int, TerrainTileData> TerrainTileDataMap = new();
-
         private Queue<Vector2Int> chunksToLoad = new Queue<Vector2Int>();
         private Queue<Vector2Int> chunksToUnload = new Queue<Vector2Int>();
         private const int chunksToProcessPerFrame = 2; // Adjust this number based on performance
@@ -41,7 +41,12 @@ namespace Capstone.Build.World
         // class variable used for checking neighbours during ore generation
         private static readonly Vector3Int[] DIRECTIONS = { Vector3Int.up, Vector3Int.down, Vector3Int.left, Vector3Int.right };
 
-        public int LoadRange;
+        // the radius, in number of chunks, in which chunks should be loaded
+        // chunks that enter this radius are loaded, and those that exit are unloaded
+        public int ChunkLoadRange = 2;
+
+        // maximum ore veins, per ore, that can be spawned in a single chunk
+        public int MaxVeinsPerChunk = 2;
 
         void Awake()
         {
@@ -67,57 +72,38 @@ namespace Capstone.Build.World
                 return;
 
             // Run the terrain generation in a separate thread
-            Task.Run(() => GenerateTerrainAndOresInBackground(chunk))
-                .ContinueWith(task =>
-                {
-                    // This code runs on the main thread after the background generation is completed
-                    if (task.Exception != null)
-                    {
-                        Debug.LogError("Error during chunk generation: " + task.Exception.InnerException);
-                    }
-                    else
-                    {
-                        // Perform any Unity-specific operations here
-                        LoadChunkTiles(chunk); // Load the generated tiles
-                        chunk.IsGenerated = true; // Mark the chunk as generated
-                    }
-                }, TaskScheduler.FromCurrentSynchronizationContext()); // Ensure that this runs on the main thread
+            GenerateTerrainAndOresInBackground(chunk);
         }
 
         private void GenerateTerrainAndOresInBackground(Chunk chunk)
         {
             // Background work
-            int startX = chunk.CoordinatesInChunkMap.x * ChunkWidth;
-            int startY = chunk.CoordinatesInChunkMap.y * ChunkHeight;
-            int endX = startX + ChunkWidth;
-            int endY = startY - ChunkHeight;
+            int startX = chunk.Coordinates.x * ChunkWidth;
+            int startY = chunk.Coordinates.y * ChunkHeight;
+            int endX = startX + ChunkWidth - 1;
+            int endY = startY + ChunkHeight - 1;
 
             chunk.StartTile = new(startX, startY);
             chunk.EndTile = new(endX, endY);
 
-            Dictionary<Vector3Int, TerrainTileData> tempTerrainDataMap = new Dictionary<Vector3Int, TerrainTileData>();
 
-            for (int y = chunk.StartTile.y; y > chunk.EndTile.y; y--)
+            Vector3Int position = Vector3Int.zero;
+
+
+            for (int y = chunk.StartTile.y; y <= chunk.EndTile.y; y++)
             {
-                for (int x = chunk.StartTile.x; x < chunk.EndTile.x; x++)
+                position.y = y;
+                for (int x = chunk.StartTile.x; x <= chunk.EndTile.x; x++)
                 {
-                    Vector3Int position = new Vector3Int(x, y, 0);
-                    TerrainTileData terrainTileData = GetTerrainTileDataAtDepth(y);
-                    tempTerrainDataMap[position] = terrainTileData;
+                    position.x = x;
+                    MapTileData mapTileData = GetTerrainAtDepth(y);
+                    chunk.TileDataDict.Add(position, mapTileData);
                 }
             }
 
-            lock (chunk.TerrainDataMap)
-            {
-                foreach (var item in tempTerrainDataMap)
-                {
-                    chunk.TerrainDataMap[item.Key] = item.Value;
-                }
-            }
-
-            GenerateOresInChunk(chunk); // This can also be moved to background processing if needed
+            GenerateOresInChunk(chunk);
+            
         }
-
 
         private void GenerateOresInChunk(Chunk chunk)
         {
@@ -126,18 +112,14 @@ namespace Capstone.Build.World
                 List<Vector3Int> orePositions = GenerateOreVeins(oreTile, chunk);
                 foreach (Vector3Int position in orePositions)
                 {
-                    if (chunk.TerrainDataMap.TryGetValue(position, out TerrainTileData terrainData))
-                    {
-                        terrainData.OreTile = oreTile;
-                    }
+                    chunk.TileDataDict[position].OreTile = oreTile;
                 }
             }
         }
 
-
         private List<Vector3Int> GenerateOreVeins(OreTile ore, Chunk chunk)
         {
-            List<Vector3Int> veinPositions = new List<Vector3Int>();
+            List<Vector3Int> veinPositions = new();
             List<Vector3Int> startingPositions = GenerateStartingPoints(ore, chunk);
 
             int maxVeinSize = ore.MaxVeinSize;
@@ -156,29 +138,37 @@ namespace Capstone.Build.World
         }
 
 
+
         private List<Vector3Int> GenerateStartingPoints(OreTile ore, Chunk chunk)
         {
             List<Vector3Int> startingPoints = new();
             Vector3Int position = Vector3Int.zero;
             System.Random random = new();
-            for (int y = chunk.StartTile.y; y >= chunk.EndTile.y; y--)
+            for (int y = chunk.StartTile.y; y <= chunk.EndTile.y; y++)
             {
                 position.y = y;
-                for (int x = chunk.StartTile.x; x < chunk.EndTile.x; x++)
+                if (startingPoints.Count >= MaxVeinsPerChunk)
+                {
+                    break;
+                }
+                for (int x = chunk.StartTile.x; x <= chunk.EndTile.x; x++)
                 {
                     position.x = x;
-                    
-                    chunk.TerrainDataMap.TryGetValue(position, out TerrainTileData currentTerrainData);
-                    if (currentTerrainData == null) { continue; }
-                    float spawnChance = ore.GetSpawnChanceInTerrain(currentTerrainData.TerrainTileType.TerrainName);
 
-                    if (!startingPoints.Contains(position))
+                    // Check if the tile data and terrain tile are not null
+                    if (chunk.TileDataDict.TryGetValue(position, out MapTileData currentTerrainData) &&
+                        currentTerrainData.TerrainTile != null)
                     {
-                        float chance = (float) GetRandomDouble(random, 0, 1);
-                        if (chance < spawnChance)
+                        // Make sure starting point isn't already added and TerrainTile.TerrainName is not null
+                        if (!startingPoints.Contains(position) && !string.IsNullOrEmpty(currentTerrainData.TerrainTile.TerrainName))
                         {
-                            Vector3Int startPoint = new(x, y, 0);
-                            startingPoints.Add(startPoint);
+                            float spawnChance = ore.GetSpawnChanceInTerrain(currentTerrainData.TerrainTile.TerrainName);
+                            float chance = (float)GetRandomDouble(random, 0, 1);
+                            if (chance < spawnChance)
+                            {
+                                Vector3Int startPoint = new(x, y, 0);
+                                startingPoints.Add(startPoint);
+                            }
                         }
                     }
                 }
@@ -187,11 +177,11 @@ namespace Capstone.Build.World
         }
 
 
-
+        // grows an ore vein by a single tile
         void GrowVein(Vector3Int lastPosition, Vector3Int direction, float propagationValue, ref List<Vector3Int> veinPositions, Chunk chunk)
         {
             Vector3Int currentPosition = lastPosition + direction;
-            if (propagationValue > 0 && chunk.TerrainDataMap.ContainsKey(currentPosition))
+            if (propagationValue > 0 && chunk.TileDataDict.ContainsKey(currentPosition))
             {
                 veinPositions.Add(currentPosition);
                 propagationValue -= 1;
@@ -200,36 +190,33 @@ namespace Capstone.Build.World
         }
 
 
-        // Loads/unloads chunks as needed if the player moves
-        public void OnPlayerMoved(Vector3 playerPosition)
+        // Checks if any chunks need to be loaded or unloaded
+        public void CullChunks(Vector3 playerPosition)
         {
             Vector2Int currentChunk = GetChunkCoordinate(playerPosition);
 
-            // Define the range around the player within which chunks should be loaded
-
-            // Unload chunks that are outside the load range
-            foreach (var loadedChunkCoord in _loadedChunks.Keys)
+            // load any chunks within load range
+            for (int x = -ChunkLoadRange; x <= ChunkLoadRange; x++)
             {
-                if (Mathf.Abs(loadedChunkCoord.x - currentChunk.x) > LoadRange ||
-                    Mathf.Abs(loadedChunkCoord.y - currentChunk.y) > LoadRange)
+                for (int y = -ChunkLoadRange; y <= ChunkLoadRange; y++)
                 {
-                    if(!chunksToUnload.Contains(loadedChunkCoord))
+                    Vector2Int chunkCoord = new(currentChunk.x + x, currentChunk.y - y);
+                    if (!chunksToLoad.Contains(chunkCoord) && !_loadedChunks.ContainsKey(chunkCoord))
                     {
-                        chunksToUnload.Enqueue(loadedChunkCoord);
+                        chunksToLoad.Enqueue(chunkCoord);
                     }
                 }
             }
 
-
-            // Generate surrounding chunks
-            for (int x = -LoadRange; x <= LoadRange; x++)
+            // Unload chunks that are outside the load range
+            foreach (var loadedChunkCoord in _loadedChunks.Keys)
             {
-                for (int y = -LoadRange; y <= LoadRange; y++)
+                if (Mathf.Abs(loadedChunkCoord.x - currentChunk.x) > ChunkLoadRange ||
+                    Mathf.Abs(loadedChunkCoord.y - currentChunk.y) > ChunkLoadRange)
                 {
-                    Vector2Int chunkCoord = new(currentChunk.x + x, currentChunk.y + y);
-                    if (!chunksToLoad.Contains(chunkCoord) && !_loadedChunks.ContainsKey(chunkCoord))
+                    if(!chunksToUnload.Contains(loadedChunkCoord))
                     {
-                        chunksToLoad.Enqueue(chunkCoord);
+                        chunksToUnload.Enqueue(loadedChunkCoord);
                     }
                 }
             }
@@ -279,152 +266,134 @@ namespace Capstone.Build.World
             LoadChunkTiles(chunk);
         }
 
+
         private void LoadChunkTiles(Chunk chunk)
         {
-            foreach (var entry in chunk.TerrainDataMap)
+            // arrays for batch tile setting
+            List<Vector3Int> terrainPositions = new();   
+            List<TerrainTile> terrainTiles = new();
+            List<Vector3Int> orePositions = new();
+            List<OreTile> oreTiles = new();
+            List<Vector3Int> backgroundPositions = new();
+            List<TileBase> backgroundTiles = new();
+
+            // populate arrays based on chunk data
+            foreach (var entry in chunk.TileDataDict)
             {
                 Vector3Int tilePos = entry.Key;
-                TerrainTileData tileData = entry.Value;
-                if (entry.Value != null)
+                MapTileData tileData = entry.Value;
+
+                if (tileData != null)
                 {
-                    PlaceTerrain(tilePos, tileData);
-                    if (tileData.HasOre)
+                    // add terrain info if exists
+                    if (tileData.HasTerrain)
                     {
-                        PlaceOre(tileData.OreTile, tilePos);
+                        terrainPositions.Add(tilePos);
+                        terrainTiles.Add(tileData.TerrainTile); // Assuming TerrainTile is of type TileBase
+
+                        // Add ore tile info if present
+                        if (tileData.HasOre)
+                        {
+                            orePositions.Add(tilePos);
+                            oreTiles.Add(tileData.OreTile); // Assuming OreTile is of type TileBase
+                        }
                     }
+
+                    // add background
+                    backgroundPositions.Add(tilePos);
+                    backgroundTiles.Add(tileData.BackgroundTile);
                 }
             }
-        }
 
+            // Batch set tiles on tilemaps
+            if (terrainPositions.Count > 0)
+            {
+                TerrainTilemap.SetTiles(terrainPositions.ToArray(), terrainTiles.ToArray());
+            }
+
+            if (orePositions.Count > 0)
+            {
+                OreTilemap.SetTiles(orePositions.ToArray(), oreTiles.ToArray());
+            }
+
+            if (backgroundPositions.Count > 0)
+            {
+                BackgroundTilemap.SetTiles(backgroundPositions.ToArray(), backgroundTiles.ToArray());
+            }
+        }
+            
         public void UnloadChunkAt(Vector2Int chunkCoord)
         {
             if (_loadedChunks.TryGetValue(chunkCoord, out var chunk))
             {
-                _loadedChunks.Remove(chunkCoord);
-
                 // Save or process chunk data before unloading
                 UpdateChunkData(chunk);
 
                 // Remove tiles from tilemaps within this chunk
                 UnloadChunkTiles(chunk);
+
+                _loadedChunks.Remove(chunkCoord);
             }
         }
-
 
         private void UnloadChunkTiles(Chunk chunk)
         {
-            for (int y = chunk.StartTile.y; y > chunk.EndTile.y; y--)
-            {
-                for (int x = chunk.StartTile.x; x < chunk.EndTile.x; x++)
-                {
-                    Vector3Int tilePos = new Vector3Int(x, y, 0);
+            int totalTiles = ChunkWidth * ChunkHeight;
+            Vector3Int[] positions = new Vector3Int[totalTiles];
+            int index = 0;
 
-                    RemoveTilesAt(tilePos);
+            for (int y = chunk.StartTile.y; y <= chunk.EndTile.y; y++)
+            {
+                for (int x = chunk.StartTile.x; x <= chunk.EndTile.x; x++)
+                {
+                    positions[index++] = new Vector3Int(x, y, 0);
                 }
             }
-        }
 
-        private void RemoveTilesAt(Vector3Int tilePos)
-        {
-            if (TerrainTileDataMap.ContainsKey(tilePos))
-            {
-                TerrainTileDataMap.Remove(tilePos);
-            }
-
-            TerrainTilemap.SetTile(tilePos, null);
-
-            if (OreTilemap.GetTile(tilePos) != null)
-            {
-                OreTilemap.SetTile(tilePos, null);
-            }
-            BackgroundTilemap.SetTile(tilePos, null);
+            TerrainTilemap.SetTiles(positions, new TileBase[totalTiles]);
+            OreTilemap.SetTiles(positions, new TileBase[totalTiles]);
+            BackgroundTilemap.SetTiles(positions, new TileBase[totalTiles]);
         }
 
         private void UpdateChunkData(Chunk chunk)
         {
-            var updates = new List<KeyValuePair<Vector3Int, TerrainTileData>>();
-
-            foreach (var pos in chunk.TerrainDataMap.Keys)
-            {
-                if (TerrainTileDataMap.ContainsKey(pos))
-                {
-                    updates.Add(new(pos, TerrainTileDataMap[pos]));
-                } else
-                {
-                    updates.Add(new(pos, null));
-                }
-            }
-
-            foreach (var update in updates)
-            {
-                chunk.TerrainDataMap[update.Key] = update.Value;
+            foreach (var position in chunk.TileDataDict.Keys)
+            {  
+                TerrainTile terrainAtPosition = TerrainTilemap.GetTile(position) as TerrainTile;
+                OreTile oreAtPosition = OreTilemap.GetTile(position) as OreTile;
+                chunk.UpdateTileData(position, terrainAtPosition, oreAtPosition);
             }
         }
 
-
-        private void PlaceTerrain(Vector3Int position, TerrainTileData terrainTileData)
+        MapTileData GetTerrainAtDepth(int depth)
         {
-            if (terrainTileData == null) return;
-
-            TerrainTile terrainTile = terrainTileData.TerrainTileType;
-            TerrainTilemap.SetTile(position, terrainTile);
-            TerrainTileDataMap.Add(position, terrainTileData);
-            SetBackground(terrainTile.BackgroundTile, position);
-        }
-
-        private void PlaceOre(OreTile oreTile, Vector3Int position)
-        {
-            if (!TerrainTileDataMap.ContainsKey(position))
-            {
-                Debug.LogWarning("Trying to place ore on a tile that doesn't exist.");
-                return;
-            }
-
-            // Update the tile data with ore information
-            var tileData = TerrainTileDataMap[position];
-            tileData.OreTile = oreTile;
-
-            OreTilemap.SetTile(position, oreTile);
-        }
-
-        private void SetBackground(Tile backgroundTile, Vector3Int position)
-        {
-            BackgroundTilemap.SetTile(position, backgroundTile);
-        }
-
-        TerrainTileData GetTerrainTileDataAtDepth(int depth)
-        {
-            List<TerrainTile> validTiles = new();
-            TerrainTileData result = new();
+            List<MapTileData> validTiles = new();
             System.Random random = new();
 
             foreach (var terrainType in TerrainTileTypes)
             {
                 if (depth <= terrainType.minDepth && depth >= terrainType.maxDepth)
                 {
-                    validTiles.Add(terrainType);
+                    validTiles.Add(terrainType.CreateMapTileData());
                 }
             }
 
             // one valid tile, return it
             if (validTiles.Count == 1)
             {
-                result.TerrainTileType = validTiles[0];
-
-                return result;
+                return validTiles[0];
             }
 
             // multiple valid tiles, choose randomly
             else if (validTiles.Count > 0)
             {
                 int randomIndex = random.Next(0, validTiles.Count);
-                result.TerrainTileType = validTiles[randomIndex];
-                return result;
+                return validTiles[randomIndex];
             } 
             else
             {
-                // no valid tiles
-                return null;
+                // no valid tiles, return an empty tileData object
+                return new MapTileData();
             }
 
 
@@ -440,6 +409,52 @@ namespace Capstone.Build.World
             System.Random random = new System.Random();
             int randomIndex = random.Next(0, DIRECTIONS.Length);
             return DIRECTIONS[randomIndex];
+        }
+
+        internal Vector3Int GetTerrainAtWorldPosition(Vector3 worldPosition)
+        {
+            return TerrainTilemap.WorldToCell(worldPosition);
+        }
+
+        public void OnTileDestroyedByPlayer(Vector3Int position)
+        {
+            TerrainTile terrainTile = TerrainTilemap.GetTile(position) as TerrainTile;
+            if (terrainTile != null) { 
+                TerrainTilemap.SetTile(position, null);
+
+                OreTile oreTile = OreTilemap.GetTile(position) as OreTile;
+                if (oreTile != null)
+                {
+                    ItemSpawner.SpawnOre(oreTile.OreToDrop, TerrainTilemap.CellToWorld(position));
+                    OreTilemap.SetTile(position, null);
+                }
+            }
+        }
+
+        public MapTileData GetTileDataAt(Vector3Int position)
+        {
+            // Convert the tilemap position to chunk coordinates
+            Vector2Int chunkCoord = GetChunkCoordinateFromTileMapPosition(position);
+
+            // Check if the chunk is loaded
+            if (_loadedChunks.TryGetValue(chunkCoord, out Chunk chunk))
+            {
+                // If the chunk is loaded, try to get the tile data
+                if (chunk.TileDataDict.TryGetValue(position, out MapTileData tileData))
+                {
+                    return tileData;
+                }
+            }
+
+            // Return null or a default MapTileData if the chunk isn't loaded or the tile data isn't found
+            return null;
+        }
+
+        private Vector2Int GetChunkCoordinateFromTileMapPosition(Vector3Int position)
+        {
+            int chunkX = Mathf.FloorToInt((float)position.x / ChunkWidth);
+            int chunkY = Mathf.FloorToInt((float)position.y / ChunkHeight);
+            return new Vector2Int(chunkX, chunkY);
         }
     }
 }

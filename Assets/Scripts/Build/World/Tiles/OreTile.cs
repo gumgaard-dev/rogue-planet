@@ -17,10 +17,11 @@ namespace Capstone.Build.World
         public Sprite DefaultSprite;
 
         // used by OreVisibilityController
-        public bool IsVisible { get; set; }
+        public bool IsVisible = true;
 
         public string OreName;
-        [Header("Ore Settings")]
+        
+        [Header("Item To Drop When Destroyed")]
         public OreCollectable OreToDrop;
 
         [Header("Terrain Modifiers")]
@@ -31,8 +32,7 @@ namespace Capstone.Build.World
 
         [Header("Vein Settings")]
         public int MaxVeinSize = 10; // max number of ores in a vein
-        
-        
+
 
         public float GetSpawnChanceInTerrain(string terrainName)
         {
