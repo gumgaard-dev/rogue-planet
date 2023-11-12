@@ -619,9 +619,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3365955069525977859, guid: eee28bb23b0c86c4c9f6dbab55186aba, type: 3}
+      propertyPath: _shotInterval
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4752012517090801330, guid: eee28bb23b0c86c4c9f6dbab55186aba, type: 3}
+      propertyPath: m_AngleLimits.m_LowerAngle
+      value: -220
+      objectReference: {fileID: 0}
+    - target: {fileID: 4752012517090801330, guid: eee28bb23b0c86c4c9f6dbab55186aba, type: 3}
+      propertyPath: m_AngleLimits.m_UpperAngle
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 6369923031655541483, guid: eee28bb23b0c86c4c9f6dbab55186aba, type: 3}
       propertyPath: m_Name
       value: Ship
+      objectReference: {fileID: 0}
+    - target: {fileID: 8868671054281134455, guid: eee28bb23b0c86c4c9f6dbab55186aba, type: 3}
+      propertyPath: torqueToApply
+      value: 40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -2,7 +2,6 @@ using Build.Component;
 using UnityEngine;
 
 [RequireComponent(typeof(ProjectileShooter))]
-[RequireComponent(typeof(AttackData))]
 public class Gun : MonoBehaviour
 {
     [SerializeField]
@@ -12,15 +11,13 @@ public class Gun : MonoBehaviour
     private ParticleShooter _particleShooter;
     [SerializeField]
     private ProjectileShooter _projectileShooter;
-    private AttackData _attackData;
     private Cooldown _shotCooldown;
 
     private void Start()
     {
         TryGetComponent<ProjectileShooter>(out this._projectileShooter);
         TryGetComponent<ParticleShooter>(out this._particleShooter);
-        TryGetComponent<AttackData>(out this._attackData);
-        
+
         this._shotCooldown = new Cooldown(_shotInterval);
         _shotCooldown.Activate();
     }

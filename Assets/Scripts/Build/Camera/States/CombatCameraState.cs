@@ -15,8 +15,12 @@ public class CombatCameraState : CameraState
     }
     public override void MoveCamera()
     {
-        base.MoveCamera();
-        Vector3 targetPostion = new Vector3(Ship.transform.position.x, Ship.transform.position.y + VerticalOffset);
-        Camera.transform.position = Vector3.SmoothDamp(Camera.transform.position, targetPostion, ref _velocity, MoveSmoothTime);
+        if (this.Ship != null) 
+        {
+            base.MoveCamera();
+            Vector3 targetPostion = new Vector3(Ship.transform.position.x, Ship.transform.position.y + VerticalOffset);
+            Camera.transform.position = Vector3.SmoothDamp(Camera.transform.position, targetPostion, ref _velocity, MoveSmoothTime);
+        }
+
     }
 }
