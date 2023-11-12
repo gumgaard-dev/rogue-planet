@@ -55,8 +55,9 @@ namespace Build.World.WorldTime
             _timeSlider.maxValue = Clock.DayDuration;
             _timeSlider.value = Clock.DayDuration;
             SetSliderColor(DayFillColor);
-            DayIcon.gameObject.SetActive(true);
+            
             NightIcon.gameObject.SetActive(false);
+            DayIcon.gameObject.SetActive(true);
         }
 
         public void OnNightStart()
@@ -64,6 +65,7 @@ namespace Build.World.WorldTime
             _timeSlider.maxValue = Clock.NightDuration;
             _timeSlider.value = Clock.NightDuration;
             SetSliderColor(NightFillColor);
+            
             DayIcon.gameObject.SetActive(false);
             NightIcon.gameObject.SetActive(true);
         }

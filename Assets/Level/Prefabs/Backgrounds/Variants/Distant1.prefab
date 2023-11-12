@@ -44,6 +44,10 @@ PrefabInstance:
       propertyPath: m_AdaptiveModeThreshold
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4621073669922485830, guid: 9189bcda34cf4a7459e9b01625e43411, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 7022101016887957200, guid: 9189bcda34cf4a7459e9b01625e43411, type: 3}
       propertyPath: m_Name
       value: Distant1

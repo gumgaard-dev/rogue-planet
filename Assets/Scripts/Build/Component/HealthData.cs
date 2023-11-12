@@ -6,7 +6,7 @@ namespace Build.Component
     public class HealthData : MonoBehaviour
     {
         [SerializeField] private int maxHealth;
-        private int _currentHealth;
+        [SerializeField] private int _currentHealth;
         
         //public getter properties
         public int MaxHealth => maxHealth;

@@ -7,6 +7,7 @@ TagManager:
   - Destructible
   - Ground
   - Enemy
+  - Ship
   layers:
   - Default
   - TransparentFX
@@ -23,13 +24,13 @@ TagManager:
   - ShipDetector
   - Player
   - Ship
-  - Projectile
+  - ShipProjectile
   - Enemy
   - ShipTriggerArea
   - Ore
   - ParallaxBackground
   - Camera
-  - 
+  - EnemyProjectile
   - 
   - 
   - 
@@ -52,6 +53,9 @@ TagManager:
     locked: 0
   - name: Projectile
     uniqueID: 1996865175
+    locked: 0
+  - name: Enemy
+    uniqueID: 1693026583
     locked: 0
   - name: Ship
     uniqueID: 1777377027

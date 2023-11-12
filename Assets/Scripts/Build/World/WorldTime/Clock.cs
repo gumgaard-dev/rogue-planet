@@ -24,8 +24,8 @@ namespace Build.World.WorldTime
 
         public TimeChangedEvent TimeOfDayChanged;
         public ClockInitializedEvent ClockInitialized;
-        public UnityEvent DaytimeStart;
-        public UnityEvent NighttimeStart;
+        public UnityEvent DayStart;
+        public UnityEvent NightStart;
 
         private void Awake()
         {
@@ -62,11 +62,11 @@ namespace Build.World.WorldTime
 
             if (!_wasDay && IsDay)
             {
-                DaytimeStart?.Invoke();
+                DayStart?.Invoke();
             }
             else if (_wasDay && !IsDay)
             {
-                NighttimeStart?.Invoke();
+                NightStart?.Invoke();
             }
 
             _wasDay = IsDay;

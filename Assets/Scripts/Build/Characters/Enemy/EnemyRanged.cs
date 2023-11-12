@@ -28,16 +28,19 @@ namespace Build.Characters.Enemy
             if (!_withinRange && target)
             {
                 Follow();
-                // rotateGun();
+                UpdateAimDirection();
             }
-            
-            if (Gun && target && _withinRange) Gun.Shoot();
+
+            if (Gun && target && _withinRange)
+            {
+                
+                Gun.Shoot();
+            }
         }
 
-        private void rotateGun()
+        private void UpdateAimDirection()
         {
-            Vector3 pointTowards = target.transform.position;
-            // TODO rotate the hinge so that its direction matches the target's position
+            Hinge.RotateTo(target.transform.position);
         }
     }
 }

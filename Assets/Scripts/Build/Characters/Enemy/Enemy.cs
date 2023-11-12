@@ -18,18 +18,21 @@ namespace Build.Characters.Enemy
         private Collider2D _trigger;
         private Collider2D _collider;
 
+        private int _facingDirection;
+        private Rigidbody2D _rb;
+
         protected void Start()
         {
-            target = GameObject.FindGameObjectWithTag("Player");
             _attackData = GetComponent<AttackData>();
             _healthData = GetComponent<HealthData>();
+            _rb = GetComponent<Rigidbody2D>();
         }
         
         //at this point, any enemy will deal damage if the player touches it
         private void OnTriggerEnter2D(Collider2D col)
         {
             //ignore collisions with non-player objects
-            if (!col.CompareTag("Player")) return;
+            if (!col.CompareTag("Ship")) return;
             
             var targetHealth = col.GetComponent<HealthData>();
 
@@ -43,11 +46,28 @@ namespace Build.Characters.Enemy
             }
         }
         
+
+        protected void UpdateFacing()
+        {
+            if (target != null)
+            {
+                _facingDirection = target.transform.position.x >= this.transform.position.x ? 1 : -1;
+            }
+        }
+        
+        protected void UpdateVelocity()
+        {
+            if (target != null)
+            {
+                this._rb.velocity = new(speed * _facingDirection, this._rb.velocity.y);
+            }
+        }
+
         //very basic pathing (for now) that will just draw the enemy towards the target in all directions
         protected void Follow()
         {
-            transform.position =
-                Vector2.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
+            UpdateFacing();
+            UpdateVelocity();
         }
     }
 }
