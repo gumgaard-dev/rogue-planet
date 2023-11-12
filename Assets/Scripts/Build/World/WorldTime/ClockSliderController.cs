@@ -46,24 +46,24 @@ namespace Build.World.WorldTime
         {
             if (this._timeSlider != null)
             {
-                _timeSlider.value += timeChange;
+                _timeSlider.value -= timeChange;
             }
         }
 
         public void OnDayStart()
         {
-            _timeSlider.value = 0;
-            SetSliderColor(DayFillColor);
             _timeSlider.maxValue = Clock.DayDuration;
+            _timeSlider.value = Clock.DayDuration;
+            SetSliderColor(DayFillColor);
             DayIcon.gameObject.SetActive(true);
             NightIcon.gameObject.SetActive(false);
         }
 
         public void OnNightStart()
         {
-            _timeSlider.value = 0;
-            SetSliderColor(NightFillColor);
             _timeSlider.maxValue = Clock.NightDuration;
+            _timeSlider.value = Clock.NightDuration;
+            SetSliderColor(NightFillColor);
             DayIcon.gameObject.SetActive(false);
             NightIcon.gameObject.SetActive(true);
         }
