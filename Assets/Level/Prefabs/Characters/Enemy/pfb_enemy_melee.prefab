@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1024237393452238976}
   - component: {fileID: 4344925666426939742}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Body (Collider)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6677064062802471428}
   - component: {fileID: 8658648841507757560}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Hitbox (trigger)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,7 +168,6 @@ GameObject:
   - component: {fileID: 238229929200014362}
   - component: {fileID: 8161941481207090212}
   - component: {fileID: 3335879971816900406}
-  - component: {fileID: -4735053625498998950}
   m_Layer: 16
   m_Name: pfb_enemy_melee
   m_TagString: Enemy
