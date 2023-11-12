@@ -283,9 +283,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1281565267}
+  - component: {fileID: 1281565268}
   - component: {fileID: 1281565266}
   m_Layer: 0
-  m_Name: Light 2D
+  m_Name: GlobalLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -349,13 +350,28 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1281565265}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 19.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1902696856}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1281565268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1281565265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4057cd1a299731d4b96b838314ad8dfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DaytimeIntensity: 1
+  NighttimeIntensity: 0.2
+  TransitionLength: 1
 --- !u!1001 &1348171102
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -428,6 +444,162 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80aba82678ed44b4f9bea47252592f33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1463429482
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1463429484}
+  - component: {fileID: 1463429483}
+  m_Layer: 0
+  m_Name: Clock
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1463429483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1463429482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 973e3b2e876319a41886deae0c0c4e96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DayDuration: 10
+  NightDuration: 10
+  TimeOfDay: 0
+  IsDay: 0
+  TimeOfDayChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2062075865}
+        m_TargetAssemblyTypeName: Build.World.WorldTime.ClockSliderController, Assembly-CSharp
+        m_MethodName: OnTimeChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1281565268}
+        m_TargetAssemblyTypeName: GlobalLightController, Assembly-CSharp
+        m_MethodName: OnTimeChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  ClockInitialized:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2062075865}
+        m_TargetAssemblyTypeName: Build.World.WorldTime.ClockSliderController, Assembly-CSharp
+        m_MethodName: OnClockIntialized
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1281565268}
+        m_TargetAssemblyTypeName: GlobalLightController, Assembly-CSharp
+        m_MethodName: OnClockIntialized
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  DaytimeStart:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2062075865}
+        m_TargetAssemblyTypeName: Build.World.WorldTime.ClockSliderController, Assembly-CSharp
+        m_MethodName: OnDayStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1281565268}
+        m_TargetAssemblyTypeName: GlobalLightController, Assembly-CSharp
+        m_MethodName: OnDayStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  NighttimeStart:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2062075865}
+        m_TargetAssemblyTypeName: Build.World.WorldTime.ClockSliderController, Assembly-CSharp
+        m_MethodName: OnNightStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1281565268}
+        m_TargetAssemblyTypeName: GlobalLightController, Assembly-CSharp
+        m_MethodName: OnNightStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!4 &1463429484
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1463429482}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &1498346409 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3792809283780827757, guid: 256b800c82b9241478cc30ec38aeec7e, type: 3}
@@ -498,6 +670,8 @@ Transform:
   m_Children:
   - {fileID: 1128786044}
   - {fileID: 967753107}
+  - {fileID: 1281565267}
+  - {fileID: 8893444601379682152}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &1911285996 stripped
@@ -525,6 +699,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6bc66277d09a045409eae9ce5cb1df82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2062075865 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8393413334468380299, guid: 256b800c82b9241478cc30ec38aeec7e, type: 3}
+  m_PrefabInstance: {fileID: 7514562504761492033}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b53dd4cfaad1ae479f638ac95be7b37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1500997142576391807
@@ -777,6 +962,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: HUD_Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1927342522638787447, guid: 256b800c82b9241478cc30ec38aeec7e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.1296997
+      objectReference: {fileID: 0}
+    - target: {fileID: 2475151257209336430, guid: 256b800c82b9241478cc30ec38aeec7e, type: 3}
+      propertyPath: m_Direction
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3792809283780827757, guid: 256b800c82b9241478cc30ec38aeec7e, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -857,6 +1050,42 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8393413334468380299, guid: 256b800c82b9241478cc30ec38aeec7e, type: 3}
+      propertyPath: Clock
+      value: 
+      objectReference: {fileID: 1463429483}
+    - target: {fileID: 8393413334468380299, guid: 256b800c82b9241478cc30ec38aeec7e, type: 3}
+      propertyPath: DayFillColor.b
+      value: 0.18897584
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393413334468380299, guid: 256b800c82b9241478cc30ec38aeec7e, type: 3}
+      propertyPath: DayFillColor.g
+      value: 0.71984625
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393413334468380299, guid: 256b800c82b9241478cc30ec38aeec7e, type: 3}
+      propertyPath: DayFillColor.r
+      value: 0.9245283
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393413334468380299, guid: 256b800c82b9241478cc30ec38aeec7e, type: 3}
+      propertyPath: NightFillColor.b
+      value: 0.4716981
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393413334468380299, guid: 256b800c82b9241478cc30ec38aeec7e, type: 3}
+      propertyPath: NightFillColor.g
+      value: 0.078616306
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393413334468380299, guid: 256b800c82b9241478cc30ec38aeec7e, type: 3}
+      propertyPath: NightFillColor.r
+      value: 0.078616306
+      objectReference: {fileID: 0}
+    - target: {fileID: 8562391171078680092, guid: 256b800c82b9241478cc30ec38aeec7e, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8562391171078680092, guid: 256b800c82b9241478cc30ec38aeec7e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -868,7 +1097,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1902696856}
     m_Modifications:
     - target: {fileID: 83518213194781505, guid: b393b9d5873e8dc48a79636058eced9f, type: 3}
       propertyPath: BeamHitEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -892,15 +1121,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 826516851485070320, guid: b393b9d5873e8dc48a79636058eced9f, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 826516851485070320, guid: b393b9d5873e8dc48a79636058eced9f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 826516851485070320, guid: b393b9d5873e8dc48a79636058eced9f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 826516851485070320, guid: b393b9d5873e8dc48a79636058eced9f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -968,8 +1197,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1348171102}
-  - {fileID: 8893444601379682144}
   - {fileID: 1870863549}
   - {fileID: 1902696856}
   - {fileID: 5261579739201502802}
-  - {fileID: 1281565267}
+  - {fileID: 1463429484}
