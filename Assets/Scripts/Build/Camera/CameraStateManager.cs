@@ -37,12 +37,10 @@ namespace Capstone.Build.Cam
             _currentState = (Player.StateType == PlayerStateType.InShip) ? _combatCameraState : _miningCameraState;
         }
 
-        private void Update()
+
+        void Update()
         {
             if (_tweakStatesAtRuntime) { UpdateStateVariables(); }
-        }
-        void LateUpdate()
-        {
             _currentState.UpdateCachedVariables();
             _currentState.MoveCamera();
         }

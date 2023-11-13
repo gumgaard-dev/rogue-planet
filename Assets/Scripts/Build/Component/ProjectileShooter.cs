@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ProjectileShooter : MonoBehaviour
 {
-    public const float ProjectileForce = 5f;
+    public float ProjectileForce = 5f;
     public GameObject projectilePrefab;
     public Transform spawnPoint;
 
@@ -25,10 +25,6 @@ public class ProjectileShooter : MonoBehaviour
 
         GameObject projectile = Instantiate(projectilePrefab, spawnPoint.position, spawnPoint.rotation);
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
-        var parentAttackPower = gameObject.GetComponentInParent<AttackData>().AttackPower;
-        Projectile projectileBody = projectile.GetComponent<Projectile>();
-        projectileBody.AttackPower = parentAttackPower;
-
 
         //prevents any potential error with projectiles spawning without a rigidbody
         if (rb != null)
