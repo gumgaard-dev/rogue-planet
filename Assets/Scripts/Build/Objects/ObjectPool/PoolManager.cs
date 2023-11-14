@@ -8,11 +8,9 @@ namespace Capstone.Build.Objects.ObjectPool
         private static PoolManager _instance;
         public static PoolManager Instance => _instance;
 
-        public float IdleTimeUntilCullingExcessObjects = 10;
-        public bool _excessCulled;
-        private float _timeSinceLastActive;
+        public Transform MainPoolContainer;
 
-        private Dictionary<string, object> pools = new Dictionary<string, object>();
+        private Dictionary<string, object> _pools = new();
 
         private void Awake()
         {
@@ -26,39 +24,24 @@ namespace Capstone.Build.Objects.ObjectPool
             }
         }
 
-        public void FixedUpdate()
+        public void CreatePoolIfNotExists<T>(string poolKey, T prefab, int initialCount) where T : PoolableObject
         {
-            if (IdleTimeUntilCullingExcessObjects >= _timeSinceLastActive)
+            if (!ContainsPool(poolKey))
             {
-                if (!_excessCulled)
-                {
-                    CullExcessObjects();
-                    _excessCulled = true;
-                }
-            } else 
-            {
-                if (_excessCulled) { _excessCulled = false; }
-                _timeSinceLastActive += Time.fixedDeltaTime;
+                GameObject newPoolContainer = Instantiate(new GameObject(poolKey + "Container"), MainPoolContainer);
+                ObjectPool<T> newPool = new ObjectPool<T>(prefab, initialCount, newPoolContainer);
+                _pools[poolKey] = newPool;
             }
         }
-
-        private void CullExcessObjects()
+        
+        public bool ContainsPool(string poolKey)
         {
-            foreach (object pool in pools.Values)
-            {
-                ((ObjectPool<PoolableObject>)pool).DestroyExcessObjects();
-            }
+            return _pools.ContainsKey(poolKey);
         }
 
-        public void CreatePool<T>(string poolKey, T prefab, int initialCount) where T : PoolableObject
+        public T GetFromPool<T>(string poolKey) where T : PoolableObject
         {
-            ObjectPool<T> newPool = new ObjectPool<T>(prefab, initialCount);
-            pools[poolKey] = newPool;
-        }
-
-        public T GetObject<T>(string poolKey) where T : PoolableObject
-        {
-            if (pools.TryGetValue(poolKey, out object pool))
+            if (_pools.TryGetValue(poolKey, out object pool))
             {
                 return ((ObjectPool<T>)pool).Get();
             }
@@ -69,9 +52,9 @@ namespace Capstone.Build.Objects.ObjectPool
             }
         }
 
-        public void ReturnObject<T>(string poolKey, T objectToReturn) where T : PoolableObject
+        public void ReturnToPool<T>(string poolKey, T objectToReturn) where T : PoolableObject
         {
-            if (pools.TryGetValue(poolKey, out object pool))
+            if (_pools.TryGetValue(poolKey, out object pool))
             {
                 ((ObjectPool<T>)pool).ReturnToPool(objectToReturn);
             }

@@ -1,4 +1,5 @@
 using Build.Component;
+using TMPro;
 using UnityEngine;
 
 namespace Build.Characters.Enemy
@@ -6,7 +7,7 @@ namespace Build.Characters.Enemy
     [RequireComponent(typeof(AttackData))]
     [RequireComponent(typeof(HealthData))]
     [RequireComponent(typeof(Rigidbody2D))]
-    public class Enemy : MonoBehaviour
+    public class Enemy : PoolableObject
     {
         public GameObject target;
 
@@ -23,9 +24,13 @@ namespace Build.Characters.Enemy
 
         protected void Start()
         {
+            target = GameObject.FindGameObjectWithTag("Ship");
             _attackData = GetComponent<AttackData>();
             _healthData = GetComponent<HealthData>();
             _rb = GetComponent<Rigidbody2D>();
+
+            // setting condition under which this should be returned to the pool
+            _healthData.HealthIsZero.AddListener(this.ReturnToPool);
         }
         
         //at this point, any enemy will deal damage if the player touches it
@@ -68,6 +73,16 @@ namespace Build.Characters.Enemy
         {
             UpdateFacing();
             UpdateVelocity();
+        }
+
+        // method is set as listener to healthData.HealthIsZero event
+        public override void ReturnToPool()
+        {
+            // reset any values here
+            _healthData.ResetCurrentHealth();
+
+            // return this to pool
+            base.ReturnToPool();
         }
     }
 }

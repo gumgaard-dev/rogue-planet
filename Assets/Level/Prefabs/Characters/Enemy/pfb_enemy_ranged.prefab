@@ -154,37 +154,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.3692696, y: 1.5140812}
   m_EdgeRadius: 0
---- !u!1 &2751289827742961870
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4221583836183929489}
-  m_Layer: 16
-  m_Name: ProjectileContainer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4221583836183929489
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2751289827742961870}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5371157027578779412}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8822048904183753889
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,8 +238,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29c7c9213b954c71bfdc83505033c7c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
+  _maxHealth: 0
   _currentHealth: 0
+  HealthIsZero:
+    m_PersistentCalls:
+      m_Calls: []
+  MaxHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  CurrentHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &8161941481207090212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -397,9 +375,17 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4081064167625308132, guid: 23c0da0f4c5252247baa42862f1acdd3, type: 3}
+      propertyPath: PoolKey
+      value: enemyProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 4081064167625308132, guid: 23c0da0f4c5252247baa42862f1acdd3, type: 3}
       propertyPath: Projectile
       value: 
       objectReference: {fileID: 3506674659029914485, guid: 5f952482774b7e84ebeb7b7f32780f47, type: 3}
+    - target: {fileID: 4081064167625308132, guid: 23c0da0f4c5252247baa42862f1acdd3, type: 3}
+      propertyPath: ShotInterval
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4081064167625308132, guid: 23c0da0f4c5252247baa42862f1acdd3, type: 3}
       propertyPath: _shotInterval
       value: 1
@@ -409,13 +395,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4081064167625308132, guid: 23c0da0f4c5252247baa42862f1acdd3, type: 3}
+      propertyPath: PoolablePrototype
+      value: 
+      objectReference: {fileID: 3506674659029914485, guid: 5f952482774b7e84ebeb7b7f32780f47, type: 3}
+    - target: {fileID: 4081064167625308132, guid: 23c0da0f4c5252247baa42862f1acdd3, type: 3}
+      propertyPath: InstantiationPoint
+      value: 
+      objectReference: {fileID: 3240358457011291465}
+    - target: {fileID: 4081064167625308132, guid: 23c0da0f4c5252247baa42862f1acdd3, type: 3}
+      propertyPath: ShotForceMagnitude
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4081064167625308132, guid: 23c0da0f4c5252247baa42862f1acdd3, type: 3}
       propertyPath: _projectileShooter
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 4081064167625308132, guid: 23c0da0f4c5252247baa42862f1acdd3, type: 3}
-      propertyPath: ProjectileContainer
-      value: 
-      objectReference: {fileID: 2751289827742961870}
     - target: {fileID: 4081064167625308132, guid: 23c0da0f4c5252247baa42862f1acdd3, type: 3}
       propertyPath: ProjectileSpawnTransform
       value: 
@@ -474,10 +468,7 @@ PrefabInstance:
       objectReference: {fileID: 3506674659029914485, guid: 5f952482774b7e84ebeb7b7f32780f47, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 4786814049698058487, guid: 23c0da0f4c5252247baa42862f1acdd3, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4221583836183929489}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23c0da0f4c5252247baa42862f1acdd3, type: 3}
 --- !u!4 &3240358457011291465 stripped

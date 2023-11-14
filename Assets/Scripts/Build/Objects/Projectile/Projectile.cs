@@ -11,10 +11,12 @@ namespace Build.Component
 
         void OnBecameInvisible()
         {
-            base.ReturnToPool();
+            // this is buggy
+/*            // from poolableObject
+            ReturnToPool();*/
         }
 
-        public void StopMoving()
+        private void OnDisable()
         {
             this.RB.velocity = Vector3.zero;
         }
@@ -23,23 +25,33 @@ namespace Build.Component
         {
             if (RB != null)
             {
+                RB.velocity = Vector3.zero;
                 RB.AddForce(force, ForceMode2D.Impulse);
             }
         }
         
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            Debug.Log("Projectile hit: " + collision.gameObject.name);
-
-            var targetHealth = collision.gameObject.GetComponent<HealthData>();
-
-            //apply damage to target
-            if (targetHealth)
+            try
             {
-                targetHealth.Damage(AttackPower);
-            }
+                Debug.Log("Projectile hit: " + collision.gameObject.name);
 
-            base.ReturnToPool();
+                var targetHealth = collision.gameObject.GetComponent<HealthData>();
+
+                //apply damage to target
+                if (targetHealth)
+                {
+                    targetHealth.Damage(AttackPower);
+                }
+
+                ReturnToPool();
+            } catch (Exception e) { Debug.LogError(e.Message); }
+
+        }
+
+        private void OnDestroy()
+        {
+            Debug.Log("Destroyed!");
         }
     }
 }

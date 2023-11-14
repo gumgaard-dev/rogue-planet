@@ -1,34 +1,27 @@
 using Build.Component;
 using Capstone.Build.Objects;
+using Capstone.Build.Objects.ObjectPool;
 using System;
 using UnityEngine;
 
 namespace Capstone.Build.Weapon
 {
     [RequireComponent(typeof(ProjectileSpawner))]
-    public class Gun : MonoBehaviour
+    public class Gun : PoolUser
     {
-        public Transform ProjectileSpawnTransform;
         public float ShotInterval;
         public float ShotForceMagnitude;
-        public Projectile Projectile;
-        public GameObject ProjectileContainer;
 
-        private Vector2 ProjectileSpawnPosition => ProjectileSpawnTransform.position;
-        private Quaternion ProjectileSpawnRotation => ProjectileSpawnTransform.rotation;
-        private Vector2 ShotDirection => ProjectileSpawnTransform.right;
-
-        private ObjectPool<Projectile> _projectilePool;
+        private Vector2 ProjectileSpawnPosition => InstantiationPoint.position;
+        private Quaternion ProjectileSpawnRotation => InstantiationPoint.rotation;
+        private Vector2 ShotDirection => InstantiationPoint.right;
 
         private Cooldown _shotCooldown;
 
         private void Start()
         {
-            if (Projectile != null)
-            {
-                 this._projectilePool = new ObjectPool<Projectile>(Projectile, 20, ProjectileContainer);
-            }
-            
+            CreatePool(2);
+
             this._shotCooldown = new Cooldown(ShotInterval);
             _shotCooldown.Activate();
         }
@@ -39,18 +32,10 @@ namespace Capstone.Build.Weapon
             {
                 _shotCooldown.Activate();
 
-                Projectile projectileToShoot = _projectilePool.Get(); // Get a projectile from the pool
-                projectileToShoot.transform.SetPositionAndRotation(ProjectileSpawnPosition, ProjectileSpawnRotation);
+                Projectile p = GetFromPool() as Projectile;
 
-                projectileToShoot.AddImpulseForce(ShotForceMagnitude * ShotDirection);
+                p.AddImpulseForce(ShotForceMagnitude * ShotDirection);
             }
-        }
-
-        // Call this method to return a projectile to the pool
-        public void ReturnProjectile(Projectile projectileToReturn)
-        {
-            projectileToReturn.StopMoving();
-            _projectilePool.ReturnToPool(projectileToReturn);
         }
     }
 }

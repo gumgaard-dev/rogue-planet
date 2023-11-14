@@ -24,12 +24,14 @@ namespace Capstone.Build.Objects
         {
             this._poolablePrefab = prefab;
             this.ObjectContainer = Object.Instantiate(new GameObject("PoolContainer"));
+            this.DefaultAmount = 10;
         }
 
         public ObjectPool (T prefab, GameObject container)
         {
             this._poolablePrefab = prefab;
             this.ObjectContainer = container;
+            this.DefaultAmount = 10;
         }
         public ObjectPool(T prefab, int initialCount)
         {
@@ -43,16 +45,9 @@ namespace Capstone.Build.Objects
         public ObjectPool(T prefab, int initialCount, GameObject container)
         {
             this._poolablePrefab = prefab;
+            this.DefaultAmount = initialCount;
             ObjectContainer = container;
             AddObjects(initialCount);
-        }
-
-        public void DestroyExcessObjects()
-        {
-            while (_objectQueue.Count > DefaultAmount)
-            {
-                Object.Destroy( _objectQueue.Dequeue() );
-            }
         }
 
         private void AddObjects(int count)
@@ -80,16 +75,13 @@ namespace Capstone.Build.Objects
 
         public void ReturnToPool(T toReturn)
         {
-            // keep pool at default size if possible
-            if ( _objectQueue.Count >= DefaultAmount)
+            _objectQueue.Enqueue(toReturn);
+               GameObject g = toReturn.gameObject;
+            if (g != null)
             {
-                Object.Destroy(toReturn.gameObject);
+                g.SetActive(false);
             }
-            else
-            {
-                toReturn.gameObject.SetActive(false);
-                _objectQueue.Enqueue(toReturn);
-            }
+            
         }
 
         public void ReturnToPool(PoolableObject toReturn)

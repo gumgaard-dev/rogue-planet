@@ -1,19 +1,20 @@
 using Build.World.WorldTime;
+using Capstone.Build.Objects.ObjectPool;
 using UnityEngine;
 
 namespace Build.Characters.Enemy
 {
-    public class EnemySpawner : MonoBehaviour, IDayNightBehavior, ITimeBasedBehavior
+    public class EnemySpawner : PoolUser, IDayNightBehavior, ITimeBasedBehavior
     {
-        public Enemy Prototype;
         public Clock Clock;
-        public GameObject EnemyTarget;
-        private bool _isActive;
-        private float _timer = 0;
-        [SerializeField] private float spawnRate = 10f;
+
+        [SerializeField] private bool _isActive;
+        [SerializeField] private float _timer = 0;
+        [SerializeField] private float _timeBetweenSpawns = 10f;
 
         void Start()
         {
+
             if (Clock == null)
             {
                 Clock = FindObjectOfType<Clock>();
@@ -29,16 +30,21 @@ namespace Build.Characters.Enemy
                 Clock.NightStart.AddListener(this.OnNightStart);
             }
 
-            Prototype.target = EnemyTarget;
+            if (PoolablePrototype == null)
+            {
+                Debug.LogWarning("No enemy prototype set for this spawner");
+            }
+            else
+            {
+                CreatePool(10);
+            }
         }
 
 
         //called from update, spawn the provided prototype
         void Spawn()
         {
-            //create new Enemy
-            Enemy enemy = Instantiate(Prototype, transform.position, Quaternion.identity);
-            enemy.target = EnemyTarget;
+            GetFromPool();
         }
 
         public void OnDayStart()
@@ -75,7 +81,7 @@ namespace Build.Characters.Enemy
             // use the _spawnrate and Time.deltaTime to spawn the enemies
             _timer += Time.deltaTime;
 
-            if (_timer > spawnRate)
+            if (_timer > _timeBetweenSpawns)
             {
                 Spawn();
                 _timer = 0;
