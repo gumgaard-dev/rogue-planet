@@ -1,5 +1,6 @@
 using Capstone.Build.Characters.Player;
 using Capstone.Build.Characters.Player.PlayerStates;
+using Capstone.Build.Characters.Ship;
 using UnityEngine;
 
 namespace Capstone.Build.Cam
@@ -9,8 +10,8 @@ namespace Capstone.Build.Cam
     {
         private MiningCameraState _miningCameraState;
         private CombatCameraState _combatCameraState;
-        private CameraState _currentState;
-        private Camera _camera;
+        public CameraState CurrentCamState;
+        public Camera Cam;
 
         [Header("Testing/Debugging")]
         [SerializeField] private bool _tweakStatesAtRuntime;
@@ -29,22 +30,28 @@ namespace Capstone.Build.Cam
         public float CombatMoveSmoothTime;
         public float CombatVerticalOffset;
 
+        [ExecuteInEditMode]
         private void Awake()
         {
-            this._camera = GetComponent<Camera>();
-            _miningCameraState = new MiningCameraState(Player, _camera, MiningCameraSize);
-            _combatCameraState = new CombatCameraState(Ship, _camera, CombatCameraSize);
-            _currentState = (Player.StateType == PlayerStateType.InShip) ? _combatCameraState : _miningCameraState;
+            if (Cam == null)
+            {
+                Cam = GetComponent<Camera>();
+            }
+            
+            _miningCameraState = new MiningCameraState(Player, Cam, MiningCameraSize);
+            _combatCameraState = new CombatCameraState(Ship, Cam, CombatCameraSize);
+            CurrentCamState = (Player.StateType == PlayerStateType.InShip) ? _combatCameraState : _miningCameraState;
         }
 
-
+        [ExecuteInEditMode]
         void Update()
         {
             if (_tweakStatesAtRuntime) { UpdateStateVariables(); }
-            _currentState.UpdateCachedVariables();
-            _currentState.MoveCamera();
+            CurrentCamState.UpdateCachedVariables();
+            CurrentCamState.MoveCamera();
         }
 
+        [ExecuteInEditMode]
         private void UpdateStateVariables()
         {
             _miningCameraState.CameraSize = MiningCameraSize;
@@ -58,17 +65,18 @@ namespace Capstone.Build.Cam
             _combatCameraState.VerticalOffset = CombatVerticalOffset;
         }
 
-
+        [ExecuteInEditMode]
         // set as listener for Player's EnterShip event
         public void OnPlayerEnterShip()
         {
-            this._currentState = _combatCameraState;
+            this.CurrentCamState = _combatCameraState;
         }
 
+        [ExecuteInEditMode]
         // set as listener for Player's ExitShip event
         public void OnPlayerExitShip()
         {
-            this._currentState = _miningCameraState;
+            this.CurrentCamState = _miningCameraState;
         }
     }
 }

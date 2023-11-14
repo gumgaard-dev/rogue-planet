@@ -13,12 +13,17 @@ public abstract class CameraState
     private float _zoomVelocity;
     public float ZoomSmoothTime;
     public float MoveSmoothTime;
+
+    [ExecuteInEditMode]
     public virtual void MoveCamera()
     {
         Camera.orthographicSize = Mathf.SmoothDamp(Camera.orthographicSize, CameraSize, ref _zoomVelocity, ZoomSmoothTime);
     }
+
+    [ExecuteInEditMode]
     public virtual void UpdateCachedVariables() { }
 
+    [ExecuteInEditMode]
     public CameraState(Camera camera, float cameraSize)
     {
         Camera = camera;

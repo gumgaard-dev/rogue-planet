@@ -1,33 +1,56 @@
 using Build.Component;
+using Capstone.Build.Objects;
+using System;
 using UnityEngine;
 
-[RequireComponent(typeof(ProjectileShooter))]
-public class Gun : MonoBehaviour
+namespace Capstone.Build.Weapon
 {
-    [SerializeField]
-    private float _shotInterval;
-    
-    [SerializeField]
-    private ParticleShooter _particleShooter;
-    [SerializeField]
-    private ProjectileShooter _projectileShooter;
-    private Cooldown _shotCooldown;
-
-    private void Start()
+    [RequireComponent(typeof(ProjectileSpawner))]
+    public class Gun : MonoBehaviour
     {
-        TryGetComponent<ProjectileShooter>(out this._projectileShooter);
-        TryGetComponent<ParticleShooter>(out this._particleShooter);
+        public Transform ProjectileSpawnTransform;
+        public float ShotInterval;
+        public float ShotForceMagnitude;
+        public Projectile Projectile;
+        public GameObject ProjectileContainer;
 
-        this._shotCooldown = new Cooldown(_shotInterval);
-        _shotCooldown.Activate();
-    }
-    public void Shoot()
-    {
-        if (_shotCooldown.IsAvailable())
+        private Vector2 ProjectileSpawnPosition => ProjectileSpawnTransform.position;
+        private Quaternion ProjectileSpawnRotation => ProjectileSpawnTransform.rotation;
+        private Vector2 ShotDirection => ProjectileSpawnTransform.right;
+
+        private ObjectPool<Projectile> _projectilePool;
+
+        private Cooldown _shotCooldown;
+
+        private void Start()
         {
-            _particleShooter.Shoot();
-            _projectileShooter.Shoot();
+            if (Projectile != null)
+            {
+                 this._projectilePool = new ObjectPool<Projectile>(Projectile, 20, ProjectileContainer);
+            }
+            
+            this._shotCooldown = new Cooldown(ShotInterval);
             _shotCooldown.Activate();
+        }
+
+        public void Shoot()
+        {
+            if (_shotCooldown.IsAvailable())
+            {
+                _shotCooldown.Activate();
+
+                Projectile projectileToShoot = _projectilePool.Get(); // Get a projectile from the pool
+                projectileToShoot.transform.SetPositionAndRotation(ProjectileSpawnPosition, ProjectileSpawnRotation);
+
+                projectileToShoot.AddImpulseForce(ShotForceMagnitude * ShotDirection);
+            }
+        }
+
+        // Call this method to return a projectile to the pool
+        public void ReturnProjectile(Projectile projectileToReturn)
+        {
+            projectileToReturn.StopMoving();
+            _projectilePool.ReturnToPool(projectileToReturn);
         }
     }
 }

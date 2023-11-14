@@ -1,4 +1,5 @@
 using Build.Component;
+using Capstone.Build.Weapon;
 using UnityEngine;
 
 namespace Build.Characters.Enemy

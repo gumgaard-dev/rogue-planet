@@ -1,6 +1,5 @@
 using Capstone.Build.Characters.Player.Animation;
 using Capstone.Build.Characters.Player.PlayerStates;
-using Capstone.Input;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -32,8 +31,8 @@ namespace Capstone.Build.Characters.Player
         private PlayerAimController _aimController;
 
         // a reference to the player's ship used by the in-ship state
-        [SerializeField]private Ship _ship;
-        public Ship Ship {  get { return _ship; } }
+        [SerializeField]private Ship.Ship _ship;
+        public Ship.Ship Ship {  get { return _ship; } }
         public UnityEvent EnterShip;
         public UnityEvent ExitShip;
         public PlayerMovedEvent PlayerMoved;

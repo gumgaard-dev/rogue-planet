@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using Capstone.Build.Characters.Ship;
 using UnityEngine;
 
 public class CombatCameraState : CameraState
