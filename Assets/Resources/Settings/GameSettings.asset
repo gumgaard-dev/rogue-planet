@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c951d18a41ca1c74f8366eae3cae2227, type: 3}
   m_Name: GameSettings
   m_EditorClassIdentifier: 
-  DefaultGravityScale: 5
-  FallingGravityScale: 6
+  DefaultGravityScale: 3
+  FallingGravityScale: 4
   RunSpeed: 10
   MinMoveSpeed: 0.01
   MinRunSpeed: 1.2

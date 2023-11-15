@@ -2,7 +2,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Camera))]
 [RequireComponent (typeof(BoxCollider2D))]
-public class ParallaxCameraBox : MonoBehaviour
+public class CamColliderController : MonoBehaviour
 {
     private Camera _camera;
     private BoxCollider2D _boxCollider;
@@ -23,6 +23,11 @@ public class ParallaxCameraBox : MonoBehaviour
     }
     
     void Start()
+    {
+        UpdateColliderBounds();
+    }
+
+    public void UpdateColliderBounds()
     {
         _xyRatio = (float)Screen.width / Screen.height;
         _sizeY = _camera.orthographicSize * 2;

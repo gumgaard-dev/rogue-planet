@@ -7,13 +7,14 @@ namespace Build.Component
     {
         public int AttackPower = 5;
         public Rigidbody2D RB;
-        
 
-        void OnBecameInvisible()
+
+        private void OnTriggerExit2D(Collider2D collision)
         {
-            // this is buggy
-/*            // from poolableObject
-            ReturnToPool();*/
+            if (collision.gameObject.layer == LayerMask.NameToLayer("Camera"))
+            {
+                ReturnToPool();
+            }
         }
 
         private void OnDisable()

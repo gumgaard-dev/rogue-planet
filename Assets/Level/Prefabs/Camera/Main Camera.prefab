@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7817929095212737316}
-  - component: {fileID: 8894419535509403824}
   - component: {fileID: 8924383940036921908}
   - component: {fileID: 8678219593345867192}
+  - component: {fileID: 8894419535509403824}
   - component: {fileID: 388552914480040931}
   - component: {fileID: 3296043442147157214}
   - component: {fileID: 6911465639051684106}
@@ -37,6 +37,41 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8924383940036921908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1465107823242450040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bc66277d09a045409eae9ce5cb1df82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tweakStatesAtRuntime: 1
+  Player: {fileID: 0}
+  MiningCamSize: 0
+  MiningLookaheadAmount: 1
+  MiningMoveSmoothTime: 0.25
+  MiningZoomSmoothTime: 0.25
+  Ship: {fileID: 0}
+  CombatCamSize: 0
+  CombatZoomSmoothTime: 0.4
+  CombatMoveSmoothTime: 0.25
+  CombatVerticalOffset: 13
+--- !u!114 &8678219593345867192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1465107823242450040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1bc2abb8e7a86b4da40eb0b4dbe978b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!20 &8894419535509403824
 Camera:
   m_ObjectHideFlags: 0
@@ -88,41 +123,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!114 &8924383940036921908
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1465107823242450040}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bc66277d09a045409eae9ce5cb1df82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _tweakStatesAtRuntime: 1
-  Player: {fileID: 0}
-  MiningCameraSize: 10
-  MiningLookaheadAmount: 1
-  MiningMoveSmoothTime: 0.25
-  MiningZoomSmoothTime: 0.25
-  Ship: {fileID: 0}
-  CombatCameraSize: 17
-  CombatZoomSmoothTime: 0.4
-  CombatMoveSmoothTime: 0.25
-  CombatVerticalOffset: 13
---- !u!114 &8678219593345867192
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1465107823242450040}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 456a334720698104ab708046de522f47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!81 &388552914480040931
 AudioListener:
   m_ObjectHideFlags: 0
