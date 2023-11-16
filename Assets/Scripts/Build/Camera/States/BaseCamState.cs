@@ -7,8 +7,7 @@ using UnityEngine.Events;
 
 namespace Capstone.Build.Cam
 {
-    [System.Serializable] public class CameraSizeChangedEvent : UnityEvent<float> { }
-    public abstract class BaseCamState
+     public abstract class BaseCamState
     {
         public Camera Cam;
 
@@ -26,7 +25,7 @@ namespace Capstone.Build.Cam
         protected float _camZoomVelocity;
         protected Vector3 _camMoveVelocity;
 
-        public CameraSizeChangedEvent CameraSizeChanged;
+        
 
         public abstract void MoveCamera();
 
@@ -35,7 +34,6 @@ namespace Capstone.Build.Cam
             if (_camCurrentSize != StateCamSize)
             {
                 Cam.orthographicSize = Mathf.SmoothDamp(Cam.orthographicSize, StateCamSize, ref _camZoomVelocity, ZoomSmoothTime);
-                CameraSizeChanged?.Invoke(Cam.orthographicSize);
             }
         }
 

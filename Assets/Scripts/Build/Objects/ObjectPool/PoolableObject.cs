@@ -3,12 +3,14 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 
+[System.Serializable] public class ReturnToPoolEvent : UnityEvent<PoolableObject> { }
 public abstract class PoolableObject : MonoBehaviour 
 {
-    public event Action<PoolableObject> OnReturnToPool;
+    public ReturnToPoolEvent OnReturnToPool;
 
     public virtual void ReturnToPool()
     {
+        Debug.Log("returningToPool");
         OnReturnToPool?.Invoke(this);
     }
 

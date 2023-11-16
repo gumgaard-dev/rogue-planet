@@ -2,13 +2,18 @@ using Capstone.Build.Characters.Player;
 using Capstone.Build.Characters.Player.PlayerStates;
 using Capstone.Build.Characters.Ship;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Capstone.Build.Cam
 {
     [RequireComponent(typeof(Camera))]
     [RequireComponent (typeof(CamColliderController))]
+    [System.Serializable] public class CameraSizeChangedEvent : UnityEvent<float> { }
     public class CamController : MonoBehaviour
     {
+        
+        public CameraSizeChangedEvent CameraSizeChanged = new();
+
         public enum CameraStateType
         {
             Mining,
@@ -17,6 +22,7 @@ namespace Capstone.Build.Cam
 
         [Header("Testing/Debugging")]
         [SerializeField] private bool _tweakStatesAtRuntime;
+        private bool _cameraBoundsChanged;
 
         [Space]
         [Header("Mining Camera Options")]
@@ -49,10 +55,7 @@ namespace Capstone.Build.Cam
             set
             {
                 _currentCamState = value;
-                if  (_camColliderController != null )
-                {
-                    _camColliderController.UpdateColliderBounds();
-                }
+                _camColliderController.UpdateColliderBounds(value.StateCamSize);
             }
         }
         
@@ -71,7 +74,10 @@ namespace Capstone.Build.Cam
 
             _miningCameraState = new MiningCamState(Player, _cam, MiningCamSize);
             _combatCameraState = new CombatCamState(Ship, _cam, CombatCamSize);
+        }
 
+        private void Start()
+        {
             CurrentCamState = Player.StateType == PlayerStateType.InShip ? _combatCameraState : _miningCameraState;
         }
 

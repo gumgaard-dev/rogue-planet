@@ -8,11 +8,12 @@ namespace Build.Component
         public int AttackPower = 5;
         public Rigidbody2D RB;
 
-
         private void OnTriggerExit2D(Collider2D collision)
         {
-            if (collision.gameObject.layer == LayerMask.NameToLayer("Camera"))
+
+            if (collision.gameObject.CompareTag("MainCamera"))
             {
+                Debug.Log(gameObject.name + "left camera bounds.");
                 ReturnToPool();
             }
         }
@@ -33,26 +34,22 @@ namespace Build.Component
         
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            try
+
+            if (gameObject.layer == LayerMask.NameToLayer("ShipProjectile"))
             {
-                Debug.Log("Projectile hit: " + collision.gameObject.name);
+                Debug.Log(gameObject.name + "hit: " + collision.gameObject.name);
+            }
 
-                var targetHealth = collision.gameObject.GetComponent<HealthData>();
 
-                //apply damage to target
-                if (targetHealth)
-                {
-                    targetHealth.Damage(AttackPower);
-                }
+            var targetHealth = collision.gameObject.GetComponent<HealthData>();
 
-                ReturnToPool();
-            } catch (Exception e) { Debug.LogError(e.Message); }
+            //apply damage to target
+            if (targetHealth)
+            {
+                targetHealth.Damage(AttackPower);
+            }
 
-        }
-
-        private void OnDestroy()
-        {
-            Debug.Log("Destroyed!");
+            ReturnToPool();
         }
     }
 }

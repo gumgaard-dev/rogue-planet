@@ -1,6 +1,7 @@
 using Build.Component;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -56,10 +57,7 @@ namespace Capstone.Build.Objects
             {
                 T newObject = Object.Instantiate(_poolablePrefab, ObjectContainer.transform);
                 newObject.gameObject.SetActive(false);
-
-                newObject.OnReturnToPool += ReturnToPool;
                 _objectQueue.Enqueue(newObject);
-                ObjectAddedToPool?.Invoke(newObject);
             }
         }
 
@@ -74,14 +72,9 @@ namespace Capstone.Build.Objects
         }
 
         public void ReturnToPool(T toReturn)
-        {
+        {  
+            toReturn.gameObject.SetActive(false);
             _objectQueue.Enqueue(toReturn);
-               GameObject g = toReturn.gameObject;
-            if (g != null)
-            {
-                g.SetActive(false);
-            }
-            
         }
 
         public void ReturnToPool(PoolableObject toReturn)

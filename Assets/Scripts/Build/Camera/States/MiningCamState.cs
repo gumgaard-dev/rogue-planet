@@ -25,7 +25,6 @@ namespace Capstone.Build.Cam
             if (_camCurrentSize != StateCamSize)
             {
                 Cam.orthographicSize = Mathf.SmoothDamp(Cam.orthographicSize, StateCamSize, ref _camZoomVelocity, ZoomSmoothTime);
-                CameraSizeChanged?.Invoke(Cam.orthographicSize);
             }
 
             if (_camTargetPosition != _camCurrentPosition)

@@ -1,36 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7202353773351710453
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3913379521663609130}
-  m_Layer: 0
-  m_Name: ProjectilePool
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3913379521663609130
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7202353773351710453}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.7593777, y: -0.73850644, z: 0.32645214}
-  m_LocalScale: {x: 0.623053, y: 0.623053, z: 0.46728978}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6087374064475622416}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1470268103750491026
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39,6 +8,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 911227927549169753, guid: f02aa54bd5e0eb84aadd08869e2b0d1e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 942033551530974920, guid: f02aa54bd5e0eb84aadd08869e2b0d1e, type: 3}
+      propertyPath: m_Name
+      value: Gun
+      objectReference: {fileID: 0}
     - target: {fileID: 2958096994798825472, guid: f02aa54bd5e0eb84aadd08869e2b0d1e, type: 3}
       propertyPath: m_Radius
       value: 1.14
@@ -84,21 +61,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4238229479491104913, guid: f02aa54bd5e0eb84aadd08869e2b0d1e, type: 3}
+      propertyPath: PoolKey
+      value: shipProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 4238229479491104913, guid: f02aa54bd5e0eb84aadd08869e2b0d1e, type: 3}
       propertyPath: Projectile
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4238229479491104913, guid: f02aa54bd5e0eb84aadd08869e2b0d1e, type: 3}
       propertyPath: ShotInterval
-      value: 1
+      value: 0.4
       objectReference: {fileID: 0}
+    - target: {fileID: 4238229479491104913, guid: f02aa54bd5e0eb84aadd08869e2b0d1e, type: 3}
+      propertyPath: PoolablePrototype
+      value: 
+      objectReference: {fileID: 3506674659029914485, guid: 952b1f651b82c544bb77d282ff4ec105, type: 3}
+    - target: {fileID: 4238229479491104913, guid: f02aa54bd5e0eb84aadd08869e2b0d1e, type: 3}
+      propertyPath: InstantiationPoint
+      value: 
+      objectReference: {fileID: 3605285945601203789}
     - target: {fileID: 4238229479491104913, guid: f02aa54bd5e0eb84aadd08869e2b0d1e, type: 3}
       propertyPath: ShotForceMagnitude
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 4238229479491104913, guid: f02aa54bd5e0eb84aadd08869e2b0d1e, type: 3}
-      propertyPath: ProjectileContainer
-      value: 
-      objectReference: {fileID: 7202353773351710453}
     - target: {fileID: 4238229479491104913, guid: f02aa54bd5e0eb84aadd08869e2b0d1e, type: 3}
       propertyPath: ProjectileSpawnTransform
       value: 
@@ -106,6 +91,10 @@ PrefabInstance:
     - target: {fileID: 5476924925078598009, guid: f02aa54bd5e0eb84aadd08869e2b0d1e, type: 3}
       propertyPath: m_Name
       value: rileyTestShip
+      objectReference: {fileID: 0}
+    - target: {fileID: 5476924925078598009, guid: f02aa54bd5e0eb84aadd08869e2b0d1e, type: 3}
+      propertyPath: m_TagString
+      value: Ship
       objectReference: {fileID: 0}
     - target: {fileID: 6167111491042061600, guid: f02aa54bd5e0eb84aadd08869e2b0d1e, type: 3}
       propertyPath: m_AngleLimits.m_LowerAngle
@@ -127,19 +116,11 @@ PrefabInstance:
     - {fileID: 341592485258248515, guid: f02aa54bd5e0eb84aadd08869e2b0d1e, type: 3}
     - {fileID: 76901046500673039, guid: f02aa54bd5e0eb84aadd08869e2b0d1e, type: 3}
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 4620063718944561026, guid: f02aa54bd5e0eb84aadd08869e2b0d1e, type: 3}
-      insertIndex: 0
-      addedObject: {fileID: 3913379521663609130}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f02aa54bd5e0eb84aadd08869e2b0d1e, type: 3}
 --- !u!4 &3605285945601203789 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2769711003630699999, guid: f02aa54bd5e0eb84aadd08869e2b0d1e, type: 3}
-  m_PrefabInstance: {fileID: 1470268103750491026}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &6087374064475622416 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4620063718944561026, guid: f02aa54bd5e0eb84aadd08869e2b0d1e, type: 3}
   m_PrefabInstance: {fileID: 1470268103750491026}
   m_PrefabAsset: {fileID: 0}

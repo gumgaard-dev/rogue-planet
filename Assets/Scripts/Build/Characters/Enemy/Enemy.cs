@@ -50,7 +50,6 @@ namespace Build.Characters.Enemy
                 
             }
         }
-        
 
         protected void UpdateFacing()
         {

@@ -28,8 +28,9 @@ namespace Capstone.Build.Objects.ObjectPool
         {
             if (!ContainsPool(poolKey))
             {
-                GameObject newPoolContainer = Instantiate(new GameObject(poolKey + "Container"), MainPoolContainer);
-                ObjectPool<T> newPool = new ObjectPool<T>(prefab, initialCount, newPoolContainer);
+                GameObject newPoolContainer = new GameObject(poolKey + "Container");
+                newPoolContainer.transform.parent = MainPoolContainer.transform;
+                ObjectPool<T> newPool = new(prefab, initialCount, newPoolContainer);
                 _pools[poolKey] = newPool;
             }
         }

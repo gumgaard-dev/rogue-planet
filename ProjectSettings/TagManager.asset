@@ -31,8 +31,8 @@ TagManager:
   - ParallaxBackground
   - Camera
   - EnemyProjectile
-  - 
-  - 
+  - EnemyPath
+  - ProjectileBarrier
   - 
   - 
   - 

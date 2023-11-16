@@ -852,11 +852,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 3ef2d882105d27940a5592031b64398b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.89
+      value: -0.8
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 3ef2d882105d27940a5592031b64398b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.44
+      value: -2.56
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 3ef2d882105d27940a5592031b64398b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1297,7 +1297,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SETTINGS_PATH: Settings/GameSettings
-  StateType: 0
+  StateType: 2
   _ship: {fileID: 0}
   EnterShip:
     m_PersistentCalls:

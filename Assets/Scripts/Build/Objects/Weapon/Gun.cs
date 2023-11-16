@@ -11,16 +11,13 @@ namespace Capstone.Build.Weapon
     {
         public float ShotInterval;
         public float ShotForceMagnitude;
-
-        private Vector2 ProjectileSpawnPosition => InstantiationPoint.position;
-        private Quaternion ProjectileSpawnRotation => InstantiationPoint.rotation;
         private Vector2 ShotDirection => InstantiationPoint.right;
 
         private Cooldown _shotCooldown;
 
         private void Start()
         {
-            CreatePool(2);
+            CreatePool(10);
 
             this._shotCooldown = new Cooldown(ShotInterval);
             _shotCooldown.Activate();
@@ -32,7 +29,7 @@ namespace Capstone.Build.Weapon
             {
                 _shotCooldown.Activate();
 
-                Projectile p = GetFromPool() as Projectile;
+                Projectile p = InstantiateFromPool() as Projectile;
 
                 p.AddImpulseForce(ShotForceMagnitude * ShotDirection);
             }
