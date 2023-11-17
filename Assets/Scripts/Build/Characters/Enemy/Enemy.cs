@@ -78,7 +78,7 @@ namespace Build.Characters.Enemy
         public override void ReturnToPool()
         {
             // reset any values here
-            _healthData.ResetCurrentHealth();
+            _healthData.HealToFull();
 
             // return this to pool
             base.ReturnToPool();
