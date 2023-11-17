@@ -35,7 +35,7 @@ namespace Build.Component
 
         private void OnDisable()
         {
-            this.RB.velocity = Vector3.zero;
+            this._rb.velocity = Vector3.zero;
         }
 
         private void OnEnable()
@@ -45,10 +45,10 @@ namespace Build.Component
 
         public void AddImpulseForce(Vector2 force)
         {
-            if (RB != null)
+            if (_rb != null)
             {
-                RB.velocity = Vector3.zero;
-                RB.AddForce(force, ForceMode2D.Impulse);
+                _rb.velocity = Vector3.zero;
+                _rb.AddForce(force, ForceMode2D.Impulse);
             }
         }
         
