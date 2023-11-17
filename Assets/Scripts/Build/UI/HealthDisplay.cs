@@ -6,19 +6,44 @@ using UnityEngine.UI;
 
 public class HealthDisplay : MonoBehaviour
 {
-    public Slider HealthBar;
+    public Slider HealthSlider;
+    private RectTransform _sliderRectTransform;
+    private Image _sliderFillImage;
+
     public TextMeshPro MaxHealthText;
     public TextMeshPro CurHealthText;
-    private Image _sliderFillRect;
+    
 
+    private void Awake()
+    {
+        if (HealthSlider == null)
+        {
+            Debug.LogWarning("Healthbar slider not set in inspector.");
+        }
+        else
+        {
+
+            if (!HealthSlider.fillRect.TryGetComponent(out _sliderFillImage))
+            {
+                Debug.LogWarning("Could not get slider fill image from HealthBar");
+            }
+            if (!HealthSlider.TryGetComponent(out _sliderRectTransform))
+            {
+                Debug.LogWarning("Could not get slider rect transform and will not be able to resize health bar.");
+            }
+        }
+    }
     public void UpdateMaxHealth(int maxHealth)
     {
-        HealthBar.maxValue = maxHealth;
-        HealthBar.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, maxHealth);
+        if (HealthSlider != null)
+        {
+            HealthSlider.maxValue = maxHealth;
+            _sliderRectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, maxHealth);
+        }
     }
 
     public void UpdateCurHealth(int curHealth)
     {
-        HealthBar.value = curHealth;
+        HealthSlider.value = curHealth;
     }
 }
