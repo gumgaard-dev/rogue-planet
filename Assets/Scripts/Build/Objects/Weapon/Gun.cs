@@ -1,36 +1,38 @@
 using Build.Component;
+using Capstone.Build.Objects;
+using Capstone.Build.Objects.ObjectPool;
+using System;
 using UnityEngine;
 
-[RequireComponent(typeof(ProjectileShooter))]
-[RequireComponent(typeof(AttackData))]
-public class Gun : MonoBehaviour
+namespace Capstone.Build.Weapon
 {
-    [SerializeField]
-    private float _shotInterval;
-    
-    [SerializeField]
-    private ParticleShooter _particleShooter;
-    [SerializeField]
-    private ProjectileShooter _projectileShooter;
-    private AttackData _attackData;
-    private Cooldown _shotCooldown;
+    [RequireComponent(typeof(ProjectileSpawner))]
+    public class Gun : PoolUser
+    {
+        public float ShotInterval;
+        public float ShotForceMagnitude;
+        private Vector2 ShotDirection => InstantiationPoint.right;
 
-    private void Start()
-    {
-        TryGetComponent<ProjectileShooter>(out this._projectileShooter);
-        TryGetComponent<ParticleShooter>(out this._particleShooter);
-        TryGetComponent<AttackData>(out this._attackData);
-        
-        this._shotCooldown = new Cooldown(_shotInterval);
-        _shotCooldown.Activate();
-    }
-    public void Shoot()
-    {
-        if (_shotCooldown.IsAvailable())
+        private Cooldown _shotCooldown;
+
+        private void Start()
         {
-            _particleShooter.Shoot();
-            _projectileShooter.Shoot();
+            CreatePool(10);
+
+            this._shotCooldown = new Cooldown(ShotInterval);
             _shotCooldown.Activate();
+        }
+
+        public void Shoot()
+        {
+            if (_shotCooldown.IsAvailable())
+            {
+                _shotCooldown.Activate();
+
+                Projectile p = InstantiateFromPool() as Projectile;
+
+                p.AddImpulseForce(ShotForceMagnitude * ShotDirection);
+            }
         }
     }
 }

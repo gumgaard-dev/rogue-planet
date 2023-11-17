@@ -1,11 +1,12 @@
+using Capstone.Build.Characters.Player.Animation;
 using Capstone.Build.Characters.Player.PlayerStates;
-using Capstone.Input;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace Capstone.Build.Characters.Player
 {
+    [System.Serializable] public class PlayerMovedEvent : UnityEvent<Vector3> { }
     public class Player : MonoBehaviour
     {
         public string SETTINGS_PATH = "Settings/GameSettings";
@@ -30,10 +31,11 @@ namespace Capstone.Build.Characters.Player
         private PlayerAimController _aimController;
 
         // a reference to the player's ship used by the in-ship state
-        [SerializeField]private Ship _ship;
-        public Ship Ship {  get { return _ship; } }
+        [SerializeField]private Ship.Ship _ship;
+        public Ship.Ship Ship {  get { return _ship; } }
         public UnityEvent EnterShip;
         public UnityEvent ExitShip;
+        public PlayerMovedEvent PlayerMoved;
         
         // used to determine if player is close enough to enter the ship
         private bool _isNearShip;
@@ -87,7 +89,10 @@ namespace Capstone.Build.Characters.Player
         }
 
 
-        public void UpdateManaged() { State.UpdateManaged(); }
+        public void UpdateManaged() {
+            PlayerMoved?.Invoke(this.transform.position);
+            State.UpdateManaged(); 
+        }
 
 
         public void FixedUpdateManaged() { State.FixedUpdateManaged(); }
@@ -106,7 +111,10 @@ namespace Capstone.Build.Characters.Player
         }
 
 
-        public void SetPosition(float x, float y) { transform.position = new Vector2(x, y); }
+        public void SetPosition(float x, float y) { 
+            Vector2 newPosition = new Vector2(x, y);
+            transform.position = newPosition;
+        }
 
         public void SetPosition(Vector2 position) { SetPosition(position.x, position.y); }
 

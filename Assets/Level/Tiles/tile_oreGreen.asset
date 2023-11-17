@@ -34,12 +34,13 @@ MonoBehaviour:
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 1
   m_ColliderType: 1
-  OreName: 
+  DefaultSprite: {fileID: 21300000, guid: f9df34a75eb476b4094b8b742779ecbd, type: 3}
+  OreName: GreenOre
   OreToDrop: {fileID: 3132417687799982428, guid: 1bda0e357a109544e8c224596d4fa8b0, type: 3}
   TerrainHealthModifier: 1.2
   TerrainSpawnData:
-  - terrainType: {fileID: 11400000, guid: 850ac5720020894499a5c242810a1f1d, type: 2}
-    veinChance: 0.003
-  - terrainType: {fileID: 11400000, guid: 30d030a00725840478740b540186c289, type: 2}
+  - terrainType: {fileID: 11400000, guid: 0f9319fa68dce1f4e863abcd1fdf0f66, type: 2}
+    veinChance: 0.005
+  - terrainType: {fileID: 11400000, guid: a73647c68b6fbbc43af0cc11fa057cbd, type: 2}
     veinChance: 0.005
   MaxVeinSize: 10

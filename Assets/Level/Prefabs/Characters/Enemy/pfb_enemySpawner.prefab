@@ -44,4 +44,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a43295fa0ef54fd286ed2a5affb9f19f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prototype: {fileID: 835063856815473104, guid: 888508e667b454241a27e1fdfbe3eb59, type: 3}
+  PoolablePrototype: {fileID: 4551279123997189761, guid: d96ccfdf5a6324a48a6c423021ee5358, type: 3}
+  PoolKey: rangedEnemy
+  InstantiationPoint: {fileID: 7997262940519683194}
+  returnPoints: []
+  Clock: {fileID: 0}
+  _isActive: 0
+  _timeBetweenGroupSpawns: 10
+  _timeBetweenIndividualSpawns: 0.2
+  _timer: 0
+  MaxGroupSize: 3
+  MinGroupSize: 7

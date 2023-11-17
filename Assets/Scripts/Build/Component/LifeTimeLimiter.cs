@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 
 public class LifetimeLimiter : MonoBehaviour
 {
@@ -10,3 +10,4 @@ public class LifetimeLimiter : MonoBehaviour
         Destroy(gameObject, lifetime);
     }
 }
+*/

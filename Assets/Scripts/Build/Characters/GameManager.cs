@@ -13,8 +13,11 @@ namespace Capstone.Build
         [SerializeField]
         private Player _player;
 
+        public int TargetFramerate = 60;
+
         void Awake()
         {
+            Application.targetFrameRate = TargetFramerate;
             _inputSystem = GetComponent<InputSystem>();
             _inputSystem.AwakeManaged();
 
