@@ -1,11 +1,12 @@
 using Build.World.WorldTime;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.Rendering.Universal;
 
-public class GlobalLightController : MonoBehaviour, ITimeBasedBehavior, IDayNightBehavior
+public class DayNightController : MonoBehaviour, ITimeBasedBehavior, IDayNightBehavior
 {
     private Light2D GlobalLight;
 
@@ -16,6 +17,12 @@ public class GlobalLightController : MonoBehaviour, ITimeBasedBehavior, IDayNigh
 
     public float TransitionLength;
     private float _currentTransitionTime;
+
+    public SpriteRenderer DaySkyBackground;
+    public SpriteRenderer NightSkyBackground;
+    public bool IsDay;
+
+    private Color _currentNightBackgroundAlpha;
 
 
     public void Awake()
@@ -28,6 +35,7 @@ public class GlobalLightController : MonoBehaviour, ITimeBasedBehavior, IDayNigh
 
     public void OnClockIntialized(Clock clock)
     {
+        _currentNightBackgroundAlpha = new(1f, 1f, 1f, 0f);
         if (clock.IsDay)
         {
             OnDayStart();
@@ -42,14 +50,27 @@ public class GlobalLightController : MonoBehaviour, ITimeBasedBehavior, IDayNigh
     {
         if (GlobalLight != null && GlobalLight.intensity != _currentTargetIntensity)
         {
-            UpdateLightIntensity(timeChange);
+            _currentTransitionTime += timeChange;
+            UpdateLightIntensity();
+            UpdateBackground();
         }
     }
 
-    private void UpdateLightIntensity(float timeChange)
+    private void UpdateBackground()
     {
-        _currentTransitionTime += timeChange;
 
+        float currentTransitionTimeNormalized = _currentTransitionTime <= TransitionLength ? _currentTransitionTime / TransitionLength : 1;
+
+
+        // sunrise if day (fade nightsky from 1 to 0), sunset if night (0 to 1)
+        _currentNightBackgroundAlpha.a = IsDay ? 1 - currentTransitionTimeNormalized : currentTransitionTimeNormalized;
+
+        NightSkyBackground.color = _currentNightBackgroundAlpha;
+    }
+
+    private void UpdateLightIntensity()
+    {
+        
         if (_currentTransitionTime <= TransitionLength)
         {
             float currentTransitionTimeNormalized = _currentTransitionTime / TransitionLength;
@@ -64,12 +85,14 @@ public class GlobalLightController : MonoBehaviour, ITimeBasedBehavior, IDayNigh
 
     public void OnDayStart()
     {
+        IsDay = true;
         StartTransition(DaytimeIntensity);
     }
 
 
     public void OnNightStart()
     {
+        IsDay = false;
         StartTransition(NighttimeIntensity);
     }
 

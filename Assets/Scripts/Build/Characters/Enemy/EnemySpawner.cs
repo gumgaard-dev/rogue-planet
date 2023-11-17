@@ -9,7 +9,9 @@ namespace Build.Characters.Enemy
     public class EnemySpawner : PoolUser, IDayNightBehavior, ITimeBasedBehavior
     {
 
-        private float[] _pathYValues = { 10.1f, 10.5f, 10.9f, 11.3f, 11.7f};
+        private float[] _pathYValues = { 10.1f, 10.5f, 10.9f, 11.3f, 11.7f };
+        private int _pathIndex = 0; // Index to keep track of the current position in the array
+
         private float enemyHeight;
         public Clock Clock;
 
@@ -97,6 +99,7 @@ namespace Build.Characters.Enemy
 
         public void OnNightStart()
         {
+            ShuffleArray(_pathYValues);
             SetCurrentGroupSize();
             Activate();
         }
@@ -108,7 +111,7 @@ namespace Build.Characters.Enemy
 
             if (_enemiesToSpawn > 0 && _timer > _timeBetweenIndividualSpawns)
             {
-                float yPositionOfEnemy = RandomEnemyPathYPosition() + enemyHeight / 2;
+                float yPositionOfEnemy = NextRandomPathYPosition() + enemyHeight / 2;
                 InstantiateFromPoolAt(new Vector2(this.transform.position.x, yPositionOfEnemy));
                 _enemiesToSpawn--;
                 _timer = 0;
@@ -121,11 +124,27 @@ namespace Build.Characters.Enemy
             }
         }
 
-        private float RandomEnemyPathYPosition()
+        private float NextRandomPathYPosition()
         {
-            int index = Random.Range(0, _pathYValues.Length - 1);
+            if (_pathIndex >= _pathYValues.Length)
+            {
+                ShuffleArray(_pathYValues); // Shuffle the array
+                _pathIndex = 0; // Reset the index
+            }
 
-            return _pathYValues[index];
+            // Return the current value and increment the index
+            return _pathYValues[_pathIndex++];
+        }
+
+        private void ShuffleArray(float[] array)
+        {
+            for (int i = array.Length - 1; i > 0; i--)
+            {
+                int randomIndex = Random.Range(0, i + 1);
+                float temp = array[i];
+                array[i] = array[randomIndex];
+                array[randomIndex] = temp;
+            }
         }
     }
 }

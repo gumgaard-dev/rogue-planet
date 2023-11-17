@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!212 &105581380 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5322408072122291044, guid: d870bcd8412e8d743968a4ac2f42c76e, type: 3}
+  m_PrefabInstance: {fileID: 193852278123420130}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &441805775 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2644076706263083791, guid: d870bcd8412e8d743968a4ac2f42c76e, type: 3}
@@ -134,6 +139,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b1a94d48fb46ba4aa4c3b3f501872a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!212 &874734114 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 7471908973177957734, guid: d870bcd8412e8d743968a4ac2f42c76e, type: 3}
+  m_PrefabInstance: {fileID: 193852278123420130}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1281565268 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3814700123176425407, guid: d870bcd8412e8d743968a4ac2f42c76e, type: 3}
@@ -337,6 +347,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3814700123176425407, guid: d870bcd8412e8d743968a4ac2f42c76e, type: 3}
+      propertyPath: DaySkyBackground
+      value: 
+      objectReference: {fileID: 874734114}
+    - target: {fileID: 3814700123176425407, guid: d870bcd8412e8d743968a4ac2f42c76e, type: 3}
+      propertyPath: TransitionLength
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3814700123176425407, guid: d870bcd8412e8d743968a4ac2f42c76e, type: 3}
+      propertyPath: NightSkyBackground
+      value: 
+      objectReference: {fileID: 105581380}
+    - target: {fileID: 5322408072122291044, guid: d870bcd8412e8d743968a4ac2f42c76e, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5813584018184741687, guid: d870bcd8412e8d743968a4ac2f42c76e, type: 3}
+      propertyPath: m_Name
+      value: DayNightController
+      objectReference: {fileID: 0}
     - target: {fileID: 6012496100067328925, guid: d870bcd8412e8d743968a4ac2f42c76e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -381,8 +411,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: WorldGroup
       objectReference: {fileID: 0}
+    - target: {fileID: 7471908973177957734, guid: d870bcd8412e8d743968a4ac2f42c76e, type: 3}
+      propertyPath: m_Color.b
+      value: 0.98090005
+      objectReference: {fileID: 0}
+    - target: {fileID: 7471908973177957734, guid: d870bcd8412e8d743968a4ac2f42c76e, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7471908973177957734, guid: d870bcd8412e8d743968a4ac2f42c76e, type: 3}
+      propertyPath: m_Color.r
+      value: 0.86477983
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8677921242214668418, guid: d870bcd8412e8d743968a4ac2f42c76e, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d870bcd8412e8d743968a4ac2f42c76e, type: 3}
@@ -456,6 +499,14 @@ PrefabInstance:
     - target: {fileID: 5501701577496609344, guid: 234fd8f15feac0e43a9a78073f22acad, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6590565546518955250, guid: 234fd8f15feac0e43a9a78073f22acad, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7479928866445862076, guid: 234fd8f15feac0e43a9a78073f22acad, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8450438082578017345, guid: 234fd8f15feac0e43a9a78073f22acad, type: 3}
       propertyPath: Clock
@@ -639,6 +690,14 @@ PrefabInstance:
     - target: {fileID: 2049863761120605896, guid: 43ff0a585e9e94e46aecbe6250653cc7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7564309564089506480, guid: 43ff0a585e9e94e46aecbe6250653cc7, type: 3}
+      propertyPath: DayDuration
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7564309564089506480, guid: 43ff0a585e9e94e46aecbe6250653cc7, type: 3}
+      propertyPath: NightDuration
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 7564309564089506480, guid: 43ff0a585e9e94e46aecbe6250653cc7, type: 3}
       propertyPath: DayStart.m_PersistentCalls.m_Calls.Array.data[0].m_Target
