@@ -6,11 +6,26 @@ namespace Build.Component
     public class Projectile : PoolableObject
     {
         public int AttackPower = 5;
-        public Rigidbody2D RB;
+
+        private Rigidbody2D _rb;
+
+        [Header("If disabled, the projectile will only hit a single target")]
+        public bool AllowMultipleHits;
+        
+        // used by single-hit projectiles to determine damage
+        private bool _hasHit;
+
+        public override void Initialize()
+        {
+            base.Initialize();
+
+            if (!TryGetComponent(out _rb)) {
+                Debug.LogWarning("No rigidbody2d attached!");
+            }
+        }
 
         private void OnTriggerExit2D(Collider2D collision)
         {
-
             if (collision.gameObject.CompareTag("MainCamera"))
             {
                 Debug.Log(gameObject.name + "left camera bounds.");
@@ -21,6 +36,11 @@ namespace Build.Component
         private void OnDisable()
         {
             this.RB.velocity = Vector3.zero;
+        }
+
+        private void OnEnable()
+        {
+            _hasHit = false;
         }
 
         public void AddImpulseForce(Vector2 force)
@@ -34,22 +54,19 @@ namespace Build.Component
         
         private void OnCollisionEnter2D(Collision2D collision)
         {
-
-            if (gameObject.layer == LayerMask.NameToLayer("ShipProjectile"))
+            if (!_hasHit || AllowMultipleHits)
             {
-                Debug.Log(gameObject.name + "hit: " + collision.gameObject.name);
+                _hasHit = true;
+                var targetHealth = collision.gameObject.GetComponent<HealthData>();
+
+                //apply damage to target
+                if (targetHealth)
+                {
+                    targetHealth.Damage(AttackPower);
+                }
+
+                ReturnToPool();
             }
-
-
-            var targetHealth = collision.gameObject.GetComponent<HealthData>();
-
-            //apply damage to target
-            if (targetHealth)
-            {
-                targetHealth.Damage(AttackPower);
-            }
-
-            ReturnToPool();
         }
     }
 }

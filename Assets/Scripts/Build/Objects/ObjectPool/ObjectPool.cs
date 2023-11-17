@@ -57,6 +57,7 @@ namespace Capstone.Build.Objects
             {
                 T newObject = Object.Instantiate(_poolablePrefab, ObjectContainer.transform);
                 newObject.gameObject.SetActive(false);
+                newObject.Initialize();
                 _objectQueue.Enqueue(newObject);
             }
         }

@@ -8,6 +8,8 @@ public abstract class PoolableObject : MonoBehaviour
 {
     public ReturnToPoolEvent OnReturnToPool;
 
+    // called when pool clones object, replaces Start() and Awake() methods
+    public virtual void Initialize() { }
     public virtual void ReturnToPool()
     {
         Debug.Log("returningToPool");
