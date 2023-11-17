@@ -34,7 +34,7 @@ public class JetpackFuelSliderController : MonoBehaviour
             Slider.value = 100;
         }
 
-        Slider.fillRect.TryGetComponent<Image>(out _fillImage);
+        Slider.fillRect.TryGetComponent(out _fillImage);
     }
     public void UpdateFuelSlider(int maxFuel, int curFuel)
     {

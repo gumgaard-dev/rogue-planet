@@ -86,7 +86,6 @@ namespace Capstone.Build.Characters.Player.PlayerStates
 
         internal void SetAimInput(Vector2 value)
         {
-            Debug.Log(value.ToString());
             InputInfo.Aim = value;
         }
     }

@@ -7,7 +7,7 @@ namespace Capstone.Build.Characters.Player.PlayerStates
     
     public class InShipState : PlayerState
     {
-        private Ship _ship;
+        private Ship.Ship _ship;
         public InShipState(GameSettings settings, Player player) : base(settings, player) {}
 
         public override void Enter()

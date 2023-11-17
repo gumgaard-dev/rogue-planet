@@ -7,6 +7,7 @@ TagManager:
   - Destructible
   - Ground
   - Enemy
+  - Ship
   layers:
   - Default
   - TransparentFX
@@ -23,15 +24,15 @@ TagManager:
   - ShipDetector
   - Player
   - Ship
-  - Projectile
+  - ShipProjectile
   - Enemy
   - ShipTriggerArea
   - Ore
   - ParallaxBackground
   - Camera
-  - 
-  - 
-  - 
+  - EnemyProjectile
+  - EnemyPath
+  - ProjectileBarrier
   - 
   - 
   - 
@@ -50,17 +51,26 @@ TagManager:
   - name: CaveBackground
     uniqueID: 1809360989
     locked: 0
-  - name: Ship
-    uniqueID: 1777377027
-    locked: 0
   - name: Projectile
     uniqueID: 1996865175
+    locked: 0
+  - name: SurfaceForeGround
+    uniqueID: 2257507537
+    locked: 0
+  - name: Enemy
+    uniqueID: 1693026583
     locked: 0
   - name: Player
     uniqueID: 34369277
     locked: 0
-  - name: SurfaceForeground
-    uniqueID: 3179650405
+  - name: Ship
+    uniqueID: 1777377027
+    locked: 0
+  - name: Items
+    uniqueID: 1006945747
+    locked: 0
+  - name: UndergroundForeground
+    uniqueID: 55561481
     locked: 0
   - name: UI
     uniqueID: 1567287067
