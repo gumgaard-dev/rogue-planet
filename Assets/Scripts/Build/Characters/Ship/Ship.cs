@@ -29,6 +29,11 @@ namespace Capstone.Build.Characters.Ship
                 Gun.Shoot();
             }
         }
+
+        public void OnHealthIsZero()
+        {
+            Destroy(this.gameObject);
+        }
     }
 }
 

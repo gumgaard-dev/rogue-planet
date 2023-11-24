@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 0}
+  TargetFramerate: 60
 --- !u!114 &1175927454438843509
 MonoBehaviour:
   m_ObjectHideFlags: 0

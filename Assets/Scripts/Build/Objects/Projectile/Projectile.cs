@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Rendering.UI;
 
 namespace Build.Component
 {
@@ -15,12 +16,19 @@ namespace Build.Component
         // used by single-hit projectiles to determine damage
         private bool _hasHit;
 
+        private TrailRenderer _trailRenderer;
+        private float _trailLength;
+
         public override void Initialize()
         {
             base.Initialize();
 
             if (!TryGetComponent(out _rb)) {
                 Debug.LogWarning("No rigidbody2d attached!");
+            }
+
+            if (TryGetComponent(out _trailRenderer)) {
+                _trailLength = _trailRenderer.time;
             }
         }
 
@@ -29,10 +37,25 @@ namespace Build.Component
             if (collision.gameObject.CompareTag("MainCamera"))
             {
                 Debug.Log(gameObject.name + "left camera bounds.");
-                ReturnToPool();
+                ReturnToPoolCriteriaMet?.Invoke(this);
             }
         }
 
+        public override void OnGetFromPool()
+        {
+            // prints debug message. enable if debugging
+            // base.OnGetFromPool();
+            if (_trailRenderer != null) { _trailRenderer.emitting = true; }
+
+        }
+
+        public override void OnReturnToPool()
+        {
+            // prints debug message. enable if debugging
+            // base.OnGetFromPool();
+            if (_trailRenderer != null) { _trailRenderer.Clear(); _trailRenderer.emitting = false; }
+
+        }
         private void OnDisable()
         {
             this._rb.velocity = Vector3.zero;
@@ -65,7 +88,7 @@ namespace Build.Component
                     targetHealth.Damage(AttackPower);
                 }
 
-                ReturnToPool();
+                ReturnToPoolCriteriaMet?.Invoke(this);
             }
         }
     }

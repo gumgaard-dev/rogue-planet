@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DayDuration: 1
-  NightDuration: 1000
+  NightDuration: 30
   TimeOfDay: 0
   IsDay: 0
   TimeOfDayChanged:

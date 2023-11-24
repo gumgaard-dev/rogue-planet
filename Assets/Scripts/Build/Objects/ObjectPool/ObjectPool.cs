@@ -2,6 +2,7 @@ using Build.Component;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor.Rendering;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -56,8 +57,8 @@ namespace Capstone.Build.Objects
             for (int i = 0; i < count; i++)
             {
                 T newObject = Object.Instantiate(_poolablePrefab, ObjectContainer.transform);
-                newObject.gameObject.SetActive(false);
                 newObject.Initialize();
+                newObject.gameObject.SetActive(false);
                 _objectQueue.Enqueue(newObject);
             }
         }
@@ -67,15 +68,17 @@ namespace Capstone.Build.Objects
             if (_objectQueue.Count == 0)
                 AddObjects(1); // Optionally add more objects if the pool is empty
 
-            T obj = _objectQueue.Dequeue();
-            obj.gameObject.SetActive(true);
-            return obj;
+            T pObj = _objectQueue.Dequeue();
+            pObj.gameObject.SetActive(true);
+            pObj.OnGetFromPool();
+            return pObj;
         }
 
-        public void ReturnToPool(T toReturn)
-        {  
-            toReturn.gameObject.SetActive(false);
-            _objectQueue.Enqueue(toReturn);
+        public void ReturnToPool(T pObj)
+        {
+            pObj.gameObject.SetActive(false);
+            pObj.OnReturnToPool();
+            _objectQueue.Enqueue(pObj);
         }
 
         public void ReturnToPool(PoolableObject toReturn)
