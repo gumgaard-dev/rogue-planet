@@ -34,7 +34,7 @@ namespace Capstone.Build.Characters.Player.Animation
         void LateUpdate()
         {
             // Retrieve the aim direction from the input system
-            AimDirection = _inputInfo.Aim;
+            AimDirection = _inputInfo.AimMining;
 
             AimXDirection = AimDirection.normalized.x;
             

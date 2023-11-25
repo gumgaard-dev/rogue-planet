@@ -21,8 +21,12 @@ namespace Capstone.Build.Characters.Player.PlayerStates
         {
 
             UpdateTriggers();
-
-            if (TriggerInfo.Ground)
+            
+            if (Player.IsNearShip && InputInfo.EnterShip)
+            {
+                Player.SetState(PlayerStateType.InShip);
+            } 
+            else if (TriggerInfo.Ground)
             {
                 Player.SetState(PlayerStateType.Idle);
             }

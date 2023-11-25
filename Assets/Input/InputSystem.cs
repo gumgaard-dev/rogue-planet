@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Capstone.Build.Characters.Player;
 using System;
+using System.Collections.Generic;
 
 namespace Capstone.Input
 {
@@ -10,46 +11,75 @@ namespace Capstone.Input
 
         private Player _player;
 
-        private PlayerInputActions _playerInputActions;
-
-        private InputAction _moveAction;
-        private InputAction _jumpAction;
-        private InputAction _shootAction;
-        private InputAction _aimAction;
+        private readonly Dictionary<string, InputAction> _playerActions = new();
+        private readonly Dictionary<string, InputAction> _shipActions = new();
 
         private Vector2 _previousDirectionalInput;
         private bool _previousJumpInput;
         private bool _previousShootInput;
-        private Vector2 _aimInput;
 
         public void AwakeManaged()
         {
             _player = GameObject.Find("Player").GetComponent<Player>();
 
-            _playerInputActions = new PlayerInputActions();
+            var PIA = new PlayerInputActions();
+            var shipActions = PIA.Ship;
+            var playerActions = PIA.Player;
 
-            _moveAction = _playerInputActions.Player.Directional;
-            _jumpAction = _playerInputActions.Player.Jump;
-            _shootAction = _playerInputActions.Player.Shoot;
-            _aimAction = _playerInputActions.Player.Directional2;
+            _playerActions.Add("Move", playerActions.Move);
+            _playerActions.Add("Jump", playerActions.Jump);
+            _playerActions.Add("Aim", playerActions.Aim);
+            _playerActions.Add("EnterShip", playerActions.EnterShip);
+
+
+            _shipActions.Add("ExitShip", shipActions.ExitShip);
+            _shipActions.Add("Shoot", shipActions.Shoot);
+            _shipActions.Add("Aim", shipActions.Aim);
+            _shipActions.Add("PrecisionAim", shipActions.PrecisionAim);
         }
 
         public void UpdateManaged()
         {
-            PollDirectionalInput();
-            PollJumpInput();
-            PollShootInput();
-            PollAimInput();
+            if (_player.StateType == Build.Characters.Player.PlayerStates.PlayerStateType.InShip)
+            {
+                PollShootCombatInput();
+                PollCombatAimInput();
+                PollExitShipInput();
+                PollPrecisionAimInput();
+            }
+            else
+            {
+                PollMoveInput();
+                PollJumpInput();
+                PollMiningAimInput();
+                PollEnterShipInput();
+            }
+
         }
 
-        private void PollAimInput()
+        private void PollEnterShipInput()
         {
-            _player.State.SetAimInput(_aimAction.ReadValue<Vector2>());
+            _player.State.SetEnterShipInput(_playerActions["EnterShip"].ReadValue<float>() > 0);
         }
 
-        private void PollDirectionalInput() 
+        private void PollExitShipInput()
         {
-            Vector2 currentDirectionalInput = _moveAction.ReadValue<Vector2>();
+            _player.State.SetExitShipInput(_shipActions["ExitShip"].ReadValue<float>() > 0);
+        }
+
+        private void PollCombatAimInput()
+        {
+            _player.State.SetShipAimInput(_shipActions["AimKB"].ReadValue<float>());
+        }
+
+        private void PollMiningAimInput()
+        {
+            _player.State.SetAimInput(_playerActions["Aim"].ReadValue<Vector2>());
+        }
+
+        private void PollMoveInput() 
+        {
+            Vector2 currentDirectionalInput = _playerActions["Move"].ReadValue<Vector2>();
 
             // D-Pad does not detect a new button press if finger is slid from one direction to another without letting go
             // Checking against the previous move input will fix this issue
@@ -92,7 +122,7 @@ namespace Capstone.Input
 
         private void PollJumpInput() 
         {
-            bool currentJumpInput = (_jumpAction.ReadValue<float>() > 0);
+            bool currentJumpInput = (_playerActions["Jump"].ReadValue<float>() > 0);
 
             if (currentJumpInput != _previousJumpInput)
             {
@@ -101,9 +131,9 @@ namespace Capstone.Input
 
             _previousJumpInput = currentJumpInput;
         }
-        private void PollShootInput()
+        private void PollShootCombatInput()
         {
-            bool currentShootInput = _shootAction.ReadValue<float>() > 0;
+            bool currentShootInput = _shipActions["Shoot"].ReadValue<float>() > 0;
 
             if (currentShootInput != _previousShootInput)
             {
@@ -113,20 +143,35 @@ namespace Capstone.Input
             _previousShootInput = currentShootInput;
         }
 
+        private void PollPrecisionAimInput()
+        {
+            _player.State.SetPrecisionAimInput(_shipActions["PrecisionAim"].ReadValue<float>() > 0);
+        }
+
         void OnEnable()
         {
-            _moveAction.Enable();
-            _jumpAction.Enable();
-            _shootAction.Enable();
-            _aimAction.Enable();
+            foreach (InputAction i in _playerActions.Values)
+            {
+                i.Enable();
+            }
+
+            foreach (InputAction i in _shipActions.Values)
+            {
+                i.Enable();
+            }
         }
 
         void OnDisable()
         {
-            _moveAction.Disable();
-            _jumpAction.Disable();
-            _shootAction.Disable();
-            _aimAction.Disable();
+            foreach (InputAction i in _playerActions.Values)
+            {
+                i.Disable();
+            }
+
+            foreach (InputAction i in _shipActions.Values)
+            {
+                i.Disable();
+            }
         }
     }
 

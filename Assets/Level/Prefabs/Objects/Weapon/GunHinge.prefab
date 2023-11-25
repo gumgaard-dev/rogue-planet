@@ -126,9 +126,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6471930729700589520}
   - component: {fileID: 5173514107806043248}
+  - component: {fileID: 8222339335979314659}
   - component: {fileID: 5202285302281915473}
   - component: {fileID: 5258741391577303590}
-  - component: {fileID: 8222339335979314659}
   m_Layer: 0
   m_Name: GunHinge
   m_TagString: Untagged
@@ -204,6 +204,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8222339335979314659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8374776190210617346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cbd26e8026c96a469385092751f9d6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NormalTorque: 20
+  PrecisionTorque: 5
 --- !u!50 &5202285302281915473
 Rigidbody2D:
   serializedVersion: 4
@@ -247,7 +261,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0, y: 1.77}
+  m_ConnectedAnchor: {x: 0, y: 12.5}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -256,16 +270,3 @@ HingeJoint2D:
   m_AngleLimits:
     m_LowerAngle: -180
     m_UpperAngle: 0
---- !u!114 &8222339335979314659
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8374776190210617346}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cbd26e8026c96a469385092751f9d6f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  torqueToApply: 20

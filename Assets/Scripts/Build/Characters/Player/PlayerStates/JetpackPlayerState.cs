@@ -25,6 +25,10 @@ namespace Capstone.Build.Characters.Player.PlayerStates
 
         public override void FixedUpdateManaged()
         {
+            if (Player.IsNearShip && InputInfo.EnterShip)
+            {
+                Player.SetState(PlayerStateType.InShip);
+            }
             // exit state on jump release
             if(!InputInfo.Jump || !Player.Jetpack.HasFuel())
             {
