@@ -69,7 +69,7 @@ namespace Capstone.Input
 
         private void PollCombatAimInput()
         {
-            _player.State.SetShipAimInput(_shipActions["AimKB"].ReadValue<float>());
+            _player.State.SetShipAimInput(_shipActions["Aim"].ReadValue<float>());
         }
 
         private void PollMiningAimInput()
