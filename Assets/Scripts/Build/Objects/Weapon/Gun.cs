@@ -1,8 +1,5 @@
 using Build.Component;
 using Capstone.Build.Cam;
-using Capstone.Build.Objects;
-using Capstone.Build.Objects.ObjectPool;
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
@@ -34,13 +31,23 @@ namespace Capstone.Build.Weapon
 
         private void Start()
         {
+
+            if (ScreenShakeEnabled)
+            {
+                // camera shake event to notify CameraShaker
+                _cameraShakeOnShoot = new CameraShakeEvent();
+                _cameraShakeOnShoot.AddListener(Camera.main.GetComponent<CameraShaker>().ShakeCamera);
+            }
+
+            // create projectile pool
             CreatePool(10);
 
+
+            // create cooldown to control time between shots
             this._shotCooldown = new Cooldown(ShotInterval);
             _shotCooldown.Activate();
 
-            _cameraShakeOnShoot = new();
-
+            
 
             if (MuzzleFlashEnabled)
             {
@@ -61,10 +68,7 @@ namespace Capstone.Build.Weapon
                 }
             }
 
-            if (ScreenShakeEnabled)
-            {
-                _cameraShakeOnShoot.AddListener(Camera.main.GetComponent<CameraShaker>().ShakeCamera);
-            }
+
         }
 
         public void Shoot()
@@ -76,6 +80,7 @@ namespace Capstone.Build.Weapon
                 Projectile p = InstantiateFromPool() as Projectile;
 
                 p.AddImpulseForce(ShotForceMagnitude * ShotDirection);
+
                 if (ScreenShakeEnabled)
                 {
                     _cameraShakeOnShoot?.Invoke(ScreenShakeDuration, ScreenShakeIntensity);
