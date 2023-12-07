@@ -414,6 +414,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4081064167625308132, guid: 23c0da0f4c5252247baa42862f1acdd3, type: 3}
+      propertyPath: ScreenShakeDuration
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4081064167625308132, guid: 23c0da0f4c5252247baa42862f1acdd3, type: 3}
+      propertyPath: ScreenShakeIntensity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4081064167625308132, guid: 23c0da0f4c5252247baa42862f1acdd3, type: 3}
       propertyPath: ProjectileSpawnTransform
       value: 
       objectReference: {fileID: 3240358457011291465}

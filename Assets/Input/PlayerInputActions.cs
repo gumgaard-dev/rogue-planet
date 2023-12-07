@@ -28,16 +28,16 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             ""id"": ""dfe0976b-269d-4151-9656-0092094a96ab"",
             ""actions"": [
                 {
-                    ""name"": ""Directional"",
+                    ""name"": ""Move"",
                     ""type"": ""Value"",
                     ""id"": ""ca5b9d63-a61f-49f0-84e4-6d5075a82a2f"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Press(behavior=2)"",
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Directional2"",
+                    ""name"": ""Aim"",
                     ""type"": ""Value"",
                     ""id"": ""65f860d1-ee68-4e16-b16e-ffe0c0ad48f9"",
                     ""expectedControlType"": ""Stick"",
@@ -55,13 +55,13 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Shoot"",
-                    ""type"": ""Button"",
-                    ""id"": ""a2509832-d91a-42df-80d2-1d76223bfab8"",
+                    ""name"": ""EnterShip"",
+                    ""type"": ""Value"",
+                    ""id"": ""fef0eb13-2324-4192-abb4-fe02c9b2e553"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -72,7 +72,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Directional"",
+                    ""action"": ""Move"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -83,7 +83,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Directional"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -94,7 +94,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Directional"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -105,7 +105,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Directional"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -116,7 +116,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Directional"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -127,7 +127,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Directional"",
+                    ""action"": ""Move"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -138,7 +138,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Directional"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -149,7 +149,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Directional"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -160,7 +160,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Directional"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -171,7 +171,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Directional"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -182,7 +182,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Directional"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -210,23 +210,23 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""0e78b921-e54a-4ae3-896b-0a592b031a3a"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""id"": ""dc113998-9e50-42a2-a128-66bea7b019a8"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Shoot"",
+                    ""action"": ""EnterShip"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""7b52348d-0e20-4a7e-b89d-6d053beedb38"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""id"": ""c5dc3e04-f871-4d2b-abc6-6b2d94abd3b5"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Shoot"",
+                    ""action"": ""EnterShip"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -237,7 +237,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Directional2"",
+                    ""action"": ""Aim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -248,7 +248,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Directional2"",
+                    ""action"": ""Aim"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -259,7 +259,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Directional2"",
+                    ""action"": ""Aim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -270,7 +270,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Directional2"",
+                    ""action"": ""Aim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -281,7 +281,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Directional2"",
+                    ""action"": ""Aim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -292,9 +292,174 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Directional2"",
+                    ""action"": ""Aim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                }
+            ]
+        },
+        {
+            ""name"": ""Ship"",
+            ""id"": ""7d6f56af-8fcf-4a0e-8832-92e6683f979c"",
+            ""actions"": [
+                {
+                    ""name"": ""Shoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""61f21625-06fb-46d5-be09-6f297a6e0343"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Aim"",
+                    ""type"": ""Value"",
+                    ""id"": ""91716c1e-4017-49f3-92eb-c79606d73b00"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ExitShip"",
+                    ""type"": ""Value"",
+                    ""id"": ""c9bf2e21-5a96-4fc0-be2a-0fdb869feaed"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""PrecisionAim"",
+                    ""type"": ""Button"",
+                    ""id"": ""e66ff998-0a75-4f82-b2bd-8863075f1b2e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""e0fdd0f1-702d-4250-806e-29cfb05522a5"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b971a785-1a34-4ece-98b0-755558628020"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Keyboard"",
+                    ""id"": ""cd20b762-0995-4cac-9778-5919e7564615"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""af62f1e4-c6f9-4915-9a5b-2117c2131e37"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""1f41377b-a812-4172-bbcd-e8af7309b426"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Controller"",
+                    ""id"": ""6facf4d2-76fe-4cea-a6b8-4b95b57cdf3e"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""bdf45fae-3464-4f23-862d-c3dae5f556cc"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""9dfea0d9-812d-4d55-a16c-73d5c7303a28"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""48bc16e4-83cf-4d2a-9154-386da8953414"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ExitShip"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""aae254a7-e16f-4e9a-b671-5705895e6558"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ExitShip"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6f09c703-9c48-4963-9871-4514788ea50a"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PrecisionAim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -303,10 +468,16 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
 }");
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-        m_Player_Directional = m_Player.FindAction("Directional", throwIfNotFound: true);
-        m_Player_Directional2 = m_Player.FindAction("Directional2", throwIfNotFound: true);
+        m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
+        m_Player_Aim = m_Player.FindAction("Aim", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
-        m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
+        m_Player_EnterShip = m_Player.FindAction("EnterShip", throwIfNotFound: true);
+        // Ship
+        m_Ship = asset.FindActionMap("Ship", throwIfNotFound: true);
+        m_Ship_Shoot = m_Ship.FindAction("Shoot", throwIfNotFound: true);
+        m_Ship_Aim = m_Ship.FindAction("Aim", throwIfNotFound: true);
+        m_Ship_ExitShip = m_Ship.FindAction("ExitShip", throwIfNotFound: true);
+        m_Ship_PrecisionAim = m_Ship.FindAction("PrecisionAim", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -368,18 +539,18 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     // Player
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
-    private readonly InputAction m_Player_Directional;
-    private readonly InputAction m_Player_Directional2;
+    private readonly InputAction m_Player_Move;
+    private readonly InputAction m_Player_Aim;
     private readonly InputAction m_Player_Jump;
-    private readonly InputAction m_Player_Shoot;
+    private readonly InputAction m_Player_EnterShip;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
         public PlayerActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Directional => m_Wrapper.m_Player_Directional;
-        public InputAction @Directional2 => m_Wrapper.m_Player_Directional2;
+        public InputAction @Move => m_Wrapper.m_Player_Move;
+        public InputAction @Aim => m_Wrapper.m_Player_Aim;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
-        public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
+        public InputAction @EnterShip => m_Wrapper.m_Player_EnterShip;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -389,34 +560,34 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_PlayerActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_PlayerActionsCallbackInterfaces.Add(instance);
-            @Directional.started += instance.OnDirectional;
-            @Directional.performed += instance.OnDirectional;
-            @Directional.canceled += instance.OnDirectional;
-            @Directional2.started += instance.OnDirectional2;
-            @Directional2.performed += instance.OnDirectional2;
-            @Directional2.canceled += instance.OnDirectional2;
+            @Move.started += instance.OnMove;
+            @Move.performed += instance.OnMove;
+            @Move.canceled += instance.OnMove;
+            @Aim.started += instance.OnAim;
+            @Aim.performed += instance.OnAim;
+            @Aim.canceled += instance.OnAim;
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
-            @Shoot.started += instance.OnShoot;
-            @Shoot.performed += instance.OnShoot;
-            @Shoot.canceled += instance.OnShoot;
+            @EnterShip.started += instance.OnEnterShip;
+            @EnterShip.performed += instance.OnEnterShip;
+            @EnterShip.canceled += instance.OnEnterShip;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
         {
-            @Directional.started -= instance.OnDirectional;
-            @Directional.performed -= instance.OnDirectional;
-            @Directional.canceled -= instance.OnDirectional;
-            @Directional2.started -= instance.OnDirectional2;
-            @Directional2.performed -= instance.OnDirectional2;
-            @Directional2.canceled -= instance.OnDirectional2;
+            @Move.started -= instance.OnMove;
+            @Move.performed -= instance.OnMove;
+            @Move.canceled -= instance.OnMove;
+            @Aim.started -= instance.OnAim;
+            @Aim.performed -= instance.OnAim;
+            @Aim.canceled -= instance.OnAim;
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
-            @Shoot.started -= instance.OnShoot;
-            @Shoot.performed -= instance.OnShoot;
-            @Shoot.canceled -= instance.OnShoot;
+            @EnterShip.started -= instance.OnEnterShip;
+            @EnterShip.performed -= instance.OnEnterShip;
+            @EnterShip.canceled -= instance.OnEnterShip;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -434,11 +605,88 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // Ship
+    private readonly InputActionMap m_Ship;
+    private List<IShipActions> m_ShipActionsCallbackInterfaces = new List<IShipActions>();
+    private readonly InputAction m_Ship_Shoot;
+    private readonly InputAction m_Ship_Aim;
+    private readonly InputAction m_Ship_ExitShip;
+    private readonly InputAction m_Ship_PrecisionAim;
+    public struct ShipActions
+    {
+        private @PlayerInputActions m_Wrapper;
+        public ShipActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Shoot => m_Wrapper.m_Ship_Shoot;
+        public InputAction @Aim => m_Wrapper.m_Ship_Aim;
+        public InputAction @ExitShip => m_Wrapper.m_Ship_ExitShip;
+        public InputAction @PrecisionAim => m_Wrapper.m_Ship_PrecisionAim;
+        public InputActionMap Get() { return m_Wrapper.m_Ship; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(ShipActions set) { return set.Get(); }
+        public void AddCallbacks(IShipActions instance)
+        {
+            if (instance == null || m_Wrapper.m_ShipActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_ShipActionsCallbackInterfaces.Add(instance);
+            @Shoot.started += instance.OnShoot;
+            @Shoot.performed += instance.OnShoot;
+            @Shoot.canceled += instance.OnShoot;
+            @Aim.started += instance.OnAim;
+            @Aim.performed += instance.OnAim;
+            @Aim.canceled += instance.OnAim;
+            @ExitShip.started += instance.OnExitShip;
+            @ExitShip.performed += instance.OnExitShip;
+            @ExitShip.canceled += instance.OnExitShip;
+            @PrecisionAim.started += instance.OnPrecisionAim;
+            @PrecisionAim.performed += instance.OnPrecisionAim;
+            @PrecisionAim.canceled += instance.OnPrecisionAim;
+        }
+
+        private void UnregisterCallbacks(IShipActions instance)
+        {
+            @Shoot.started -= instance.OnShoot;
+            @Shoot.performed -= instance.OnShoot;
+            @Shoot.canceled -= instance.OnShoot;
+            @Aim.started -= instance.OnAim;
+            @Aim.performed -= instance.OnAim;
+            @Aim.canceled -= instance.OnAim;
+            @ExitShip.started -= instance.OnExitShip;
+            @ExitShip.performed -= instance.OnExitShip;
+            @ExitShip.canceled -= instance.OnExitShip;
+            @PrecisionAim.started -= instance.OnPrecisionAim;
+            @PrecisionAim.performed -= instance.OnPrecisionAim;
+            @PrecisionAim.canceled -= instance.OnPrecisionAim;
+        }
+
+        public void RemoveCallbacks(IShipActions instance)
+        {
+            if (m_Wrapper.m_ShipActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IShipActions instance)
+        {
+            foreach (var item in m_Wrapper.m_ShipActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_ShipActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public ShipActions @Ship => new ShipActions(this);
     public interface IPlayerActions
     {
-        void OnDirectional(InputAction.CallbackContext context);
-        void OnDirectional2(InputAction.CallbackContext context);
+        void OnMove(InputAction.CallbackContext context);
+        void OnAim(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnEnterShip(InputAction.CallbackContext context);
+    }
+    public interface IShipActions
+    {
         void OnShoot(InputAction.CallbackContext context);
+        void OnAim(InputAction.CallbackContext context);
+        void OnExitShip(InputAction.CallbackContext context);
+        void OnPrecisionAim(InputAction.CallbackContext context);
     }
 }

@@ -34,7 +34,7 @@ namespace Capstone.Build.Characters.Player.Animation
         void LateUpdate()
         {
             // Retrieve the aim direction from the input system
-            AimDirection = _inputInfo.Aim;
+            AimDirection = _inputInfo.AimMining;
 
             AimXDirection = AimDirection.normalized.x;
             
@@ -66,18 +66,18 @@ namespace Capstone.Build.Characters.Player.Animation
             // Calculate the angle from the aim direction
             var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-            // If the player is facing left, we need to mirror the rotation around the y-axis.
+/*            // If the player is facing left, we need to mirror the rotation around the y-axis.
             if (isFacingLeft)
             {
                 // This effectively rotates the bone correctly when the player sprite is flipped
                 angle = (180f - angle) * -1;
             }
-
+*/
             // Create a target rotation based on the calculated angle
             var targetRotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
             // Apply the rotation to the bone
-            bone.rotation = Quaternion.Slerp(bone.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+            bone.rotation = targetRotation;
         }
     }
 

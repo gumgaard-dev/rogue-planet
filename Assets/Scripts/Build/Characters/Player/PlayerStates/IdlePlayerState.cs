@@ -14,7 +14,7 @@
 
             UpdateTriggers();
 
-            if (InputInfo.Move.y > 0 && Player.IsNearShip) { Player.SetState(PlayerStateType.InShip); }
+            if (InputInfo.EnterShip && Player.IsNearShip) { Player.SetState(PlayerStateType.InShip); }
                         
             else if (!TriggerInfo.Ground) { Player.SetState(PlayerStateType.Fall); }
 

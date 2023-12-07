@@ -45,7 +45,10 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: SurfaceBackground
+  - name: SurfaceBackgroundFar
+    uniqueID: 3166260495
+    locked: 0
+  - name: SurfaceBackgroundClose
     uniqueID: 2653685615
     locked: 0
   - name: CaveBackground
@@ -53,9 +56,6 @@ TagManager:
     locked: 0
   - name: Projectile
     uniqueID: 1996865175
-    locked: 0
-  - name: SurfaceForeGround
-    uniqueID: 2257507537
     locked: 0
   - name: Enemy
     uniqueID: 1693026583
@@ -66,12 +66,21 @@ TagManager:
   - name: Ship
     uniqueID: 1777377027
     locked: 0
+  - name: SurfaceForeGround
+    uniqueID: 2257507537
+    locked: 0
   - name: Items
     uniqueID: 1006945747
     locked: 0
   - name: UndergroundForeground
     uniqueID: 55561481
     locked: 0
+  - name: OreDeposits
+    uniqueID: 2599381197
+    locked: 0
   - name: UI
     uniqueID: 1567287067
+    locked: 0
+  - name: FX
+    uniqueID: 1900843047
     locked: 0

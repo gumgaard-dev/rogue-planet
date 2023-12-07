@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5501701577496609344
 Transform:
   m_ObjectHideFlags: 0
@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1366681894064402708}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -47,7 +47,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5422181279794203452, guid: 520b825e37b364a8e9c1b132f43931ec, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6463934443297227713, guid: 520b825e37b364a8e9c1b132f43931ec, type: 3}
+      propertyPath: SpawnPosYOffset
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6463934443297227713, guid: 520b825e37b364a8e9c1b132f43931ec, type: 3}
+      propertyPath: Paths.Array.size
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7997262940519683194, guid: 520b825e37b364a8e9c1b132f43931ec, type: 3}
       propertyPath: m_LocalPosition.x
@@ -113,7 +121,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5422181279794203452, guid: 520b825e37b364a8e9c1b132f43931ec, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6463934443297227713, guid: 520b825e37b364a8e9c1b132f43931ec, type: 3}
       propertyPath: PoolKey
@@ -138,6 +146,14 @@ PrefabInstance:
     - target: {fileID: 6463934443297227713, guid: 520b825e37b364a8e9c1b132f43931ec, type: 3}
       propertyPath: MinGroupSize
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6463934443297227713, guid: 520b825e37b364a8e9c1b132f43931ec, type: 3}
+      propertyPath: SpawnPosYOffset
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6463934443297227713, guid: 520b825e37b364a8e9c1b132f43931ec, type: 3}
+      propertyPath: Paths.Array.size
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6463934443297227713, guid: 520b825e37b364a8e9c1b132f43931ec, type: 3}
       propertyPath: PoolablePrototype

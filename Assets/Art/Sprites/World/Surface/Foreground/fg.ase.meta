@@ -95,7 +95,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638346995280637394
+  platformSettingsDirtyTick: 638375472541655730
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -119,6 +119,46 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
+  - name: Underground
+    originalName: 
+    pivot: {x: 0.5000004, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 418
+      width: 128
+      height: 361
+    spriteID: 2275421bac535fe459f2749f86004c3d
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 418}
+  - name: HoleFront
+    originalName: 
+    pivot: {x: 0.5000004, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 3852
+      y: 4
+      width: 128
+      height: 392
+    spriteID: 245a2ec56a4a0324784dd3e075789bce
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 3852, y: 4}
   - name: SurfaceTerrain
     originalName: 
     pivot: {x: 0.5, y: 0}
@@ -128,9 +168,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 1600
-      height: 396
-    spriteID: 119adf7028b8bc94f8813ae57b19d404
+      width: 3840
+      height: 406
+    spriteID: 6aebc6d4c17ce4b4e94e62d052ce24ad
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -139,80 +179,23 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: HoleBack
-    originalName: 
-    pivot: {x: 0.50000006, y: -6.425926}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 1612
-      y: 382
-      width: 256
-      height: 54
-    spriteID: 2fd11436077dd6a46b433ee30c8532f1
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 1612, y: 382}
-  - name: HoleFront
-    originalName: 
-    pivot: {x: 0.50000006, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 1612
-      y: 4
-      width: 256
-      height: 370
-    spriteID: f982ec3530d8c254da5111c4e61352c7
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 1612, y: 4}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 1791325218
-    name: SurfaceTerrain
+    guid: 164591017
+    name: Underground
     layerFlags: 3
-    layerType: 0
+    layerType: 2
     blendMode: 0
     cells:
-    - name: SurfaceTerrain
+    - name: Underground
       frameIndex: 0
       cellRect:
-        x: 0
+        x: 1856
         y: 0
-        width: 1600
-        height: 396
-      spriteId: 119adf7028b8bc94f8813ae57b19d404
-    linkedCells: []
-    parentIndex: -1
-  - layerIndex: 1
-    guid: 1158917732
-    name: HoleBack
-    layerFlags: 3
-    layerType: 0
-    blendMode: 0
-    cells:
-    - name: HoleBack
-      frameIndex: 0
-      cellRect:
-        x: 672
-        y: 347
-        width: 256
-        height: 54
-      spriteId: 2fd11436077dd6a46b433ee30c8532f1
+        width: 128
+        height: 361
+      spriteId: 2275421bac535fe459f2749f86004c3d
     linkedCells: []
     parentIndex: -1
   - layerIndex: 2
@@ -225,18 +208,35 @@ ScriptedImporter:
     - name: HoleFront
       frameIndex: 0
       cellRect:
-        x: 672
+        x: 1856
         y: 0
-        width: 256
-        height: 370
-      spriteId: f982ec3530d8c254da5111c4e61352c7
+        width: 128
+        height: 392
+      spriteId: 245a2ec56a4a0324784dd3e075789bce
+    linkedCells: []
+    parentIndex: -1
+  - layerIndex: 1
+    guid: 1791325219
+    name: SurfaceTerrain
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: SurfaceTerrain
+      frameIndex: 0
+      cellRect:
+        x: 0
+        y: 0
+        width: 3840
+        height: 406
+      spriteId: 6aebc6d4c17ce4b4e94e62d052ce24ad
     linkedCells: []
     parentIndex: -1
   platformSettings:
   - name: DefaultTexturePlatform
     overridden: 0
     ignorePlatformSupport: 0
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -271,4 +271,4 @@ ScriptedImporter:
     androidETC2FallbackOverride: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 1600, y: 896}
+  canvasSize: {x: 3840, y: 896}

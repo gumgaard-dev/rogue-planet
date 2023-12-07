@@ -1,55 +1,95 @@
 using System;
 using UnityEngine;
+using UnityEngine.Rendering.UI;
 
 namespace Build.Component
 {
     public class Projectile : PoolableObject
     {
         public int AttackPower = 5;
-        public Rigidbody2D RB;
 
-        private void OnTriggerExit2D(Collider2D collision)
+        private Rigidbody2D _rb;
+
+        [Header("If disabled, the projectile will only hit a single target")]
+        public bool AllowMultipleHits;
+        
+        // used by single-hit projectiles to determine damage
+        private bool _hasHit;
+
+        private TrailRenderer _trailRenderer;
+        private float _trailLength;
+
+        public override void Initialize()
         {
+            base.Initialize();
 
-            if (collision.gameObject.CompareTag("MainCamera"))
-            {
-                Debug.Log(gameObject.name + "left camera bounds.");
-                ReturnToPool();
+            if (!TryGetComponent(out _rb)) {
+                Debug.LogWarning("No rigidbody2d attached!");
+            }
+
+            if (TryGetComponent(out _trailRenderer)) {
+                _trailLength = _trailRenderer.time;
             }
         }
 
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            if (collision.gameObject.CompareTag("MainCamera"))
+            {
+                Debug.Log(gameObject.name + "left camera bounds.");
+                ReturnToPoolCriteriaMet?.Invoke(this);
+            }
+        }
+
+        public override void OnGetFromPool()
+        {
+            // prints debug message. enable if debugging
+            // base.OnGetFromPool();
+            if (_trailRenderer != null) { _trailRenderer.emitting = true; }
+
+        }
+
+        public override void OnReturnToPool()
+        {
+            // prints debug message. enable if debugging
+            // base.OnGetFromPool();
+            if (_trailRenderer != null) { _trailRenderer.Clear(); _trailRenderer.emitting = false; }
+
+        }
         private void OnDisable()
         {
-            this.RB.velocity = Vector3.zero;
+            this._rb.velocity = Vector3.zero;
+        }
+
+        private void OnEnable()
+        {
+            _hasHit = false;
         }
 
         public void AddImpulseForce(Vector2 force)
         {
-            if (RB != null)
+            if (_rb != null)
             {
-                RB.velocity = Vector3.zero;
-                RB.AddForce(force, ForceMode2D.Impulse);
+                _rb.velocity = Vector3.zero;
+                _rb.AddForce(force, ForceMode2D.Impulse);
             }
         }
         
         private void OnCollisionEnter2D(Collision2D collision)
         {
-
-            if (gameObject.layer == LayerMask.NameToLayer("ShipProjectile"))
+            if (!_hasHit || AllowMultipleHits)
             {
-                Debug.Log(gameObject.name + "hit: " + collision.gameObject.name);
+                _hasHit = true;
+                var targetHealth = collision.gameObject.GetComponent<HealthData>();
+
+                //apply damage to target
+                if (targetHealth)
+                {
+                    targetHealth.Damage(AttackPower);
+                }
+
+                ReturnToPoolCriteriaMet?.Invoke(this);
             }
-
-
-            var targetHealth = collision.gameObject.GetComponent<HealthData>();
-
-            //apply damage to target
-            if (targetHealth)
-            {
-                targetHealth.Damage(AttackPower);
-            }
-
-            ReturnToPool();
         }
     }
 }

@@ -1,7 +1,5 @@
 using Capstone.Input;
-using System;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Capstone.Build.Characters.Player.PlayerStates
 {
@@ -48,6 +46,16 @@ namespace Capstone.Build.Characters.Player.PlayerStates
             InputInfo.Move.y = inputValue;
         }
 
+        public virtual void SetEnterShipInput (bool inputValue)
+        {
+            InputInfo.EnterShip = inputValue;
+        }
+
+        public virtual void SetExitShipInput(bool inputValue)
+        {
+            InputInfo.ExitShip = inputValue;
+        }
+
         public virtual void SetJumpInput(bool inputValue)
         {
             InputInfo.Jump = inputValue;
@@ -56,6 +64,16 @@ namespace Capstone.Build.Characters.Player.PlayerStates
         public virtual void SetShootInput(bool inputValue)
         {
             InputInfo.Shoot = inputValue;
+        }
+
+        public virtual void SetShipAimInput(float inputValue)
+        {
+            InputInfo.AimShip = inputValue;
+        }
+
+        public virtual void SetPrecisionAimInput(bool inputValue)
+        {
+            InputInfo.PreceisionAim = inputValue;
         }
 
         public void UpdateTriggers() 
@@ -86,7 +104,7 @@ namespace Capstone.Build.Characters.Player.PlayerStates
 
         internal void SetAimInput(Vector2 value)
         {
-            InputInfo.Aim = value;
+            InputInfo.AimMining = value;
         }
     }
 }
