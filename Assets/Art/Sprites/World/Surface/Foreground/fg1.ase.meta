@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a7d52c6f487488b42a0f6eaba83f4e91
+guid: 2ddd66cd7149dd44ca565774a489a559
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -32,10 +32,10 @@ ScriptedImporter:
     sRGBTexture: 1
     spriteMode: 2
     spriteExtrude: 1
-    spriteMeshType: 0
+    spriteMeshType: 1
     alignment: 0
     spritePivot: {x: 0.5, y: 0.5}
-    spritePixelsToUnits: 32
+    spritePixelsToUnits: 100
     spriteBorder: {x: 0, y: 0, z: 0, w: 0}
     spriteGenerateFallbackPhysicsShape: 0
     generateCubemap: 6
@@ -73,7 +73,7 @@ ScriptedImporter:
   previousAsepriteImporterSettings:
     fileImportMode: 1
     importHiddenLayers: 0
-    layerImportMode: 0
+    layerImportMode: 1
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
@@ -85,7 +85,7 @@ ScriptedImporter:
   asepriteImporterSettings:
     fileImportMode: 1
     importHiddenLayers: 0
-    layerImportMode: 0
+    layerImportMode: 1
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
@@ -95,7 +95,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638375472541655730
+  platformSettingsDirtyTick: 0
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -119,47 +119,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Underground
-    originalName: 
-    pivot: {x: 0.5000004, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 418
-      width: 128
-      height: 361
-    spriteID: 2275421bac535fe459f2749f86004c3d
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 418}
-  - name: HoleFront
-    originalName: 
-    pivot: {x: 0.5000004, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 3852
-      y: 4
-      width: 128
-      height: 392
-    spriteID: 245a2ec56a4a0324784dd3e075789bce
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 3852, y: 4}
-  - name: SurfaceTerrain
+  - name: fg1
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 9
@@ -169,8 +129,8 @@ ScriptedImporter:
       x: 4
       y: 4
       width: 3840
-      height: 406
-    spriteID: 6aebc6d4c17ce4b4e94e62d052ce24ad
+      height: 378
+    spriteID: 825b13834bb84324495c84067c52a27c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -182,93 +142,23 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 164591017
-    name: Underground
-    layerFlags: 3
-    layerType: 2
-    blendMode: 0
-    cells:
-    - name: Underground
-      frameIndex: 0
-      cellRect:
-        x: 1856
-        y: 0
-        width: 128
-        height: 361
-      spriteId: 2275421bac535fe459f2749f86004c3d
-    linkedCells: []
-    parentIndex: -1
-  - layerIndex: 2
-    guid: 1212554397
-    name: HoleFront
-    layerFlags: 3
+    guid: -779381012
+    name: fg1
+    layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: HoleFront
-      frameIndex: 0
-      cellRect:
-        x: 1856
-        y: 0
-        width: 128
-        height: 392
-      spriteId: 245a2ec56a4a0324784dd3e075789bce
-    linkedCells: []
-    parentIndex: -1
-  - layerIndex: 1
-    guid: 1791325219
-    name: SurfaceTerrain
-    layerFlags: 3
-    layerType: 0
-    blendMode: 0
-    cells:
-    - name: SurfaceTerrain
+    - name: fg1
       frameIndex: 0
       cellRect:
         x: 0
         y: 0
         width: 3840
-        height: 406
-      spriteId: 6aebc6d4c17ce4b4e94e62d052ce24ad
+        height: 378
+      spriteId: 825b13834bb84324495c84067c52a27c
     linkedCells: []
     parentIndex: -1
-  platformSettings:
-  - name: DefaultTexturePlatform
-    overridden: 0
-    ignorePlatformSupport: 0
-    maxTextureSize: 4096
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
-  - name: Standalone
-    overridden: 0
-    ignorePlatformSupport: 0
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
-  - name: Server
-    overridden: 0
-    ignorePlatformSupport: 0
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
+  platformSettings: []
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 3840, y: 896}

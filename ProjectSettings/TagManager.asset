@@ -57,9 +57,6 @@ TagManager:
   - name: Projectile
     uniqueID: 1996865175
     locked: 0
-  - name: SurfaceForeGround
-    uniqueID: 2257507537
-    locked: 0
   - name: Enemy
     uniqueID: 1693026583
     locked: 0
@@ -69,11 +66,17 @@ TagManager:
   - name: Ship
     uniqueID: 1777377027
     locked: 0
+  - name: SurfaceForeGround
+    uniqueID: 2257507537
+    locked: 0
   - name: Items
     uniqueID: 1006945747
     locked: 0
   - name: UndergroundForeground
     uniqueID: 55561481
+    locked: 0
+  - name: OreDeposits
+    uniqueID: 2599381197
     locked: 0
   - name: UI
     uniqueID: 1567287067

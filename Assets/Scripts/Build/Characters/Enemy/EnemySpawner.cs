@@ -9,7 +9,13 @@ namespace Build.Characters.Enemy
     public class EnemySpawner : PoolUser, IDayNightBehavior, ITimeBasedBehavior
     {
 
-        private float[] _pathYValues = { 10.1f, 10.5f, 10.9f, 11.3f, 11.7f };
+        public Transform[] Paths;
+
+        [Header("Controls how far above path y positions the enemies will spawn")]
+        public float SpawnPosYOffset;
+
+
+        private List<float> _pathYValues = new(); // cache the y positions of each path
         private int _pathIndex = 0; // Index to keep track of the current position in the array
 
         private float enemyHeight;
@@ -34,6 +40,11 @@ namespace Build.Characters.Enemy
 
         void Start()
         {
+
+            foreach (var path in Paths)
+            {
+                _pathYValues.Add(path.position.y);
+            }
 
             if (Clock == null)
             {
@@ -111,7 +122,7 @@ namespace Build.Characters.Enemy
 
             if (_enemiesToSpawn > 0 && _timer > _timeBetweenIndividualSpawns)
             {
-                float yPositionOfEnemy = NextRandomPathYPosition() + enemyHeight / 2;
+                float yPositionOfEnemy = NextRandomPathYPosition() + enemyHeight / 2 + SpawnPosYOffset;
                 InstantiateFromPoolAt(new Vector2(this.transform.position.x, yPositionOfEnemy));
                 _enemiesToSpawn--;
                 _timer = 0;
@@ -126,7 +137,7 @@ namespace Build.Characters.Enemy
 
         private float NextRandomPathYPosition()
         {
-            if (_pathIndex >= _pathYValues.Length)
+            if (_pathIndex >= _pathYValues.Count)
             {
                 ShuffleArray(_pathYValues); // Shuffle the array
                 _pathIndex = 0; // Reset the index
@@ -136,9 +147,9 @@ namespace Build.Characters.Enemy
             return _pathYValues[_pathIndex++];
         }
 
-        private void ShuffleArray(float[] array)
+        private void ShuffleArray(List<float> array)
         {
-            for (int i = array.Length - 1; i > 0; i--)
+            for (int i = array.Count - 1; i > 0; i--)
             {
                 int randomIndex = Random.Range(0, i + 1);
                 float temp = array[i];

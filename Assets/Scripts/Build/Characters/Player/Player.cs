@@ -13,7 +13,7 @@ namespace Capstone.Build.Characters.Player
         public bool Aiming { get; set; }
         public Vector3 Position => transform.position;
         public Vector2 Velocity => _rigidBody.velocity;
-        public float Facing => transform.localScale.x;
+        public float Facing => transform.rotation.y == 0 ? 1 : -1;
         public Vector3 Scale => transform.localScale;
         public Bounds Bounds => _bodyCollider.bounds;
 
@@ -145,7 +145,13 @@ namespace Capstone.Build.Characters.Player
 
         public void SetVelocity(Vector2 velocity) { SetVelocity(velocity.x, velocity.y);}
 
-        public void SetFacing(float facing) { transform.localScale = new Vector3(facing, transform.localScale.y, transform.localScale.z);}
+        public void SetFacing(float facing) 
+        {
+            if (Mathf.Sign(facing) != Mathf.Sign(Facing))
+            {
+                transform.Rotate(Vector3.up, 180f * Mathf.Sign(facing));
+            }
+        }
 
         public void SetGravityScale(float gravityScale) { this._rigidBody.gravityScale = gravityScale; }
 

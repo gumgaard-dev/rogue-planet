@@ -190,88 +190,6 @@ MonoBehaviour:
     - {x: 0, y: 0, z: 0, w: 0}
     - {x: 0, y: 0, z: 0, w: 0}
   m_Flip: 0
---- !u!1 &2350272720068198477
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8333208104215358962}
-  - component: {fileID: 6142504624512486187}
-  m_Layer: 13
-  m_Name: Light 2D
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8333208104215358962
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2350272720068198477}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.34, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 826516851485070320}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
---- !u!114 &6142504624512486187
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2350272720068198477}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ComponentVersion: 1
-  m_LightType: 3
-  m_BlendStyleIndex: 0
-  m_FalloffIntensity: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
-  m_LightVolumeIntensity: 0
-  m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 5da8d86bfd6e0c0209cd4f03d3c5043c
-  m_LightCookieSprite: {fileID: 21300000, guid: 119f93d0bcbf1e743bf5fcf237507d39, type: 3}
-  m_DeprecatedPointLightCookieSprite: {fileID: 0}
-  m_LightOrder: 0
-  m_AlphaBlendOnOverlap: 0
-  m_OverlapOperation: 0
-  m_NormalMapDistance: 3
-  m_NormalMapQuality: 2
-  m_UseNormalMap: 0
-  m_ShadowIntensityEnabled: 1
-  m_ShadowIntensity: 0.75
-  m_ShadowVolumeIntensityEnabled: 0
-  m_ShadowVolumeIntensity: 0.75
-  m_LocalBounds:
-    m_Center: {x: 0, y: -0.00000011920929, z: 0}
-    m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
-  m_PointLightInnerAngle: 360
-  m_PointLightOuterAngle: 360
-  m_PointLightInnerRadius: 3.23
-  m_PointLightOuterRadius: 4.88
-  m_ShapeLightParametricSides: 5
-  m_ShapeLightParametricAngleOffset: 0
-  m_ShapeLightParametricRadius: 1
-  m_ShapeLightFalloffSize: 0.5
-  m_ShapeLightFalloffOffset: {x: 0, y: 0}
-  m_ShapePath:
-  - {x: -0.5, y: -0.5, z: 0}
-  - {x: 0.5, y: -0.5, z: 0}
-  - {x: 0.5, y: 0.5, z: 0}
-  - {x: -0.5, y: 0.5, z: 0}
 --- !u!1 &4820142800386138016
 GameObject:
   m_ObjectHideFlags: 0
@@ -367,6 +285,88 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.31, y: 0.29}
   m_EdgeRadius: 0
+--- !u!1 &4971028907031229502
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5591021911789747742}
+  - component: {fileID: 5105368502766870523}
+  m_Layer: 13
+  m_Name: Light 2D
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5591021911789747742
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4971028907031229502}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0.3842952, w: 0.92321026}
+  m_LocalPosition: {x: 0, y: -0.19000006, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 826516851485070320}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -45.2}
+--- !u!114 &5105368502766870523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4971028907031229502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ComponentVersion: 1
+  m_LightType: 3
+  m_BlendStyleIndex: 0
+  m_FalloffIntensity: 0.752
+  m_Color: {r: 0.9487613, g: 0.9622642, b: 0.52198297, a: 1}
+  m_Intensity: 1
+  m_LightVolumeIntensity: 0
+  m_LightVolumeIntensityEnabled: 0
+  m_ApplyToSortingLayers: 5da8d86bfd6e0c0209cd4f03d3c5043ccd68ef9a
+  m_LightCookieSprite: {fileID: 21300000, guid: 119f93d0bcbf1e743bf5fcf237507d39, type: 3}
+  m_DeprecatedPointLightCookieSprite: {fileID: 0}
+  m_LightOrder: 0
+  m_AlphaBlendOnOverlap: 0
+  m_OverlapOperation: 0
+  m_NormalMapDistance: 0.95
+  m_NormalMapQuality: 2
+  m_UseNormalMap: 0
+  m_ShadowIntensityEnabled: 1
+  m_ShadowIntensity: 0.75
+  m_ShadowVolumeIntensityEnabled: 0
+  m_ShadowVolumeIntensity: 0.75
+  m_LocalBounds:
+    m_Center: {x: 0, y: -0.00000011920929, z: 0}
+    m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
+  m_PointLightInnerAngle: 360
+  m_PointLightOuterAngle: 360
+  m_PointLightInnerRadius: 12.32
+  m_PointLightOuterRadius: 18.8
+  m_ShapeLightParametricSides: 5
+  m_ShapeLightParametricAngleOffset: 0
+  m_ShapeLightParametricRadius: 1
+  m_ShapeLightFalloffSize: 0.5
+  m_ShapeLightFalloffOffset: {x: 0, y: 0}
+  m_ShapePath:
+  - {x: -0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: 0.5, z: 0}
+  - {x: -0.5, y: 0.5, z: 0}
 --- !u!1 &5678599648753520095
 GameObject:
   m_ObjectHideFlags: 0
@@ -755,12 +755,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57c6f9b51a71e6a4481ce0a0b7d32b79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  p: {fileID: 0}
   _beamMaxDistance: 50
   _beamLineRenderer: {fileID: 5003790400035096824}
   _targetLayers:
     serializedVersion: 2
     m_Bits: 278536
-  DamageAmount: 30
+  DamageAmount: 2
   RaycastCollisionCorrectionAmount: 0.2
   BeamHitEvent:
     m_PersistentCalls:
@@ -852,11 +853,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 3ef2d882105d27940a5592031b64398b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 3ef2d882105d27940a5592031b64398b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.56
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 3ef2d882105d27940a5592031b64398b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1150,7 +1151,7 @@ PrefabInstance:
       addedObject: {fileID: 1680612837237230329}
     - targetCorrespondingSourceObject: {fileID: -7552582706839291426, guid: 3ef2d882105d27940a5592031b64398b, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8333208104215358962}
+      addedObject: {fileID: 5591021911789747742}
     - targetCorrespondingSourceObject: {fileID: 5220006243450652443, guid: 3ef2d882105d27940a5592031b64398b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3435818374720053805}
@@ -1163,6 +1164,9 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 3ef2d882105d27940a5592031b64398b, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 1856302405401256633}
+    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 3ef2d882105d27940a5592031b64398b, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 1691683049194061709}
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 3ef2d882105d27940a5592031b64398b, type: 3}
       insertIndex: -1
@@ -1170,9 +1174,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 3ef2d882105d27940a5592031b64398b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4501837955024224507}
-    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 3ef2d882105d27940a5592031b64398b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1856302405401256633}
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 3ef2d882105d27940a5592031b64398b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3369030432780222127}
@@ -1201,6 +1202,66 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: -8653719598885068355, guid: 3ef2d882105d27940a5592031b64398b, type: 3}
   m_PrefabInstance: {fileID: 2042301864333126190}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1856302405401256633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1995228115280792467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71da9ad0c41273949a466a0ed4f69218, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SETTINGS_PATH: Settings/GameSettings
+  StateType: 2
+  _ship: {fileID: 0}
+  EnterShip:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Capstone.Build.Cam.CameraStateManager, Assembly-CSharp
+        m_MethodName: OnPlayerEnterShip
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  ExitShip:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Capstone.Build.Cam.CameraStateManager, Assembly-CSharp
+        m_MethodName: OnPlayerExitShip
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  PlayerMoved:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Capstone.Build.World.MapGenerator, Assembly-CSharp
+        m_MethodName: CullChunks
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1691683049194061709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1284,66 +1345,6 @@ CapsuleCollider2D:
   m_Offset: {x: -0.012283862, y: 0.2074219}
   m_Size: {x: 0.35712802, y: 0.8090999}
   m_Direction: 0
---- !u!114 &1856302405401256633
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1995228115280792467}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71da9ad0c41273949a466a0ed4f69218, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SETTINGS_PATH: Settings/GameSettings
-  StateType: 2
-  _ship: {fileID: 0}
-  EnterShip:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Capstone.Build.Cam.CameraStateManager, Assembly-CSharp
-        m_MethodName: OnPlayerEnterShip
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  ExitShip:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Capstone.Build.Cam.CameraStateManager, Assembly-CSharp
-        m_MethodName: OnPlayerExitShip
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  PlayerMoved:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Capstone.Build.World.MapGenerator, Assembly-CSharp
-        m_MethodName: CullChunks
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &3369030432780222127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1475,9 +1476,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Move: {x: 0, y: 0}
-  Aim: {x: 0, y: 0}
+  AimMining: {x: 0, y: 0}
   Jump: 0
   Shoot: 0
+  EnterShip: 0
+  ExitShip: 0
+  AimShip: 0
+  PreceisionAim: 0
 --- !u!4 &4511412898754668137 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2507507291319864391, guid: 3ef2d882105d27940a5592031b64398b, type: 3}
@@ -1549,6 +1554,14 @@ PrefabInstance:
     - target: {fileID: 7058437176282060220, guid: d3b57eadcc920094f97da57f11173918, type: 3}
       propertyPath: m_Name
       value: Jetpack
+      objectReference: {fileID: 0}
+    - target: {fileID: 7632692318501382420, guid: d3b57eadcc920094f97da57f11173918, type: 3}
+      propertyPath: ShapeModule.type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7632692318501382420, guid: d3b57eadcc920094f97da57f11173918, type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

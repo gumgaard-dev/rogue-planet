@@ -1,3 +1,4 @@
+using Capstone.Build.Characters.Player;
 using Capstone.Build.Characters.Player.Animation;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,6 +14,10 @@ namespace Capstone.Build.Weapon
     {
         // class constant
         private static Vector2 RELATIVE_BEAM_DIRECTION = Vector2.right;
+
+        public Player p;
+
+        private Transform _playerArmTransform;
 
         // inspector fields
         [SerializeField] private float _beamMaxDistance = 50f;
@@ -39,6 +44,8 @@ namespace Capstone.Build.Weapon
         
         private void Awake()
         {
+            p = GameObject.Find("Player").GetComponent<Player>();
+            _playerArmTransform = GetComponentInParent<Transform>();
             if (_beamLineRenderer == null)
             {
                 if (!TryGetComponent(out _beamLineRenderer))
@@ -79,9 +86,11 @@ namespace Capstone.Build.Weapon
 
             _beamStart = this.transform.position;
 
-            _beamDirection = PlayerAimController.AimDirection;
+            _beamDirection = RotationToDirectionVector2(_playerArmTransform.eulerAngles.z);
 
-            RaycastHit2D hit = Physics2D.Raycast(_beamStart, _beamDirection, _beamMaxDistance, _targetLayers);
+            Debug.Log(this._beamDirection + " " +  _beamDirection);
+
+            RaycastHit2D hit = Physics2D.Raycast(_beamStart, this._beamDirection, _beamMaxDistance, _targetLayers);
 
             if (hit.collider != null)
             {
@@ -96,6 +105,15 @@ namespace Capstone.Build.Weapon
             }
 
             
+        }
+
+        public static Vector2 RotationToDirectionVector2(float rotationAngleDegrees)
+        {
+            float angleInRadians = rotationAngleDegrees * Mathf.Deg2Rad;
+            float x = Mathf.Cos(angleInRadians);
+            float y = Mathf.Sin(angleInRadians);
+
+            return new Vector2(x, y);
         }
 
         public void StartFiring()
