@@ -36,6 +36,8 @@ namespace Capstone.Build.Characters.Player
         public UnityEvent EnterShip;
         public UnityEvent ExitShip;
         public PlayerMovedEvent PlayerMoved;
+
+        private UpgradeMenuController _upgradeMenuController;
         
         // used to determine if player is close enough to enter the ship
         private bool _isNearShip;
@@ -83,6 +85,7 @@ namespace Capstone.Build.Characters.Player
                 [PlayerStateType.Fall] = new FallPlayerState(_settings, this),
                 [PlayerStateType.Jetpack] = new JetpackPlayerState(_settings, this),
                 [PlayerStateType.InShip] = new InShipState(_settings, this),
+                [PlayerStateType.UpgradeMenu] = new UpgradeMenuState(_settings, this)
             };
 
             SetState(PlayerStateType.Run);
@@ -100,13 +103,15 @@ namespace Capstone.Build.Characters.Player
 
         public void SetState(PlayerStateType stateType)
         {
-            // call the state's exit method to perform any necessary exit actions
-            State?.Exit();
 
             StateType = stateType;
-            State = _playerStates[stateType];
 
-            // call the state's enter method to perform any necessary enter actions
+            // call the old state's exit method to perform any necessary exit actions
+            State?.Exit();
+
+            State = _playerStates[stateType];
+            
+            // call the new state's enter method to perform any necessary enter actions
             State.Enter();
         }
 

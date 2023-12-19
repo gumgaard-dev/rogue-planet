@@ -8,6 +8,7 @@ TagManager:
   - Ground
   - Enemy
   - Ship
+  - UpgradeMenuCanvas
   layers:
   - Default
   - TransparentFX

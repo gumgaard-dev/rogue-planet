@@ -11,7 +11,7 @@ namespace Capstone.Build.Characters.Player.PlayerStates
         public InShipState(GameSettings settings, Player player) : base(settings, player) {}
 
         // this is to solve a bug that arises from using the same button to enter and exit ship
-        private float _timeUntilPlayerCanExitShip = 1f;
+        private readonly float _timeUntilPlayerCanExitShip = 1f;
         private float _timeSinceEnteringState;
 
         public override void Enter()
@@ -41,6 +41,9 @@ namespace Capstone.Build.Characters.Player.PlayerStates
 
         public override void Exit()
         {
+            if (Player.StateType == PlayerStateType.UpgradeMenu) { return; }
+
+
             // notify listeners that the player has exited the ship
             Player.ExitShip?.Invoke();
 
@@ -57,22 +60,33 @@ namespace Capstone.Build.Characters.Player.PlayerStates
             }
         }
 
+        public override void UpdateManaged()
+        {
+            if (InputInfo.OpenUpgradeMenu)
+            {
+                Player.SetState(PlayerStateType.UpgradeMenu);
+            }
+        }
+
         public override void FixedUpdateManaged()
         {
-
             // pass aiming input to ship
             // if keyboard input, pass that
             // else pass controller input
             if (InputInfo.AimShip != 0)
             {
-                this._ship.HandleRotationInput(InputInfo.AimShip, InputInfo.PreceisionAim);
+                this._ship.HandleRotationInput(InputInfo.AimShip, InputInfo.PrecisionAim);
             }
             
             this._ship.HandleShootInput(InputInfo.Shoot);
 
-            if(_timeSinceEnteringState >= _timeUntilPlayerCanExitShip && InputInfo.ExitShip)
+            if(InputInfo.ExitShip)
             {
-                Player.SetState(PlayerStateType.Run);
+                if (_timeSinceEnteringState >= _timeUntilPlayerCanExitShip)
+                {
+                    Player.SetState(PlayerStateType.Run);
+                }
+                
             } else
             {
                 _timeSinceEnteringState += Time.fixedDeltaTime;

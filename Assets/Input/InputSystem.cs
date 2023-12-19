@@ -13,6 +13,8 @@ namespace Capstone.Input
 
         private readonly Dictionary<string, InputAction> _playerActions = new();
         private readonly Dictionary<string, InputAction> _shipActions = new();
+        private readonly Dictionary<string, InputAction> _uiActions = new();
+
 
         private Vector2 _previousDirectionalInput;
         private bool _previousJumpInput;
@@ -23,19 +25,24 @@ namespace Capstone.Input
             _player = GameObject.Find("Player").GetComponent<Player>();
 
             var PIA = new PlayerInputActions();
-            var shipActions = PIA.Ship;
-            var playerActions = PIA.Player;
 
+            var playerActions = PIA.Player;
             _playerActions.Add("Move", playerActions.Move);
             _playerActions.Add("Jump", playerActions.Jump);
             _playerActions.Add("Aim", playerActions.Aim);
             _playerActions.Add("EnterShip", playerActions.EnterShip);
 
-
+            var shipActions = PIA.Ship;
             _shipActions.Add("ExitShip", shipActions.ExitShip);
             _shipActions.Add("Shoot", shipActions.Shoot);
             _shipActions.Add("Aim", shipActions.Aim);
             _shipActions.Add("PrecisionAim", shipActions.PrecisionAim);
+
+            var uiActions = PIA.UI;
+            _uiActions.Add("OpenUpgradeMenu", uiActions.OpenUpgradeMenu);
+            _uiActions.Add("Back", uiActions.Back);
+            _uiActions.Add("Confirm", uiActions.Confirm);
+            _uiActions.Add("MoveCursor", uiActions.MoveCursor);
         }
 
         public void UpdateManaged()
@@ -54,6 +61,21 @@ namespace Capstone.Input
                 PollMiningAimInput();
                 PollEnterShipInput();
             }
+
+            PollUIInput();
+        }
+
+        private void PollUIInput()
+        {
+
+            // Directly set the UI input states based on whether the action was triggered
+            _player.State.SetOpenUpgradeMenuInput(_uiActions["OpenUpgradeMenu"].triggered);
+            _player.State.SetBackInput(_uiActions["Back"].triggered);
+            _player.State.SetConfirmInput(_uiActions["Confirm"].triggered);
+
+            // For actions like moving a cursor that are not just on/off, read and set the value directly
+            Vector2 moveCursorInput = _uiActions["MoveCursor"].ReadValue<Vector2>();
+            _player.State.SetMoveCursorInput(moveCursorInput);
 
         }
 
@@ -159,6 +181,11 @@ namespace Capstone.Input
             {
                 i.Enable();
             }
+
+            foreach (InputAction i in _uiActions.Values)
+            {
+                i.Enable();
+            }
         }
 
         void OnDisable()
@@ -169,6 +196,11 @@ namespace Capstone.Input
             }
 
             foreach (InputAction i in _shipActions.Values)
+            {
+                i.Disable();
+            }
+
+            foreach (InputAction i in _uiActions.Values)
             {
                 i.Disable();
             }

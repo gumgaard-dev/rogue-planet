@@ -73,7 +73,27 @@ namespace Capstone.Build.Characters.Player.PlayerStates
 
         public virtual void SetPrecisionAimInput(bool inputValue)
         {
-            InputInfo.PreceisionAim = inputValue;
+            InputInfo.PrecisionAim = inputValue;
+        }
+
+        public virtual void SetOpenUpgradeMenuInput(bool inputValue)
+        {
+            InputInfo.OpenUpgradeMenu = inputValue;
+        }
+
+        public virtual void SetBackInput(bool inputValue)
+        {
+            InputInfo.Back = inputValue;
+        }
+
+        public virtual void SetConfirmInput(bool inputValue)
+        {
+            InputInfo.Confirm = inputValue;
+        }
+
+        public virtual void SetMoveCursorInput(Vector2 inputValue)
+        {
+            InputInfo.MoveCursor = inputValue;
         }
 
         public void UpdateTriggers() 

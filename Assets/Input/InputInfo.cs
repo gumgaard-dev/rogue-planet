@@ -2,20 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 namespace Capstone.Input
 {
     public class InputInfo : MonoBehaviour
     {
-        // all control modes
         public Vector2 Move;
         public Vector2 AimMining;
         public bool Jump;
-        public bool Shoot;
         public bool EnterShip;
-        public bool ExitShip;
 
+        public bool Shoot;
+        public bool ExitShip;
         public float AimShip;
-        public bool PreceisionAim;
+        public bool PrecisionAim;
+
+        // UI control modes
+        public bool OpenUpgradeMenu;
+        public bool Back;
+        public bool Confirm;
+        public Vector2 MoveCursor;
     }
 }

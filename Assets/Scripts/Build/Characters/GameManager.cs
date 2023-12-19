@@ -14,6 +14,7 @@ namespace Capstone.Build
         private Player _player;
 
         public int TargetFramerate = 60;
+        public static bool GamePaused => Time.timeScale == 0;
 
         void Awake()
         {
@@ -44,6 +45,16 @@ namespace Capstone.Build
         void LateUpdate()
         {
             
+        }
+
+        public static void PauseGame()
+        {
+            Time.timeScale = 0;
+        }
+
+        public static void ResumeGame()
+        {
+            Time.timeScale = 1;
         }
     }
 }

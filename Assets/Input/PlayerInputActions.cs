@@ -462,6 +462,138 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""UI"",
+            ""id"": ""be01603c-546e-4250-a70f-a9ea63d27f28"",
+            ""actions"": [
+                {
+                    ""name"": ""OpenUpgradeMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""8ac481cf-262a-450f-b6b6-68d48c2469ac"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Back"",
+                    ""type"": ""Button"",
+                    ""id"": ""0e2b1808-5f6e-4900-9051-09f712534154"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Confirm"",
+                    ""type"": ""Button"",
+                    ""id"": ""ccbbac30-90b7-408a-8107-6c788d6d646b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MoveCursor"",
+                    ""type"": ""Value"",
+                    ""id"": ""ab8a1cf3-6349-45f1-af80-68174cc44e61"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""deeb75c1-4e25-4725-8376-a11eb43baff5"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenUpgradeMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""10ffa3ad-38e1-4bf7-af7f-c0b5d20d28b5"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Back"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""987c1242-9002-4479-aea0-a77239949616"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Confirm"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""c9cda3e7-b7d1-497b-83fe-2bff25c3b088"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveCursor"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Up"",
+                    ""id"": ""4fcbb66c-4996-40a8-9dc4-0cfcd20feb70"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveCursor"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Down"",
+                    ""id"": ""f2415f06-7681-44b9-8007-63950b5bcd5a"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveCursor"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Left"",
+                    ""id"": ""e31dbb1d-0458-4149-a94a-8ea3923cc129"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveCursor"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Right"",
+                    ""id"": ""19e4b36d-aa04-4af7-a541-312725804eb3"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveCursor"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -478,6 +610,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Ship_Aim = m_Ship.FindAction("Aim", throwIfNotFound: true);
         m_Ship_ExitShip = m_Ship.FindAction("ExitShip", throwIfNotFound: true);
         m_Ship_PrecisionAim = m_Ship.FindAction("PrecisionAim", throwIfNotFound: true);
+        // UI
+        m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
+        m_UI_OpenUpgradeMenu = m_UI.FindAction("OpenUpgradeMenu", throwIfNotFound: true);
+        m_UI_Back = m_UI.FindAction("Back", throwIfNotFound: true);
+        m_UI_Confirm = m_UI.FindAction("Confirm", throwIfNotFound: true);
+        m_UI_MoveCursor = m_UI.FindAction("MoveCursor", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -675,6 +813,76 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         }
     }
     public ShipActions @Ship => new ShipActions(this);
+
+    // UI
+    private readonly InputActionMap m_UI;
+    private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
+    private readonly InputAction m_UI_OpenUpgradeMenu;
+    private readonly InputAction m_UI_Back;
+    private readonly InputAction m_UI_Confirm;
+    private readonly InputAction m_UI_MoveCursor;
+    public struct UIActions
+    {
+        private @PlayerInputActions m_Wrapper;
+        public UIActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @OpenUpgradeMenu => m_Wrapper.m_UI_OpenUpgradeMenu;
+        public InputAction @Back => m_Wrapper.m_UI_Back;
+        public InputAction @Confirm => m_Wrapper.m_UI_Confirm;
+        public InputAction @MoveCursor => m_Wrapper.m_UI_MoveCursor;
+        public InputActionMap Get() { return m_Wrapper.m_UI; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(UIActions set) { return set.Get(); }
+        public void AddCallbacks(IUIActions instance)
+        {
+            if (instance == null || m_Wrapper.m_UIActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_UIActionsCallbackInterfaces.Add(instance);
+            @OpenUpgradeMenu.started += instance.OnOpenUpgradeMenu;
+            @OpenUpgradeMenu.performed += instance.OnOpenUpgradeMenu;
+            @OpenUpgradeMenu.canceled += instance.OnOpenUpgradeMenu;
+            @Back.started += instance.OnBack;
+            @Back.performed += instance.OnBack;
+            @Back.canceled += instance.OnBack;
+            @Confirm.started += instance.OnConfirm;
+            @Confirm.performed += instance.OnConfirm;
+            @Confirm.canceled += instance.OnConfirm;
+            @MoveCursor.started += instance.OnMoveCursor;
+            @MoveCursor.performed += instance.OnMoveCursor;
+            @MoveCursor.canceled += instance.OnMoveCursor;
+        }
+
+        private void UnregisterCallbacks(IUIActions instance)
+        {
+            @OpenUpgradeMenu.started -= instance.OnOpenUpgradeMenu;
+            @OpenUpgradeMenu.performed -= instance.OnOpenUpgradeMenu;
+            @OpenUpgradeMenu.canceled -= instance.OnOpenUpgradeMenu;
+            @Back.started -= instance.OnBack;
+            @Back.performed -= instance.OnBack;
+            @Back.canceled -= instance.OnBack;
+            @Confirm.started -= instance.OnConfirm;
+            @Confirm.performed -= instance.OnConfirm;
+            @Confirm.canceled -= instance.OnConfirm;
+            @MoveCursor.started -= instance.OnMoveCursor;
+            @MoveCursor.performed -= instance.OnMoveCursor;
+            @MoveCursor.canceled -= instance.OnMoveCursor;
+        }
+
+        public void RemoveCallbacks(IUIActions instance)
+        {
+            if (m_Wrapper.m_UIActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IUIActions instance)
+        {
+            foreach (var item in m_Wrapper.m_UIActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_UIActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public UIActions @UI => new UIActions(this);
     public interface IPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
@@ -688,5 +896,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnAim(InputAction.CallbackContext context);
         void OnExitShip(InputAction.CallbackContext context);
         void OnPrecisionAim(InputAction.CallbackContext context);
+    }
+    public interface IUIActions
+    {
+        void OnOpenUpgradeMenu(InputAction.CallbackContext context);
+        void OnBack(InputAction.CallbackContext context);
+        void OnConfirm(InputAction.CallbackContext context);
+        void OnMoveCursor(InputAction.CallbackContext context);
     }
 }
