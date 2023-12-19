@@ -371,6 +371,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b1a94d48fb46ba4aa4c3b3f501872a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &459637624 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3955685063769983870, guid: 59f17b52028a4314ca4156e6b3bc2570, type: 3}
+  m_PrefabInstance: {fileID: 1292384666}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &564614739
 GameObject:
   m_ObjectHideFlags: 0
@@ -899,6 +904,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 973e3b2e876319a41886deae0c0c4e96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1597440046 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3955685063769983870, guid: 59f17b52028a4314ca4156e6b3bc2570, type: 3}
+  m_PrefabInstance: {fileID: 23938661}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1669230617
 GameObject:
   m_ObjectHideFlags: 0
@@ -961,6 +971,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1933123190}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1881648408 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3955685063769983870, guid: 59f17b52028a4314ca4156e6b3bc2570, type: 3}
+  m_PrefabInstance: {fileID: 329817871}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1933123189
 GameObject:
   m_ObjectHideFlags: 0
@@ -1768,10 +1783,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5077159355882900119, guid: 1fb36dd0845bd974cb21dd9e605cb30f, type: 3}
+      propertyPath: TabView
+      value: 
+      objectReference: {fileID: 1881648408}
     - target: {fileID: 5469189578877892502, guid: 1fb36dd0845bd974cb21dd9e605cb30f, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5906077334084877494, guid: 1fb36dd0845bd974cb21dd9e605cb30f, type: 3}
+      propertyPath: TabView
+      value: 
+      objectReference: {fileID: 1597440046}
     - target: {fileID: 5980877206399851754, guid: 1fb36dd0845bd974cb21dd9e605cb30f, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1864,6 +1887,10 @@ PrefabInstance:
       propertyPath: ObjectToFollow
       value: 
       objectReference: {fileID: 8893444601379682152}
+    - target: {fileID: 9131426091787802011, guid: 1fb36dd0845bd974cb21dd9e605cb30f, type: 3}
+      propertyPath: TabView
+      value: 
+      objectReference: {fileID: 459637624}
     m_RemovedComponents:
     - {fileID: 6602276480609005337, guid: 1fb36dd0845bd974cb21dd9e605cb30f, type: 3}
     m_RemovedGameObjects: []

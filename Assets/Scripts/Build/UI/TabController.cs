@@ -4,35 +4,30 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine.Windows.Speech;
+using Capstone.Build.UI;
 
 public class TabController : MonoBehaviour
 {
     public GameObject TabButtonContainer;
-    public GameObject TabViewContainer;
-    private Dictionary<Button, GameObject> tabDictionary = new();
+    private Dictionary<TabBtn, GameObject> tabDictionary = new();
     // Start is called before the first frame update
     void Start() 
     {
-        Button[] tabButtons = { };
+        TabBtn[] tabButtons = { };
         ScrollRect[] tabViews = { };
 
         if (TabButtonContainer != null) {
-            tabButtons = TabButtonContainer.GetComponentsInChildren<Button>();
-        }
-
-        if (TabViewContainer != null)
-        {
-            tabViews = TabViewContainer.GetComponentsInChildren<ScrollRect>();
+            tabButtons = TabButtonContainer.GetComponentsInChildren<TabBtn>();
         }
 
         for (int i = 0; i < tabButtons.Length; i ++)
         {
-            tabDictionary.Add(tabButtons[i], tabViews[i].gameObject);
+            tabDictionary.Add(tabButtons[i], tabButtons[i].TabView);
         }
 
-        foreach (Button b in tabDictionary.Keys)
+        foreach (TabBtn b in tabDictionary.Keys)
         {
-            b.onClick.AddListener(() => OnTabClick(b));
+            b.GetComponent<Button>().onClick.AddListener(() => OnTabClick(b));
         }
 
         if (tabDictionary.Count > 0 )
@@ -42,14 +37,14 @@ public class TabController : MonoBehaviour
 
     }
 
-    private void SetSelectedTabButton(Button b)
+    private void SetSelectedTabButton(TabBtn tabButton)
     {
         var eventSystem = EventSystem.current;
-        eventSystem.SetSelectedGameObject(b.gameObject, new BaseEventData(eventSystem));
-        OnTabClick(b);
+        eventSystem.SetSelectedGameObject(tabButton.gameObject, new BaseEventData(eventSystem));
+        OnTabClick(tabButton);
     }
 
-    private void OnTabClick(Button tabButton)
+    private void OnTabClick(TabBtn tabButton)
     {
         tabDictionary.TryGetValue(tabButton, out GameObject tabView);
 

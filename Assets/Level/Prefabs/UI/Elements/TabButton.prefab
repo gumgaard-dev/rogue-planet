@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 6345539356750951994}
   - component: {fileID: 7900352341305061477}
   - component: {fileID: 1212163699644816176}
+  - component: {fileID: 8219462076927230226}
   m_Layer: 0
   m_Name: TabButton
   m_TagString: Untagged
@@ -257,3 +258,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8219462076927230226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7756678971015396858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fc28fc3acb39cb4b86fc4fb719638aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TabView: {fileID: 0}
