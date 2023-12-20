@@ -34,6 +34,7 @@ namespace Capstone.Build.World
 
         [Header("Events")]
         public MapGeneratedEvent ChunkGeneratedEvent;
+        public UnityEvent MapChanged;
 
         private Queue<Vector2Int> chunksToLoad = new Queue<Vector2Int>();
         private Queue<Vector2Int> chunksToUnload = new Queue<Vector2Int>();
@@ -235,7 +236,7 @@ namespace Capstone.Build.World
                 Vector2Int chunkCoord = chunksToLoad.Dequeue();
                 LoadChunkAt(chunkCoord);
                 chunksProcessed++;
-                ShadowCaster2DCreator.updated = true;
+                MapChanged?.Invoke();
             }
 
             // Process unloading chunks
@@ -244,6 +245,7 @@ namespace Capstone.Build.World
                 Vector2Int chunkCoord = chunksToUnload.Dequeue();
                 UnloadChunkAt(chunkCoord);
                 chunksProcessed++;
+                MapChanged?.Invoke();
             }
         }
 
@@ -433,6 +435,8 @@ namespace Capstone.Build.World
                     OreTilemap.SetTile(position, null);
                 }
             }
+
+            MapChanged?.Invoke();
         }
 
         public MapTileData GetTileDataAt(Vector3Int position)

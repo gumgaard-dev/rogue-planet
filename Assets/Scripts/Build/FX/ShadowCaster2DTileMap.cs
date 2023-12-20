@@ -1,25 +1,17 @@
 using System.Linq;
 using System.Reflection;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
 
-
-#if UNITY_EDITOR
-
 [RequireComponent(typeof(CompositeCollider2D))]
 public class ShadowCaster2DCreator : MonoBehaviour
 {
-    [SerializeField]
-    private bool selfShadows = true;
     public GameObject ShadowCasterTemplate;
 
-    public static bool updated = false;
-    private bool created = false;
+    private static bool _mapUpdated = false;
+    private static bool _mapUpdatedLastFrame = false;
 
-    private int timeSinceLastUpdate = 0;
-    private int minTimeBetweenUpdates = 15;
     private GameObject shadowCasterContainerPrimary;
     private GameObject shadowCasterContainerSecondary;
     private bool isPrimaryActive = true;
@@ -44,19 +36,32 @@ public class ShadowCaster2DCreator : MonoBehaviour
         shadowCasterContainerSecondary.SetActive(false);
     }
 
+    // this is a weird system, but we need to use a combination of late and fixed update in order for this to work properly
+    // basically, if we call Create() outside of FixedUpdate(), it results in graphics frames where the shadow caster is non-existent
+    // but if we call it in the fixed update, the tilemap collider won't be updated yet.
+    // so, we need to use these flags to make sure that Create() gets called in the FixedUpdate on the frame AFTER the map is changed.
+
+    private void LateUpdate()
+    {
+        if (_mapUpdated)
+        {
+            _mapUpdated = false;
+            _mapUpdatedLastFrame = true;
+        }
+    }
+
     private void FixedUpdate()
     {
-        if (updated && timeSinceLastUpdate > minTimeBetweenUpdates)
+        if (_mapUpdatedLastFrame)
         {
             Create();
-            SwapShadowCasters();
-            timeSinceLastUpdate = 0;
-            updated = false;
+            _mapUpdatedLastFrame = false;
         }
-        else
-        {
-            timeSinceLastUpdate++;
-        }
+    }
+
+    public void OnMapChanged()
+    {
+        _mapUpdated = true;
     }
     public void Create()
     {
@@ -72,7 +77,7 @@ public class ShadowCaster2DCreator : MonoBehaviour
             shadowCaster.transform.parent = activeContainer.transform; // Change here
             ShadowCaster2D shadowCasterComponent = shadowCaster.GetComponent<ShadowCaster2D>();
             shadowCasterComponent.castsShadows = true;
-            shadowCasterComponent.selfShadows = this.selfShadows;
+            shadowCasterComponent.selfShadows = true;
 
             Vector3[] testPath = new Vector3[pathVertices.Length];
             for (int j = 0; j < pathVertices.Length; j++)
@@ -86,6 +91,8 @@ public class ShadowCaster2DCreator : MonoBehaviour
             generateShadowMeshMethod.Invoke(shadowCasterComponent,
             new object[] { meshField.GetValue(shadowCasterComponent), shapePathField.GetValue(shadowCasterComponent) });
         }
+
+        SwapShadowCasters();
     }
 
     public void SwapShadowCasters()
@@ -103,23 +110,3 @@ public class ShadowCaster2DCreator : MonoBehaviour
         }
     }
 }
-
-[CustomEditor(typeof(ShadowCaster2DCreator))]
-public class ShadowCaster2DTileMapEditor : Editor
-{
-    public override void OnInspectorGUI()
-    {
-        DrawDefaultInspector();
-
-        EditorGUILayout.BeginHorizontal();
-        if (GUILayout.Button("Create"))
-        {
-            var creator = (ShadowCaster2DCreator)target;
-            creator.Create();
-        }
-        EditorGUILayout.EndHorizontal();
-    }
-
-}
-
-#endif

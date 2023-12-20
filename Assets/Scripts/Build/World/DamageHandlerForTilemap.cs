@@ -58,7 +58,6 @@ namespace Capstone.Build.World
                 {
                     // notify map manager
                     TerrainDestroyed?.Invoke(position);
-                    ShadowCaster2DCreator.updated = true;
                 }
             }
         }
