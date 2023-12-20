@@ -5,8 +5,8 @@ public class UpgradeMenuController : MonoBehaviour
 {
     public static UpgradeMenuController Instance { get; private set; }
 
-    private GameObject _upgradeMenuCanvas;
-    public static bool MenuOpen => Instance != null && Instance._upgradeMenuCanvas.activeSelf;
+    public GameObject _upgradeMenuCanvas;
+    public static bool MenuOpen => Instance != null && Instance._upgradeMenuCanvas != null && Instance._upgradeMenuCanvas.activeSelf;
 
     private void Awake()
     {
@@ -26,7 +26,6 @@ public class UpgradeMenuController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _upgradeMenuCanvas = GameObject.FindGameObjectWithTag("UpgradeMenuCanvas");
 
         // Optionally, hide the menu on start
         if (MenuOpen)

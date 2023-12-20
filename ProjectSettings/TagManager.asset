@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Ship
   - UpgradeMenuCanvas
+  - UpgradeTabButtonPanel
   layers:
   - Default
   - TransparentFX
@@ -63,6 +64,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 34369277
+    locked: 0
+  - name: MiningLaser
+    uniqueID: 2355011183
     locked: 0
   - name: Ship
     uniqueID: 1777377027

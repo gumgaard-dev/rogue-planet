@@ -13,6 +13,7 @@ namespace Capstone.Build.World
 {
     [System.Serializable] public class OrePlacedEvent : UnityEvent<Vector3Int> { }
     [System.Serializable] public class MapGeneratedEvent : UnityEvent { }
+
     public class MapGenerator : MonoBehaviour
     {
         [Header("Tilemaps")]
@@ -220,6 +221,8 @@ namespace Capstone.Build.World
                     }
                 }
             }
+
+            
         }
 
         private void ProcessChunkLoading()
@@ -232,6 +235,7 @@ namespace Capstone.Build.World
                 Vector2Int chunkCoord = chunksToLoad.Dequeue();
                 LoadChunkAt(chunkCoord);
                 chunksProcessed++;
+                ShadowCaster2DCreator.updated = true;
             }
 
             // Process unloading chunks
