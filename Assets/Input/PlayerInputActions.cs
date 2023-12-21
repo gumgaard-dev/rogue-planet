@@ -62,6 +62,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""PlaceDeployable"",
+                    ""type"": ""Button"",
+                    ""id"": ""0324d257-d6ba-489b-b75a-fda84403df63"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -295,6 +304,17 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Aim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1b5cef10-42cb-4ef1-8883-249360d9c2ae"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlaceDeployable"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -604,6 +624,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_Aim = m_Player.FindAction("Aim", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_EnterShip = m_Player.FindAction("EnterShip", throwIfNotFound: true);
+        m_Player_PlaceDeployable = m_Player.FindAction("PlaceDeployable", throwIfNotFound: true);
         // Ship
         m_Ship = asset.FindActionMap("Ship", throwIfNotFound: true);
         m_Ship_Shoot = m_Ship.FindAction("Shoot", throwIfNotFound: true);
@@ -681,6 +702,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Aim;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_EnterShip;
+    private readonly InputAction m_Player_PlaceDeployable;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -689,6 +711,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Aim => m_Wrapper.m_Player_Aim;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @EnterShip => m_Wrapper.m_Player_EnterShip;
+        public InputAction @PlaceDeployable => m_Wrapper.m_Player_PlaceDeployable;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -710,6 +733,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @EnterShip.started += instance.OnEnterShip;
             @EnterShip.performed += instance.OnEnterShip;
             @EnterShip.canceled += instance.OnEnterShip;
+            @PlaceDeployable.started += instance.OnPlaceDeployable;
+            @PlaceDeployable.performed += instance.OnPlaceDeployable;
+            @PlaceDeployable.canceled += instance.OnPlaceDeployable;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -726,6 +752,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @EnterShip.started -= instance.OnEnterShip;
             @EnterShip.performed -= instance.OnEnterShip;
             @EnterShip.canceled -= instance.OnEnterShip;
+            @PlaceDeployable.started -= instance.OnPlaceDeployable;
+            @PlaceDeployable.performed -= instance.OnPlaceDeployable;
+            @PlaceDeployable.canceled -= instance.OnPlaceDeployable;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -889,6 +918,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnAim(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnEnterShip(InputAction.CallbackContext context);
+        void OnPlaceDeployable(InputAction.CallbackContext context);
     }
     public interface IShipActions
     {

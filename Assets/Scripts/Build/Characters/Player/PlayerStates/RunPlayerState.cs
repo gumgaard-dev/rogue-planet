@@ -27,6 +27,11 @@ namespace Capstone.Build.Characters.Player.PlayerStates
             
             else { Player.UpdateFacing(); }
 
+            if (InputInfo.PlaceDeployable)
+            {
+                Player.PlaceDeployable();
+            }
+
         }
 
 

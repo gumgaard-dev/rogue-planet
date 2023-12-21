@@ -10,6 +10,7 @@ TagManager:
   - Ship
   - UpgradeMenuCanvas
   - UpgradeTabButtonPanel
+  - Lamp
   layers:
   - Default
   - TransparentFX
@@ -76,6 +77,9 @@ TagManager:
     locked: 0
   - name: Items
     uniqueID: 1006945747
+    locked: 0
+  - name: Lamps
+    uniqueID: 3449187179
     locked: 0
   - name: UndergroundForeground
     uniqueID: 55561481

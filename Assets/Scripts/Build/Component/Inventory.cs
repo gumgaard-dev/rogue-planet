@@ -17,7 +17,7 @@ public class Inventory : MonoBehaviour
         storage = new();
     }
 
-    private void UpdateStorage(ICollectable item, int amount)
+    protected virtual void UpdateStorage(ICollectable item, int amount)
     {
 
         object key = item.GetItemType();
@@ -35,12 +35,12 @@ public class Inventory : MonoBehaviour
         onInventoryChanged?.Invoke(storage);
     }
 
-    public void AddToStorage(ICollectable item)
+    public virtual void AddToStorage(ICollectable item)
     {
         UpdateStorage(item, 1);
     }
 
-    public void RemoveFromStorage(ICollectable item)
+    public virtual void RemoveFromStorage(ICollectable item)
     {
         UpdateStorage(item, -1);
     }

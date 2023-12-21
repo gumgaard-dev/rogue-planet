@@ -3,6 +3,7 @@ using Capstone.Build.Characters.Player.PlayerStates;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 namespace Capstone.Build.Characters.Player
 {
@@ -44,6 +45,7 @@ namespace Capstone.Build.Characters.Player
         public bool IsNearShip {  get { return _isNearShip; } }
 
         public Jetpack Jetpack { get; private set; }
+        private DeployableInventory _deployableInventory;
 
 
         public void AwakeManaged()
@@ -72,6 +74,8 @@ namespace Capstone.Build.Characters.Player
             _aimController = GetComponentInChildren<PlayerAimController>();
 
             Jetpack = GetComponentInChildren<Jetpack>();
+
+            _deployableInventory = GetComponentInChildren<DeployableInventory>();
         }
 
 
@@ -199,8 +203,11 @@ namespace Capstone.Build.Characters.Player
                     SetFacing(-1);
                 }
             }
-            
+        }
 
+        public void PlaceDeployable()
+        {
+            _deployableInventory.PlaceDeployable("Lamp");
         }
 
         void OnDrawGizmos()

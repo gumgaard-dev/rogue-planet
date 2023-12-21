@@ -21,6 +21,11 @@ namespace Capstone.Build.Characters.Player.PlayerStates
         {
             UpdateTriggers();
             Player.UpdateFacing();
+
+            if (InputInfo.PlaceDeployable)
+            {
+                Player.PlaceDeployable();
+            }
         }
 
         public override void FixedUpdateManaged()
@@ -66,6 +71,7 @@ namespace Capstone.Build.Characters.Player.PlayerStates
             newVelocity.y = Player.Jetpack.CalculateThrust();
 
             Player.SetVelocity(newVelocity);
+
         }
 
     }

@@ -40,6 +40,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "PlaceDeployable",
+                    "type": "Button",
+                    "id": "0324d257-d6ba-489b-b75a-fda84403df63",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -273,6 +282,17 @@
                     "action": "Aim",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "1b5cef10-42cb-4ef1-8883-249360d9c2ae",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PlaceDeployable",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },

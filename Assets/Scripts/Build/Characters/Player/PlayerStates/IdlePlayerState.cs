@@ -24,6 +24,10 @@
             
             else { Player.UpdateFacing(); }
 
+            if (InputInfo.PlaceDeployable)
+            {
+                Player.PlaceDeployable();
+            }
         }
 
         public override void SetJumpInput(bool inputValue)

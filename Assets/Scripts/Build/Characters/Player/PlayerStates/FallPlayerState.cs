@@ -39,6 +39,11 @@ namespace Capstone.Build.Characters.Player.PlayerStates
                 Player.UpdateFacing();
             }
 
+            if (InputInfo.PlaceDeployable)
+            {
+                Player.PlaceDeployable();
+            }
+
         }
 
         public override void FixedUpdateManaged()

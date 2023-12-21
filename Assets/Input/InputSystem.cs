@@ -31,6 +31,7 @@ namespace Capstone.Input
             _playerActions.Add("Jump", playerActions.Jump);
             _playerActions.Add("Aim", playerActions.Aim);
             _playerActions.Add("EnterShip", playerActions.EnterShip);
+            _playerActions.Add("PlaceDeployable", playerActions.PlaceDeployable);
 
             var shipActions = PIA.Ship;
             _shipActions.Add("ExitShip", shipActions.ExitShip);
@@ -60,9 +61,15 @@ namespace Capstone.Input
                 PollJumpInput();
                 PollMiningAimInput();
                 PollEnterShipInput();
+                PollPlaceDeployableInput();
             }
 
             PollUIInput();
+        }
+
+        private void PollPlaceDeployableInput()
+        {
+            _player.State.SetPlaceDeployableInput(_playerActions["PlaceDeployable"].triggered);
         }
 
         private void PollUIInput()

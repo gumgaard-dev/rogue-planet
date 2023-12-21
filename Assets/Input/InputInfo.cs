@@ -21,5 +21,7 @@ namespace Capstone.Input
         public bool Back;
         public bool Confirm;
         public Vector2 MoveCursor;
+
+        public bool PlaceDeployable { get; internal set; }
     }
 }

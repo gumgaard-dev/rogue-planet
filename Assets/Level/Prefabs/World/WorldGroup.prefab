@@ -49,8 +49,8 @@ MonoBehaviour:
   m_HasRenderer: 0
   m_UseRendererSilhouette: 1
   m_CastsShadows: 0
-  m_SelfShadows: 0
-  m_ApplyToSortingLayers: 000000000f4db9bc6f072c9e5da8d86b97be05771789e964fd6e0c02039ff069d1d48e86d3c5043c09cd4f031be76a5d27904c71
+  m_SelfShadows: 1
+  m_ApplyToSortingLayers: 000000000f4db9bc6f072c9e5da8d86b97be05771789e964fd6e0c02039ff069d1d48e86d3c5043c09cd4f031be76a5d27904c716f9e5e8c
   m_ShapePath:
   - {x: -0.5, y: -0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
@@ -58,7 +58,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: -578900
+  m_InstanceId: -2350
   m_LocalBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0.5, y: 0.5, z: 0}
@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 0000000097be0577039ff0691be76a5dd1d48e86d3c5043c1789e9640f4db9bc6f072c9e
+  m_ApplyToSortingLayers: 0000000097be0577039ff0691be76a5dd1d48e86d3c5043c1789e9640f4db9bc6f072c9e27904c716f9e5e8c
   m_LightCookieSprite: {fileID: -1923064540, guid: de962d744068eee4c9110b3e3695eabb, type: 3}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -245,9 +245,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2687393706165931353, guid: df446ea171a899b44b982fd8f84dbea5, type: 3}
+      propertyPath: MapChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2687393706165931353, guid: df446ea171a899b44b982fd8f84dbea5, type: 3}
+      propertyPath: MapChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2687393706165931353, guid: df446ea171a899b44b982fd8f84dbea5, type: 3}
+      propertyPath: MapChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2393861525077723866}
+    - target: {fileID: 2687393706165931353, guid: df446ea171a899b44b982fd8f84dbea5, type: 3}
+      propertyPath: MapChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2687393706165931353, guid: df446ea171a899b44b982fd8f84dbea5, type: 3}
+      propertyPath: MapChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnMapChanged
+      objectReference: {fileID: 0}
+    - target: {fileID: 2687393706165931353, guid: df446ea171a899b44b982fd8f84dbea5, type: 3}
+      propertyPath: MapChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ShadowCaster2DCreator, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2687393706165931353, guid: df446ea171a899b44b982fd8f84dbea5, type: 3}
+      propertyPath: MapChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2902060878838541215, guid: df446ea171a899b44b982fd8f84dbea5, type: 3}
       propertyPath: m_SortingLayer
-      value: 11
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 2902060878838541215, guid: df446ea171a899b44b982fd8f84dbea5, type: 3}
       propertyPath: m_SortingLayerID
@@ -395,7 +423,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d95285fd193f4964cbdc600c0e93fea6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selfShadows: 1
   ShadowCasterTemplate: {fileID: 2228579527112853142}
 --- !u!1001 &5161500721937731307
 PrefabInstance:

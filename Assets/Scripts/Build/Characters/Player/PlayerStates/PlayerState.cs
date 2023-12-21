@@ -1,4 +1,5 @@
 using Capstone.Input;
+using System;
 using UnityEngine;
 
 namespace Capstone.Build.Characters.Player.PlayerStates
@@ -125,6 +126,11 @@ namespace Capstone.Build.Characters.Player.PlayerStates
         internal void SetAimInput(Vector2 value)
         {
             InputInfo.AimMining = value;
+        }
+
+        internal void SetPlaceDeployableInput(bool triggered)
+        {
+            InputInfo.PlaceDeployable = triggered;
         }
     }
 }
