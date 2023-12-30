@@ -1,0 +1,54 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Menus.uss?fileID=7433441132597879392&amp;guid=13e27143e9016ec46a991127af662a23&amp;type=3#Menus" />
+    <ui:VisualElement name="UpgradeMenuPanelBase" class="TranslucentUIBackground" style="flex-grow: 1; align-items: center; justify-content: center;">
+        <ui:VisualElement style="flex-grow: 1; background-image: url(&apos;project://database/Assets/Art/Sprites/UI/Menus/upgrade_bg.png?fileID=21300000&amp;guid=e8017a023c1f3f946b323f840ed8cdd3&amp;type=3#upgrade_bg&apos;); -unity-background-scale-mode: scale-to-fit; -unity-slice-scale: 1px; -unity-slice-left: 0; -unity-slice-top: 0; -unity-slice-right: 0; -unity-slice-bottom: 0; width: 95%; height: 95%; align-self: center; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px;">
+            <ui:VisualElement name="Header" style="flex-grow: 1; flex-direction: row; height: 10%;">
+                <ui:Label tabindex="-1" text="UPGRADES" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="min-height: initial; height: 100%; align-items: center; -unity-text-align: upper-center; font-size: 16px; margin-right: 70px; margin-left: 0; flex-direction: row; background-color: rgba(109, 138, 130, 0); color: rgb(109, 138, 130);" />
+                <ui:VisualElement class="TabButtonContainer" style="flex-grow: 1; height: 25px; width: 100%; align-items: flex-start; justify-content: center; flex-direction: row; min-height: 25px; margin-top: 5px; margin-right: 0; margin-bottom: 0; margin-left: 0;">
+                    <ui:VisualElement focusable="true" name="ItemTabButton" tabindex="2" class="TabButton activeTabButton">
+                        <ui:Label tabindex="-1" text="Items" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" class="TabLabel" style="color: rgb(161, 239, 140);" />
+                    </ui:VisualElement>
+                    <ui:VisualElement focusable="true" name="ShipTabButton" class="TabButton" style="flex-grow: 1;">
+                        <ui:Label tabindex="-1" text="Ship" parse-escape-sequences="true" display-tooltip-when-elided="true" class="TabLabel" style="color: rgb(161, 239, 140);" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="SuitTabButton" focusable="true" tabindex="1" class="TabButton">
+                        <ui:Label tabindex="-1" text="Suit" parse-escape-sequences="true" display-tooltip-when-elided="true" class="TabLabel" style="color: rgb(161, 239, 140);" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="Body" style="flex-grow: 1; flex-direction: column; align-items: flex-end; justify-content: flex-end; max-width: 100%; border-left-color: rgb(109, 138, 130); border-right-color: rgb(109, 138, 130); border-top-color: rgb(109, 138, 130); border-bottom-color: rgb(109, 138, 130); border-bottom-width: 1px; border-top-width: 1px; border-top-left-radius: 1px; border-top-right-radius: 1px; border-bottom-right-radius: 1px; border-bottom-left-radius: 1px; min-height: 190px; max-height: 190px;">
+                <ui:ScrollView horizontal-page-size="3" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="AlwaysVisible" name="ItemsTabView" mode="VerticalAndHorizontal" vertical-page-size="1" class="TabView activeTabView">
+                    <ui:VisualElement name="VisualElement" class="UpgradeMenuRow" style="min-height: 80px; height: 80px; max-height: 80px;" />
+                </ui:ScrollView>
+                <ui:ScrollView horizontal-page-size="3" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="AlwaysVisible" name="ShipTabView" mode="VerticalAndHorizontal" vertical-page-size="1" class="TabView inactiveTabView">
+                    <ui:VisualElement name="VisualElement" class="UpgradeMenuRow" style="min-height: 80px; height: 80px; max-height: 80px;">
+                        <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LampButton" class="UpgradeButton" />
+                        <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="UpgradeButton" />
+                        <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="UpgradeButton" />
+                        <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="UpgradeButton" />
+                    </ui:VisualElement>
+                </ui:ScrollView>
+                <ui:ScrollView horizontal-page-size="3" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="AlwaysVisible" name="SuitTabView" mode="VerticalAndHorizontal" vertical-page-size="1" class="TabView inactiveTabView">
+                    <ui:VisualElement name="VisualElement" class="UpgradeMenuRow" style="min-height: 80px; height: 80px; max-height: 80px;">
+                        <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LampButton" class="UpgradeButton" />
+                        <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="UpgradeButton" />
+                        <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="UpgradeButton" />
+                        <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="UpgradeButton" />
+                    </ui:VisualElement>
+                </ui:ScrollView>
+            </ui:VisualElement>
+            <ui:VisualElement name="Footer" style="flex-grow: 1;">
+                <ui:VisualElement name="OreDisplayContainer" style="flex-grow: 1; flex-direction: row; justify-content: center; align-items: center; align-self: stretch;">
+                    <ui:VisualElement name="GreenOreDisplay" class="OreDisplay">
+                        <ui:VisualElement name="VisualElement" style="flex-grow: 1; background-image: url(&apos;project://database/Assets/Art/Sprites/Objects/OreResources/tex_resRed.png?fileID=2800000&amp;guid=28856b5657ca504408b0ef0ed22930a8&amp;type=3#tex_resRed&apos;); -unity-background-scale-mode: scale-to-fit; max-width: 16px; max-height: 16px;" />
+                        <ui:Label tabindex="-1" text="0" parse-escape-sequences="true" display-tooltip-when-elided="true" name="RedOreLabel" class="OreDisplayLabel" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="RedOreDisplay" class="OreDisplay" style="flex-grow: 1; flex-direction: row; flex-wrap: nowrap;">
+                        <ui:VisualElement name="VisualElement" style="flex-grow: 1; background-image: url(&apos;project://database/Assets/Art/Sprites/Objects/OreResources/tex_resGreen.png?fileID=2800000&amp;guid=7ced156f94dfa1c41b867c294d07ff5f&amp;type=3#tex_resGreen&apos;); -unity-background-scale-mode: scale-to-fit; max-width: 16px; max-height: 16px;" />
+                        <ui:Label tabindex="-1" text="0" parse-escape-sequences="true" display-tooltip-when-elided="true" name="GreenOreLabel" class="OreDisplayLabel" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

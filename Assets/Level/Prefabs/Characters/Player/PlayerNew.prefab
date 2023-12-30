@@ -342,7 +342,7 @@ GameObject:
   - component: {fileID: 5591021911789747742}
   - component: {fileID: 5105368502766870523}
   m_Layer: 13
-  m_Name: PlayerLight
+  m_Name: FlashLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -356,13 +356,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4971028907031229502}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0.3842952, w: 0.92321026}
-  m_LocalPosition: {x: 0, y: -0.19000006, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 826516851485070320}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -45.2}
+  m_Father: {fileID: 2802811761179594771}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!114 &5105368502766870523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1274,9 +1274,6 @@ PrefabInstance:
       addedObject: {fileID: 1680612837237230329}
     - targetCorrespondingSourceObject: {fileID: -7552582706839291426, guid: 3ef2d882105d27940a5592031b64398b, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5591021911789747742}
-    - targetCorrespondingSourceObject: {fileID: -7552582706839291426, guid: 3ef2d882105d27940a5592031b64398b, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 3149289683170392889}
     - targetCorrespondingSourceObject: {fileID: 5220006243450652443, guid: 3ef2d882105d27940a5592031b64398b, type: 3}
       insertIndex: -1
@@ -1287,6 +1284,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1337064821981948311, guid: 3ef2d882105d27940a5592031b64398b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7470078341905324472}
+    - targetCorrespondingSourceObject: {fileID: -4993892976274687427, guid: 3ef2d882105d27940a5592031b64398b, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 5591021911789747742}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 3ef2d882105d27940a5592031b64398b, type: 3}
       insertIndex: -1
@@ -1483,21 +1483,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aaa4f84d4740054596eb0d054c62e61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onInventoryChanged:
+  InventoryChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: InventoryDisplay, Assembly-CSharp
-        m_MethodName: UpdateUI
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+  MaxCapacity: 0
 --- !u!114 &3016708092384108398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1613,6 +1602,11 @@ MonoBehaviour:
   Back: 0
   Confirm: 0
   MoveCursor: {x: 0, y: 0}
+--- !u!4 &2802811761179594771 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -4993892976274687427, guid: 3ef2d882105d27940a5592031b64398b, type: 3}
+  m_PrefabInstance: {fileID: 2042301864333126190}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4511412898754668137 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2507507291319864391, guid: 3ef2d882105d27940a5592031b64398b, type: 3}

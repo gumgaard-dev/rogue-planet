@@ -1,0 +1,12 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Menus.uss?fileID=7433441132597879392&amp;guid=13e27143e9016ec46a991127af662a23&amp;type=3#Menus" />
+    <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="Button" class="UpgradeButton" style="align-items: center; align-self: center; width: 100px; height: 100px; min-height: 100%; min-width: 100%; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; justify-content: center;">
+        <ui:VisualElement name="VisualElement" style="flex-grow: 0; justify-content: center; align-self: center; align-items: center;">
+            <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" class="UpgradeLabel" style="width: 100%;" />
+            <ui:VisualElement name="VisualElement" style="flex-grow: 0; flex-direction: row; align-items: center; justify-content: space-around; align-self: stretch; height: initial; width: auto;">
+                <ui:VisualElement name="VisualElement" class="CostTypeIcon" style="align-items: auto; min-width: 16px; min-height: 16px;" />
+                <ui:Label tabindex="-1" text="0" parse-escape-sequences="true" display-tooltip-when-elided="true" class="CostAmount" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; align-items: stretch; -unity-text-align: upper-center; white-space: normal; flex-direction: row; justify-content: flex-end; align-self: center;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:Button>
+</ui:UXML>

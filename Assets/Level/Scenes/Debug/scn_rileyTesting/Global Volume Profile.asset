@@ -63,6 +63,7 @@ MonoBehaviour:
   - {fileID: -7951221312416321920}
   - {fileID: 3366608981341688987}
   - {fileID: 7261068545929268142}
+  - {fileID: 5590209039244064321}
 --- !u!114 &3366608981341688987
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -81,13 +82,53 @@ MonoBehaviour:
     m_Value: 10
   intensity:
     m_OverrideState: 1
-    m_Value: 0.03
+    m_Value: 0.039
   response:
     m_OverrideState: 1
     m_Value: 1
   texture:
     m_OverrideState: 1
     m_Value: {fileID: 2800000, guid: 41afb580d1a626c4fac40d92a6257a55, type: 3}
+--- !u!114 &5590209039244064321
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97c23e3b12dc18c42a140437e53d3951, type: 3}
+  m_Name: Tonemapping
+  m_EditorClassIdentifier: 
+  active: 1
+  mode:
+    m_OverrideState: 1
+    m_Value: 1
+  neutralHDRRangeReductionMode:
+    m_OverrideState: 0
+    m_Value: 2
+  acesPreset:
+    m_OverrideState: 0
+    m_Value: 3
+  hueShiftAmount:
+    m_OverrideState: 0
+    m_Value: 0
+  detectPaperWhite:
+    m_OverrideState: 0
+    m_Value: 0
+  paperWhite:
+    m_OverrideState: 0
+    m_Value: 300
+  detectBrightnessLimits:
+    m_OverrideState: 0
+    m_Value: 1
+  minNits:
+    m_OverrideState: 0
+    m_Value: 0.005
+  maxNits:
+    m_OverrideState: 0
+    m_Value: 1000
 --- !u!114 &7261068545929268142
 MonoBehaviour:
   m_ObjectHideFlags: 3

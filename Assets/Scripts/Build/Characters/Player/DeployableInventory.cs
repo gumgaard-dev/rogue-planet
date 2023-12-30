@@ -22,7 +22,7 @@ public class DeployableInventory : MonoBehaviour
         foreach (var item in itemPrefabs)
         {
             _itemDictionary[item.tag] = item;
-            UpdateStorage(item.tag, 1000);
+            UpdateStorage(item.tag, 0);
         }
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         _playerTransform = player.transform;
@@ -42,12 +42,9 @@ public class DeployableInventory : MonoBehaviour
             _storageAmount[objectTag] = 0;
         }
 
-        _storageAmount[objectTag] += amount;
+        _storageAmount[objectTag] = System.Math.Max(_storageAmount[objectTag] + amount, 0);
 
-        if (_storageAmount[objectTag] <= 0)
-        {
-            _storageAmount.Remove(objectTag);
-        }
+        Debug.Log(objectTag + " " + _storageAmount[objectTag]);
     }
     
     // use this overload to add new objects to storage
@@ -100,6 +97,7 @@ public class DeployableInventory : MonoBehaviour
     {
         _storageAmount.TryGetValue(objectTag, out int numberInStorage);
         
+        // none in storage, return null
         if (numberInStorage <= 0)
         {
             return null;
@@ -107,9 +105,10 @@ public class DeployableInventory : MonoBehaviour
 
 
         _itemDictionary.TryGetValue(objectTag, out GameObject item);
-
+        // cant find associated item prefab, return null
         if (item == null)
         {
+            Debug.LogWarning("Prefab not found for " + objectTag);
             return null;
         }
 

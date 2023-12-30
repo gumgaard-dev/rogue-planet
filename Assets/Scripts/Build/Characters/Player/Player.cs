@@ -76,6 +76,8 @@ namespace Capstone.Build.Characters.Player
             Jetpack = GetComponentInChildren<Jetpack>();
 
             _deployableInventory = GetComponentInChildren<DeployableInventory>();
+
+            EnterShip.AddListener(DepositOreInShip);
         }
 
 
@@ -208,6 +210,28 @@ namespace Capstone.Build.Characters.Player
         public void PlaceDeployable()
         {
             _deployableInventory.PlaceDeployable("Lamp");
+        }
+
+        public void AddToDeployableInventory(GameObject gObj)
+        {
+            _deployableInventory.AddToStorage(gObj);
+        }
+
+        public void DepositOreInShip()
+        {
+            Inventory playerInv = GetComponent<Inventory>();
+            Inventory shipInv = Ship.GetComponent<Inventory>();
+
+            Dictionary<object, int> TempDict = new(playerInv.storage);
+
+            foreach (var oreEntry in TempDict)
+            {
+                object oreType = oreEntry.Key;
+                int amount = oreEntry.Value;
+
+                shipInv.AddToStorage(oreType, amount);
+                playerInv.RemoveFromStorage(oreType, amount);
+            }
         }
 
         void OnDrawGizmos()

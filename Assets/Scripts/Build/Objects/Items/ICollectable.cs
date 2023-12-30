@@ -8,4 +8,8 @@ public interface ICollectable
     // the behavior that should be executed on collection
     public void Collected(ICollectable collectable);
     public object GetItemType();
+
+    public Sprite GetSprite();
+
+    public string GetName();
 }
