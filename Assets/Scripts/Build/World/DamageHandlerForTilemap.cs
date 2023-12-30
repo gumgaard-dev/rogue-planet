@@ -52,8 +52,6 @@ namespace Capstone.Build.World
                 // process damage
                 tileData.CurrentHealth -= damageAmount;
 
-                Debug.Log(tileData.CurrentHealth);
-
                 if (tileData.CurrentHealth <= 0)
                 {
                     // notify map manager

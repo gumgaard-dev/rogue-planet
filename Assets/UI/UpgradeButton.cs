@@ -24,6 +24,7 @@ public class UpgradeButton : VisualElement
     private VisualElement _upgradeButtonBase;
     private Button _upgradeButtonElement;
     private Label _label => _upgradeButtonBase.Q<Label>(className: "UpgradeLabel");
+    private VisualElement _upgradeIcon => _upgradeButtonBase.Q<VisualElement>(className: "UpgradeIcon");
     private Label _costAmountLabel => _upgradeButtonBase.Q<Label>(className: "CostAmount");
     private VisualElement _costTypeIcon => _upgradeButtonBase.Q(className: "CostTypeIcon");
 
@@ -36,17 +37,32 @@ public class UpgradeButton : VisualElement
         this.Add(_upgradeButtonBase); // adding as child
     }
 
-    public void SetUpgradeData(UpgradeData upgradeData)
+    public void SetUpgradeData(UpgradeData newUpgradeData)
     {
-        this.UpgradeData = upgradeData;
+
+        if (newUpgradeData == null)
+        {
+            Debug.LogWarning("attempted to set null UpgradeData on UpgradeButton");
+            return;
+        }
+
+        this.UpgradeData = newUpgradeData;
 
         _upgradeButtonElement.clickable.clicked += UpgradeData.PurchaseUpgrade;
+        SetUpgradeLabel(newUpgradeData.LabelText);
 
-        if (UpgradeData == null) { return; }
+        if (newUpgradeData.Icon != null) { SetUpgradeIcon(newUpgradeData.Icon); }
 
-        SetUpgradeLabel(this.UpgradeData.LabelText);
-        SetCostTypeIcon(ItemDB.GetSpriteForOreType(this.UpgradeData.CostType));
-        SetCostAmount(this.UpgradeData.CostAmount);
+        SetCostTypeIcon(ItemDB.GetSpriteForOreType(newUpgradeData.CostType));
+        SetCostAmount(newUpgradeData.CostAmount);
+    }
+
+    private void SetUpgradeIcon(Sprite icon)
+    {
+        if (icon != null)
+        {
+            this._upgradeIcon.style.backgroundImage = new StyleBackground(icon);
+        }
     }
 
     public void SetCostTypeIcon(Sprite icon)

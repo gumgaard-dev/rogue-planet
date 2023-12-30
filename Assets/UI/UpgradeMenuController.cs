@@ -85,8 +85,6 @@ public class UpgradeMenuController : MonoBehaviour
 
     public static void CloseUpgradeMenu()
     {
-        Debug.Log("Closing");
-        Debug.Log(Instance._upgradeMainPanel);
         Instance.HideMenu();
     }
 
@@ -161,7 +159,6 @@ public class UpgradeMenuController : MonoBehaviour
     {
         foreach (UpgradeButton ub in Instance.UpgradeButtons)
         {
-            Debug.Log("checking" + ub.UpgradeData.LabelText);
             var CostType = ub.UpgradeData.CostType;
             int curResourceCount = GetCurrentResourceCount(CostType);
 

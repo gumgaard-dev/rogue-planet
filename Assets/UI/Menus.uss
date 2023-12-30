@@ -158,3 +158,18 @@
 
 .UpgradeLabel {
 }
+
+.UpgradeIcon {
+    flex-grow: 1;
+    min-width: 32px;
+    min-height: 32px;
+    background-image: url('project://database/Assets/Art/Sprites/Characters/Ship/tex_weaponBase.png?fileID=2800000&guid=0e549c3df4f27384d94dee091968cb96&type=3#tex_weaponBase');
+    width: 32px;
+    height: 32px;
+    max-width: 32px;
+    max-height: 32px;
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}

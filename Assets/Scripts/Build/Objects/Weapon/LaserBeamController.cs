@@ -88,8 +88,6 @@ namespace Capstone.Build.Weapon
 
             _beamDirection = RotationToDirectionVector2(_playerArmTransform.eulerAngles.z);
 
-            Debug.Log(this._beamDirection + " " +  _beamDirection);
-
             RaycastHit2D hit = Physics2D.Raycast(_beamStart, this._beamDirection, _beamMaxDistance, _targetLayers);
 
             if (hit.collider != null)

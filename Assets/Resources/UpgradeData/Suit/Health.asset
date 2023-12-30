@@ -9,13 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64ba14433971ee343b038b710fc90f81, type: 3}
-  m_Name: LampBuyData
+  m_Script: {fileID: 11500000, guid: db22cd2d142279e4db33ac793fe95daa, type: 3}
+  m_Name: Health
   m_EditorClassIdentifier: 
-  LabelText: Lamp
+  LabelText: Health
   Tooltip: 
-  Icon: {fileID: 21300000, guid: 0cc3794cb88bf414cb328a9742a7bcfe, type: 3}
+  Icon: {fileID: 0}
   CostType: 0
-  UpgradeCategory: 2
-  CostAmount: 1
-  item: {fileID: 3144242899129677626, guid: b2f27b940947aa2409798eba38036e6b, type: 3}
+  UpgradeCategory: 1
+  CostAmount: 10

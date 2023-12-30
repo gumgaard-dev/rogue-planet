@@ -43,8 +43,6 @@ public class DeployableInventory : MonoBehaviour
         }
 
         _storageAmount[objectTag] = System.Math.Max(_storageAmount[objectTag] + amount, 0);
-
-        Debug.Log(objectTag + " " + _storageAmount[objectTag]);
     }
     
     // use this overload to add new objects to storage
@@ -76,19 +74,10 @@ public class DeployableInventory : MonoBehaviour
 
     public void PlaceDeployable(string objectTag)
     {
-
-        Debug.Log(objectTag);
         GameObject item = GetFromStorage(objectTag);
-        foreach (string key in _itemDictionary.Keys)
-        {
-            Debug.Log(key);
-            Debug.Log(_storageAmount[key]);
-        }
 
         if (item != null)
         {
-            Debug.Log("Got item");
-            Debug.Log(_storageAmount[objectTag]);
             Instantiate(item, _playerTransform.position, Quaternion.identity);
         }
     }
