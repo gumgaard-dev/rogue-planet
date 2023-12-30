@@ -5,13 +5,13 @@
             <ui:VisualElement name="Header" style="flex-grow: 1; flex-direction: row; height: 10%;">
                 <ui:Label tabindex="-1" text="UPGRADES" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="min-height: initial; height: 100%; align-items: center; -unity-text-align: upper-center; font-size: 16px; margin-right: 70px; margin-left: 0; flex-direction: row; background-color: rgba(109, 138, 130, 0); color: rgb(109, 138, 130);" />
                 <ui:VisualElement class="TabButtonContainer" style="flex-grow: 1; height: 25px; width: 100%; align-items: flex-start; justify-content: center; flex-direction: row; min-height: 25px; margin-top: 5px; margin-right: 0; margin-bottom: 0; margin-left: 0;">
-                    <ui:VisualElement focusable="true" name="ItemTabButton" tabindex="2" class="TabButton activeTabButton">
+                    <ui:VisualElement focusable="false" name="ItemTabButton" tabindex="0" class="TabButton activeTabButton">
                         <ui:Label tabindex="-1" text="Items" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" class="TabLabel" style="color: rgb(161, 239, 140);" />
                     </ui:VisualElement>
-                    <ui:VisualElement focusable="true" name="ShipTabButton" class="TabButton" style="flex-grow: 1;">
+                    <ui:VisualElement focusable="false" name="ShipTabButton" tabindex="1" class="TabButton" style="flex-grow: 1;">
                         <ui:Label tabindex="-1" text="Ship" parse-escape-sequences="true" display-tooltip-when-elided="true" class="TabLabel" style="color: rgb(161, 239, 140);" />
                     </ui:VisualElement>
-                    <ui:VisualElement name="SuitTabButton" focusable="true" tabindex="1" class="TabButton">
+                    <ui:VisualElement name="SuitTabButton" focusable="false" tabindex="2" class="TabButton">
                         <ui:Label tabindex="-1" text="Suit" parse-escape-sequences="true" display-tooltip-when-elided="true" class="TabLabel" style="color: rgb(161, 239, 140);" />
                     </ui:VisualElement>
                 </ui:VisualElement>
@@ -21,20 +21,10 @@
                     <ui:VisualElement name="VisualElement" class="UpgradeMenuRow" style="min-height: 80px; height: 80px; max-height: 80px;" />
                 </ui:ScrollView>
                 <ui:ScrollView horizontal-page-size="3" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="AlwaysVisible" name="ShipTabView" mode="VerticalAndHorizontal" vertical-page-size="1" class="TabView inactiveTabView">
-                    <ui:VisualElement name="VisualElement" class="UpgradeMenuRow" style="min-height: 80px; height: 80px; max-height: 80px;">
-                        <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LampButton" class="UpgradeButton" />
-                        <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="UpgradeButton" />
-                        <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="UpgradeButton" />
-                        <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="UpgradeButton" />
-                    </ui:VisualElement>
+                    <ui:VisualElement name="VisualElement" class="UpgradeMenuRow" style="min-height: 80px; height: 80px; max-height: 80px;" />
                 </ui:ScrollView>
                 <ui:ScrollView horizontal-page-size="3" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="AlwaysVisible" name="SuitTabView" mode="VerticalAndHorizontal" vertical-page-size="1" class="TabView inactiveTabView">
-                    <ui:VisualElement name="VisualElement" class="UpgradeMenuRow" style="min-height: 80px; height: 80px; max-height: 80px;">
-                        <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LampButton" class="UpgradeButton" />
-                        <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="UpgradeButton" />
-                        <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="UpgradeButton" />
-                        <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="UpgradeButton" />
-                    </ui:VisualElement>
+                    <ui:VisualElement name="VisualElement" class="UpgradeMenuRow" style="min-height: 80px; height: 80px; max-height: 80px;" />
                 </ui:ScrollView>
             </ui:VisualElement>
             <ui:VisualElement name="Footer" style="flex-grow: 1;">

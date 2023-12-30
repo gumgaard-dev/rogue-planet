@@ -15,6 +15,7 @@ public class UpgradeMenuController : MonoBehaviour
     public List<UpgradeButton> UpgradeButtons = new();
     public Dictionary<object, Label> oreDisplays;
     private Dictionary<UpgradeCategory, VisualElement> _upgradeCategoryButtonContainers = new();
+    private TabPanel _tabPanel;
 
     private Label _greenOreLabel;
     private Label _redOreLabel;
@@ -33,14 +34,13 @@ public class UpgradeMenuController : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
-
-
-
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        _tabPanel = GetComponentInChildren<TabPanel>();
+        _tabPanel.TabChanged.AddListener(FocusFirst);
         root = doc.rootVisualElement;
 
         _upgradeCategoryButtonContainers[UpgradeCategory.ITEM] = root.Query(name: "ItemsTabView").ToList().First();
@@ -65,17 +65,19 @@ public class UpgradeMenuController : MonoBehaviour
 
     private void ShowMenu()
     {
-        FocusFirst();
-        UpgradeMenuController.RecheckButtonsEnabledState();
         _upgradeMainPanel.style.display = DisplayStyle.Flex;
+        UpgradeMenuController.RecheckButtonsEnabledState();
+        _tabPanel.SelectDefaultTab();
+        FocusFirst();
     }
 
-    private void FocusFirst()
+    private static void FocusFirst()
     {
-        if (UpgradeButtons.Count > 0)
-        {
-            UpgradeButtons[0].Focus();
-        }
+        var curTab = Instance._tabPanel.CurrentTabView;
+
+        var first = curTab.Query(className: "UpgradeButton").ToList().FirstOrDefault();
+
+        if (first != null) { first.Focus(); }
     }
 
     public static void OpenUpgradeMenu()
@@ -176,7 +178,6 @@ public class UpgradeMenuController : MonoBehaviour
                 return int.Parse(Instance._redOreLabel.text);
             default:
                 return 0;
-                
         }
     }
 }

@@ -1,5 +1,8 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
 //Inherits from class `MonoBehaviour`. This makes it attachable to a game object as a component.
@@ -8,16 +11,24 @@ public class TabPanel : MonoBehaviour
     private VisualElement root;
     private List<VisualElement> TabButtons;
     private List<VisualElement> TabViews;
-    private Dictionary<VisualElement, VisualElement> TabDictionary = new();
 
-    private const string TAB_BUTTON_CLASS = "TabButton";
-    private const string ACTIVE_TAB_BUTTON_CLASS = "activeTabButton";
-    private const string TAB_VIEW_CLASS = "TabView";
-    private const string ACTIVE_TAB_VIEW_CLASS = "activeTabView";
-    private const string INACTIVE_TAB_VIEW_CLASS = "inactiveTabView";
+    public UnityEvent TabChanged;
+    public VisualElement CurrentTabView => TabViews[currentTabIndex];
+
+    // stored as tabButton: tabView
+    private Dictionary<VisualElement, VisualElement> TabDictionary = new();
+    int currentTabIndex;
+
+    public UIInputActions UIInputActions;
+
+    public const string TAB_BUTTON_CLASS = "TabButton";
+    public const string ACTIVE_TAB_BUTTON_CLASS = "activeTabButton";
+    public const string TAB_VIEW_CLASS = "TabView";
+    public const string ACTIVE_TAB_VIEW_CLASS = "activeTabView";
+    public const string INACTIVE_TAB_VIEW_CLASS = "inactiveTabView";
 
     public Color ActiveTabBackgroundColor;
-    private void OnEnable()
+    private void Start()
     {
         if (TryGetComponent(out UIDocument menu))
         {
@@ -25,33 +36,62 @@ public class TabPanel : MonoBehaviour
 
             TabButtons = root.Query<VisualElement>(className: TAB_BUTTON_CLASS).ToList();
             TabViews = root.Query<VisualElement>(className: TAB_VIEW_CLASS).ToList();
-
-            if (TabButtons.Count > 0 && TabViews.Count > 0)
+            
+            for (int i = 0; i < TabButtons.Count && i < TabViews.Count; i++)
             {
-                for (int i = 0; i < TabButtons.Count && i < TabViews.Count; i++)
-                {
-                    TabDictionary[TabButtons[i]] = TabViews[i];
-                }
-
-                foreach (var tabButton in TabButtons)
-                {
-                    tabButton.RegisterCallback<ClickEvent>(OnTabButtonClick);
-                    tabButton.RegisterCallback<FocusEvent>(OnTabButtonFocus);
-                }
-
-                TabButtons[0].Focus();
+                TabDictionary[TabButtons[i]] = TabViews[i];
+                TabButtons[i].focusable = false;
             }
         }
     }
 
-    private void OnTabButtonFocus(FocusEvent e)
+    private void OnEnable()
     {
-        SelectTab(e.currentTarget as VisualElement);
+        if (UIInputActions == null)
+        {
+            UIInputActions = new();
+        }
+        UIInputActions.Enable();
+        UIInputActions.UI.SwitchTabLeft.performed += _ => SelectTabToLeft();
+        UIInputActions.UI.SwitchTabRight.performed += _ => SelectTabToRight();
     }
 
-    private void OnTabButtonClick(ClickEvent e)
+    private void OnDisable()
     {
-        SelectTab(e.currentTarget as VisualElement);
+        UIInputActions.UI.SwitchTabLeft.performed -= _ => SelectTabToLeft();
+        UIInputActions.UI.SwitchTabRight.performed -= _ => SelectTabToRight();
+        UIInputActions.Disable();
+    }
+
+    private void SelectTabToRight()
+    {
+        currentTabIndex += 1;
+        if (currentTabIndex >= TabButtons.Count)
+        {
+            currentTabIndex = 0;
+        }
+
+        VisualElement rightTabButton = TabButtons[currentTabIndex];
+        SelectTab(rightTabButton);
+
+    }
+
+    private void SelectTabToLeft()
+    {
+        currentTabIndex -= 1;
+        if (currentTabIndex < 0)
+        {
+            currentTabIndex = TabButtons.Count - 1;
+        }
+
+        VisualElement leftTabButton = TabButtons[currentTabIndex];
+        SelectTab(leftTabButton);
+    }
+
+    public void SelectDefaultTab()
+    {
+        currentTabIndex = 0;
+        SelectTab(TabButtons[0]);
     }
 
     private void SelectTab(VisualElement tabButton)
@@ -62,10 +102,10 @@ public class TabPanel : MonoBehaviour
 
         var curTabView = TabDictionary[tabButton];
 
-        curTabView.RemoveFromClassList(INACTIVE_TAB_VIEW_CLASS);
-        curTabView.AddToClassList(ACTIVE_TAB_VIEW_CLASS);
-    }
+        SetTabViewActive(curTabView);
 
+        TabChanged?.Invoke();
+    }
         
     private void HideAllTabs()
     {
@@ -80,7 +120,7 @@ public class TabPanel : MonoBehaviour
         }
     }
 
-    private void SetTabViewActiveClass(VisualElement tabView)
+    private void SetTabViewActive(VisualElement tabView)
     {
         if (tabView == null) { return; }
 
