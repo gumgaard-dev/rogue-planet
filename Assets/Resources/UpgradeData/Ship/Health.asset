@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Health
   m_EditorClassIdentifier: 
   LabelText: Health
-  Tooltip: 
-  Icon: {fileID: 0}
+  Tooltip: Increase maximum health by 10
+  Icon: {fileID: 21300000, guid: 12b6dc52cd646344fa816ece0975babc, type: 3}
   CostType: 0
   UpgradeCategory: 1
   CostAmount: 10

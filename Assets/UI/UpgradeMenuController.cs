@@ -90,7 +90,7 @@ public class UpgradeMenuController : MonoBehaviour
         Instance.HideMenu();
     }
 
-    public void OnInventoryChanged(Dictionary<object, int> storage)
+    public void OnResourceInventoryChanged(Dictionary<object, int> storage)
     {
         if (_greenOreLabel != null)
         {

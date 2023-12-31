@@ -30,7 +30,7 @@
     margin-right: 0;
     margin-bottom: 0;
     margin-left: 0;
-    width: 100%;
+    width: 42px;
     height: 100%;
     border-top-width: 1px;
     border-right-width: 1px;
@@ -40,6 +40,7 @@
     border-right-color: rgb(164, 164, 164);
     border-top-color: rgb(164, 164, 164);
     border-bottom-color: rgb(164, 164, 164);
+    max-width: 42px;
 }
 
 .unity-text-element {
@@ -60,23 +61,12 @@
     -unity-font: url('project://database/Assets/Resources/Fonts/VCR_OSD_MONO_1.001.ttf?fileID=12800000&guid=82ea6d4df66693f4bbfde02698d04bc3&type=3#VCR_OSD_MONO_1.001');
     background-color: rgba(255, 255, 255, 0);
     color: rgb(161, 239, 140);
+    font-size: 8px;
 }
 
 .TabButtonContainer {
     justify-content: space-between;
     align-items: stretch;
-}
-
-.TabLabel {
-    margin-top: 0;
-    margin-right: 0;
-    margin-bottom: 0;
-    margin-left: 0;
-    padding-top: 0;
-    padding-right: 0;
-    padding-bottom: 0;
-    padding-left: 0;
-    -unity-font: url('project://database/Assets/Resources/Fonts/VCR_OSD_MONO_1.001.ttf?fileID=12800000&guid=82ea6d4df66693f4bbfde02698d04bc3&type=3#VCR_OSD_MONO_1.001');
 }
 
 .inactiveTabView {
@@ -94,11 +84,11 @@
 .OreDisplay {
     flex-grow: 1;
     flex-direction: row;
-    width: 20%;
-    max-width: 20%;
     justify-content: center;
     align-self: center;
     align-items: stretch;
+    max-width: 3px;
+    min-width: 36px;
 }
 
 .inactiveTabButton {
@@ -106,7 +96,7 @@
 }
 
 .OreDisplayLabel {
-    font-size: 12px;
+    font-size: 8px;
     color: rgb(255, 255, 255);
     margin-top: 0;
     padding-top: 0;
@@ -117,7 +107,7 @@
     margin-bottom: 0;
     margin-left: 2px;
     width: 32px;
-    -unity-text-align: upper-left;
+    -unity-text-align: middle-left;
 }
 
 .UpgradeButton {
@@ -127,15 +117,6 @@
     min-height: 70px;
 }
 
-.UpgradeMenuRow {
-    flex-grow: 1;
-    flex-direction: row;
-    justify-content: center;
-    min-height: 80px;
-    align-items: center;
-    align-self: stretch;
-}
-
 .TabView {
     max-width: 100%;
     min-height: auto;
@@ -143,6 +124,9 @@
     height: 100%;
     width: 100%;
     align-items: flex-start;
+    padding-top: 1%;
+    padding-right: 0;
+    padding-bottom: 1%;
 }
 
 .CostTypeIcon {
@@ -156,7 +140,7 @@
 .CostAmount {
 }
 
-.UpgradeLabel {
+.MenuTitle {
 }
 
 .UpgradeIcon {
@@ -172,4 +156,42 @@
     margin-right: 10px;
     margin-bottom: 10px;
     margin-left: 10px;
+}
+
+.OreIcon {
+    flex-grow: 1;
+    background-image: url('project://database/Assets/Art/Sprites/Objects/OreResources/tex_resGreen.png?fileID=2800000&guid=7ced156f94dfa1c41b867c294d07ff5f&type=3#tex_resGreen');
+    -unity-background-scale-mode: scale-to-fit;
+    max-width: 8px;
+    max-height: 8px;
+    width: 8px;
+    height: 8px;
+    min-width: 8px;
+    min-height: 8px;
+}
+
+.TabLabel {
+    color: rgb(161, 239, 140);
+    font-size: 8px;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    justify-content: center;
+    align-self: center;
+}
+
+.UpgradeMenuRow {
+    min-height: auto;
+    height: auto;
+    max-height: none;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    align-items: flex-start;
 }

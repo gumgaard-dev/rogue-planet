@@ -11,7 +11,7 @@ public class SuitUpgradeData : UpgradeData
         base.UpgradeCategory = UpgradeCategory.SUIT;
     }
 
-    public override void UpgradeEffect()
+    public override void ApplyUpgradeEffect()
     {
 
     }

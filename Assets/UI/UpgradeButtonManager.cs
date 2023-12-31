@@ -8,7 +8,7 @@ public class UpgradeDataManager : MonoBehaviour
 {
     public List<BuyItemUpgradeData> BuyItemUpgradeData = new();
     public List<ItemUpgradeData> ItemUpgradeData = new();
-    public List<ShipUpgradeData> ShipUpgradeData = new();
+    public List<ShipHealthUpgradeData> ShipUpgradeData = new();
     public List<SuitUpgradeData> SuitUpgradeData = new();
 
     private void Start()

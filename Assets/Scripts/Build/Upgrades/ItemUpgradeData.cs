@@ -11,7 +11,7 @@ public class ItemUpgradeData : UpgradeData
         base.UpgradeCategory = UpgradeCategory.ITEM;
     }
 
-    public override void UpgradeEffect()
+    public override void ApplyUpgradeEffect()
     {
     }
 }

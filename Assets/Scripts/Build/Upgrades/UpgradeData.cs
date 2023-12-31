@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [System.Serializable]
 
@@ -21,17 +22,13 @@ public abstract class UpgradeData : ScriptableObject
     public UpgradeCategory UpgradeCategory;
     public int CostAmount;
 
-    public Action PurchaseUpgrade;
-
-    public UpgradeData()
+    public void PurchaseUpgrade()
     {
-        PurchaseUpgrade = () =>
-        {
-            FindFirstObjectByType<Ship>().GetComponent<Inventory>().RemoveFromStorage(CostType, CostAmount);
-        };
+        FindFirstObjectByType<Ship>().GetComponent<Inventory>().RemoveFromStorage(CostType, CostAmount);
 
-        PurchaseUpgrade += UpgradeEffect;
+        ApplyUpgradeEffect();
     }
 
-    public abstract void UpgradeEffect();
+    // use this method to invoke apply upgrade-specific effects
+    public abstract void ApplyUpgradeEffect();
 }
