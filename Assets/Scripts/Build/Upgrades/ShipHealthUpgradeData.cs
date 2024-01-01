@@ -16,6 +16,6 @@ public class ShipHealthUpgradeData : UpgradeData
 
     public override void ApplyUpgradeEffect()
     {
-        FindObjectOfType<Ship>().GetComponent<HealthData>().IncreaseMaxHealthBy(10);
+        FindObjectOfType<Ship>().GetComponent<HealthData>().IncreaseMaxHealthBy(15);
     }
 }

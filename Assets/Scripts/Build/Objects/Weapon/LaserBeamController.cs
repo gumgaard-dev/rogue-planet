@@ -1,5 +1,6 @@
 using Capstone.Build.Characters.Player;
 using Capstone.Build.Characters.Player.Animation;
+using Capstone.Input;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -58,6 +59,8 @@ namespace Capstone.Build.Weapon
 
         private void FixedUpdate()
         {
+            _beamLineRenderer.enabled = InputInfo.FireLaser;
+
             if (_beamLineRenderer && _beamLineRenderer.enabled)
             {
                 CasRaytAndCheckHits();

@@ -9,7 +9,6 @@ namespace Capstone.Build.Characters.Player.PlayerStates
         protected GameSettings Settings;
         protected Player Player;
 
-        protected InputInfo InputInfo;
         protected TriggerInfo TriggerInfo;
 
         private LayerMask _surfaceLayerMask;
@@ -22,7 +21,6 @@ namespace Capstone.Build.Characters.Player.PlayerStates
             Settings = settings;
             Player = player;
 
-            InputInfo = player.GetComponent<InputInfo>();
             TriggerInfo = player.GetComponent<TriggerInfo>();
 
             _surfaceLayerMask = LayerMask.GetMask("Terrain");
@@ -59,17 +57,22 @@ namespace Capstone.Build.Characters.Player.PlayerStates
 
         public virtual void SetJumpInput(bool inputValue)
         {
-            InputInfo.Jump = inputValue;
+            InputInfo.JumpHeld = inputValue;
+        }
+
+        public virtual void SetFireLaserInput(bool inputValue)
+        {
+            InputInfo.FireLaser = inputValue;
         }
 
         public virtual void SetShootInput(bool inputValue)
         {
-            InputInfo.Shoot = inputValue;
+            InputInfo.ShootHeld = inputValue;
         }
 
         public virtual void SetShipAimInput(float inputValue)
         {
-            InputInfo.AimShip = inputValue;
+            InputInfo.ShipAim = inputValue;
         }
 
         public virtual void SetPrecisionAimInput(bool inputValue)
@@ -80,21 +83,6 @@ namespace Capstone.Build.Characters.Player.PlayerStates
         public virtual void SetOpenUpgradeMenuInput(bool inputValue)
         {
             InputInfo.OpenUpgradeMenu = inputValue;
-        }
-
-        public virtual void SetBackInput(bool inputValue)
-        {
-            InputInfo.Back = inputValue;
-        }
-
-        public virtual void SetConfirmInput(bool inputValue)
-        {
-            InputInfo.Confirm = inputValue;
-        }
-
-        public virtual void SetMoveCursorInput(Vector2 inputValue)
-        {
-            InputInfo.MoveCursor = inputValue;
         }
 
         public void UpdateTriggers() 
@@ -125,7 +113,7 @@ namespace Capstone.Build.Characters.Player.PlayerStates
 
         internal void SetAimInput(Vector2 value)
         {
-            InputInfo.AimMining = value;
+            InputInfo.PlayerAim = value;
         }
 
         internal void SetPlaceDeployableInput(bool triggered)

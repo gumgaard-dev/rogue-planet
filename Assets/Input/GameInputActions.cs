@@ -15,10 +15,10 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
+public partial class GameInputActions: IInputActionCollection2, IDisposable
 {
     public InputActionAsset asset { get; }
-    public @PlayerInputActions()
+    public GameInputActions()
     {
         asset = InputActionAsset.FromJson(@"{
     ""name"": ""PlayerInputActions"",
@@ -67,6 +67,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""name"": ""PlaceDeployable"",
                     ""type"": ""Button"",
                     ""id"": ""0324d257-d6ba-489b-b75a-fda84403df63"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""FireLaser"",
+                    ""type"": ""Button"",
+                    ""id"": ""f254f7da-c47f-4d10-96e9-78e3223ef01e"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -315,6 +324,17 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""PlaceDeployable"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""67aa8423-77ad-4ad2-9702-a87b26c6b180"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FireLaser"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -353,6 +373,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""name"": ""PrecisionAim"",
                     ""type"": ""Button"",
                     ""id"": ""e66ff998-0a75-4f82-b2bd-8863075f1b2e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""OpenUpgradeMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""cdc46438-202d-4dc6-9fb0-36808dff62f7"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -480,54 +509,10 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""PrecisionAim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
-            ""name"": ""UI"",
-            ""id"": ""be01603c-546e-4250-a70f-a9ea63d27f28"",
-            ""actions"": [
-                {
-                    ""name"": ""OpenUpgradeMenu"",
-                    ""type"": ""Button"",
-                    ""id"": ""8ac481cf-262a-450f-b6b6-68d48c2469ac"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 },
-                {
-                    ""name"": ""Back"",
-                    ""type"": ""Button"",
-                    ""id"": ""0e2b1808-5f6e-4900-9051-09f712534154"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Confirm"",
-                    ""type"": ""Button"",
-                    ""id"": ""ccbbac30-90b7-408a-8107-6c788d6d646b"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""MoveCursor"",
-                    ""type"": ""Value"",
-                    ""id"": ""ab8a1cf3-6349-45f1-af80-68174cc44e61"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                }
-            ],
-            ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""deeb75c1-4e25-4725-8376-a11eb43baff5"",
+                    ""id"": ""3d17a3c2-8a1e-4408-9932-d113381e2d27"",
                     ""path"": ""<Keyboard>/i"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -535,83 +520,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""OpenUpgradeMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""10ffa3ad-38e1-4bf7-af7f-c0b5d20d28b5"",
-                    ""path"": ""<Keyboard>/escape"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Back"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""987c1242-9002-4479-aea0-a77239949616"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Confirm"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""2D Vector"",
-                    ""id"": ""c9cda3e7-b7d1-497b-83fe-2bff25c3b088"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MoveCursor"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""Up"",
-                    ""id"": ""4fcbb66c-4996-40a8-9dc4-0cfcd20feb70"",
-                    ""path"": ""<Keyboard>/upArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MoveCursor"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Down"",
-                    ""id"": ""f2415f06-7681-44b9-8007-63950b5bcd5a"",
-                    ""path"": ""<Keyboard>/downArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MoveCursor"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Left"",
-                    ""id"": ""e31dbb1d-0458-4149-a94a-8ea3923cc129"",
-                    ""path"": ""<Keyboard>/leftArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MoveCursor"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Right"",
-                    ""id"": ""19e4b36d-aa04-4af7-a541-312725804eb3"",
-                    ""path"": ""<Keyboard>/rightArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MoveCursor"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -625,18 +533,14 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_EnterShip = m_Player.FindAction("EnterShip", throwIfNotFound: true);
         m_Player_PlaceDeployable = m_Player.FindAction("PlaceDeployable", throwIfNotFound: true);
+        m_Player_FireLaser = m_Player.FindAction("FireLaser", throwIfNotFound: true);
         // Ship
         m_Ship = asset.FindActionMap("Ship", throwIfNotFound: true);
         m_Ship_Shoot = m_Ship.FindAction("Shoot", throwIfNotFound: true);
         m_Ship_Aim = m_Ship.FindAction("Aim", throwIfNotFound: true);
         m_Ship_ExitShip = m_Ship.FindAction("ExitShip", throwIfNotFound: true);
         m_Ship_PrecisionAim = m_Ship.FindAction("PrecisionAim", throwIfNotFound: true);
-        // UI
-        m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
-        m_UI_OpenUpgradeMenu = m_UI.FindAction("OpenUpgradeMenu", throwIfNotFound: true);
-        m_UI_Back = m_UI.FindAction("Back", throwIfNotFound: true);
-        m_UI_Confirm = m_UI.FindAction("Confirm", throwIfNotFound: true);
-        m_UI_MoveCursor = m_UI.FindAction("MoveCursor", throwIfNotFound: true);
+        m_Ship_OpenUpgradeMenu = m_Ship.FindAction("OpenUpgradeMenu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -703,15 +607,17 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_EnterShip;
     private readonly InputAction m_Player_PlaceDeployable;
+    private readonly InputAction m_Player_FireLaser;
     public struct PlayerActions
     {
-        private @PlayerInputActions m_Wrapper;
-        public PlayerActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        private GameInputActions m_Wrapper;
+        public PlayerActions(GameInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Aim => m_Wrapper.m_Player_Aim;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @EnterShip => m_Wrapper.m_Player_EnterShip;
         public InputAction @PlaceDeployable => m_Wrapper.m_Player_PlaceDeployable;
+        public InputAction @FireLaser => m_Wrapper.m_Player_FireLaser;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -736,6 +642,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @PlaceDeployable.started += instance.OnPlaceDeployable;
             @PlaceDeployable.performed += instance.OnPlaceDeployable;
             @PlaceDeployable.canceled += instance.OnPlaceDeployable;
+            @FireLaser.started += instance.OnFireLaser;
+            @FireLaser.performed += instance.OnFireLaser;
+            @FireLaser.canceled += instance.OnFireLaser;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -755,6 +664,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @PlaceDeployable.started -= instance.OnPlaceDeployable;
             @PlaceDeployable.performed -= instance.OnPlaceDeployable;
             @PlaceDeployable.canceled -= instance.OnPlaceDeployable;
+            @FireLaser.started -= instance.OnFireLaser;
+            @FireLaser.performed -= instance.OnFireLaser;
+            @FireLaser.canceled -= instance.OnFireLaser;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -780,14 +692,16 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Ship_Aim;
     private readonly InputAction m_Ship_ExitShip;
     private readonly InputAction m_Ship_PrecisionAim;
+    private readonly InputAction m_Ship_OpenUpgradeMenu;
     public struct ShipActions
     {
-        private @PlayerInputActions m_Wrapper;
-        public ShipActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        private GameInputActions m_Wrapper;
+        public ShipActions(GameInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Shoot => m_Wrapper.m_Ship_Shoot;
         public InputAction @Aim => m_Wrapper.m_Ship_Aim;
         public InputAction @ExitShip => m_Wrapper.m_Ship_ExitShip;
         public InputAction @PrecisionAim => m_Wrapper.m_Ship_PrecisionAim;
+        public InputAction @OpenUpgradeMenu => m_Wrapper.m_Ship_OpenUpgradeMenu;
         public InputActionMap Get() { return m_Wrapper.m_Ship; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -809,6 +723,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @PrecisionAim.started += instance.OnPrecisionAim;
             @PrecisionAim.performed += instance.OnPrecisionAim;
             @PrecisionAim.canceled += instance.OnPrecisionAim;
+            @OpenUpgradeMenu.started += instance.OnOpenUpgradeMenu;
+            @OpenUpgradeMenu.performed += instance.OnOpenUpgradeMenu;
+            @OpenUpgradeMenu.canceled += instance.OnOpenUpgradeMenu;
         }
 
         private void UnregisterCallbacks(IShipActions instance)
@@ -825,6 +742,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @PrecisionAim.started -= instance.OnPrecisionAim;
             @PrecisionAim.performed -= instance.OnPrecisionAim;
             @PrecisionAim.canceled -= instance.OnPrecisionAim;
+            @OpenUpgradeMenu.started -= instance.OnOpenUpgradeMenu;
+            @OpenUpgradeMenu.performed -= instance.OnOpenUpgradeMenu;
+            @OpenUpgradeMenu.canceled -= instance.OnOpenUpgradeMenu;
         }
 
         public void RemoveCallbacks(IShipActions instance)
@@ -842,76 +762,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         }
     }
     public ShipActions @Ship => new ShipActions(this);
-
-    // UI
-    private readonly InputActionMap m_UI;
-    private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
-    private readonly InputAction m_UI_OpenUpgradeMenu;
-    private readonly InputAction m_UI_Back;
-    private readonly InputAction m_UI_Confirm;
-    private readonly InputAction m_UI_MoveCursor;
-    public struct UIActions
-    {
-        private @PlayerInputActions m_Wrapper;
-        public UIActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @OpenUpgradeMenu => m_Wrapper.m_UI_OpenUpgradeMenu;
-        public InputAction @Back => m_Wrapper.m_UI_Back;
-        public InputAction @Confirm => m_Wrapper.m_UI_Confirm;
-        public InputAction @MoveCursor => m_Wrapper.m_UI_MoveCursor;
-        public InputActionMap Get() { return m_Wrapper.m_UI; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(UIActions set) { return set.Get(); }
-        public void AddCallbacks(IUIActions instance)
-        {
-            if (instance == null || m_Wrapper.m_UIActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_UIActionsCallbackInterfaces.Add(instance);
-            @OpenUpgradeMenu.started += instance.OnOpenUpgradeMenu;
-            @OpenUpgradeMenu.performed += instance.OnOpenUpgradeMenu;
-            @OpenUpgradeMenu.canceled += instance.OnOpenUpgradeMenu;
-            @Back.started += instance.OnBack;
-            @Back.performed += instance.OnBack;
-            @Back.canceled += instance.OnBack;
-            @Confirm.started += instance.OnConfirm;
-            @Confirm.performed += instance.OnConfirm;
-            @Confirm.canceled += instance.OnConfirm;
-            @MoveCursor.started += instance.OnMoveCursor;
-            @MoveCursor.performed += instance.OnMoveCursor;
-            @MoveCursor.canceled += instance.OnMoveCursor;
-        }
-
-        private void UnregisterCallbacks(IUIActions instance)
-        {
-            @OpenUpgradeMenu.started -= instance.OnOpenUpgradeMenu;
-            @OpenUpgradeMenu.performed -= instance.OnOpenUpgradeMenu;
-            @OpenUpgradeMenu.canceled -= instance.OnOpenUpgradeMenu;
-            @Back.started -= instance.OnBack;
-            @Back.performed -= instance.OnBack;
-            @Back.canceled -= instance.OnBack;
-            @Confirm.started -= instance.OnConfirm;
-            @Confirm.performed -= instance.OnConfirm;
-            @Confirm.canceled -= instance.OnConfirm;
-            @MoveCursor.started -= instance.OnMoveCursor;
-            @MoveCursor.performed -= instance.OnMoveCursor;
-            @MoveCursor.canceled -= instance.OnMoveCursor;
-        }
-
-        public void RemoveCallbacks(IUIActions instance)
-        {
-            if (m_Wrapper.m_UIActionsCallbackInterfaces.Remove(instance))
-                UnregisterCallbacks(instance);
-        }
-
-        public void SetCallbacks(IUIActions instance)
-        {
-            foreach (var item in m_Wrapper.m_UIActionsCallbackInterfaces)
-                UnregisterCallbacks(item);
-            m_Wrapper.m_UIActionsCallbackInterfaces.Clear();
-            AddCallbacks(instance);
-        }
-    }
-    public UIActions @UI => new UIActions(this);
     public interface IPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
@@ -919,6 +769,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnEnterShip(InputAction.CallbackContext context);
         void OnPlaceDeployable(InputAction.CallbackContext context);
+        void OnFireLaser(InputAction.CallbackContext context);
     }
     public interface IShipActions
     {
@@ -926,12 +777,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnAim(InputAction.CallbackContext context);
         void OnExitShip(InputAction.CallbackContext context);
         void OnPrecisionAim(InputAction.CallbackContext context);
-    }
-    public interface IUIActions
-    {
         void OnOpenUpgradeMenu(InputAction.CallbackContext context);
-        void OnBack(InputAction.CallbackContext context);
-        void OnConfirm(InputAction.CallbackContext context);
-        void OnMoveCursor(InputAction.CallbackContext context);
     }
 }

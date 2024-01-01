@@ -1,3 +1,4 @@
+using Capstone.Input;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -73,12 +74,12 @@ namespace Capstone.Build.Characters.Player.PlayerStates
             // pass aiming input to ship
             // if keyboard input, pass that
             // else pass controller input
-            if (InputInfo.AimShip != 0)
+            if (InputInfo.ShipAim != 0)
             {
-                this._ship.HandleRotationInput(InputInfo.AimShip, InputInfo.PrecisionAim);
+                this._ship.HandleRotationInput(InputInfo.ShipAim, InputInfo.PrecisionAim);
             }
             
-            this._ship.HandleShootInput(InputInfo.Shoot);
+            this._ship.HandleShootInput(InputInfo.ShootHeld);
 
             if(InputInfo.ExitShip)
             {

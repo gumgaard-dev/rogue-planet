@@ -6,22 +6,25 @@ namespace Capstone.Input
 {
     public class InputInfo : MonoBehaviour
     {
-        public Vector2 Move;
-        public Vector2 AimMining;
-        public bool Jump;
-        public bool EnterShip;
-
-        public bool Shoot;
-        public bool ExitShip;
-        public float AimShip;
-        public bool PrecisionAim;
+        public static Vector2 Move;
+        public static Vector2 PlayerAim;
+        public static bool JumpHeld;
+        public static bool EnterShip;
+        public static bool FireLaser;
+               
+        public static bool ShootHeld;
+        public static bool ExitShip;
+        public static float ShipAim;
+        public static bool PrecisionAim;
 
         // UI control modes
-        public bool OpenUpgradeMenu;
-        public bool Back;
-        public bool Confirm;
-        public Vector2 MoveCursor;
+        public static bool OpenUpgradeMenu;
 
-        public bool PlaceDeployable { get; internal set; }
+        public static bool PlaceDeployable;
+
+        public static InputInfo Instance;
+
+        public static object ShootPressed { get; internal set; }
+        public static object JumpPressed { get; internal set; }
     }
 }

@@ -1,3 +1,4 @@
+using Capstone.Input;
 using UnityEngine;
 
 namespace Capstone.Build.Characters.Player.PlayerStates
@@ -30,7 +31,7 @@ namespace Capstone.Build.Characters.Player.PlayerStates
             {
                 Player.SetState(PlayerStateType.Idle);
             }
-            else if (InputInfo.Jump && Player.Jetpack.HasFuel())
+            else if (InputInfo.JumpHeld && Player.Jetpack.HasFuel())
             {
                 Player.SetState(PlayerStateType.Jetpack);
             }

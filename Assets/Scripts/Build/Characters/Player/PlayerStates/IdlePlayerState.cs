@@ -1,4 +1,6 @@
-﻿namespace Capstone.Build.Characters.Player.PlayerStates
+﻿using Capstone.Input;
+
+namespace Capstone.Build.Characters.Player.PlayerStates
 {
     public class IdlePlayerState : PlayerState
     {
@@ -18,7 +20,7 @@
                         
             else if (!TriggerInfo.Ground) { Player.SetState(PlayerStateType.Fall); }
 
-            else if (InputInfo.Jump && Player.Jetpack.HasFuel()) { Player.SetState(PlayerStateType.Jetpack); }
+            else if (InputInfo.JumpHeld && Player.Jetpack.HasFuel()) { Player.SetState(PlayerStateType.Jetpack); }
             
             else if (InputInfo.Move.x != 0) {  Player.SetState(PlayerStateType.Run); }
             
