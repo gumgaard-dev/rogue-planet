@@ -1,3 +1,4 @@
+using Capstone.Input;
 using System;
 using UnityEngine;
 
@@ -21,11 +22,16 @@ namespace Capstone.Build.Characters.Player.PlayerStates
 
             if (InputInfo.Move.y > 0 && Player.IsNearShip) { Player.SetState(PlayerStateType.InShip); }
 
-            else if (InputInfo.Jump && Player.Jetpack.HasFuel()) { Player.SetState(PlayerStateType.Jetpack); }
+            else if (InputInfo.JumpHeld && Player.Jetpack.HasFuel()) { Player.SetState(PlayerStateType.Jetpack); }
 
             else if (!TriggerInfo.Ground) { Player.SetState(PlayerStateType.Fall); }
             
             else { Player.UpdateFacing(); }
+
+            if (InputInfo.PlaceDeployable)
+            {
+                Player.PlaceDeployable();
+            }
 
         }
 

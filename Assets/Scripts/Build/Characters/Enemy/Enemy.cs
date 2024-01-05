@@ -30,7 +30,7 @@ namespace Build.Characters.Enemy
             _rb = GetComponent<Rigidbody2D>();
 
             // setting condition under which this should be returned to the pool
-            _healthData.HealthIsZero.AddListener(this.ReturnToPool);
+            _healthData.HealthIsZero.AddListener(this.OnEnemyKilled);
         }
         
         //at this point, any enemy will deal damage if the player touches it
@@ -75,14 +75,21 @@ namespace Build.Characters.Enemy
         }
 
         // method is set as listener to healthData.HealthIsZero event
-        public override void ReturnToPool()
+        public void OnEnemyKilled()
         {
-            // reset any values here
-            _healthData.ResetCurrentHealth();
-
             // return this to pool
-            base.ReturnToPool();
+            ReturnToPoolCriteriaMet.Invoke(this);
         }
+
+        public override void OnGetFromPool()
+        {
+            if (_healthData != null)
+            {
+                _healthData.HealToFull();
+
+            }
+        }
+
     }
 }
 

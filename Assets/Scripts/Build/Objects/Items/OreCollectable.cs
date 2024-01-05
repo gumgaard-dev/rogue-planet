@@ -10,6 +10,8 @@ public class OreCollectable : MonoBehaviour, ICollectable
 
     public ResourceType resourceType;
 
+    public string ItemName;
+
     public object GetItemType()
     {
         return resourceType;
@@ -21,5 +23,15 @@ public class OreCollectable : MonoBehaviour, ICollectable
         {
             Destroy(this.gameObject);
         }
+    }
+
+    public Sprite GetSprite()
+    {
+        return GetComponent<SpriteRenderer>().sprite;
+    }
+
+    public string GetName()
+    {
+        return this.ItemName;
     }
 }

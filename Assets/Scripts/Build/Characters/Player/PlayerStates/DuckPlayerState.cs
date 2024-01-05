@@ -1,3 +1,4 @@
+using Capstone.Input;
 using UnityEngine;
 
 namespace Capstone.Build.Characters.Player.PlayerStates

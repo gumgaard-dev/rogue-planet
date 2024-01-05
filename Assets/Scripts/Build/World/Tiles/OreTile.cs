@@ -15,6 +15,7 @@ namespace Capstone.Build.World
     {
         // set in custom editor class
         public Sprite DefaultSprite;
+        public Sprite NormalMap;
 
         // used by OreVisibilityController
         public bool IsVisible = true;

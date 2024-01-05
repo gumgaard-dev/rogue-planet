@@ -1,0 +1,197 @@
+.TranslucentUIBackground {
+    background-color: rgba(28, 32, 58, 0.67);
+    flex-grow: 0;
+    width: 100%;
+    height: 100%;
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+}
+
+.InnerUpgradePanel {
+    background-color: rgba(32, 32, 32, 0);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.TabButton {
+    padding-left: 0;
+    padding-right: 0;
+    align-items: center;
+    justify-content: center;
+    padding-top: 0;
+    padding-bottom: 0;
+    background-color: rgba(0, 0, 0, 0);
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    width: 42px;
+    height: 100%;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-left-color: rgb(164, 164, 164);
+    border-right-color: rgb(164, 164, 164);
+    border-top-color: rgb(164, 164, 164);
+    border-bottom-color: rgb(164, 164, 164);
+    max-width: 42px;
+}
+
+.unity-text-element {
+    -unity-font: url('project://database/Assets/Resources/Fonts/VCR_OSD_MONO_1.001.ttf?fileID=12800000&guid=82ea6d4df66693f4bbfde02698d04bc3&type=3#VCR_OSD_MONO_1.001');
+    -unity-font-style: normal;
+    -unity-font-definition: initial;
+}
+
+.TabButtonLabel {
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    -unity-font: url('project://database/Assets/Resources/Fonts/VCR_OSD_MONO_1.001.ttf?fileID=12800000&guid=82ea6d4df66693f4bbfde02698d04bc3&type=3#VCR_OSD_MONO_1.001');
+    background-color: rgba(255, 255, 255, 0);
+    color: rgb(161, 239, 140);
+    font-size: 8px;
+}
+
+.TabButtonContainer {
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+.inactiveTabView {
+    display: none;
+}
+
+.activeTabView {
+    display: flex;
+}
+
+.activeTabButton {
+    background-color: rgb(76, 65, 87);
+}
+
+.OreDisplay {
+    flex-grow: 1;
+    flex-direction: row;
+    justify-content: center;
+    align-self: center;
+    align-items: stretch;
+    max-width: 3px;
+    min-width: 36px;
+}
+
+.inactiveTabButton {
+    background-color: rgb(15, 11, 18);
+}
+
+.OreDisplayLabel {
+    font-size: 8px;
+    color: rgb(255, 255, 255);
+    margin-top: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    margin-right: 2px;
+    margin-bottom: 0;
+    margin-left: 2px;
+    width: 32px;
+    -unity-text-align: middle-left;
+}
+
+.UpgradeButton {
+    width: 20%;
+    height: 20%;
+    min-width: 80px;
+    min-height: 70px;
+}
+
+.TabView {
+    max-width: 100%;
+    min-height: auto;
+    max-height: none;
+    height: 100%;
+    width: 100%;
+    align-items: flex-start;
+    padding-top: 1%;
+    padding-right: 0;
+    padding-bottom: 1%;
+}
+
+.CostTypeIcon {
+    flex-grow: 1;
+    background-image: url('project://database/Assets/Art/Sprites/Objects/OreResources/tex_resGreen.png?fileID=2800000&guid=7ced156f94dfa1c41b867c294d07ff5f&type=3#tex_resGreen');
+    -unity-background-scale-mode: scale-to-fit;
+    max-width: 16px;
+    max-height: 16px;
+}
+
+.CostAmount {
+}
+
+.MenuTitle {
+}
+
+.UpgradeIcon {
+    flex-grow: 1;
+    min-width: 32px;
+    min-height: 32px;
+    background-image: url('project://database/Assets/Art/Sprites/Characters/Ship/tex_weaponBase.png?fileID=2800000&guid=0e549c3df4f27384d94dee091968cb96&type=3#tex_weaponBase');
+    width: 32px;
+    height: 32px;
+    max-width: 32px;
+    max-height: 32px;
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+
+.OreIcon {
+    flex-grow: 1;
+    background-image: url('project://database/Assets/Art/Sprites/Objects/OreResources/tex_resGreen.png?fileID=2800000&guid=7ced156f94dfa1c41b867c294d07ff5f&type=3#tex_resGreen');
+    -unity-background-scale-mode: scale-to-fit;
+    max-width: 8px;
+    max-height: 8px;
+    width: 8px;
+    height: 8px;
+    min-width: 8px;
+    min-height: 8px;
+}
+
+.TabLabel {
+    color: rgb(161, 239, 140);
+    font-size: 8px;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    justify-content: center;
+    align-self: center;
+}
+
+.UpgradeMenuRow {
+    min-height: auto;
+    height: auto;
+    max-height: none;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    align-items: flex-start;
+}

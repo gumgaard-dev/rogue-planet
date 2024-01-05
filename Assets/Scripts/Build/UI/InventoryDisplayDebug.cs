@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using static Unity.VisualScripting.Metadata;
 
 public class InventoryDisplay : MonoBehaviour
 {
@@ -9,8 +8,6 @@ public class InventoryDisplay : MonoBehaviour
 
     public void UpdateUI(Dictionary<object, int> storage)
     {
-
-        Debug.Log("Updating Inventory UI");
         // Iterate through the storage dictionary and create UI elements for each 
         string inventoryText = "";
         foreach (var entry in storage)
@@ -19,8 +16,6 @@ public class InventoryDisplay : MonoBehaviour
             int itemCount = entry.Value;
             inventoryText += $"{itemName}: {itemCount}\n";
         }
-
-        Debug.Log(inventoryText);
 
         itemTemplate.text = inventoryText;
     }

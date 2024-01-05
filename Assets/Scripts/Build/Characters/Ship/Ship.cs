@@ -14,11 +14,11 @@ namespace Capstone.Build.Characters.Ship
         private const float ROTATION_INPUT_MOD = -1f;
 
         // should be controlled by a player only, and should not look for input directly
-        public void HandleRotationInput(float direction)
+        public void HandleRotationInput(float direction, bool precisionMode) // kb input
         {
             if (Arm & direction != 0f)
             {
-                Arm.Rotate(direction * ROTATION_INPUT_MOD);
+                Arm.Rotate(direction * ROTATION_INPUT_MOD, precisionMode);
             }
         }
 
@@ -28,6 +28,11 @@ namespace Capstone.Build.Characters.Ship
             {
                 Gun.Shoot();
             }
+        }
+
+        public void OnHealthIsZero()
+        {
+            Destroy(this.gameObject);
         }
     }
 }

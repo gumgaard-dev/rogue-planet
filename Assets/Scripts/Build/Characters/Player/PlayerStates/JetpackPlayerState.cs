@@ -1,3 +1,4 @@
+using Capstone.Input;
 using UnityEngine;
 
 namespace Capstone.Build.Characters.Player.PlayerStates
@@ -21,12 +22,21 @@ namespace Capstone.Build.Characters.Player.PlayerStates
         {
             UpdateTriggers();
             Player.UpdateFacing();
+
+            if (InputInfo.PlaceDeployable)
+            {
+                Player.PlaceDeployable();
+            }
         }
 
         public override void FixedUpdateManaged()
         {
+            if (Player.IsNearShip && InputInfo.EnterShip)
+            {
+                Player.SetState(PlayerStateType.InShip);
+            }
             // exit state on jump release
-            if(!InputInfo.Jump || !Player.Jetpack.HasFuel())
+            if(!InputInfo.JumpHeld || !Player.Jetpack.HasFuel())
             {
                 Player.SetState(PlayerStateType.Fall);
                 return;
@@ -50,7 +60,7 @@ namespace Capstone.Build.Characters.Player.PlayerStates
 
             float thrust = Player.Jetpack.CalculateThrust();
 
-            int yModifier = InputInfo.Jump ? 1 : 0;
+            int yModifier = InputInfo.JumpHeld ? 1 : 0;
 
             newVelocity.y = Mathf.SmoothDamp(
                 Player.Velocity.y,
@@ -62,6 +72,7 @@ namespace Capstone.Build.Characters.Player.PlayerStates
             newVelocity.y = Player.Jetpack.CalculateThrust();
 
             Player.SetVelocity(newVelocity);
+
         }
 
     }

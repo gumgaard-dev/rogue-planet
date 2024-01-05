@@ -3,6 +3,7 @@ using Capstone.Build.Characters.Player.PlayerStates;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 namespace Capstone.Build.Characters.Player
 {
@@ -13,7 +14,7 @@ namespace Capstone.Build.Characters.Player
         public bool Aiming { get; set; }
         public Vector3 Position => transform.position;
         public Vector2 Velocity => _rigidBody.velocity;
-        public float Facing => transform.localScale.x;
+        public float Facing => transform.rotation.y == 0 ? 1 : -1;
         public Vector3 Scale => transform.localScale;
         public Bounds Bounds => _bodyCollider.bounds;
 
@@ -36,12 +37,15 @@ namespace Capstone.Build.Characters.Player
         public UnityEvent EnterShip;
         public UnityEvent ExitShip;
         public PlayerMovedEvent PlayerMoved;
+
+        private UpgradeMenuController _upgradeMenuController;
         
         // used to determine if player is close enough to enter the ship
         private bool _isNearShip;
         public bool IsNearShip {  get { return _isNearShip; } }
 
         public Jetpack Jetpack { get; private set; }
+        private DeployableInventory _deployableInventory;
 
 
         public void AwakeManaged()
@@ -70,6 +74,10 @@ namespace Capstone.Build.Characters.Player
             _aimController = GetComponentInChildren<PlayerAimController>();
 
             Jetpack = GetComponentInChildren<Jetpack>();
+
+            _deployableInventory = GetComponentInChildren<DeployableInventory>();
+
+            EnterShip.AddListener(DepositOreInShip);
         }
 
 
@@ -83,6 +91,7 @@ namespace Capstone.Build.Characters.Player
                 [PlayerStateType.Fall] = new FallPlayerState(_settings, this),
                 [PlayerStateType.Jetpack] = new JetpackPlayerState(_settings, this),
                 [PlayerStateType.InShip] = new InShipState(_settings, this),
+                [PlayerStateType.UpgradeMenu] = new UpgradeMenuState(_settings, this)
             };
 
             SetState(PlayerStateType.Run);
@@ -100,13 +109,15 @@ namespace Capstone.Build.Characters.Player
 
         public void SetState(PlayerStateType stateType)
         {
-            // call the state's exit method to perform any necessary exit actions
-            State?.Exit();
 
             StateType = stateType;
-            State = _playerStates[stateType];
 
-            // call the state's enter method to perform any necessary enter actions
+            // call the old state's exit method to perform any necessary exit actions
+            State?.Exit();
+
+            State = _playerStates[stateType];
+            
+            // call the new state's enter method to perform any necessary enter actions
             State.Enter();
         }
 
@@ -145,7 +156,13 @@ namespace Capstone.Build.Characters.Player
 
         public void SetVelocity(Vector2 velocity) { SetVelocity(velocity.x, velocity.y);}
 
-        public void SetFacing(float facing) { transform.localScale = new Vector3(facing, transform.localScale.y, transform.localScale.z);}
+        public void SetFacing(float facing) 
+        {
+            if (Mathf.Sign(facing) != Mathf.Sign(Facing))
+            {
+                transform.Rotate(Vector3.up, 180f * Mathf.Sign(facing));
+            }
+        }
 
         public void SetGravityScale(float gravityScale) { this._rigidBody.gravityScale = gravityScale; }
 
@@ -188,8 +205,33 @@ namespace Capstone.Build.Characters.Player
                     SetFacing(-1);
                 }
             }
-            
+        }
 
+        public void PlaceDeployable()
+        {
+            _deployableInventory.PlaceDeployable("Lamp");
+        }
+
+        public void AddToDeployableInventory(GameObject gObj)
+        {
+            _deployableInventory.AddToStorage(gObj);
+        }
+
+        public void DepositOreInShip()
+        {
+            Inventory playerInv = GetComponent<Inventory>();
+            Inventory shipInv = Ship.GetComponent<Inventory>();
+
+            Dictionary<object, int> TempDict = new(playerInv.storage);
+
+            foreach (var oreEntry in TempDict)
+            {
+                object oreType = oreEntry.Key;
+                int amount = oreEntry.Value;
+
+                shipInv.AddToStorage(oreType, amount);
+                playerInv.RemoveFromStorage(oreType, amount);
+            }
         }
 
         void OnDrawGizmos()

@@ -1,3 +1,4 @@
+using Capstone.Input;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -10,8 +11,13 @@ namespace Capstone.Build.Characters.Player.PlayerStates
         private Ship.Ship _ship;
         public InShipState(GameSettings settings, Player player) : base(settings, player) {}
 
+        // this is to solve a bug that arises from using the same button to enter and exit ship
+        private readonly float _timeUntilPlayerCanExitShip = 1f;
+        private float _timeSinceEnteringState;
+
         public override void Enter()
         {
+            _timeSinceEnteringState = 0;
             // notify listeners that the player has entered the ship
             Player.EnterShip?.Invoke();
 
@@ -36,6 +42,9 @@ namespace Capstone.Build.Characters.Player.PlayerStates
 
         public override void Exit()
         {
+            if (Player.StateType == PlayerStateType.UpgradeMenu) { return; }
+
+
             // notify listeners that the player has exited the ship
             Player.ExitShip?.Invoke();
 
@@ -52,16 +61,36 @@ namespace Capstone.Build.Characters.Player.PlayerStates
             }
         }
 
+        public override void UpdateManaged()
+        {
+            if (InputInfo.OpenUpgradeMenu)
+            {
+                Player.SetState(PlayerStateType.UpgradeMenu);
+            }
+        }
+
         public override void FixedUpdateManaged()
         {
-
-            // pass input to ship 
-            this._ship.HandleRotationInput(InputInfo.Move.x);
-            this._ship.HandleShootInput(InputInfo.Jump);
-
-            if(InputInfo.Move.y < 0)
+            // pass aiming input to ship
+            // if keyboard input, pass that
+            // else pass controller input
+            if (InputInfo.ShipAim != 0)
             {
-                Player.SetState(PlayerStateType.Run);
+                this._ship.HandleRotationInput(InputInfo.ShipAim, InputInfo.PrecisionAim);
+            }
+            
+            this._ship.HandleShootInput(InputInfo.ShootHeld);
+
+            if(InputInfo.ExitShip)
+            {
+                if (_timeSinceEnteringState >= _timeUntilPlayerCanExitShip)
+                {
+                    Player.SetState(PlayerStateType.Run);
+                }
+                
+            } else
+            {
+                _timeSinceEnteringState += Time.fixedDeltaTime;
             }
         }
     }

@@ -30,7 +30,7 @@ public class PoolUser : MonoBehaviour
 
         if (p != null)
         {
-            p.OnReturnToPool.AddListener(ReturnToPool);
+            p.ReturnToPoolCriteriaMet.AddListener(ReturnToPool);
             p.transform.SetPositionAndRotation(position, InstantiationPoint.rotation);
         }
         else
@@ -54,7 +54,7 @@ public class PoolUser : MonoBehaviour
     {
         if (PoolKey != null)
         {
-            toReturn.OnReturnToPool.RemoveAllListeners();
+            toReturn.ReturnToPoolCriteriaMet.RemoveAllListeners();
             Debug.Log("returning");
             returnPoints.Add(toReturn.transform.position);
             PoolManager.Instance.ReturnToPool(PoolKey, toReturn);
